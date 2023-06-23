@@ -1,2 +1,2 @@
 # fec-reader
-Lecture des fichiers des écritures comptables
+Librairie JAVA de Lecture des fichiers des écritures comptables
