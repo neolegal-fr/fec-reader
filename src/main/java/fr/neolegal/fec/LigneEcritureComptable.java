@@ -1,4 +1,4 @@
-package fr.neolegal;
+package fr.neolegal.fec;
 
 import java.util.Date;
 

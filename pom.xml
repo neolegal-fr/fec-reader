@@ -8,9 +8,18 @@
   <artifactId>fec-reader</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>fec-reader</name>
-  <!-- FIXME change it to the project's website -->
+  <name>${project.groupId}:${project.artifactId}</name>
   <url>https://github.com/nicolasriousset/fec-reader</url>
+  <description>
+    Librairie JAVA de Lecture des fichiers des écritures comptables conformes aux normes codifiées à l’article A.47 A-1 du livre des procédures fiscales.
+  </description>
+
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>http://www.opensource.org/licenses/mit-license.php</url>
+    </license>
+  </licenses>
 
   <developers>
     <developer>
@@ -50,6 +59,17 @@
       <version>${lombok.version}</version>
     </dependency>
   </dependencies>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
 
   <build>
     <pluginManagement>      <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -103,6 +123,31 @@
         <plugin>
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>1.6</version>
+          <executions>
+            <execution>
+              <id>sign-artifacts</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>sign</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.sonatype.plugins</groupId>
+          <artifactId>nexus-staging-maven-plugin</artifactId>
+          <version>1.6.13</version>
+          <extensions>true</extensions>
+          <configuration>
+            <serverId>ossrh</serverId>
+            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+            <autoReleaseAfterClose>false</autoReleaseAfterClose>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
