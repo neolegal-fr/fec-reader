@@ -16,7 +16,7 @@ import lombok.Data;
  * https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000027804775
  */
 @Data
-public class EcritureComptable {
+public class LEC {
     final String journalCode; // Col 1
     final String journalLib; // Col 2
     final String ecritureNum; // Col 3
@@ -43,7 +43,7 @@ public class EcritureComptable {
     final List<Anomalie> anomalies;
 
     @Builder
-    public EcritureComptable(String journalCode,
+    public LEC(String journalCode,
             String journalLib,
             String ecritureNum,
             LocalDate ecritureDate,

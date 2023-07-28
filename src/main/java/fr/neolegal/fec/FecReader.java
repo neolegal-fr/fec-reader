@@ -92,13 +92,13 @@ public class FecReader {
         int lineCount = 0;
         int emptyLineCount = 0;
         int lineParsingErrorCount = 0;
-        List<EcritureComptable> ecritures = new LinkedList<>();
+        List<LEC> lignes = new LinkedList<>();
         for (CSVRecord csvRecord : csvParser) {
             if (lineCount > 0) {
                 // La première ligne est obligatoirement une ligne d'en-tête
                 if (csvRecord.size() > 1) {
                     try {
-                        ecritures.add(parseEcriture(csvRecord));
+                        lignes.add(parseLigne(csvRecord));
                     } catch (ParseException e) {
                         ++lineParsingErrorCount;
                     }
@@ -116,7 +116,7 @@ public class FecReader {
             anomalies.add(new Anomalie(NatureAnomalie.LIGNES_INVALIDES, lineParsingErrorCount, String.format("%d lignes n'ont pas pu être lues", lineParsingErrorCount)));
         }
 
-        builder.ecritures(ecritures);
+        builder.lignes(lignes);
         builder.anomalies(anomalies);
 
         return builder.build();
@@ -138,8 +138,14 @@ public class FecReader {
      * l'ordre, à celles listées dans le tableau
      * @throws ParseException
      */
-    private EcritureComptable parseEcriture(CSVRecord ligne) throws ParseException {
-        EcritureComptable.EcritureComptableBuilder builder = EcritureComptable.builder();
+    private LEC parseLigne(CSVRecord ligne) throws ParseException {
+        List<Anomalie> anomalies = new LinkedList<>();
+
+        if (ligne.size() < 18) {
+            anomalies.add(new Anomalie(NatureAnomalie.LIGNES_INVALIDES, ligne.size(),String.format("La ligne ne contient que %d valeurs au lieu des 18 attendues", ligne.size())));
+        }
+
+        LEC.LECBuilder builder = LEC.builder();
         int colIndex = 0;
         builder.journalCode(getValueOrNull(ligne, colIndex++));
         builder.journalLib(getValueOrNull(ligne, colIndex++));
@@ -163,6 +169,7 @@ public class FecReader {
         builder.modeRglt(getValueOrNull(ligne, colIndex++));
         builder.natOp(getValueOrNull(ligne, colIndex++));
         builder.idClient(getValueOrNull(ligne, colIndex++));
+        builder.anomalies(anomalies);
         return builder.build();
     }
 }
