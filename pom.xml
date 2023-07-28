@@ -1,64 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>fr.neolegal</groupId>
-  <artifactId>fec-reader</artifactId>
-  <version>1.0-SNAPSHOT</version>
+    <groupId>fr.neolegal</groupId>
+    <artifactId>fec-reader</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
-  <name>${project.groupId}:${project.artifactId}</name>
-  <url>https://github.com/nicolasriousset/fec-reader</url>
-  <description>
+    <name>${project.groupId}:${project.artifactId}</name>
+    <url>https://github.com/nicolasriousset/fec-reader</url>
+    <description>
     Librairie JAVA de Lecture des fichiers des écritures comptables conformes aux normes codifiées à l’article A.47 A-1 du livre des procédures fiscales.
-  </description>
+    </description>
 
-  <licenses>
-    <license>
-      <name>MIT License</name>
-      <url>http://www.opensource.org/licenses/mit-license.php</url>
-    </license>
-  </licenses>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
 
-  <developers>
-    <developer>
-      <name>Nicolas Riousset</name>
-      <email>nicolas@neolegal.fr</email>
-      <organization>NeoLegal</organization>
-      <organizationUrl>https://neolegal.fr</organizationUrl>
-    </developer>
-  </developers>
+    <developers>
+        <developer>
+            <name>Nicolas Riousset</name>
+            <email>nicolas@neolegal.fr</email>
+            <organization>NeoLegal</organization>
+            <organizationUrl>https://neolegal.fr</organizationUrl>
+        </developer>
+    </developers>
 
-  <scm>
-    <connection>scm:git:git://github.com/nicolasriousset/fec-reader.git</connection>
-    <developerConnection>scm:git:ssh://github.com:nicolasriousset/fec-reader.git</developerConnection>
-    <url>https://github.com/nicolasriousset/fec-reader/tree/main</url>
-  </scm>
+    <scm>
+        <connection>scm:git:git://github.com/nicolasriousset/fec-reader.git</connection>
+        <developerConnection>scm:git:ssh://github.com:nicolasriousset/fec-reader.git</developerConnection>
+        <url>https://github.com/nicolasriousset/fec-reader/tree/main</url>
+    </scm>
 
 
-  <properties>
-    <maven.version>3.11.0</maven.version>
-    <java.version>17</java.version>
-    <lombok.version>1.18.26</lombok.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
-  </properties>
+    <properties>
+        <maven.version>3.11.0</maven.version>
+        <java.version>17</java.version>
+        <lombok.version>1.18.26</lombok.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>5.9.3</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>${lombok.version}</version>
-    </dependency>
-  </dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.9.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-parsers</artifactId>
+            <version>1.27</version>
+        </dependency>
+    </dependencies>
 
     <distributionManagement>
         <snapshotRepository>
