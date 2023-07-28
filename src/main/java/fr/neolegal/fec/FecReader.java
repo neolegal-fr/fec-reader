@@ -6,21 +6,16 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.security.InvalidParameterException;
-import java.text.NumberFormat;
 import java.text.ParseException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Scanner;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.tika.parser.txt.CharsetDetector;
 import org.apache.tika.parser.txt.CharsetMatch;
@@ -34,10 +29,7 @@ import org.apache.tika.parser.txt.CharsetMatch;
 public class FecReader {
 
     static Character TAB_SEPARATOR = '\t';
-    static Character PIPE_SEPARATOR = '|';
-    static String FEC_FILENAME_SEPARATOR = "FEC";
-    static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-    static NumberFormat numberFormat = NumberFormat.getInstance(Locale.FRANCE);
+    static Character PIPE_SEPARATOR = '|';    
 
     public FecReader() {
     }
@@ -82,12 +74,12 @@ public class FecReader {
                 "Aucun séparateur de zone détecté. Les zones sont obligatoirement séparées par une tabulation ou le caractère '|'"));
 
         String filename = path.getFileName().toString();
-        Optional<String> sirenMatch = parseSiren(filename);
+        Optional<String> sirenMatch = FecHelper.parseSiren(filename);
         sirenMatch.ifPresentOrElse(siren -> builder.siren(siren),
                 () -> anomalies.add(new Anomalie(NatureAnomalie.SIREN, filename,
                         String.format("Format du nom de fichier incorrect, numéro SIREN non trouvé : %s", filename))));
 
-        Optional<LocalDate> clotureExerciceMatch = parseClotureExercice(filename);
+        Optional<LocalDate> clotureExerciceMatch = FecHelper.parseClotureExercice(filename);
         clotureExerciceMatch.ifPresentOrElse(cloture -> builder.clotureExercice(cloture),
                 () -> anomalies.add(new Anomalie(NatureAnomalie.CLOTURE_EXERCICE, filename,
                         String.format(
@@ -152,77 +144,25 @@ public class FecReader {
         builder.journalCode(getValueOrNull(ligne, colIndex++));
         builder.journalLib(getValueOrNull(ligne, colIndex++));
         builder.ecritureNum(getValueOrNull(ligne, colIndex++));
-        builder.ecritureDate(parseDate(getValueOrNull(ligne, colIndex++)));
+        builder.ecritureDate(FecHelper.parseDate(getValueOrNull(ligne, colIndex++)));
         builder.compteNum(getValueOrNull(ligne, colIndex++));
         builder.compteLib(getValueOrNull(ligne, colIndex++));
         builder.compAuxNum(getValueOrNull(ligne, colIndex++));
         builder.compAuxLib(getValueOrNull(ligne, colIndex++));
         builder.pieceRef(getValueOrNull(ligne, colIndex++));
-        builder.pieceDate(parseDate(getValueOrNull(ligne, colIndex++)));
+        builder.pieceDate(FecHelper.parseDate(getValueOrNull(ligne, colIndex++)));
         builder.ecritureLib(getValueOrNull(ligne, colIndex++));
-        builder.debit(parseDouble(getValueOrNull(ligne, colIndex++)));
-        builder.credit(parseDouble(getValueOrNull(ligne, colIndex++)));
+        builder.debit(FecHelper.parseDouble(getValueOrNull(ligne, colIndex++)));
+        builder.credit(FecHelper.parseDouble(getValueOrNull(ligne, colIndex++)));
         builder.ecritureLet(getValueOrNull(ligne, colIndex++));
-        builder.dateLet(parseDate(getValueOrNull(ligne, colIndex++)));
-        builder.validDate(parseDate(getValueOrNull(ligne, colIndex++)));
-        builder.montantdevise(parseDouble(getValueOrNull(ligne, colIndex++)));
+        builder.dateLet(FecHelper.parseDate(getValueOrNull(ligne, colIndex++)));
+        builder.validDate(FecHelper.parseDate(getValueOrNull(ligne, colIndex++)));
+        builder.montantdevise(FecHelper.parseDouble(getValueOrNull(ligne, colIndex++)));
         builder.idevise(getValueOrNull(ligne, colIndex++));
-        builder.dateRglt(parseDate(getValueOrNull(ligne, colIndex++)));
+        builder.dateRglt(FecHelper.parseDate(getValueOrNull(ligne, colIndex++)));
         builder.modeRglt(getValueOrNull(ligne, colIndex++));
         builder.natOp(getValueOrNull(ligne, colIndex++));
         builder.idClient(getValueOrNull(ligne, colIndex++));
         return builder.build();
-    }
-
-    static LocalDate parseDate(String value) {
-        return StringUtils.isBlank(value) ? null : LocalDate.parse(value, dateFormatter);
-    }
-
-    static Double parseDouble(String value) throws ParseException {
-        return StringUtils.isBlank(value) ? null : numberFormat.parse(value).doubleValue();
-    }
-
-    /**
-     * IX. – Le fichier des écritures comptables est nommé selon la nomenclature
-     * suivante :
-     * SirenFECAAAAMMJJ, où " Siren " est le Siren du contribuable mentionné à
-     * l'article L. 47 A et AAAAMMJJ la date de clôture de l'exercice comptable.
-     */
-    static Optional<LocalDate> parseClotureExercice(String filename) {
-        filename = FilenameUtils.removeExtension(filename);
-
-        if (StringUtils.isBlank(filename)) {
-            return Optional.empty();
-        }
-
-        String[] parts = filename.split("(?i)" + FEC_FILENAME_SEPARATOR);
-        if (parts.length != 2) {
-            return Optional.empty();
-        }
-
-        try {
-            return Optional.of(LocalDate.parse(parts[1], dateFormatter));
-        } catch (Exception e) {
-            return Optional.empty();
-        }
-    }
-
-    /**
-     * IX. – Le fichier des écritures comptables est nommé selon la nomenclature
-     * suivante :
-     * SirenFECAAAAMMJJ, où " Siren " est le Siren du contribuable mentionné à
-     * l'article L. 47 A et AAAAMMJJ la date de clôture de l'exercice comptable.
-     */
-    static Optional<String> parseSiren(String filename) {
-        if (StringUtils.isBlank(filename)) {
-            return Optional.empty();
-        }
-
-        String[] parts = filename.split("(?i)" + FEC_FILENAME_SEPARATOR);
-        if (parts.length != 2) {
-            return Optional.empty();
-        }
-
-        return Optional.of(parts[0]);
     }
 }
