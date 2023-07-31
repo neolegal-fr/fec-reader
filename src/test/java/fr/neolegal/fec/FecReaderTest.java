@@ -27,7 +27,7 @@ public class FecReaderTest {
 
         assertEquals(-83308.12000000001, fec.getChargesSociales());
         assertEquals(-410953.37, fec.getAchatsMarchandises());
-        assertEquals(-249857.75, fec.getChargesPersonnel());
+        assertEquals(-249857.75, fec.getSalairesEtTraitements());
         
         assertEquals(-1107619.9, fec.getChargesExploitation());
         assertEquals(1225776.5, fec.getProduitExploitation());
