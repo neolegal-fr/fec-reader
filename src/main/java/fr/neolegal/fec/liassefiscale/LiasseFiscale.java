@@ -1,6 +1,8 @@
 package fr.neolegal.fec.liassefiscale;
 
 import java.time.LocalDate;
+import java.util.LinkedList;
+import java.util.List;
 
 import lombok.Builder;
 import lombok.Data;
@@ -16,29 +18,11 @@ public class LiasseFiscale {
 
     final String siren;
     final LocalDate clotureExercice;
-    final TableauComptable bilanActif;
-    final TableauComptable bilanPassif;
-    final TableauComptable compteDeResultat;
-    final TableauComptable compteDeResultatEnListe;
-    final TableauComptable immobilisations;
-    final TableauComptable amortissements;
-    final TableauComptable provisions;
-    final TableauComptable creancesEtDettes;
+    final List<TableauComptable> formulaires = new LinkedList<>();
 
     @Builder
-    public LiasseFiscale(String siren, LocalDate clotureExercice, TableauComptable bilanActif,
-            TableauComptable bilanPassif, TableauComptable compteDeResultat, TableauComptable compteDeResultatEnListe,
-            TableauComptable immobilisations, TableauComptable amortissements, TableauComptable provisions,
-            TableauComptable creancesEtDettes) {
+    public LiasseFiscale(String siren, LocalDate clotureExercice) {
         this.siren = siren;
         this.clotureExercice = clotureExercice;
-        this.bilanActif = bilanActif;
-        this.bilanPassif = bilanPassif;
-        this.compteDeResultat = compteDeResultat;
-        this.compteDeResultatEnListe = compteDeResultatEnListe;
-        this.immobilisations = immobilisations;
-        this.amortissements = amortissements;
-        this.provisions = provisions;
-        this.creancesEtDettes = creancesEtDettes;
     }
 }

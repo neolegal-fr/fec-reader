@@ -12,21 +12,17 @@ import lombok.Data;
 
 @Data
 public class TableauComptable {
-    String nom;
-    String numero;
-    String cerfa;
-    Map<LigneRepere, Double> lignes = new HashMap<>();
+    Formulaire formulaire;
+     Map<LigneRepere, Double> lignes = new HashMap<>();
 
     @Builder
-    public TableauComptable(String nom, String numero, String cerfa, Map<LigneRepere, Double> lignes) {
-        this.nom = nom;
-        this.numero = numero;
-        this.cerfa = cerfa;
+    public TableauComptable(Formulaire formulaire, Map<LigneRepere, Double> lignes) {
+        this.formulaire = formulaire;
         this.lignes = ObjectUtils.firstNonNull(lignes, new HashMap<>());
     }
 
-    public TableauComptable(String nom, String numero, String cerfa) {
-        this(nom, numero, cerfa, null);
+    public TableauComptable(Formulaire formulaire) {
+        this(formulaire, null);
     }
 
     public Optional<Double> getMontant(String repere) {
