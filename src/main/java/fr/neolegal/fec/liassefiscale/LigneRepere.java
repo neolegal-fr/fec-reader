@@ -17,6 +17,9 @@ public class LigneRepere {
         static VariableProvider variables = new Variables();
         static Map<String, LigneRepere> REPERES = buildDefinitionReperes();
 
+        /** Documentation des calculs : 
+         * https://www.lexisnexis.fr/__data/assets/pdf_file/0006/642363/rdi1903.pdf
+         */
         private static Map<String, LigneRepere> buildDefinitionReperes() {
                 List<LigneRepere> reperes = new LinkedList<>();
                 reperes.add(new LigneRepere("AA", "Capital souscrit non appelé", "PCG_109",

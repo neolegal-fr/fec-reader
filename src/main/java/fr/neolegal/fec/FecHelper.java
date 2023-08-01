@@ -93,38 +93,11 @@ public abstract class FecHelper {
                 .collect(Collectors.toSet());
     }
 
-    public static double computeSoldeComptes(List<LEC> lignes, Collection<PCG> comptes) {
-        return computeSoldeComptesByNumero(lignes,
-                comptes.stream().map(compte -> compte.getPrefix()).collect(Collectors.toSet()));
-    }
-
     public static double computeSoldeComptesByNumero(List<LEC> lignes, Collection<String> prefixComptes) {
         return CollectionUtils.emptyIfNull(lignes).stream()
                 .filter(ligne -> prefixComptes.stream()
                         .anyMatch(prefixCompte -> StringUtils.startsWith(ligne.getCompteNum(), prefixCompte)))
                 .mapToDouble(ligne -> ligne.getCredit() - ligne.getDebit()).sum();
-    }
-
-    public static double computeSoldeCompte(List<LEC> lignes, PCG compte) {
-        return computeSoldeComptes(lignes, List.of(compte));
-    }
-
-    public static double computeSoldeReportANouveau(List<LEC> lignes) {
-        return computeSoldeCompte(lignes, PCG.REPORT_A_NOUVEAU_CREDITEUR)
-                - computeSoldeCompte(lignes, PCG.REPORT_A_NOUVEAU_DEBITEUR);
-    }
-
-    public static double computeTotalBilan(List<LEC> lignes) {
-        return 0;
-    }
-
-    public static double computeChargesExploitation(List<LEC> lignes) {
-        return computeSoldeComptes(lignes, Set.of(PCG.ACHATS,
-                PCG.CHARGES_EXTERNES,
-                PCG.AUTRES_CHARGES_EXTERNES,
-                PCG.IMPOTS,
-                PCG.CHARGES_PERSONNEL,
-                PCG.AUTRES_CHARGES_GESTION_COURANTE));
     }
 
     public static Fec read(Path file) {
