@@ -43,6 +43,7 @@ public class LiasseFiscaleHelperTest {
         TableauComptable actual = LiasseFiscaleHelper.buildTableauComptable(fec, Formulaire.DGFIP_2052_COMPTE_RESULTAT);
         assertEquals(1212843.9, actual.getMontant("FL").get());
         assertEquals(1225776.5, actual.getMontant("FR").get());
+        assertEquals(-410953.37, actual.getMontant("FS").get());
         assertEquals(-1107619.9, actual.getMontant("GF").get());
         assertEquals(-249857.75, actual.getMontant("FY").get());
         assertEquals(-83308.12000000001, actual.getMontant("FZ").get());
