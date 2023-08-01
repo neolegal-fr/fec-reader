@@ -20,6 +20,7 @@ public class LiasseFiscaleHelper {
                 .bilanActif(buildBilanActif(fec))
                 .bilanPassif(buildBilanPassif(fec))
                 .compteDeResultatEnListe(buildCompteDeResultatsEnListe(fec))
+                .compteDeResultat(buildCompteDeResultats(fec))
                 .build();
     }
 
@@ -35,6 +36,11 @@ public class LiasseFiscaleHelper {
     public static TableauComptable buildCompteDeResultatsEnListe(Fec fec) {
         return buildTableauComptable(fec, "Compte de résultat de l'exercice (en liste)", "2052", "2052-SD 2023",
                 Set.of("FL", "FR", "GF", "FY", "FZ", "GG", "GV", "GW"));
+    }
+
+    public static TableauComptable buildCompteDeResultats(Fec fec) {
+        return buildTableauComptable(fec, "Compte de résultat de l'exercice", "2053", "2053-SD 2023",
+                Set.of("HI", "HK", "HN"));
     }
 
     private static TableauComptable buildTableauComptable(Fec fec, String nom, String numero, String cerfa,

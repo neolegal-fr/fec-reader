@@ -22,6 +22,7 @@ public class LiasseFiscaleHelperTest {
         assertNotNull(actual.getBilanActif());
         assertNotNull(actual.getBilanPassif());
         assertNotNull(actual.getCompteDeResultatEnListe());
+        assertNotNull(actual.getCompteDeResultat());
     }
 
     @Test
@@ -53,6 +54,12 @@ public class LiasseFiscaleHelperTest {
         assertEquals(115113.01999999999, actual.getMontant("GW").get());
     }
 
-    
+    @Test
+    void buildCompteDeResultats() throws FileNotFoundException, IOException {
+        TableauComptable actual = LiasseFiscaleHelper.buildCompteDeResultats(fec);
+        assertEquals(11120.89, actual.getMontant("HI").get());
+        assertEquals(0.0, actual.getMontant("HK").get());
+        assertEquals(126233.90999999999, actual.getMontant("HN").get());
+    }
 
 }

@@ -88,6 +88,20 @@ public class LigneRepere {
         reperes.add(new LigneRepere("GU", "Total des charges financières (VI)", "GQ + GR + GS + GT"));
         reperes.add(new LigneRepere("GV", "Résultat net financier", "GP - GU"));
         reperes.add(new LigneRepere("GW", "Résultat courant avant impôts", "GG + GH - GI + GV"));
+        reperes.add(new LigneRepere("HA", "Produits exceptionnels sur opérations de gestion", "PCG_771"));
+        reperes.add(new LigneRepere("HB", "Produits exceptionnels sur opérations en capital", "PCG_775 + PCG_777 + PCG_778"));
+        reperes.add(new LigneRepere("HC", "Reprises sur provisions et transferts de charges", "PCG_787 + PCG_797"));
+        reperes.add(new LigneRepere("HD", "Total des produits exceptionnels", "HA + HB + HC"));
+        reperes.add(new LigneRepere("HE", "Charges exceptionnelles sur opérations de gestion", "PCG_671"));
+        reperes.add(new LigneRepere("HF", "Charges exceptionnelles su opérations en capital", "PCG_675 + PCG_678"));
+        reperes.add(new LigneRepere("HG", "Dotations exceptionnelles aux amortissements et provisions", "PCG_687"));
+        reperes.add(new LigneRepere("HH", "Total des charges exceptionnelles (VIII)", "HE + HF + HG"));
+        reperes.add(new LigneRepere("HI", "Résultat net exceptionnel", "HD - HH"));
+        reperes.add(new LigneRepere("HJ", "Participation des salariés aux résultats de l'entreprise", "PCG_691"));        
+        reperes.add(new LigneRepere("HK", "Impôts sur les bénéfices", "PCG_695 + PCG_698 + PCG_699"));
+        reperes.add(new LigneRepere("HL", "Total des produits", "FR + GH + GP + HD"));
+        reperes.add(new LigneRepere("HM", "Total des charges", "GF + GI + GU + HH + HJ + HK"));
+        reperes.add(new LigneRepere("HN", "Résultat de l'exercice", "HL - HM"));
 
         Map<String, LigneRepere> resultat = new HashMap<String, LigneRepere>();
         reperes.forEach(repere -> resultat.put(repere.getRepere(), repere));
