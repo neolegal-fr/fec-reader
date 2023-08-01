@@ -20,7 +20,7 @@ public class Variables implements VariableProvider {
 
     @Override
     public boolean contains(String name) {
-        return LigneRepereHelper.isLigneRepere(name) || LigneRepereHelper.isNumeroCompte(name)
+        return RepereHelper.isLigneRepere(name) || RepereHelper.isNumeroCompte(name)
                 || customVariables.containsKey(name);
 
     }

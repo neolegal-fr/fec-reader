@@ -30,11 +30,11 @@ public class LiasseFiscaleHelper {
     static TableauComptable buildTableauComptable(Fec fec, Formulaire formulaire) {
         TableauComptable tableau = new TableauComptable(formulaire);
 
-        List<LigneRepere> reperes = LigneRepere.REPERES.values().stream()
+        List<Repere> reperes = Repere.REPERES.values().stream()
                 .filter(ligne -> Objects.equals(ligne.getFormulaire(), formulaire)).collect(Collectors.toList());
-        for (LigneRepere repere : reperes) {
+        for (Repere repere : reperes) {
 
-            double montant = LigneRepereHelper.computeMontantLigneRepere(repere, fec);
+            double montant = RepereHelper.computeMontantLigneRepere(repere, fec);
             tableau.getLignes().put(repere, montant);
         }
         return tableau;

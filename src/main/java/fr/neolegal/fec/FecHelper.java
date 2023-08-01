@@ -16,6 +16,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import fr.neolegal.fec.liassefiscale.InfoCompte;
+
 public abstract class FecHelper {
 
     static String FEC_FILENAME_SEPARATOR = "FEC";
@@ -93,10 +95,24 @@ public abstract class FecHelper {
                 .collect(Collectors.toSet());
     }
 
-    public static double computeSoldeComptesByNumero(List<LEC> lignes, Collection<String> prefixComptes) {
+    public static double computeInfoComptesByNumero(List<LEC> lignes, Collection<InfoCompte> comptes) {
+        if (lignes.isEmpty()) {
+            return 0.0;
+        }
+
+        /**
+         * Livre des procédures fiscales : Section III : Modalités d'exercice du droit
+         * de contrôle:
+         * Pour chaque exercice, les premiers numéros d'écritures comptables du fichier
+         * correspondent aux écritures de reprise des soldes de l'exercice antérieur
+         */
+        String numEcritureRepriseANouveau = lignes.stream().findFirst().map(lec -> lec.getEcritureNum()).orElse("");
+
+        // prendre en compte solde ou différence
         return CollectionUtils.emptyIfNull(lignes).stream()
-                .filter(ligne -> prefixComptes.stream()
-                        .anyMatch(prefixCompte -> StringUtils.startsWith(ligne.getCompteNum(), prefixCompte)))
+                .filter(ligne -> comptes.stream()
+                        .anyMatch(compte -> compte.matches(ligne.getCompteNum()) && (compte.isSolde()
+                                || !StringUtils.equalsIgnoreCase(numEcritureRepriseANouveau, ligne.getEcritureNum()))))
                 .mapToDouble(ligne -> ligne.getCredit() - ligne.getDebit()).sum();
     }
 

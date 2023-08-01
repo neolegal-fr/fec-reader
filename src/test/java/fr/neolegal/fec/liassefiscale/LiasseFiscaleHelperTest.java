@@ -71,9 +71,9 @@ public class LiasseFiscaleHelperTest {
     void buildTableauComptable_whenAffectationResultat() throws FileNotFoundException, IOException {
         TableauComptable actual = LiasseFiscaleHelper.buildTableauComptable(fec, Formulaire.DGFIP_2058_C_AFFECTATION_RESULTAT);
         assertEquals(0.0, actual.getMontant("ZE").get());
-        assertEquals(35600.0, actual.getMontant("ZB").get()); // Erreur devrait être 0.0
+        assertEquals(0.0, actual.getMontant("ZB").get());
         assertEquals(0.0, actual.getMontant("ZD").get());
-        assertEquals(121396.22, actual.getMontant("ZG").get()); // Erreur : devrait être 4518.74
+        assertEquals(-4518.74, actual.getMontant("ZG").get());
     }    
 
 }

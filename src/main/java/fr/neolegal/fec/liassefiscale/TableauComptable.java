@@ -13,10 +13,10 @@ import lombok.Data;
 @Data
 public class TableauComptable {
     Formulaire formulaire;
-     Map<LigneRepere, Double> lignes = new HashMap<>();
+     Map<Repere, Double> lignes = new HashMap<>();
 
     @Builder
-    public TableauComptable(Formulaire formulaire, Map<LigneRepere, Double> lignes) {
+    public TableauComptable(Formulaire formulaire, Map<Repere, Double> lignes) {
         this.formulaire = formulaire;
         this.lignes = ObjectUtils.firstNonNull(lignes, new HashMap<>());
     }
@@ -26,7 +26,7 @@ public class TableauComptable {
     }
 
     public Optional<Double> getMontant(String repere) {
-        LigneRepere ligne = LigneRepere.get(repere);
+        Repere ligne = Repere.get(repere);
         if (Objects.isNull(ligne)) {
             return Optional.empty();
         }
