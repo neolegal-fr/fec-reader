@@ -1,5 +1,6 @@
 package fr.neolegal.fec;
 
+import java.nio.file.Path;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -124,5 +125,14 @@ public abstract class FecHelper {
                 PCG.IMPOTS,
                 PCG.CHARGES_PERSONNEL,
                 PCG.AUTRES_CHARGES_GESTION_COURANTE));
+    }
+
+    public static Fec read(Path file) {
+        FecReader reader = new FecReader();
+        try {
+            return reader.read(file);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
