@@ -71,6 +71,23 @@ public class LigneRepere {
         reperes.add(new LigneRepere("GD", "", "PCG_6815"));
         reperes.add(new LigneRepere("GE", "", "PCG_651 + PCG_653 + PCG_654 + PCG_658"));
         reperes.add(new LigneRepere("GF", "", "FS + FT + FU + FV + FW + FX + FY + FZ + GA + GB + GC + GD + GE"));
+        reperes.add(new LigneRepere("GG", "Résultat d'exploitation", "FR - GF"));
+        reperes.add(new LigneRepere("GH", "Opérations en commun - bénéfice", "PCG_755"));
+        reperes.add(new LigneRepere("GI", "Opérations en commun - perte", "PCG_655"));
+        reperes.add(new LigneRepere("GJ", "Produits financiers des participants", "PCG_761"));
+        reperes.add(new LigneRepere("GK", "Produits des autres valeurs mobilières et créances de l'actif immobilisé", "PCG_762"));
+        reperes.add(new LigneRepere("GL", "Autres intérêts et produits assimilés", "PCG_763 + PCG_764 + PCG_765 + PCG_768"));
+        reperes.add(new LigneRepere("GM", "Reprises sur provisions et transferts de charges", "PCG_786 + PCG_796"));
+        reperes.add(new LigneRepere("GN", "Différences positives de change", "PCG_766"));
+        reperes.add(new LigneRepere("GO", "Produits nets sur cessions de valeurs mobilières de placement", "PCG_766"));
+        reperes.add(new LigneRepere("GP", "Total des produits financiers (V)", "GJ + GK + GL + GM + GN + GO"));
+        reperes.add(new LigneRepere("GQ", "Dotation financière aux amortissements et provisions", "PCG_686"));
+        reperes.add(new LigneRepere("GR", "Intérêts et charges assimilées", "PCG_661 + PCG_664 + PCG_665 + PCG_668"));
+        reperes.add(new LigneRepere("GS", "Différences négatives de change", "PCG_666"));
+        reperes.add(new LigneRepere("GT", "Charges nettes sur cessions de valeurs mobilières de placement", "PCG_667"));
+        reperes.add(new LigneRepere("GU", "Total des charges financières (VI)", "GQ + GR + GS + GT"));
+        reperes.add(new LigneRepere("GV", "Résultat net financier", "GP - GU"));
+        reperes.add(new LigneRepere("GW", "Résultat courant avant impôts", "GG + GH - GI + GV"));
 
         Map<String, LigneRepere> resultat = new HashMap<String, LigneRepere>();
         reperes.forEach(repere -> resultat.put(repere.getRepere(), repere));

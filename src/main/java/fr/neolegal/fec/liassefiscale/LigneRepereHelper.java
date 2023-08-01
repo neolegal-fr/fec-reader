@@ -57,6 +57,10 @@ public class LigneRepereHelper {
     }
 
     public static Set<String> resolveComptes(String repereLigneOrNumeroCompte) {
+        return resolveComptes(repereLigneOrNumeroCompte, 10);
+    }
+
+    private static Set<String> resolveComptes(String repereLigneOrNumeroCompte, int maxDepth) {
         Optional<String> numeroCompte = parseNumeroCompte(repereLigneOrNumeroCompte);
         if (numeroCompte.isPresent()) {
             return Set.of(numeroCompte.get());
@@ -67,23 +71,31 @@ public class LigneRepereHelper {
             return Set.of();
         }
 
-        return resolveComptes(repere);        
+        return resolveComptes(repere, maxDepth);        
     }
 
     public static Set<String> resolveComptes(LigneRepere repere) {
+        return resolveComptes(repere, 10);
+    }
+
+    private static Set<String> resolveComptes(LigneRepere repere, int maxDepth) {
         if (Objects.isNull(repere)) {
             return Set.of();
         }
+
+        if (maxDepth < 0) {
+            throw new RuntimeException("Boucle infine détectée lors de la résolution des numéros de comptes");
+        }
         
         Set<String> comptes = new TreeSet<String>();
-        Matcher comptesMatcher = Pattern.compile(LigneRepere.PREFIXE_VARIABLE_COMPTE + "([0-9]+)").matcher(repere.getExpression());
-        while (comptesMatcher.find()) {
-            comptes.addAll(resolveComptes(comptesMatcher.group()));
+        Matcher matcher = Pattern.compile(LigneRepere.PREFIXE_VARIABLE_COMPTE + "([0-9]+)").matcher(repere.getExpression());
+        while (matcher.find()) {
+            comptes.addAll(resolveComptes(matcher.group(), maxDepth-1));
         }
 
-        Matcher reperesMatcher = Pattern.compile(REPERE_REGEX).matcher(repere.getExpression());
-        while (reperesMatcher.find()) {
-            comptes.addAll(resolveComptes(reperesMatcher.group()));
+        matcher = Pattern.compile(REPERE_REGEX).matcher(repere.getExpression());
+        while (matcher.find()) {
+            comptes.addAll(resolveComptes(matcher.group(), maxDepth-1));
         }
 
         

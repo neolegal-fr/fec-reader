@@ -20,6 +20,8 @@ public class LiasseFiscaleHelperTest {
     void buildLiasseFiscale() throws FileNotFoundException, IOException {
         LiasseFiscale actual = LiasseFiscaleHelper.buildLiasseFiscale(fec);
         assertNotNull(actual.getBilanActif());
+        assertNotNull(actual.getBilanPassif());
+        assertNotNull(actual.getCompteDeResultatEnListe());
     }
 
     @Test
@@ -36,6 +38,19 @@ public class LiasseFiscaleHelperTest {
         assertEquals(121396.22, actual.getMontant("DH").get());
         assertEquals(512996.22000000003, actual.getMontant("DL").get()); // erreur: devrait être 639230
         assertEquals(512996.22000000003, actual.getMontant("EE").get()); // erreur : devrait être 1016587
+    }
+
+    @Test
+    void buildCompteDeResultatsEnListe() throws FileNotFoundException, IOException {
+        TableauComptable actual = LiasseFiscaleHelper.buildCompteDeResultatsEnListe(fec);
+        assertEquals(1212843.9, actual.getMontant("FL").get());
+        assertEquals(1225776.5, actual.getMontant("FR").get());
+        assertEquals(-1107619.9, actual.getMontant("GF").get());
+        assertEquals(-249857.75, actual.getMontant("FY").get());
+        assertEquals(-83308.12000000001, actual.getMontant("FZ").get());
+        assertEquals(118156.59999999998, actual.getMontant("GG").get());
+        assertEquals(-3043.58, actual.getMontant("GV").get());
+        assertEquals(115113.01999999999, actual.getMontant("GW").get());
     }
 
     
