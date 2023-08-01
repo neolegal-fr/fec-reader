@@ -56,12 +56,12 @@ public class Repere {
                 reperes.add(new Repere("DQ", "Provisions pour charges",
                                 "S_153 + S_154 + S_155 + S_156 + S_157 + S_158",
                                 Formulaire.DGFIP_2051_BILAN_PASSIF));
-                reperes.add(new Repere("DR", "", "DP + DQ", Formulaire.DGFIP_2051_BILAN_PASSIF));
-                reperes.add(new Repere("EB", "", "S_487", Formulaire.DGFIP_2051_BILAN_PASSIF));
-                reperes.add(new Repere("EC", "", "DS + DT + DU + DV + DW + DX + DY + DZ + EA + EB",
+                reperes.add(new Repere("DR", "Total (III)", "DP + DQ", Formulaire.DGFIP_2051_BILAN_PASSIF));
+                reperes.add(new Repere("EB", "Produits constatés d'avance", "S_487", Formulaire.DGFIP_2051_BILAN_PASSIF));
+                reperes.add(new Repere("EC", "Total (IV)", "DS + DT + DU + DV + DW + DX + DY + DZ + EA + EB",
                                 Formulaire.DGFIP_2051_BILAN_PASSIF));
-                reperes.add(new Repere("ED", "", "S_477", Formulaire.DGFIP_2051_BILAN_PASSIF));
-                reperes.add(new Repere("EE", "", "DL + DO + DR + EC + ED", Formulaire.DGFIP_2051_BILAN_PASSIF));
+                reperes.add(new Repere("ED", "Ecarts de conversion passif", "S_477", Formulaire.DGFIP_2051_BILAN_PASSIF));
+                reperes.add(new Repere("EE", "Total général", "DL + DO + DR + EC + ED", Formulaire.DGFIP_2051_BILAN_PASSIF));
                 reperes.add(new Repere("FA", "", "S_707", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
                 reperes.add(new Repere("FB", "", "S_708", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
                 reperes.add(new Repere("FC", "", "S_7097", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
