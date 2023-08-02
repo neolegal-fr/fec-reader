@@ -62,43 +62,43 @@ public class Repere {
                                 Formulaire.DGFIP_2051_BILAN_PASSIF));
                 reperes.add(new Repere("ED", "Ecarts de conversion passif", "S_477", Formulaire.DGFIP_2051_BILAN_PASSIF));
                 reperes.add(new Repere("EE", "Total général", "DL + DO + DR + EC + ED", Formulaire.DGFIP_2051_BILAN_PASSIF));
-                reperes.add(new Repere("FA", "", "S_707", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FB", "", "S_708", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FC", "", "S_7097", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FD", "", "S_701 + S_702 + S_703",
+                reperes.add(new Repere("FA", "Ventes de marchandises", "S_707", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
+                reperes.add(new Repere("FB", "Ventes de marchandises", "S_708", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
+                reperes.add(new Repere("FC", "Ventes de marchandises", "S_7097", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
+                reperes.add(new Repere("FD", "Production vendue de biens", "S_701 + S_702 + S_703",
                                 Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FE", "", "S_7091", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FF", "", "S_7092", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FJ", "", "FA + FD + FG", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FK", "", "FB + FE + FH", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FL", "", "FJ + FK", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FM", "", "S_71", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FN", "", "S_72", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FO", "", "S_74", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FP", "", "S_781 + S_791", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FQ", "", "S_75", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FR", "", "FL + FM + FN + FO + FP + FQ",
+                reperes.add(new Repere("FE", "Production vendue de biens", "S_7091", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
+                reperes.add(new Repere("FF", "Production vendue de biens", "S_7092", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
+                reperes.add(new Repere("FJ", "Chiffre d'affaires net", "FA + FD + FG", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
+                reperes.add(new Repere("FK", "Chiffre d'affaires net", "FB + FE + FH", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
+                reperes.add(new Repere("FL", "Chiffre d'affaires net", "FJ + FK", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
+                reperes.add(new Repere("FM", "Production stockée", "S_71", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
+                reperes.add(new Repere("FN", "Production immobilisée", "S_72", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
+                reperes.add(new Repere("FO", "Subvention d'exploitation", "S_74", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
+                reperes.add(new Repere("FP", "Reprises sur amortissements et provisions, transfert de charges", "S_781 + S_791", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
+                reperes.add(new Repere("FQ", "Autres produits", "S_75", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
+                reperes.add(new Repere("FR", "Total des produits d'exploitation (I)", "FL + FM + FN + FO + FP + FQ",
                                 Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FS", "", "S_607 + S_6097", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FT", "", "S_6037", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FU", "", "S_601 + S_602 + S_6091 + S_6092",
+                reperes.add(new Repere("FS", "Achats de marchandises", "S_607 + S_6097", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
+                reperes.add(new Repere("FT", "Variation de stock - MArchandises", "S_6037", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
+                reperes.add(new Repere("FU", "Achats de matières premières et autres approvisionnements", "S_601 + S_602 + S_6091 + S_6092",
                                 Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FV", "", "S_6031 + S_6032", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FW", "",
+                reperes.add(new Repere("FV", "Variation de stock - Matières premières et approvisionnements", "S_6031 + S_6032", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
+                reperes.add(new Repere("FW", "Autres achats et charges externes",
                                 "S_604 + S_605 + S_606 + S_6094 + S_6095 + S_61 + S_62",
                                 Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FX", "", "S_63", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FY", "", "S_641 + S_644 + S_648",
+                reperes.add(new Repere("FX", "Impôts, taxes et versements assimilés", "S_63", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
+                reperes.add(new Repere("FY", "Salaires et traitements", "S_641 + S_644 + S_648",
                                 Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("FZ", "", "S_645 + S_646 + S_647 + S_648",
+                reperes.add(new Repere("FZ", "Charges sociales", "S_645 + S_646 + S_647 + S_648",
                                 Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("GA", "", "S_6811 + S_6812", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("GB", "", "S_6816", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("GC", "", "S_6817", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("GD", "", "S_6815", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("GE", "", "S_651 + S_653 + S_654 + S_658",
+                reperes.add(new Repere("GA", "Dotations d'exploitation aux amortissements", "S_6811 + S_6812", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
+                reperes.add(new Repere("GB", "Dotations d'exploitation aux provisions sur immobilisations", "S_6816", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
+                reperes.add(new Repere("GC", "Dotations d'exploitation aux provisions sur actif circulant", "S_6817", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
+                reperes.add(new Repere("GD", "Dotations d'exploitation aux provisions pour risques et charges", "S_6815", Formulaire.DGFIP_2052_COMPTE_RESULTAT));
+                reperes.add(new Repere("GE", "Autres charges d'exploitation", "S_651 + S_653 + S_654 + S_658",
                                 Formulaire.DGFIP_2052_COMPTE_RESULTAT));
-                reperes.add(new Repere("GF", "", "FS + FT + FU + FV + FW + FX + FY + FZ + GA + GB + GC + GD + GE",
+                reperes.add(new Repere("GF", "Total des charges d'exploitation (II)", "FS + FT + FU + FV + FW + FX + FY + FZ + GA + GB + GC + GD + GE",
                                 Formulaire.DGFIP_2052_COMPTE_RESULTAT));
                 reperes.add(new Repere("GG", "Résultat d'exploitation", "FR - GF",
                                 Formulaire.DGFIP_2052_COMPTE_RESULTAT));

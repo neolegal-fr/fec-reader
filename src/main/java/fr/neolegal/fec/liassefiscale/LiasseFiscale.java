@@ -3,6 +3,7 @@ package fr.neolegal.fec.liassefiscale;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import lombok.Builder;
 import lombok.Data;
@@ -24,5 +25,9 @@ public class LiasseFiscale {
     public LiasseFiscale(String siren, LocalDate clotureExercice) {
         this.siren = siren;
         this.clotureExercice = clotureExercice;
+    }
+
+    public TableauComptable get(Formulaire formulaire) {
+        return formulaires.stream().filter(tableau -> tableau.getFormulaire() == formulaire).findFirst().orElse(TableauComptable.builder().build());
     }
 }
