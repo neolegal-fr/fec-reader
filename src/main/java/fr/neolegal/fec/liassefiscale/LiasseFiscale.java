@@ -3,6 +3,7 @@ package fr.neolegal.fec.liassefiscale;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import lombok.Builder;
@@ -27,7 +28,18 @@ public class LiasseFiscale {
         this.clotureExercice = clotureExercice;
     }
 
-    public TableauComptable get(Formulaire formulaire) {
+    /** Renvoie le formulaire correspondant. Le crée s'il n'existe pas dans la liasse. */
+    public TableauComptable getFormulaire(Formulaire formulaire) {
         return formulaires.stream().filter(tableau -> tableau.getFormulaire() == formulaire).findFirst().orElse(TableauComptable.builder().build());
     }
+
+    /** Renvoie le montant correspondant au repère passé en paramètre, s'il est connu. */
+    public Optional<Double> getMontant(String repere) {
+        Repere rep = Repere.get(repere);
+        if (Objects.isNull(rep)) {
+            return Optional.empty();
+        }
+        return getFormulaire(rep.getFormulaire()).getMontant(repere);
+    }
+
 }

@@ -17,7 +17,7 @@ public class LiasseFiscaleHelper {
     private LiasseFiscaleHelper() {
     }
 
-    static LiasseFiscale buildLiasseFiscale(Fec fec) {
+    public static LiasseFiscale buildLiasseFiscale(Fec fec) {
         LiasseFiscale liasse = LiasseFiscale.builder().siren(fec.getSiren()).clotureExercice(fec.getClotureExercice())
                 .build();
         for (Formulaire formulaire : Formulaire.values()) {
@@ -27,7 +27,7 @@ public class LiasseFiscaleHelper {
         return liasse;
     }
 
-    static TableauComptable buildTableauComptable(Fec fec, Formulaire formulaire) {
+    public static TableauComptable buildTableauComptable(Fec fec, Formulaire formulaire) {
         TableauComptable tableau = new TableauComptable(formulaire);
 
         List<Repere> reperes = Repere.REPERES.values().stream()

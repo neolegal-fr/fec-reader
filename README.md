@@ -29,7 +29,7 @@ La classe FecReader est responsable de la lecture des fichiers. La classe Fec co
 
 ```
   Fec fec = FecHelper.read(Path.of("123456789FEC20500930.txt"));
-  TableauComptable compteResulat = liasse.get(Formulaire.DGFIP_2052_COMPTE_RESULTAT);
+  TableauComptable compteResulat = liasse.getFormulaire(Formulaire.DGFIP_2052_COMPTE_RESULTAT);
   Logger logger = Logger.getAnonymousLogger();
   logger.info(String.format("Compte de résultat pour l'exercice clos le %s de la société %s:", liasse.getClotureExercice(), liasse.getSiren()));
   for (Map.Entry<Repere, Double> ligne : compteResulat.getLignes().entrySet()) {
