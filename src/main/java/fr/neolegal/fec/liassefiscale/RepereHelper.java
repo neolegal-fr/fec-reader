@@ -114,6 +114,6 @@ public class RepereHelper {
 
     public static double computeMontantLigneRepere(Repere repere, Fec fec) {
         Set<InfoCompte> comptes = resolveComptes(repere);
-        return FecHelper.computeInfoComptesByNumero(fec.getLignes(),comptes);
+        return Math.round(FecHelper.computeInfoComptesByNumero(fec.getLignes(),comptes));
     }
 }
