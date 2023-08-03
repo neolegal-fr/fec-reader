@@ -71,7 +71,7 @@ public class RepereHelper {
             return Set.of(match.get());
         }
 
-        Repere repere = Repere.REPERES.get(repereLigneOrNumeroCompte);
+        Repere repere = Repere.DEFINITIONS.get(repereLigneOrNumeroCompte);
         if (Objects.isNull(repere)) {
             return Set.of();
         }

@@ -47,7 +47,7 @@ public class FecReaderTest {
             // Écriture de l'en-tête du fichier CSV
             csvPrinter.printRecord("Repère", "Formulaire", "Intitulé", "Règle de calcul");
 
-            List<Repere> reperes = new LinkedList<>(Repere.REPERES.values());
+            List<Repere> reperes = new LinkedList<>(Repere.DEFINITIONS.values());
             Collections.sort(reperes);
             for (Repere repere : reperes) {
                 csvPrinter.printRecord(repere.getRepere(), repere.getFormulaire(), repere.getNom(), repere.getExpression());

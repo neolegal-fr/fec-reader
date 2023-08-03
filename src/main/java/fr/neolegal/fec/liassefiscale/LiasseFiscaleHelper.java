@@ -30,7 +30,7 @@ public class LiasseFiscaleHelper {
     public static TableauComptable buildTableauComptable(Fec fec, Formulaire formulaire) {
         TableauComptable tableau = new TableauComptable(formulaire);
 
-        List<Repere> reperes = Repere.REPERES.values().stream()
+        List<Repere> reperes = Repere.DEFINITIONS.values().stream()
                 .filter(ligne -> Objects.equals(ligne.getFormulaire(), formulaire)).collect(Collectors.toList());
         for (Repere repere : reperes) {
 

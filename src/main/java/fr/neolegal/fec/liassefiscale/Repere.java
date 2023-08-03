@@ -24,7 +24,7 @@ public class Repere implements Comparable<Repere> {
     public static final CharSequence PREFIXE_DIFF_COMPTE = "D_";
 
     static VariableProvider variables = new Variables();
-    public static Map<String, Repere> REPERES = loadDefinitionReperes();
+    public static Map<String, Repere> DEFINITIONS = loadDefinitionsReperes();
 
     /**
      * Documentation des calculs :
@@ -32,26 +32,24 @@ public class Repere implements Comparable<Repere> {
      * 
      * @throws IOException
      */
-    private static Map<String, Repere> loadDefinitionReperes() {
+    private static Map<String, Repere> loadDefinitionsReperes() {
         List<Repere> reperes = new LinkedList<>();
         try {
-            InputStream is = Repere.class.getClassLoader().getResourceAsStream("regles-calcul-reperes.csv");
+            InputStream is = Repere.class.getClassLoader().getResourceAsStream("definitions-reperes.csv");
 
             CSVParser csvParser = CSVParser.parse(is, Charset.forName("UTF-8"), CSVFormat.MYSQL);
             int lineCount = 0;
             for (CSVRecord csvRecord : csvParser) {
                 if (lineCount > 0) {
                     // La première ligne est obligatoirement une ligne d'en-tête
-                    if (csvRecord.size() > 1) {
-                        Repere repere = new Repere(csvRecord.get(0), csvRecord.get(2), csvRecord.get(3),
-                                Formulaire.fromIdentifiant(csvRecord.get(1)));
-                        reperes.add(repere);
-                    }
+                    Repere repere = new Repere(csvRecord.get(0), csvRecord.get(2), csvRecord.get(3),
+                            Formulaire.fromIdentifiant(csvRecord.get(1)));
+                    reperes.add(repere);
                 }
                 ++lineCount;
             }
         } catch (Exception e) {
-            
+            // Erreur de chargement, on ignore tout le fichier
         }
 
         Map<String, Repere> resultat = new HashMap<String, Repere>();
@@ -60,7 +58,7 @@ public class Repere implements Comparable<Repere> {
     }
 
     public static Repere get(String repere) {
-        return REPERES.get(repere);
+        return DEFINITIONS.get(repere);
     }
 
     final Formulaire formulaire;
