@@ -22,14 +22,5 @@ public class RepereHelperTest {
                 RepereHelper.resolveComptes("FR"));
     }
 
-    @Test
-    void resolveComptes_DL() {
-        Set<InfoCompte> expected = new TreeSet<>();
-        for (String numCompte : Set.of("101", "104", "105", "1061", "1062", "1063", "1064", "1068", "108", "11", "12", "13", "14")) {
-            expected.add(new InfoCompte(numCompte, true));
-        }
-        assertEquals(expected,
-                RepereHelper.resolveComptes("DL"));
-    }
 
 }

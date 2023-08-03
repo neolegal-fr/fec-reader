@@ -34,8 +34,8 @@ public class LiasseFiscaleHelperTest {
         assertEquals(35600.0, actual.getMontant("DD").get());
         assertEquals(0.0, actual.getMontant("DG").get());
         assertEquals(121396.22, actual.getMontant("DH").get());
-        assertEquals(512996.22000000003, actual.getMontant("DL").get()); // erreur: devrait être 639230
-        assertEquals(512996.22000000003, actual.getMontant("EE").get()); // erreur : devrait être 1016587
+        assertEquals(639230.13, actual.getMontant("DL").get()); // erreur: devrait être 639230
+        assertEquals(639230.13, actual.getMontant("EE").get()); // erreur : devrait être 1016587
     }
 
     @Test

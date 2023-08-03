@@ -44,7 +44,7 @@ public class Repere {
                                 Formulaire.DGFIP_2051_BILAN_PASSIF));
                 reperes.add(new Repere("DK", "Provisions règlementées", "S_14",
                                 Formulaire.DGFIP_2051_BILAN_PASSIF));
-                reperes.add(new Repere("DL", "Total (I)", "DA + DB + DC + DD + DE + DF + DG + DH + DI + DJ + DK",
+                reperes.add(new Repere("DL", "Total (I)", "DA + DB + DC + DD + DE + DF + DG + DH + DI + DJ + DK + HN",
                                 Formulaire.DGFIP_2051_BILAN_PASSIF));
                 reperes.add(new Repere("DM", "Produit des émissions de titres participatifs", "S_1671",
                                 Formulaire.DGFIP_2051_BILAN_PASSIF));
