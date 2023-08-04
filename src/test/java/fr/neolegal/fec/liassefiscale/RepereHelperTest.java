@@ -1,11 +1,20 @@
 package fr.neolegal.fec.liassefiscale;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.nio.file.Path;
+
 import org.junit.jupiter.api.Test;
 
+import fr.neolegal.fec.Fec;
+import fr.neolegal.fec.FecHelper;
+
 public class RepereHelperTest {
+
+    final Fec fec = FecHelper.read(Path.of("target/test-classes/123456789FEC20500930.txt"));
+
     @Test
     void isLigneRepere_returnFalse_whenEmptyOrNull() {
         assertFalse(RepereHelper.isLigneRepere(null));
@@ -45,8 +54,13 @@ public class RepereHelperTest {
     }
 
     @Test
-    void resolveComptes() {
-        assertFalse(RepereHelper.resolveComptes("FR").isEmpty());
-        assertTrue(RepereHelper.resolveComptes("ZZ").isEmpty());
+    void resolveTermes() {
+        assertFalse(RepereHelper.resolveTermes("FR").isEmpty());
+        assertTrue(RepereHelper.resolveTermes("ZZ").isEmpty());
+    }
+
+    @Test
+    void computeMontantLigneRepere() {
+        assertEquals(249858.0, RepereHelper.computeMontantLigneRepere("FY", fec));
     }
 }

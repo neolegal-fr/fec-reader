@@ -10,7 +10,8 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
 
 import fr.neolegal.fec.Fec;
-import fr.neolegal.fec.FecHelper;
+import net.objecthunter.exp4j.Expression;
+import net.objecthunter.exp4j.ExpressionBuilder;
 
 public class RepereHelper {
 
@@ -37,7 +38,7 @@ public class RepereHelper {
                 && candidate.matches(REPERE_REGEX);
     }
 
-    static Optional<InfoCompte> parseNumeroCompte(String candidate) {
+    static Optional<Terme> parseNumeroCompte(String candidate) {
         if (StringUtils.isBlank(candidate)) {
             return Optional.empty();
         }
@@ -46,27 +47,27 @@ public class RepereHelper {
         if (StringUtils.isNumeric(candidate)) {
             int numCompte = Integer.parseInt(candidate);
             if (numCompte >= MIN_NUM_COMPTE && numCompte <= MAX_NUM_COMPTE) {
-                return Optional.of(new InfoCompte(candidate, true));
+                return Optional.of(new Terme(candidate, true));
             }
         }
 
         if (StringUtils.startsWith(candidate, Repere.PREFIXE_SOLDE_COMPTE)) {
-            return Optional.of(new InfoCompte(StringUtils.substring(candidate, Repere.PREFIXE_SOLDE_COMPTE.length()), true));
+            return Optional.of(new Terme(StringUtils.substring(candidate, Repere.PREFIXE_SOLDE_COMPTE.length()), true));
         }
 
         if (StringUtils.startsWith(candidate, Repere.PREFIXE_DIFF_COMPTE)) {
-            return Optional.of(new InfoCompte(StringUtils.substring(candidate, Repere.PREFIXE_DIFF_COMPTE.length()), false));
+            return Optional.of(new Terme(StringUtils.substring(candidate, Repere.PREFIXE_DIFF_COMPTE.length()), false));
         }
 
         return Optional.empty();
     }
 
-    public static List<InfoCompte> resolveComptes(String repereLigneOrNumeroCompte) {
-        return resolveComptes(repereLigneOrNumeroCompte, 10);
+    public static List<Terme> resolveTermes(String repereLigneOrNumeroCompte) {
+        return resolveTermes(repereLigneOrNumeroCompte, 10);
     }
 
-    private static List<InfoCompte> resolveComptes(String repereLigneOrNumeroCompte, int maxDepth) {
-        Optional<InfoCompte> match = parseNumeroCompte(repereLigneOrNumeroCompte);
+    private static List<Terme> resolveTermes(String repereLigneOrNumeroCompte, int maxDepth) {
+        Optional<Terme> match = parseNumeroCompte(repereLigneOrNumeroCompte);
         if (match.isPresent()) {
             return List.of(match.get());
         }
@@ -76,14 +77,14 @@ public class RepereHelper {
             return List.of();
         }
 
-        return resolveComptes(repere, maxDepth);        
+        return resolveTermes(repere, maxDepth);
     }
 
-    public static List<InfoCompte> resolveComptes(Repere repere) {
-        return resolveComptes(repere, 10);
+    public static List<Terme> resolveTermes(Repere repere) {
+        return resolveTermes(repere, 10);
     }
 
-    private static List<InfoCompte> resolveComptes(Repere repere, int maxDepth) {
+    private static List<Terme> resolveTermes(Repere repere, int maxDepth) {
         if (Objects.isNull(repere)) {
             return List.of();
         }
@@ -91,19 +92,18 @@ public class RepereHelper {
         if (maxDepth < 0) {
             throw new RuntimeException("Boucle infine détectée lors de la résolution des numéros de comptes");
         }
-        
-        List<InfoCompte> comptes = new LinkedList<>();
+
+        List<Terme> comptes = new LinkedList<>();
         Matcher matcher = Pattern.compile(COMPTE_REGEX).matcher(repere.getExpression());
         while (matcher.find()) {
-            comptes.addAll(resolveComptes(matcher.group(), maxDepth-1));
+            comptes.addAll(resolveTermes(matcher.group(), maxDepth - 1));
         }
 
         matcher = Pattern.compile(REPERE_REGEX).matcher(repere.getExpression());
         while (matcher.find()) {
-            comptes.addAll(resolveComptes(matcher.group(), maxDepth-1));
+            comptes.addAll(resolveTermes(matcher.group(), maxDepth - 1));
         }
 
-        
         return comptes;
     }
 
@@ -113,7 +113,14 @@ public class RepereHelper {
     }
 
     public static double computeMontantLigneRepere(Repere repere, Fec fec) {
-        List<InfoCompte> comptes = resolveComptes(repere);
-        return Math.round(FecHelper.computeInfoComptesByNumero(fec.getLignes(),comptes));
+        FecVariableProvider variables = new FecVariableProvider(fec);
+
+        if (StringUtils.isBlank(repere.getExpression())) {
+            return 0.0;
+        }
+        
+        Expression expression = new ExpressionBuilder(repere.getExpression()).variables(variables).build();
+        
+        return Math.round(expression.evaluate());
     }
 }

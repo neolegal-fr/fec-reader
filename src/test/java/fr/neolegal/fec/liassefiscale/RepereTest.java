@@ -28,13 +28,13 @@ public class RepereTest {
          * sont valides
          */
         for (Repere repere : Repere.DEFINITIONS.values()) {
-            List<InfoCompte> comptes = RepereHelper.resolveComptes(repere);
-            Set<InfoCompte> doublons = comptes.stream().filter(c1 -> comptes.stream().filter(c2 -> c2.equals(c1)).count() > 1)
+            List<Terme> comptes = RepereHelper.resolveTermes(repere);
+            Set<Terme> doublons = comptes.stream().filter(c1 -> comptes.stream().filter(c2 -> c2.equals(c1)).count() > 1)
                     .collect(Collectors.toSet());
             if (!doublons.isEmpty()) {
                 fail("Les règles de calcul du repère " + repere.getRepere()
                         + " ne sont pas valides à cause de sdoublons suivantes: " + doublons.stream()
-                                .map(InfoCompte::getPrefixeNumero).collect(Collectors.joining(", ")));
+                                .map(Terme::getPrefixeNumero).collect(Collectors.joining(", ")));
             }
         }
     }

@@ -23,12 +23,12 @@ DR	2051-SD	Total (III)	DP + DQ
 DS	2051-SD	Emprunts obligataires convertibles	S_161
 DT	2051-SD	Autres emprunts obligataires	S_163 + S_446
 DU	2051-SD	Emprunts et dettes auprès des établissements de crédit	S_164
-DV	2051-SD	Emprunts et dettes financières divers	S_165
+DV	2051-SD	Emprunts et dettes financières divers	S_165 + S_168
 DW	2051-SD	Avances et acomptes reçus sur commandes en cours	S_419
 DX	2051-SD	Dettes fournisseurs et comptes rattachés	S_400 + S_401 + S_403 + S_404 + S_405 + S_408
-DY	2051-SD	Dettes fiscales et sociales	S_166 + S_421 + S_424 + S_426 + S_427 + S_428 - S_4287 + S_4382 + S_4386 + S_442 + S_4455 + S_4457 + S_44584 + S_44587 + S_447 + S_4482 + S_4486 + S_449 + S_457
+DY	2051-SD	Dettes fiscales et sociales	S_166
 DZ	2051-SD	Dettes sur immobilisations et comptes rattachés	S_167 + S_464
-EA	2051-SD	Autres dettes	S_168
+EA	2051-SD	Autres dettes	0
 EB	2051-SD	Produits constatés d'avance	S_487
 EC	2051-SD	Total (IV)	DS + DT + DU + DV + DW + DX + DY + DZ + EA + EB
 ED	2051-SD	Ecarts de conversion passif	S_477
@@ -37,9 +37,12 @@ EI	2051-SD	Emprunts participatifs	S_17
 FA	2052-SD	Ventes de marchandises	S_707
 FB	2052-SD	Ventes de marchandises	S_708
 FC	2052-SD	Ventes de marchandises	S_7097
-FD	2052-SD	Production vendue de biens	S_701 + S_702 + S_703
-FE	2052-SD	Production vendue de biens	S_7091
-FF	2052-SD	Production vendue de biens	S_7092
+FD	2052-SD	Production vendue de biens en France	S_701 + S_702 + S_703 + S_7091 + S_7092
+FE	2052-SD	Production vendue de biens à l'international	0
+FF	2052-SD	Production vendue de biens	FD + FE
+FG	2052-SD	Production vendue de services en France	S_704 + S_705 + S_706
+FH	2052-SD	Production vendue de services à l'international	0
+FI	2052-SD	Production vendue de services	FG + FH
 FJ	2052-SD	Chiffre d'affaires net	FA + FD + FG
 FK	2052-SD	Chiffre d'affaires net	FB + FE + FH
 FL	2052-SD	Chiffre d'affaires net	FJ + FK
@@ -49,23 +52,23 @@ FO	2052-SD	Subvention d'exploitation	S_74
 FP	2052-SD	Reprises sur amortissements et provisions, transfert de charges	S_781 + S_791
 FQ	2052-SD	Autres produits	S_75
 FR	2052-SD	Total des produits d'exploitation (I)	FL + FM + FN + FO + FP + FQ
-FS	2052-SD	Achats de marchandises	S_607 + S_6097
-FT	2052-SD	Variation de stock - MArchandises	S_6037
-FU	2052-SD	Achats de matières premières et autres approvisionnements	S_601 + S_602 + S_6091 + S_6092
-FV	2052-SD	Variation de stock - Matières premières et approvisionnements	S_6031 + S_6032
-FW	2052-SD	Autres achats et charges externes	S_604 + S_605 + S_606 + S_6094 + S_6095 + S_61 + S_62
-FX	2052-SD	Impôts, taxes et versements assimilés	S_63
-FY	2052-SD	Salaires et traitements	S_641 + S_644 + S_648
-FZ	2052-SD	Charges sociales	S_645 + S_646 + S_647
-GA	2052-SD	Dotations d'exploitation aux amortissements	S_6811 + S_6812
-GB	2052-SD	Dotations d'exploitation aux provisions sur immobilisations	S_6816
-GC	2052-SD	Dotations d'exploitation aux provisions sur actif circulant	S_6817
-GD	2052-SD	Dotations d'exploitation aux provisions pour risques et charges	S_6815
-GE	2052-SD	Autres charges d'exploitation	S_651 + S_653 + S_654 + S_658
+FS	2052-SD	Achats de marchandises	-(S_607 + S_6097)
+FT	2052-SD	Variation de stock - Marchandises	-S_6037
+FU	2052-SD	Achats de matières premières et autres approvisionnements	-(S_601 + S_602 + S_6091 + S_6092)
+FV	2052-SD	Variation de stock - Matières premières et approvisionnements	-(S_6031 + S_6032)
+FW	2052-SD	Autres achats et charges externes	-(S_604 + S_605 + S_606 + S_6094 + S_6095 + S_61 + S_62)
+FX	2052-SD	Impôts, taxes et versements assimilés	-S_63
+FY	2052-SD	Salaires et traitements	-(S_641 + S_644 + S_648)
+FZ	2052-SD	Charges sociales	-(S_645 + S_646 + S_647)
+GA	2052-SD	Dotations d'exploitation aux amortissements	-(S_6811 + S_6812)
+GB	2052-SD	Dotations d'exploitation aux provisions sur immobilisations	-S_6816
+GC	2052-SD	Dotations d'exploitation aux provisions sur actif circulant	-S_6817
+GD	2052-SD	Dotations d'exploitation aux provisions pour risques et charges	-S_6815
+GE	2052-SD	Autres charges d'exploitation	-(S_651 + S_653 + S_654 + S_658)
 GF	2052-SD	Total des charges d'exploitation (II)	FS + FT + FU + FV + FW + FX + FY + FZ + GA + GB + GC + GD + GE
 GG	2052-SD	Résultat d'exploitation	FR - GF
 GH	2052-SD	Opérations en commun - bénéfice	S_755
-GI	2052-SD	Opérations en commun - perte	S_655
+GI	2052-SD	Opérations en commun - perte	-S_655
 GJ	2052-SD	Produits financiers des participants	S_761
 GK	2052-SD	Produits des autres valeurs mobilières et créances de l'actif immobilisé	S_762
 GL	2052-SD	Autres intérêts et produits assimilés	S_763 + S_764 + S_765 + S_768
@@ -73,10 +76,10 @@ GM	2052-SD	Reprises sur provisions et transferts de charges	S_786 + S_796
 GN	2052-SD	Différences positives de change	S_766
 GO	2052-SD	Produits nets sur cessions de valeurs mobilières de placement	S_767
 GP	2052-SD	Total des produits financiers (V)	GJ + GK + GL + GM + GN + GO
-GQ	2052-SD	Dotation financière aux amortissements et provisions	S_686
-GR	2052-SD	Intérêts et charges assimilées	S_661 + S_664 + S_665 + S_668
-GS	2052-SD	Différences négatives de change	S_666
-GT	2052-SD	Charges nettes sur cessions de valeurs mobilières de placement	S_667
+GQ	2052-SD	Dotation financière aux amortissements et provisions	-S_686
+GR	2052-SD	Intérêts et charges assimilées	-(S_661 + S_664 + S_665 + S_668)
+GS	2052-SD	Différences négatives de change	-S_666
+GT	2052-SD	Charges nettes sur cessions de valeurs mobilières de placement	-S_667
 GU	2052-SD	Total des charges financières (VI)	GQ + GR + GS + GT
 GV	2052-SD	Résultat net financier	GP - GU
 GW	2052-SD	Résultat courant avant impôts	GG + GH - GI + GV
@@ -84,13 +87,13 @@ HA	2053-SD	Produits exceptionnels sur opérations de gestion	S_771
 HB	2053-SD	Produits exceptionnels sur opérations en capital	S_775 + S_777 + S_778
 HC	2053-SD	Reprises sur provisions et transferts de charges	S_787 + S_797
 HD	2053-SD	Total des produits exceptionnels	HA + HB + HC
-HE	2053-SD	Charges exceptionnelles sur opérations de gestion	S_671
-HF	2053-SD	Charges exceptionnelles su opérations en capital	S_675 + S_678
-HG	2053-SD	Dotations exceptionnelles aux amortissements et provisions	S_687
+HE	2053-SD	Charges exceptionnelles sur opérations de gestion	-S_671
+HF	2053-SD	Charges exceptionnelles su opérations en capital	-(S_675 + S_678)
+HG	2053-SD	Dotations exceptionnelles aux amortissements et provisions	-S_687
 HH	2053-SD	Total des charges exceptionnelles (VIII)	HE + HF + HG
 HI	2053-SD	Résultat net exceptionnel	HD - HH
-HJ	2053-SD	Participation des salariés aux résultats de l'entreprise	S_691
-HK	2053-SD	Impôts sur les bénéfices	S_695 + S_698 + S_699
+HJ	2053-SD	Participation des salariés aux résultats de l'entreprise	-S_691
+HK	2053-SD	Impôts sur les bénéfices	-(S_695 + S_698 + S_699)
 HL	2053-SD	Total des produits	FR + GH + GP + HD
 HM	2053-SD	Total des charges	GF + GI + GU + HH + HJ + HK
 HN	2053-SD	Résultat de l'exercice	HL - HM

@@ -40,24 +40,46 @@ public class LiasseFiscaleHelperTest {
         expectedValues.put("DF", 0.0);
         expectedValues.put("DG", 0.0);
         expectedValues.put("DH", 121396.0);
-        expectedValues.put("DL", 639230.0);
-        expectedValues.put("EE", 965331.0); // erreur : devrait être 1016587
+        expectedValues.put("DL", 639231.0);
+        expectedValues.put("DM", 0.0);
+        expectedValues.put("DN", 0.0);
+        expectedValues.put("DO", 0.0);
+        expectedValues.put("DR", 0.0);
+        expectedValues.put("DU", 147174.0);
+        expectedValues.put("DV", 0.0); // devrait être 41056
+        expectedValues.put("DW", 0.0);
+        expectedValues.put("DX", 154891.0); // devrait être 156766
+        expectedValues.put("DY", 0.0);  // devrait être 32361
+        expectedValues.put("DZ", 0.0);
+        expectedValues.put("EA", 0.0);
+        expectedValues.put("EB", 0.0);
+        expectedValues.put("EC", 302065.0); // Devrait être 377357
+        expectedValues.put("ED", 0.0);
+        expectedValues.put("EE", 941296.0); // erreur : devrait être 1016587
 
         // Compte de résultats en liste
         expectedValues.put("FL", 1212844.0);
         expectedValues.put("FR", 1225777.0);
-        expectedValues.put("FS", -410953.0);
-        expectedValues.put("GF", -1107620.0);
-        expectedValues.put("FY", -249858.0);
-        expectedValues.put("FZ", -83308.0);
-        expectedValues.put("GG", 118157.0);
+        expectedValues.put("FS", 410953.0);
+        expectedValues.put("GF", 1107619.0);
+        expectedValues.put("FY", 249858.0);
+        expectedValues.put("FZ", 83308.0);
+        expectedValues.put("GG", 118158.0);
         expectedValues.put("GV", -3044.0);
-        expectedValues.put("GW", 115113.0);
+        expectedValues.put("GW", 115114.0);
 
         // Compte de résultats
+        expectedValues.put("HA", 857.0);
+        expectedValues.put("HB", 10417.0);
+        expectedValues.put("HC", 0.0);
+        expectedValues.put("HD", 11274.0);
+        expectedValues.put("HE", 35.0);
+        expectedValues.put("HF", 0.0);
+        expectedValues.put("HG", 118.0);
+        expectedValues.put("HH", 153.0);
         expectedValues.put("HI", 11121.0);
         expectedValues.put("HK", 0.0);
-        expectedValues.put("HN", 126234.0);
+        expectedValues.put("HN", 126235.0);
 
         // Amortissements
         expectedValues.put("WE", 0.0);

@@ -16,7 +16,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import fr.neolegal.fec.liassefiscale.InfoCompte;
+import fr.neolegal.fec.liassefiscale.Terme;
 
 public abstract class FecHelper {
 
@@ -95,7 +95,7 @@ public abstract class FecHelper {
                 .collect(Collectors.toSet());
     }
 
-    public static double computeInfoComptesByNumero(List<LEC> lignes, Collection<InfoCompte> comptes) {
+    public static double computeTermes(List<LEC> lignes, Collection<Terme> comptes) {
         if (lignes.isEmpty()) {
             return 0.0;
         }
@@ -108,12 +108,16 @@ public abstract class FecHelper {
          */
         String numEcritureRepriseANouveau = lignes.stream().findFirst().map(lec -> lec.getEcritureNum()).orElse("");
 
-        // prendre en compte solde ou différence
+        /**
+         * Lors du calcul de la variation d'un compte, on doit ignorer la première ligne
+         * du fichier, qui reprend le solde de l'exercice précédent
+         */
         return CollectionUtils.emptyIfNull(lignes).stream()
                 .filter(ligne -> comptes.stream()
                         .anyMatch(compte -> compte.matches(ligne.getCompteNum()) && (compte.isSolde()
                                 || !StringUtils.equalsIgnoreCase(numEcritureRepriseANouveau, ligne.getEcritureNum()))))
-                .mapToDouble(ligne -> ligne.getCredit() - ligne.getDebit()).sum();
+                .mapToDouble(ligne -> ligne.getCredit() - ligne.getDebit())
+                .sum();
     }
 
     public static Fec read(Path file) {

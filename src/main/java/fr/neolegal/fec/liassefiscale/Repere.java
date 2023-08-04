@@ -17,15 +17,13 @@ import org.apache.commons.lang3.ObjectUtils;
 
 import lombok.Builder;
 import lombok.Data;
-import net.objecthunter.exp4j.VariableProvider;
 
 @Data
 public class Repere implements Comparable<Repere> {
 
     public static final CharSequence PREFIXE_SOLDE_COMPTE = "S_";
     public static final CharSequence PREFIXE_DIFF_COMPTE = "D_";
-
-    static VariableProvider variables = new Variables();
+    
     public static Map<String, Repere> DEFINITIONS = loadDefinitionsReperes();
 
     /**
