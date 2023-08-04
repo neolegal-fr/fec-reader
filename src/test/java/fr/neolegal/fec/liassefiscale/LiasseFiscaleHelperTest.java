@@ -1,11 +1,15 @@
 package fr.neolegal.fec.liassefiscale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+
 import org.junit.jupiter.api.Test;
 
 import fr.neolegal.fec.Fec;
@@ -23,9 +27,17 @@ public class LiasseFiscaleHelperTest {
         Map<String, Double> expectedValues = new HashMap<>();
         // Bilan actif
         expectedValues.put("AA", 0.0);
+        expectedValues.put("AB", 0.0);
+        expectedValues.put("CX", 0.0);
+        
 
         // Bilan passif
+        expectedValues.put("DA", 356000.0);
+        expectedValues.put("DB", 0.0);
+        expectedValues.put("DC", 0.0);        
         expectedValues.put("DD", 35600.0);
+        expectedValues.put("DE", 0.0);
+        expectedValues.put("DF", 0.0);
         expectedValues.put("DG", 0.0);
         expectedValues.put("DH", 121396.0);
         expectedValues.put("DL", 639230.0);
@@ -59,7 +71,9 @@ public class LiasseFiscaleHelperTest {
 
         for (Map.Entry<String, Double> expectedValue : expectedValues.entrySet()) {
             Repere repere = Repere.DEFINITIONS.get(expectedValue.getKey());
-            assertEquals(expectedValue.getValue(), actual.getMontant(repere).get(), String.format("Montant du repère %s (%s) incorrect", repere.getRepere(), repere.getNom()));
+            if (!Objects.equals(expectedValue.getValue(), actual.getMontant(repere).get())) {
+                fail(String.format("Montant du repère %s (%s) incorrect. Actual: %f, expected: %f", repere.getRepere(), repere.getNom(), actual.getMontant(repere).get(), expectedValue.getValue()));
+            }
         }
     }
 }
