@@ -1,5 +1,7 @@
 Repère	Formulaire	Intitulé	Règle de calcul
 AA	2050-SD	Capital souscrit non appelé	S_109
+AB	2050-SD	Frais d'établissements	S_201
+CX	2050-SD	Frais de développement	S_203
 DA	2051-SD	Capital social ou individuel	S_101 + S_108
 DB	2051-SD	Primes d'émission, de fusion, d'apport	S_104
 DC	2051-SD	Ecarts de réévaluation	S_105
@@ -8,20 +10,30 @@ DE	2051-SD	Réserves statutaires ou contractuelles	S_1063
 DF	2051-SD	Réserves règlementées	S_1062 + S_1064
 DG	2051-SD	Autres réserves	S_1068
 DH	2051-SD	Report à nouveau	S_11
-DI	2051-SD	Résultat de l'exercice	S_12
+DI	2051-SD	Résultat de l'exercice	HN	// On devrait utiliser S_12, mais dans les exemples, ce compte est n'inclut pas le résultat de l'exercice
 DJ	2051-SD	Subvention d'investissement	S_13
 DK	2051-SD	Provisions règlementées	S_14
-DL	2051-SD	Total (I)	DA + DB + DC + DD + DE + DF + DG + DH + DI + DJ + DK + HN
+DL	2051-SD	Total (I)	DA + DB + DC + DD + DE + DF + DG + DH + DI + DJ + DK
 DM	2051-SD	Produit des émissions de titres participatifs	S_1671
 DN	2051-SD	Avances conditionnées	S_1674
 DO	2051-SD	Total (II)	DM + DN
 DP	2051-SD	Provisions pour risques	S_151
 DQ	2051-SD	Provisions pour charges	S_153 + S_154 + S_155 + S_156 + S_157 + S_158
 DR	2051-SD	Total (III)	DP + DQ
+DS	2051-SD	Emprunts obligataires convertibles	S_161
+DT	2051-SD	Autres emprunts obligataires	S_163 + S_446
+DU	2051-SD	Emprunts et dettes auprès des établissements de crédit	S_164
+DV	2051-SD	Emprunts et dettes financières divers	S_165
+DW	2051-SD	Avances et acomptes reçus sur commandes en cours	S_419
+DX	2051-SD	Dettes fournisseurs et comptes rattachés	S_400 + S_401 + S_403 + S_404 + S_405 + S_408
+DY	2051-SD	Dettes fiscales et sociales	S_166 + S_421 + S_424 + S_426 + S_427 + S_428 - S_4287 + S_4382 + S_4386 + S_442 + S_4455 + S_4457 + S_44584 + S_44587 + S_447 + S_4482 + S_4486 + S_449 + S_457
+DZ	2051-SD	Dettes sur immobilisations et comptes rattachés	S_167 + S_464
+EA	2051-SD	Autres dettes	S_168
 EB	2051-SD	Produits constatés d'avance	S_487
 EC	2051-SD	Total (IV)	DS + DT + DU + DV + DW + DX + DY + DZ + EA + EB
 ED	2051-SD	Ecarts de conversion passif	S_477
 EE	2051-SD	Total général	DL + DO + DR + EC + ED
+EI	2051-SD	Emprunts participatifs	S_17
 FA	2052-SD	Ventes de marchandises	S_707
 FB	2052-SD	Ventes de marchandises	S_708
 FC	2052-SD	Ventes de marchandises	S_7097
@@ -44,7 +56,7 @@ FV	2052-SD	Variation de stock - Matières premières et approvisionnements	S_603
 FW	2052-SD	Autres achats et charges externes	S_604 + S_605 + S_606 + S_6094 + S_6095 + S_61 + S_62
 FX	2052-SD	Impôts, taxes et versements assimilés	S_63
 FY	2052-SD	Salaires et traitements	S_641 + S_644 + S_648
-FZ	2052-SD	Charges sociales	S_645 + S_646 + S_647 + S_648
+FZ	2052-SD	Charges sociales	S_645 + S_646 + S_647
 GA	2052-SD	Dotations d'exploitation aux amortissements	S_6811 + S_6812
 GB	2052-SD	Dotations d'exploitation aux provisions sur immobilisations	S_6816
 GC	2052-SD	Dotations d'exploitation aux provisions sur actif circulant	S_6817
@@ -59,7 +71,7 @@ GK	2052-SD	Produits des autres valeurs mobilières et créances de l'actif immob
 GL	2052-SD	Autres intérêts et produits assimilés	S_763 + S_764 + S_765 + S_768
 GM	2052-SD	Reprises sur provisions et transferts de charges	S_786 + S_796
 GN	2052-SD	Différences positives de change	S_766
-GO	2052-SD	Produits nets sur cessions de valeurs mobilières de placement	S_766
+GO	2052-SD	Produits nets sur cessions de valeurs mobilières de placement	S_767
 GP	2052-SD	Total des produits financiers (V)	GJ + GK + GL + GM + GN + GO
 GQ	2052-SD	Dotation financière aux amortissements et provisions	S_686
 GR	2052-SD	Intérêts et charges assimilées	S_661 + S_664 + S_665 + S_668

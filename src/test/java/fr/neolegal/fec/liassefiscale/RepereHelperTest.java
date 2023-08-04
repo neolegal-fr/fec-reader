@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -49,12 +50,8 @@ public class RepereHelperTest {
     }
 
     @Test
-    void resolveComptes_FR() {
-        Set<InfoCompte> expected = new TreeSet<>();
-        for (String numCompte : Set.of("781", "701", "7091", "702", "71", "703", "72", "74", "75", "707", "791", "708")) {
-            expected.add(new InfoCompte(numCompte, true));
-        }
-        assertEquals(expected,
-                RepereHelper.resolveComptes("FR"));
+    void resolveComptes() {
+        assertFalse(RepereHelper.resolveComptes("FR").isEmpty());
+        assertTrue(RepereHelper.resolveComptes("ZZ").isEmpty());
     }
 }

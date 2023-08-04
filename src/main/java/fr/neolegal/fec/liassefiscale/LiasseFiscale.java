@@ -36,10 +36,14 @@ public class LiasseFiscale {
     /** Renvoie le montant correspondant au repère passé en paramètre, s'il est connu. */
     public Optional<Double> getMontant(String repere) {
         Repere rep = Repere.get(repere);
-        if (Objects.isNull(rep)) {
+        return getMontant(rep);
+    }
+
+    public Optional<Double> getMontant(Repere repere) {
+        if (Objects.isNull(repere)) {
             return Optional.empty();
         }
-        return getFormulaire(rep.getFormulaire()).getMontant(repere);
+        return getFormulaire(repere.getFormulaire()).getMontant(repere.getRepere());
     }
 
 }

@@ -7,6 +7,10 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -33,27 +37,30 @@ public class Repere implements Comparable<Repere> {
      * @throws IOException
      */
     private static Map<String, Repere> loadDefinitionsReperes() {
-        List<Repere> reperes = new LinkedList<>();
+        Map<String, Repere> resultat = new HashMap<String, Repere>();
+        int lineIndex = 1;
         try {
+            List<Repere> reperes = new LinkedList<>();
             InputStream is = Repere.class.getClassLoader().getResourceAsStream("definitions-reperes.csv");
 
             CSVParser csvParser = CSVParser.parse(is, Charset.forName("UTF-8"), CSVFormat.MYSQL);
-            int lineCount = 0;
             for (CSVRecord csvRecord : csvParser) {
-                if (lineCount > 0) {
+                if ((lineIndex > 1) && (csvRecord.size() > 0)) {
                     // La première ligne est obligatoirement une ligne d'en-tête
                     Repere repere = new Repere(csvRecord.get(0), csvRecord.get(2), csvRecord.get(3),
                             Formulaire.fromIdentifiant(csvRecord.get(1)));
                     reperes.add(repere);
                 }
-                ++lineCount;
+                ++lineIndex;
             }
+
+            reperes.forEach(repere -> resultat.put(repere.getRepere(), repere));
+
         } catch (Exception e) {
-            // Erreur de chargement, on ignore tout le fichier
+            Logger.getLogger(Repere.class.getName()).log(Level.SEVERE,
+                    String.format("Erreur lors du chargement des définitions de repères à la ligne %d", lineIndex), e);
         }
 
-        Map<String, Repere> resultat = new HashMap<String, Repere>();
-        reperes.forEach(repere -> resultat.put(repere.getRepere(), repere));
         return resultat;
     }
 
@@ -75,9 +82,6 @@ public class Repere implements Comparable<Repere> {
     @Builder
     public Repere(String repere, String nom, String expression, Formulaire formulaire) {
         this.repere = repere;
-        // ExpressionBuilder builder = new ExpressionBuilder(expression);
-        // builder.variables(variables);
-        // this.expression = builder.build();
         this.expression = expression;
         this.nom = nom;
         this.formulaire = formulaire;

@@ -1,9 +1,9 @@
 package fr.neolegal.fec.liassefiscale;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
-import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -61,38 +61,38 @@ public class RepereHelper {
         return Optional.empty();
     }
 
-    public static Set<InfoCompte> resolveComptes(String repereLigneOrNumeroCompte) {
+    public static List<InfoCompte> resolveComptes(String repereLigneOrNumeroCompte) {
         return resolveComptes(repereLigneOrNumeroCompte, 10);
     }
 
-    private static Set<InfoCompte> resolveComptes(String repereLigneOrNumeroCompte, int maxDepth) {
+    private static List<InfoCompte> resolveComptes(String repereLigneOrNumeroCompte, int maxDepth) {
         Optional<InfoCompte> match = parseNumeroCompte(repereLigneOrNumeroCompte);
         if (match.isPresent()) {
-            return Set.of(match.get());
+            return List.of(match.get());
         }
 
         Repere repere = Repere.DEFINITIONS.get(repereLigneOrNumeroCompte);
         if (Objects.isNull(repere)) {
-            return Set.of();
+            return List.of();
         }
 
         return resolveComptes(repere, maxDepth);        
     }
 
-    public static Set<InfoCompte> resolveComptes(Repere repere) {
+    public static List<InfoCompte> resolveComptes(Repere repere) {
         return resolveComptes(repere, 10);
     }
 
-    private static Set<InfoCompte> resolveComptes(Repere repere, int maxDepth) {
+    private static List<InfoCompte> resolveComptes(Repere repere, int maxDepth) {
         if (Objects.isNull(repere)) {
-            return Set.of();
+            return List.of();
         }
 
         if (maxDepth < 0) {
             throw new RuntimeException("Boucle infine détectée lors de la résolution des numéros de comptes");
         }
         
-        Set<InfoCompte> comptes = new TreeSet<>();
+        List<InfoCompte> comptes = new LinkedList<>();
         Matcher matcher = Pattern.compile(COMPTE_REGEX).matcher(repere.getExpression());
         while (matcher.find()) {
             comptes.addAll(resolveComptes(matcher.group(), maxDepth-1));
@@ -113,7 +113,7 @@ public class RepereHelper {
     }
 
     public static double computeMontantLigneRepere(Repere repere, Fec fec) {
-        Set<InfoCompte> comptes = resolveComptes(repere);
+        List<InfoCompte> comptes = resolveComptes(repere);
         return Math.round(FecHelper.computeInfoComptesByNumero(fec.getLignes(),comptes));
     }
 }
