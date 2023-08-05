@@ -1,8 +1,6 @@
 package fr.neolegal.fec.liassefiscale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.nio.file.Path;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,7 +20,7 @@ public class LiasseFiscaleHelperTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/123456789FEC20500930-expected.csv")
-    void getMontant(String repere, Double expectedValue) throws FileNotFoundException, IOException {
+    void getMontant(String repere, Double expectedValue) {
         assertEquals(expectedValue, liasse.getMontant(repere).get());
     }
 }
