@@ -23,10 +23,10 @@ DR	2051-SD	Total (III)	DP + DQ
 DS	2051-SD	Emprunts obligataires convertibles	SLD_161
 DT	2051-SD	Autres emprunts obligataires	SLD_163 + SLD_446
 DU	2051-SD	Emprunts et dettes auprès des établissements de crédit	SLD_164
-DV	2051-SD	Emprunts et dettes financières divers	CRD_455	// Règle de calcul invalide, calquée sur exemple, sans compréhension
+DV	2051-SD	Emprunts et dettes financières divers	CRD_455
 DW	2051-SD	Avances et acomptes reçus sur commandes en cours	SLD_419
-DX	2051-SD	Dettes fournisseurs et comptes rattachés	CRD_400 + CRD_401 + SLD_403 + SLD_404 + SLD_405 + SLD_408
-DY	2051-SD	Dettes fiscales et sociales	SLD_166 + SLD_421 + SLD_424 + SLD_426 + SLD_427 + SLD_4282+ SLD_4284+ SLD_4286 + SLD_4382 + SLD_4386
+DX	2051-SD	Dettes fournisseurs et comptes rattachés	CRD_400 + CRD_401 + SLD_403 + SLD_404 + SLD_405 + SLD_408 + CRD_409
+DY	2051-SD	Dettes fiscales et sociales	SLD_421 + SLD_425 + SLD_428 + SLD_43 + SLD_444 + CRD_445 + SLD_447 + SLD_448 + SLD_457	// Voir https://www.compta-online.com/les-dettes-fiscales-et-sociales-un-bilan-ao3221
 DZ	2051-SD	Dettes sur immobilisations et comptes rattachés	SLD_464
 EA	2051-SD	Autres dettes	SLD_165 + SLD_168
 EB	2051-SD	Produits constatés d'avance	SLD_487
