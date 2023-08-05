@@ -21,14 +21,14 @@ DP	2051-SD	Provisions pour risques	SLD_151
 DQ	2051-SD	Provisions pour charges	SLD_153 + SLD_154 + SLD_155 + SLD_156 + SLD_157 + SLD_158
 DR	2051-SD	Total (III)	DP + DQ
 DS	2051-SD	Emprunts obligataires convertibles	SLD_161
-DT	2051-SD	Autres emprunts obligataires	SLD_163 + SLD_446
-DU	2051-SD	Emprunts et dettes auprès des établissements de crédit	SLD_164
+DT	2051-SD	Autres emprunts obligataires	SLD_163 + SLD_16883
+DU	2051-SD	Emprunts et dettes auprès des établissements de crédit	CRD_164
 DV	2051-SD	Emprunts et dettes financières divers	CRD_455
-DW	2051-SD	Avances et acomptes reçus sur commandes en cours	SLD_419
-DX	2051-SD	Dettes fournisseurs et comptes rattachés	CRD_400 + CRD_401 + SLD_403 + SLD_404 + SLD_405 + SLD_408 + CRD_409
-DY	2051-SD	Dettes fiscales et sociales	SLD_421 + SLD_425 + SLD_428 + SLD_43 + SLD_444 + CRD_445 + SLD_447 + SLD_448 + SLD_457	// Voir https://www.compta-online.com/les-dettes-fiscales-et-sociales-un-bilan-ao3221
-DZ	2051-SD	Dettes sur immobilisations et comptes rattachés	SLD_464
-EA	2051-SD	Autres dettes	SLD_165 + SLD_168
+DW	2051-SD	Avances et acomptes reçus sur commandes en cours	SLD_4191
+DX	2051-SD	Dettes fournisseurs et comptes rattachés	CRD_401 + CRD_403 + CRD_4081 + CRD_4088	// https://www.compta-online.com/quel-compte-pour-quelle-case-de-la-liasse-le-bilan-et-les-tableaux-2050-et-2051-ou-2033a-ao1177
+DY	2051-SD	Dettes fiscales et sociales	CRD_421 + CRD_422 + CRD_424 + CRD_427 + CRD_4282 + CRD_4286 + CRD_43 + CRD_442 + CRD_443 + CRD_444 + CRD_4455 + CRD_4457 + CRD_44584 + CRD_44587 + CRD_446 + CRD_447 + CRD_4482 + CRD_4486 + CRD_449 + CRD_457	// Voir https://www.compta-online.com/les-dettes-fiscales-et-sociales-un-bilan-ao3221
+DZ	2051-SD	Dettes sur immobilisations et comptes rattachés	CRD_1685 + CRD_269 + CRD_279 + CRD_404 + CRD_405 + CRD_4084
+EA	2051-SD	Autres dettes	CRD_4196 + CRD_4197 + CRD_4198 + CRD_464 + CRD_467 + CRD_4686 + CRD_478 + CRD_509
 EB	2051-SD	Produits constatés d'avance	SLD_487
 EC	2051-SD	Total (IV)	DS + DT + DU + DV + DW + DX + DY + DZ + EA + EB
 ED	2051-SD	Ecarts de conversion passif	SLD_477

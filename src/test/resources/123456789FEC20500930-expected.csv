@@ -18,13 +18,13 @@ DU, 147174.0
 DV, 41056.0
 DW, 0.0
 DX, 154891.0, // devrait être 156766
-DY, 32321.0, // devrait être 32361
+DY, 32361.0,
 DZ, 0.0
 EA, 0.0
 EB, 0.0
-EC, 375442.0, // Devrait être 377357
+EC, 375482.0, // Devrait être 377357
 ED, 0.0
-EE, 1014673.0, // erreur : devrait être 1016587
+EE, 1014713.0, // erreur : devrait être 1016587
 FL, 1212844.0
 FR, 1225777.0
 FS, 410953.0
