@@ -1,16 +1,18 @@
 Repère	Formulaire	Intitulé	Règle de calcul
 AA	2050-SD	Capital souscrit non appelé	SLD_109
 AB	2050-SD	Frais d'établissements	SLD_201
+AC	2050-SD	Frais d'établissements - amortissement	SLD_2801
 CX	2050-SD	Frais de développement	SLD_203
+CQ	2050-SD	Frais de développement - amortissement	SLD_2803
 DA	2051-SD	Capital social ou individuel	SLD_101 + SLD_108
 DB	2051-SD	Primes d'émission, de fusion, d'apport	SLD_104
-DC	2051-SD	Ecarts de réévaluation	SLD_105
+DC	2051-SD	Ecarts de réévaluation	SLD_105 + SLD_107 
 DD	2051-SD	Réserve légale	SLD_1061
 DE	2051-SD	Réserves statutaires ou contractuelles	SLD_1063
 DF	2051-SD	Réserves règlementées	SLD_1062 + SLD_1064
 DG	2051-SD	Autres réserves	SLD_1068
 DH	2051-SD	Report à nouveau	SLD_11
-DI	2051-SD	Résultat de l'exercice	HN	// On devrait utiliser SLD_12, mais dans les exemples, ce compte est n'inclut pas le résultat de l'exercice
+DI	2051-SD	Résultat de l'exercice	HN	// On devrait utiliser SLD_12, mais dans les exemples de FEC, ce compte est n'inclut pas le résultat de l'exercice
 DJ	2051-SD	Subvention d'investissement	SLD_13
 DK	2051-SD	Provisions règlementées	SLD_14
 DL	2051-SD	Total (I)	DA + DB + DC + DD + DE + DF + DG + DH + DI + DJ + DK
@@ -18,12 +20,12 @@ DM	2051-SD	Produit des émissions de titres participatifs	SLD_1671
 DN	2051-SD	Avances conditionnées	SLD_1674
 DO	2051-SD	Total (II)	DM + DN
 DP	2051-SD	Provisions pour risques	SLD_151
-DQ	2051-SD	Provisions pour charges	SLD_153 + SLD_154 + SLD_155 + SLD_156 + SLD_157 + SLD_158
+DQ	2051-SD	Provisions pour charges	SLD_152 + SLD_153 + SLD_154 + SLD_155 + SLD_156 + SLD_157 + SLD_158
 DR	2051-SD	Total (III)	DP + DQ
-DS	2051-SD	Emprunts obligataires convertibles	SLD_161
+DS	2051-SD	Emprunts obligataires convertibles	SLD_161 + SLD_16881
 DT	2051-SD	Autres emprunts obligataires	SLD_163 + SLD_16883
-DU	2051-SD	Emprunts et dettes auprès des établissements de crédit	CRD_164
-DV	2051-SD	Emprunts et dettes financières divers	CRD_455
+DU	2051-SD	Emprunts et dettes auprès des établissements de crédit	CRD_164 + CRD_512 + CRD_514 + CRD_517 + CRD_5186 + CRD_519
+DV	2051-SD	Emprunts et dettes financières divers	CRD_162 + CRD_165 + CRD_166 + CRD_1675 + CRD_17 + CRD_426 + CRD_451 + CRD_455 + CRD_456 + CRD_458
 DW	2051-SD	Avances et acomptes reçus sur commandes en cours	SLD_4191
 DX	2051-SD	Dettes fournisseurs et comptes rattachés	CRD_401 + CRD_403 + CRD_4081 + CRD_4088	// https://www.compta-online.com/quel-compte-pour-quelle-case-de-la-liasse-le-bilan-et-les-tableaux-2050-et-2051-ou-2033a-ao1177
 DY	2051-SD	Dettes fiscales et sociales	CRD_421 + CRD_422 + CRD_424 + CRD_427 + CRD_4282 + CRD_4286 + CRD_43 + CRD_442 + CRD_443 + CRD_444 + CRD_4455 + CRD_4457 + CRD_44584 + CRD_44587 + CRD_446 + CRD_447 + CRD_4482 + CRD_4486 + CRD_449 + CRD_457	// Voir https://www.compta-online.com/les-dettes-fiscales-et-sociales-un-bilan-ao3221
