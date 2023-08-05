@@ -3,6 +3,8 @@ package fr.neolegal.fec.liassefiscale;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -27,14 +29,19 @@ public class RepereTest {
          * On vérifie que les règles de calcul définies dans le fichier de configuration
          * sont valides
          */
-        for (Repere repere : Repere.DEFINITIONS.values()) {
+        List<Repere> reperes = new LinkedList<>(Repere.DEFINITIONS.values());
+        Collections.sort(reperes);
+        for (Repere repere : reperes) {
             List<AgregationComptes> comptes = RepereHelper.resolveComptes(repere);
-            Set<AgregationComptes> doublons = comptes.stream().filter(c1 -> comptes.stream().filter(c2 -> c2.equals(c1)).count() > 1)
+            Set<AgregationComptes> doublons = comptes.stream()
+                    .filter(agg1 -> comptes.stream()
+                            .filter(agg2 -> agg1.matches(agg2.getPrefixNumeroCompte()))
+                            .count() > 1)
                     .collect(Collectors.toSet());
             if (!doublons.isEmpty()) {
-                fail("Les règles de calcul du repère " + repere.getRepere()
-                        + " ne sont pas valides à cause de sdoublons suivantes: " + doublons.stream()
-                                .map(AgregationComptes::getPrefixNumeroCompte).collect(Collectors.joining(", ")));
+                fail("La règle de calcul pour le repère " + repere.getRepere()
+                        + " est invalide car elle référence plus d'une fois " + doublons.stream()
+                                .map(AgregationComptes::toString).collect(Collectors.joining(", ")));
             }
         }
     }

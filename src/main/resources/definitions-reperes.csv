@@ -26,8 +26,8 @@ DU	2051-SD	Emprunts et dettes auprès des établissements de crédit	SLD_164
 DV	2051-SD	Emprunts et dettes financières divers	CRD_455	// Règle de calcul invalide, calquée sur exemple, sans compréhension
 DW	2051-SD	Avances et acomptes reçus sur commandes en cours	SLD_419
 DX	2051-SD	Dettes fournisseurs et comptes rattachés	CRD_400 + CRD_401 + SLD_403 + SLD_404 + SLD_405 + SLD_408
-DY	2051-SD	Dettes fiscales et sociales	SLD_166 + SLD_421 + SLD_424 + SLD_4246 + SLD_4248 + SLD_426 + SLD_427 + SLD_4282+ SLD_4284+ SLD_4286 + SLD_4382 + SLD_4386
-DZ	2051-SD	Dettes sur immobilisations et comptes rattachés	SLD_167 + SLD_464
+DY	2051-SD	Dettes fiscales et sociales	SLD_166 + SLD_421 + SLD_424 + SLD_426 + SLD_427 + SLD_4282+ SLD_4284+ SLD_4286 + SLD_4382 + SLD_4386
+DZ	2051-SD	Dettes sur immobilisations et comptes rattachés	SLD_464
 EA	2051-SD	Autres dettes	SLD_165 + SLD_168
 EB	2051-SD	Produits constatés d'avance	SLD_487
 EC	2051-SD	Total (IV)	DS + DT + DU + DV + DW + DX + DY + DZ + EA + EB
@@ -50,7 +50,7 @@ FM	2052-SD	Production stockée	SLD_71
 FN	2052-SD	Production immobilisée	SLD_72
 FO	2052-SD	Subvention d'exploitation	SLD_74
 FP	2052-SD	Reprises sur amortissements et provisions, transfert de charges	SLD_781 + SLD_791
-FQ	2052-SD	Autres produits	SLD_75
+FQ	2052-SD	Autres produits	SLD_750 + SLD_751 + SLD_752 + SLD_753 + SLD_754 + SLD_758	// Les Quote-parts de résultat sur opérations faites en commun (755) ne doivent pas être incluses
 FR	2052-SD	Total des produits d'exploitation (I)	FL + FM + FN + FO + FP + FQ
 FS	2052-SD	Achats de marchandises	-(SLD_607 + SLD_6097)
 FT	2052-SD	Variation de stock - Marchandises	-SLD_6037

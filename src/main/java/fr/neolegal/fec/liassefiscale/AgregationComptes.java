@@ -31,4 +31,9 @@ public class AgregationComptes implements Comparable<AgregationComptes> {
 
         return agregateur.compareTo(other.agregateur);
     }
+
+    @Override
+    public String toString() {
+        return agregateur.getPrefixe() + prefixNumeroCompte;
+    }
 }
