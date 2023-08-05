@@ -49,18 +49,20 @@ public class RepereHelperTest {
 
     @Test
     void isNumeroCompte_returnTrue() {
-        assertTrue(RepereHelper.isNumeroCompte("S_1"));
-        assertTrue(RepereHelper.isNumeroCompte("D_1"));
+        assertTrue(RepereHelper.isNumeroCompte("SLD_1"));
+        assertTrue(RepereHelper.isNumeroCompte("DIF_1"));
+        assertTrue(RepereHelper.isNumeroCompte("CRD_1"));
+        assertTrue(RepereHelper.isNumeroCompte("DEB_1"));
     }
 
     @Test
-    void resolveTermes() {
-        assertFalse(RepereHelper.resolveTermes("FR").isEmpty());
-        assertTrue(RepereHelper.resolveTermes("ZZ").isEmpty());
+    void resolveComptes() {
+        assertFalse(RepereHelper.resolveComptes("FR").isEmpty());
+        assertTrue(RepereHelper.resolveComptes("ZZ").isEmpty());
     }
 
     @Test
     void computeMontantLigneRepere() {
-        assertEquals(249858.0, RepereHelper.computeMontantLigneRepere("FY", fec));
+        assertEquals(41056.0, RepereHelper.computeMontantLigneRepere("DV", fec));
     }
 }

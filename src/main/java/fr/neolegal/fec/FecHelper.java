@@ -5,9 +5,10 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -16,7 +17,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import fr.neolegal.fec.liassefiscale.Terme;
+import fr.neolegal.fec.liassefiscale.AgregationComptes;
 
 public abstract class FecHelper {
 
@@ -95,7 +96,7 @@ public abstract class FecHelper {
                 .collect(Collectors.toSet());
     }
 
-    public static double computeTermes(List<LEC> lignes, Collection<Terme> comptes) {
+    public static double computeAgregationComptes(List<LEC> lignes, AgregationComptes agregation) {
         if (lignes.isEmpty()) {
             return 0.0;
         }
@@ -106,18 +107,39 @@ public abstract class FecHelper {
          * Pour chaque exercice, les premiers numéros d'écritures comptables du fichier
          * correspondent aux écritures de reprise des soldes de l'exercice antérieur
          */
-        String numEcritureRepriseANouveau = lignes.stream().findFirst().map(lec -> lec.getEcritureNum()).orElse("");
+        String numEcritureRepriseSolde = lignes.stream().findFirst().map(lec -> lec.getEcritureNum()).orElse("");
 
         /**
          * Lors du calcul de la variation d'un compte, on doit ignorer la première ligne
          * du fichier, qui reprend le solde de l'exercice précédent
          */
-        return CollectionUtils.emptyIfNull(lignes).stream()
-                .filter(ligne -> comptes.stream()
-                        .anyMatch(compte -> compte.matches(ligne.getCompteNum()) && (compte.isSolde()
-                                || !StringUtils.equalsIgnoreCase(numEcritureRepriseANouveau, ligne.getEcritureNum()))))
-                .mapToDouble(ligne -> ligne.getCredit() - ligne.getDebit())
-                .sum();
+        Map<String, Double> comptes = new HashMap<>();
+        for (LEC ligne : lignes) {
+            boolean includeLigne = agregation.matches(ligne.getCompteNum())
+                    && (agregation.getAgregateur().isRepriseSoldeIncluded()
+                            || !StringUtils.equalsIgnoreCase(numEcritureRepriseSolde, ligne.getEcritureNum()));
+            if (includeLigne) {
+                comptes.put(ligne.getCompteNum(), comptes.getOrDefault(ligne.getCompteNum(), 0.0)
+                        + (ligne.getCredit() - ligne.getDebit()));
+            }
+        }
+
+        switch (agregation.getAgregateur()) {
+            case CREDIT:
+                comptes = comptes.entrySet().stream().filter(entry -> entry.getValue() > 0)
+                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+                break;
+            case DEBIT:
+                comptes = comptes.entrySet().stream().filter(entry -> entry.getValue() < 0)
+                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+                break;
+            case DIFFERENCE:
+            case SOLDE:
+            default:
+                break;
+
+        }
+        return comptes.values().stream().mapToDouble(Double::doubleValue).sum();
     }
 
     public static Fec read(Path file) {

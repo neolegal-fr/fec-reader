@@ -1,7 +1,6 @@
 package fr.neolegal.fec.liassefiscale;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -26,10 +25,10 @@ public class FecVariableProvider implements VariableProvider {
         }
 
         Double montant = null;
-        Optional<Terme> compteMatch = RepereHelper.parseNumeroCompte(variable);        
+        Optional<AgregationComptes> compteMatch = RepereHelper.parseNumeroCompte(variable);        
         Repere repere = Repere.get(variable);
         if (compteMatch.isPresent()) {
-            montant = FecHelper.computeTermes(fec.getLignes(), List.of(compteMatch.get()));
+            montant = FecHelper.computeAgregationComptes(fec.getLignes(), compteMatch.get());
         } else if (Objects.nonNull(repere)) {
             montant = RepereHelper.computeMontantLigneRepere(repere, fec);
         }

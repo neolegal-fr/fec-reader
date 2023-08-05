@@ -20,10 +20,7 @@ import lombok.Data;
 
 @Data
 public class Repere implements Comparable<Repere> {
-
-    public static final CharSequence PREFIXE_SOLDE_COMPTE = "S_";
-    public static final CharSequence PREFIXE_DIFF_COMPTE = "D_";
-    
+   
     public static Map<String, Repere> DEFINITIONS = loadDefinitionsReperes();
 
     /**

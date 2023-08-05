@@ -46,16 +46,16 @@ public class LiasseFiscaleHelperTest {
         expectedValues.put("DO", 0.0);
         expectedValues.put("DR", 0.0);
         expectedValues.put("DU", 147174.0);
-        expectedValues.put("DV", 0.0); // devrait être 41056
+        expectedValues.put("DV",  41056.0);
         expectedValues.put("DW", 0.0);
         expectedValues.put("DX", 154891.0); // devrait être 156766
-        expectedValues.put("DY", 0.0);  // devrait être 32361
+        expectedValues.put("DY", 16159.0);  // devrait être 32361
         expectedValues.put("DZ", 0.0);
         expectedValues.put("EA", 0.0);
         expectedValues.put("EB", 0.0);
-        expectedValues.put("EC", 302065.0); // Devrait être 377357
+        expectedValues.put("EC", 359280.0); // Devrait être 377357
         expectedValues.put("ED", 0.0);
-        expectedValues.put("EE", 941296.0); // erreur : devrait être 1016587
+        expectedValues.put("EE", 998511.0); // erreur : devrait être 1016587
 
         // Compte de résultats en liste
         expectedValues.put("FL", 1212844.0);

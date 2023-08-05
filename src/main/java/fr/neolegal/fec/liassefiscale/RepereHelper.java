@@ -20,7 +20,7 @@ public class RepereHelper {
     public final static int MIN_NUM_COMPTE = 1;
     public final static int MAX_NUM_COMPTE = 7999;
     public final static String REPERE_REGEX = "(?i)([" + MIN_REPERE + "-" + MAX_REPERE + "][A-Z])";
-    public final static String COMPTE_REGEX = "(?i)([SD]_[0-9]+)";
+    public final static String COMPTE_REGEX = "(?i)(((SLD)|(DIF)|(CRD)|(DEB))_[0-9]+)";
 
     private RepereHelper() {
     }
@@ -38,7 +38,7 @@ public class RepereHelper {
                 && candidate.matches(REPERE_REGEX);
     }
 
-    static Optional<Terme> parseNumeroCompte(String candidate) {
+    static Optional<AgregationComptes> parseNumeroCompte(String candidate) {
         if (StringUtils.isBlank(candidate)) {
             return Optional.empty();
         }
@@ -47,27 +47,26 @@ public class RepereHelper {
         if (StringUtils.isNumeric(candidate)) {
             int numCompte = Integer.parseInt(candidate);
             if (numCompte >= MIN_NUM_COMPTE && numCompte <= MAX_NUM_COMPTE) {
-                return Optional.of(new Terme(candidate, true));
+                return Optional.of(new AgregationComptes(candidate, AgregateurCompte.SOLDE));
             }
         }
 
-        if (StringUtils.startsWith(candidate, Repere.PREFIXE_SOLDE_COMPTE)) {
-            return Optional.of(new Terme(StringUtils.substring(candidate, Repere.PREFIXE_SOLDE_COMPTE.length()), true));
-        }
-
-        if (StringUtils.startsWith(candidate, Repere.PREFIXE_DIFF_COMPTE)) {
-            return Optional.of(new Terme(StringUtils.substring(candidate, Repere.PREFIXE_DIFF_COMPTE.length()), false));
+        for (AgregateurCompte agregateur : AgregateurCompte.values()) {
+            if (StringUtils.startsWithIgnoreCase(candidate, agregateur.getPrefixe())) {
+                return Optional.of(new AgregationComptes(
+                        StringUtils.substring(candidate, agregateur.getPrefixe().length()), agregateur));
+            }
         }
 
         return Optional.empty();
     }
 
-    public static List<Terme> resolveTermes(String repereLigneOrNumeroCompte) {
-        return resolveTermes(repereLigneOrNumeroCompte, 10);
+    public static List<AgregationComptes> resolveComptes(String repereLigneOrNumeroCompte) {
+        return resolveComptes(repereLigneOrNumeroCompte, 10);
     }
 
-    private static List<Terme> resolveTermes(String repereLigneOrNumeroCompte, int maxDepth) {
-        Optional<Terme> match = parseNumeroCompte(repereLigneOrNumeroCompte);
+    private static List<AgregationComptes> resolveComptes(String repereLigneOrNumeroCompte, int maxDepth) {
+        Optional<AgregationComptes> match = parseNumeroCompte(repereLigneOrNumeroCompte);
         if (match.isPresent()) {
             return List.of(match.get());
         }
@@ -77,14 +76,14 @@ public class RepereHelper {
             return List.of();
         }
 
-        return resolveTermes(repere, maxDepth);
+        return resolveComptes(repere, maxDepth);
     }
 
-    public static List<Terme> resolveTermes(Repere repere) {
-        return resolveTermes(repere, 10);
+    public static List<AgregationComptes> resolveComptes(Repere repere) {
+        return resolveComptes(repere, 10);
     }
 
-    private static List<Terme> resolveTermes(Repere repere, int maxDepth) {
+    private static List<AgregationComptes> resolveComptes(Repere repere, int maxDepth) {
         if (Objects.isNull(repere)) {
             return List.of();
         }
@@ -93,15 +92,15 @@ public class RepereHelper {
             throw new RuntimeException("Boucle infine détectée lors de la résolution des numéros de comptes");
         }
 
-        List<Terme> comptes = new LinkedList<>();
+        List<AgregationComptes> comptes = new LinkedList<>();
         Matcher matcher = Pattern.compile(COMPTE_REGEX).matcher(repere.getExpression());
         while (matcher.find()) {
-            comptes.addAll(resolveTermes(matcher.group(), maxDepth - 1));
+            comptes.addAll(resolveComptes(matcher.group(), maxDepth - 1));
         }
 
         matcher = Pattern.compile(REPERE_REGEX).matcher(repere.getExpression());
         while (matcher.find()) {
-            comptes.addAll(resolveTermes(matcher.group(), maxDepth - 1));
+            comptes.addAll(resolveComptes(matcher.group(), maxDepth - 1));
         }
 
         return comptes;
@@ -118,9 +117,9 @@ public class RepereHelper {
         if (StringUtils.isBlank(repere.getExpression())) {
             return 0.0;
         }
-        
+
         Expression expression = new ExpressionBuilder(repere.getExpression()).variables(variables).build();
-        
+
         return Math.round(expression.evaluate());
     }
 }
