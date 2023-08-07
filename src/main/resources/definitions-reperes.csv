@@ -148,3 +148,9 @@ ZG	2058-C-SD	Report à nouveau	DIF_110
 254	2033-B-SD	Dotations aux amortissements	-(SLD_6811 + SLD_6812 + SLD_6816 + SLD_6817)
 256	2033-B-SD	Dotations aux provisions	-SLD_6815
 262	2033-B-SD	Autres charges d'exploitation	-(SLD_651 + SLD_653 + SLD_654 + SLD_658)
+280	2033-B-SD	Produits financiers	SLD_76 + SLD_786 + SLD_796 + SLD_766 + SLD_767
+290	2033-B-SD	Produits exceptionnels	SLD_771 + SLD_775 + SLD_777 + SLD_778 + SLD_787 + SLD_797
+294	2033-B-SD	Charges financières	-(SLD_686 + SLD_661 + SLD_664 + SLD_665 + SLD_668 + SLD_666 + SLD_667)
+300	2033-B-SD	Charges exceptionnelles	-(SLD_671 + SLD_675 + SLD_678 + SLD_687)
+306	2033-B-SD	Impôts sur les bénéfices	-(SLD_695 + SLD_698 + SLD_699)
+310	2033-B-SD	Bénéfices ou pertes	REP_232 + REP_280 + REP_290
