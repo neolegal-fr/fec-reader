@@ -17,11 +17,13 @@ public class LiasseFiscaleHelper {
     private LiasseFiscaleHelper() {
     }
 
-    public static LiasseFiscale buildLiasseFiscale(Fec fec) {
+    public static LiasseFiscale buildLiasseFiscale(Fec fec, RegimeImposition regime) {
         LiasseFiscale liasse = LiasseFiscale.builder().siren(fec.getSiren()).clotureExercice(fec.getClotureExercice())
                 .build();
         for (Formulaire formulaire : Formulaire.values()) {
-            liasse.getFormulaires().add(buildTableauComptable(fec, formulaire));
+            if (formulaire.getRegimeImposition() == regime) {
+                liasse.getFormulaires().add(buildTableauComptable(fec, formulaire));
+            }            
         }
         
         return liasse;

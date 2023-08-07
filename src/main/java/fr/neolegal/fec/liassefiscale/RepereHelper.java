@@ -15,12 +15,14 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 
 public class RepereHelper {
 
+    
     public final static Character MIN_REPERE = 'A';
     public final static Character MAX_REPERE = 'O';
     public final static int MIN_NUM_COMPTE = 1;
     public final static int MAX_NUM_COMPTE = 7999;
     public final static String REPERE_REGEX = "(?i)([" + MIN_REPERE + "-" + MAX_REPERE + "][A-Z])";
     public final static String COMPTE_REGEX = "(?i)(((SLD)|(DIF)|(CRD)|(DEB))_[0-9]+)";
+    public final static String REPERE_PREFIX = "REP_";
 
     private RepereHelper() {
     }
@@ -30,12 +32,28 @@ public class RepereHelper {
     }
 
     static boolean isLigneRepere(String candidate) {
+        return parseLigneRepere(candidate).isPresent();
+    }
+
+    static Optional<Repere> parseLigneRepere(String candidate) {
         if (StringUtils.isBlank(candidate)) {
-            return false;
+            return Optional.empty();
         }
+
         candidate = candidate.trim();
-        return candidate.length() == 2
-                && candidate.matches(REPERE_REGEX);
+        if (candidate.length() == 2 && candidate.matches(REPERE_REGEX)) {
+            Repere repere = Repere.DEFINITIONS.get(candidate);
+            return Optional.ofNullable(repere);
+        }
+
+        if (StringUtils.startsWithIgnoreCase(candidate, REPERE_PREFIX)) {
+            String symbole = StringUtils.substring(candidate, REPERE_PREFIX.length());
+            Repere repere = Repere.DEFINITIONS.get(symbole);
+            return Optional.ofNullable(repere);
+        }
+
+
+        return Optional.empty();
     }
 
     static Optional<AgregationComptes> parseNumeroCompte(String candidate) {

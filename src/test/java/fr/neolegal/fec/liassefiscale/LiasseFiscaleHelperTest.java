@@ -10,26 +10,31 @@ import fr.neolegal.fec.FecHelper;
 
 public class LiasseFiscaleHelperTest {
 
-    LiasseFiscale liasse1 = LiasseFiscaleHelper
-            .buildLiasseFiscale(FecHelper.read(Path.of("target/test-classes/123456789FEC20500930.txt")));
-    LiasseFiscale liasse2 = LiasseFiscaleHelper
-            .buildLiasseFiscale(FecHelper.read(Path.of("target/test-classes/000000000FEC20231231.txt")));
+    LiasseFiscale liasseReelNormal = LiasseFiscaleHelper
+            .buildLiasseFiscale(FecHelper.read(Path.of("target/test-classes/123456789FEC20500930.txt")), RegimeImposition.REEL_NORMAL);
+    LiasseFiscale liasseReelSimplifie = LiasseFiscaleHelper
+            .buildLiasseFiscale(FecHelper.read(Path.of("target/test-classes/000000000FEC20231231.txt")), RegimeImposition.REEL_SIMPLIFIE);
 
     @Test
-    void buildLiasseFiscale() {
-        assertEquals(liasse1.getFormulaires().size(), Formulaire.values().length);
+    void buildLiasseFiscale_reelNormal() {
+        assertEquals(12, liasseReelNormal.getFormulaires().size());
+    }
+
+    @Test
+    void buildLiasseFiscale_reelSimplifie() {
+        assertEquals(4, liasseReelSimplifie.getFormulaires().size());
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/123456789FEC20500930-expected.csv")
-    void getMontant_liasse1(String repere, Double expectedValue) {
-        assertEquals(expectedValue, liasse1.getMontant(repere).get());
+    void getMontant_reelNormal(String repere, Double expectedValue) {
+        assertEquals(expectedValue, liasseReelNormal.getMontant(repere).get());
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/000000000FEC20231231-expected.csv")
-    void getMontant_liasse2(String repere, Double expectedValue) {
-        assertEquals(expectedValue, liasse2.getMontant(repere).get());
+    void getMontant_reelSimplifie(String repere, Double expectedValue) {
+        assertEquals(expectedValue, liasseReelSimplifie.getMontant(repere).get());
     }
 
 }
