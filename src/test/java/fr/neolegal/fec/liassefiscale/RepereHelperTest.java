@@ -24,7 +24,8 @@ public class RepereHelperTest {
     @Test
     void isLigneRepere_returnsTrue() {
         assertTrue(RepereHelper.isLigneRepere("AA"));
-        assertTrue(RepereHelper.isLigneRepere("oo"));
+        assertTrue(RepereHelper.isLigneRepere("REP_FL"));
+        assertTrue(RepereHelper.isLigneRepere("REP_310"));
     }
 
     @Test

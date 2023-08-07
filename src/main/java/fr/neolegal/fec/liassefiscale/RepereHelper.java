@@ -16,11 +16,7 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 public class RepereHelper {
 
     
-    public final static Character MIN_REPERE = 'A';
-    public final static Character MAX_REPERE = 'O';
-    public final static int MIN_NUM_COMPTE = 1;
-    public final static int MAX_NUM_COMPTE = 7999;
-    public final static String REPERE_REGEX = "(?i)([" + MIN_REPERE + "-" + MAX_REPERE + "][A-Z])";
+    public final static String REPERE_REGEX = "(?i)([A-Z][A-Z])";
     public final static String COMPTE_REGEX = "(?i)(((SLD)|(DIF)|(CRD)|(DEB))_[0-9]+)";
     public final static String REPERE_PREFIX = "REP_";
 
@@ -42,12 +38,13 @@ public class RepereHelper {
 
         candidate = candidate.trim();
         if (candidate.length() == 2 && candidate.matches(REPERE_REGEX)) {
-            Repere repere = Repere.DEFINITIONS.get(candidate);
+            String symbole = candidate.toUpperCase();
+            Repere repere = Repere.DEFINITIONS.get(symbole);
             return Optional.ofNullable(repere);
         }
 
         if (StringUtils.startsWithIgnoreCase(candidate, REPERE_PREFIX)) {
-            String symbole = StringUtils.substring(candidate, REPERE_PREFIX.length());
+            String symbole = StringUtils.substring(candidate, REPERE_PREFIX.length()).toUpperCase();
             Repere repere = Repere.DEFINITIONS.get(symbole);
             return Optional.ofNullable(repere);
         }
@@ -64,9 +61,7 @@ public class RepereHelper {
         candidate = candidate.trim();
         if (StringUtils.isNumeric(candidate)) {
             int numCompte = Integer.parseInt(candidate);
-            if (numCompte >= MIN_NUM_COMPTE && numCompte <= MAX_NUM_COMPTE) {
                 return Optional.of(new AgregationComptes(candidate, AgregateurCompte.SOLDE));
-            }
         }
 
         for (AgregateurCompte agregateur : AgregateurCompte.values()) {
