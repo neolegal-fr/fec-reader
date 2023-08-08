@@ -182,22 +182,22 @@ ZG	2058-C-SD	Report à nouveau	DIF_110
 042	2033-A-SD	Immobilisations financières - amortissement	-(SLD_2961 + SLD_2966 + SLD_2967 + SLD_2968 + SLD_2973 + SLD_2971 + SLD_2972 + SLD_2974 + SLD_2975 + SLD_2976)
 044	2033-A-SD	Actif immobilisé	REP_010 + REP_014 + REP_028 + REP_040
 048	2033-A-SD	Actif immobilisé - amortissements	REP_012 + REP_016 + REP_030 + REP_042
-050	2033-A-SD	Stocks - Matières premières, approvisionnements, en cours de production	-(SLD_31 + SLD_32 + SLD_33 + SLD_34 + SLD_35)
-052	2033-A-SD	Stocks - Matières premières, approvisionnements, en cours de production - amortissement	-(SLD_391 + SLD_392 + SLD_393 + SLD_394 + SLD_395)
-060	2033-A-SD	Stocks - Marchandises	-SLD_37
-062	2033-A-SD	Stocks - Marchandises - amortissements	-SLD_397
-064	2033-A-SD	Avances et acomptes versés sur commandes	CRD_4091
+050	2033-A-SD	Stocks - Matières premières, approvisionnements, en cours de production	DEB_31 + DEB_32 + DEB_33 + DEB_34 + DEB_35
+052	2033-A-SD	Stocks - Matières premières, approvisionnements, en cours de production - amortissement	DEB_391 + DEB_392 + DEB_393 + DEB_394 + DEB_395
+060	2033-A-SD	Stocks - Marchandises	DEB_37
+062	2033-A-SD	Stocks - Marchandises - amortissements	DEB_397
+064	2033-A-SD	Avances et acomptes versés sur commandes	DEB_4091
 066	2033-A-SD	Avances et acomptes versés sur commandes - amortissements	0
 068	2033-A-SD	Créances - Clients et comptes rattachés	DEB_411 + DEB_413 + DEB_416 + DEB_418
 070	2033-A-SD	Créances - Clients et comptes rattachés - amortissements	DEB_491
 072	2033-A-SD	Créances - Autres	DEB_1097 + DEB_4096 + DEB_4098 + DEB_425 + DEB_4287 + DEB_43 + DEB_44 + DEB_45 + DEB_462 + DEB_465 + DEB_467 + DEB_4687 + DEB_478
 074	2033-A-SD	Créances - Autres - amortissements	DEB_495 + DEB_496
-080	2033-A-SD	Valeurs mobilières de placement	SLD_50 + SLD_52
-082	2033-A-SD	Valeurs mobilières de placement - amortissements	SLD_59
-084	2033-A-SD	Disponibilités	-(SLD_51 + SLD_53 + SLD_54)
+080	2033-A-SD	Valeurs mobilières de placement	DEB_50 + DEB_52
+082	2033-A-SD	Valeurs mobilières de placement - amortissements	DEB_59
+084	2033-A-SD	Disponibilités	DEB_51 + DEB_53 + DEB_54
 086	2033-A-SD	Disponibilités - amortissements	0
 092	2033-A-SD	Charges constatées d'avance	DEB_486
-094	2033-A-SD	Charges constatées d'avance - amortissemets	0
+094	2033-A-SD	Charges constatées d'avance - amortissements	0
 096	2033-A-SD	Actif circulant	REP_050 + REP_060 + REP_064 + REP_068 + REP_072 + REP_080 + REP_084 + REP_092
 098	2033-A-SD	Actif circulant - amortissement	REP_052 + REP_062 + REP_066 + REP_070 + REP_074 + REP_082 + REP_086 + REP_094
 110	2033-A-SD	Total général	REP_044 + REP_096
