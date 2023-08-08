@@ -1,7 +1,15 @@
 package fr.neolegal.fec.liassefiscale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Objects;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -25,16 +33,48 @@ public class LiasseFiscaleHelperTest {
         assertEquals(4, liasseReelSimplifie.getFormulaires().size());
     }
 
-    @ParameterizedTest
-    @CsvFileSource(resources = "/123456789FEC20500930-expected.csv")
-    void getMontant_reelNormal(String repere, Double expectedValue) {
-        assertEquals(expectedValue, liasseReelNormal.getMontant(repere).get());
+    @Test
+    void getMontant_reelNormal() throws IOException {
+        CSVParser csvParser = CSVParser.parse("target/test-classes/123456789FEC20500930-expected.csv", CSVFormat.DEFAULT);
+
+        StringBuilder sb = new StringBuilder();
+        for (CSVRecord csvRecord : csvParser) {
+            if (csvRecord.size() > 1) {
+                String symbole = csvRecord.get(0);
+                Repere repere = Repere.DEFINITIONS.get(symbole);
+                Double expected = Double.valueOf(csvRecord.get(1));
+                Double actual = liasseReelNormal.getMontant(repere).get();
+                if (!Objects.equals(expected, actual)) {
+                    sb.append(String.format("Montant du repère %s (%s) incorrect. Actual: %f, expected: %f", symbole, repere.getNom(), actual, expected));                    
+                }
+            }
+        }
+
+        if (sb.length() > 0) {
+            fail(sb.toString());
+        }
     }
 
-    @ParameterizedTest
-    @CsvFileSource(resources = "/000000000FEC20231231-expected.csv")
-    void getMontant_reelSimplifie(String repere, Double expectedValue) {
-        assertEquals(expectedValue, liasseReelSimplifie.getMontant(repere).get());
+    @Test
+    void getMontant_reelSimplifie() throws IOException {
+        CSVParser csvParser = CSVParser.parse("target/test-classes/000000000FEC20231231-expected.csv", CSVFormat.DEFAULT);
+
+        StringBuilder sb = new StringBuilder();
+        for (CSVRecord csvRecord : csvParser) {
+            if (csvRecord.size() > 1) {
+                String symbole = csvRecord.get(0);
+                Repere repere = Repere.DEFINITIONS.get(symbole);
+                Double expected = Double.valueOf(csvRecord.get(1));
+                Double actual = liasseReelSimplifie.getMontant(repere).get();
+                if (!Objects.equals(expected, actual)) {
+                    sb.append(String.format("Montant du repère %s (%s) incorrect. Actual: %f, expected: %f", symbole, repere.getNom(), actual, expected));                    
+                }
+            }
+        }
+
+        if (sb.length() > 0) {
+            fail(sb.toString());
+        }
     }
 
 }
