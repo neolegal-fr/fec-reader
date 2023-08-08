@@ -32,27 +32,27 @@ BH	2050-SD	Autres immobilisations financières	-(SLD_275 + SLD_2761 + SLD_27685 
 BI	2050-SD	Autres immobilisations financières - amortissements	SLD_2975 + SLD_2976
 BJ	2050-SD	Total (II)	AB + CX + AF + AH + AJ + AL + AN + AP + AR + AT + AV + AX + CS + CU + BB + BD + BF + BH
 BK	2050-SD	Total (II) - amortissements	AC + CQ + AG + AI + AK + AM + AO + AQ + AS + AU + AW + AY + CT + CV + BC + BE + BG + BI
-BL	2050-SD	Stocks - Matières premières, approvisionnements	SLD_31 + SLD_32
+BL	2050-SD	Stocks - Matières premières, approvisionnements	-(SLD_31 + SLD_32)
 BM	2050-SD	Stocks - Matières premières, approvisionnements - amortissements	SLD_391 + SLD_392
-BN	2050-SD	Stocks - En cours de production de biens	SLD_33
+BN	2050-SD	Stocks - En cours de production de biens	-SLD_33
 BO	2050-SD	Stocks - En cours de production de biens - amortissements	SLD_393
-BP	2050-SD	Stocks - En cours de production de services	SLD_34
+BP	2050-SD	Stocks - En cours de production de services	-SLD_34
 BQ	2050-SD	Stocks - En cours de production de services - amortissements	SLD_394
-BR	2050-SD	Stocks - Produits intermédiaires et finis	SLD_35
+BR	2050-SD	Stocks - Produits intermédiaires et finis	-SLD_35
 BS	2050-SD	Stocks - Produits intermédiaires et finis - amortissements	SLD_395
-BT	2050-SD	Stocks - Marchandises	SLD_37
+BT	2050-SD	Stocks - Marchandises	-SLD_37
 BU	2050-SD	Stocks - Marchandises - amortissements	SLD_397
-BV	2050-SD	Avances et acomptes sur commandes	CRD_4091
+BV	2050-SD	Avances et acomptes sur commandes	DEB_4091
 BW	2050-SD	Avances et acomptes sur commandes - amortissements	0
 BX	2050-SD	Créances - Clients et comptes rattachés	DEB_411 + DEB_413 + DEB_416 + DEB_418
 BY	2050-SD	Créances - Clients et comptes rattachés - amortissements	DEB_491
-BZ	2050-SD	Créances - Autres	DEB_4096 + SLD_1097 + DEB_4098 + DEB_425 + DEB_4287 + DEB_4387 + DEB_441 + DEB_443 + DEB_444 + DEB_4452 + DEB_4456 + DEB_44581 + DEB_44582 + DEB_44586 + DEB_4487 + SLD_ + DEB_451 + DEB_455 + DEB_4561 + DEB_4563 + DEB_4564 + DEB_4565 + DEB_4566 + DEB_4567 + DEB_4568 + DEB_4569 + DEB_458 + DEB_462 + DEB_465 + DEB_467 + DEB_4687 + DEB_478
+BZ	2050-SD	Créances - Autres	DEB_4096 - SLD_1097 + DEB_4098 + DEB_425 + DEB_4287 + DEB_4387 + DEB_441 + DEB_443 + DEB_444 + DEB_4452 + DEB_4456 + DEB_44581 + DEB_44582 + DEB_44586 + DEB_4487 + SLD_ + DEB_451 + DEB_455 + DEB_4561 + DEB_4563 + DEB_4564 + DEB_4565 + DEB_4566 + DEB_4567 + DEB_4568 + DEB_4569 + DEB_458 + DEB_462 + DEB_465 + DEB_467 + DEB_4687 + DEB_478
 CA	2050-SD	Créances - Autres - amortissements	DEB_495 + DEB_496
 CB	2050-SD	Créances - Capital souscrit et appelé, non versé	DEB_4562
 CC	2050-SD	Créances - Capital souscrit et appelé, non versé - amortissements	0
-CD	2050-SD	Divers - Valeurs mobilières de placement	SLD_50
+CD	2050-SD	Divers - Valeurs mobilières de placement	-SLD_50
 CE	2050-SD	Divers - Valeurs mobilières de placement - amortissements	SLD_59
-CF	2050-SD	Divers - Disponibilités	SLD_51 + SLD_53 + SLD_54
+CF	2050-SD	Divers - Disponibilités	-(SLD_51 + SLD_53 + SLD_54)
 CG	2050-SD	Divers - Disponibilités - amortissements	0
 CH	2050-SD	Charges constatées d'avance	DEB_486
 CI	2050-SD	Charges constatées d'avance - amortissements	0
