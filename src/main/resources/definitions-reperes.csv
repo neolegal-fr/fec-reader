@@ -1,26 +1,26 @@
 Repère	Formulaire	Intitulé	Règle de calcul
 AA	2050-SD	Capital souscrit non appelé	SLD_1091 + SLD_1092 + SLD_1093 + SLD_1094 + SLD_1095 + SLD_1096 + SLD_1098 + SLD_1099
-AB	2050-SD	Frais d'établissements	SLD_201
+AB	2050-SD	Frais d'établissements	-SLD_201
 AC	2050-SD	Frais d'établissements - amortissement	SLD_2801
-AF	2050-SD	Concessions, brevets et droits similaires	SLD_205
+AF	2050-SD	Concessions, brevets et droits similaires	-SLD_205
 AG	2050-SD	Concessions, brevets et droits similaires - amortissements	SLD_2805 + SLD_2905
 AH	2050-SD	Fonds commercial	-(SLD_206 + SLD_207)
 AI	2050-SD	Fonds commercial - Amortissement	SLD_2807 + SLD_2906 + SLD_2907
-AJ	2050-SD	Autres immobilisations incorporelles	SLD_208 + SLD_232
+AJ	2050-SD	Autres immobilisations incorporelles	-(SLD_208 + SLD_232)
 AK	2050-SD	Autres immobilisations incorporelles - amortissements	SLD_2808 + SLD_2908 + SLD_2932
-AL	2050-SD	Avances et acomptes sur immobilisations incorporelles	SLD_237
+AL	2050-SD	Avances et acomptes sur immobilisations incorporelles	-SLD_237
 AM	2050-SD	Avances et acomptes sur immobilisations incorporelles - amortissements	0
-AN	2050-SD	Terrains	SLD_211 + SLD_212
+AN	2050-SD	Terrains	-(SLD_211 + SLD_212)
 AO	2050-SD	Terrains - amortissements	SLD_2811 + SLD_2812 + SLD_2911
-AP	2050-SD	Constructions	SLD_213 + SLD_214
+AP	2050-SD	Constructions	-(SLD_213 + SLD_214)
 AQ	2050-SD	Constructions - amortissements	SLD_2813 + SLD_2814
-AR	2050-SD	Installations techniques, matériel et outillage industriels	SLD_215
+AR	2050-SD	Installations techniques, matériel et outillage industriels	-SLD_215
 AS	2050-SD	Installations techniques, matériel et outillage industriels - amortissements	SLD_2815
-AT	2050-SD	Autres immobilisations corporelles	SLD_218
+AT	2050-SD	Autres immobilisations corporelles	-SLD_218
 AU	2050-SD	Autres immobilisations corporelles - amortissements	SLD_2818
-AV	2050-SD	Immobilisations en cours	SLD_231
+AV	2050-SD	Immobilisations en cours	-SLD_231
 AW	2050-SD	Immobilisations en cours - amortissements	SLD_2931
-AX	2050-SD	Avances et acomptes	SLD_238
+AX	2050-SD	Avances et acomptes	-SLD_238
 AY	2050-SD	Avances et acomptes - amortissements	0
 BB	2050-SD	Créances rattachées à des participations	SLD_267 + SLD_268
 BC	2050-SD	Créances rattachées à des participations - amortissements	SLD_2967 + SLD_2968
@@ -188,15 +188,15 @@ ZG	2058-C-SD	Report à nouveau	DIF_110
 062	2033-A-SD	Stocks - Marchandises - amortissements	-SLD_397
 064	2033-A-SD	Avances et acomptes versés sur commandes	CRD_4091
 066	2033-A-SD	Avances et acomptes versés sur commandes - amortissements	0
-068	2033-A-SD	Créances - Clients et comptes rattachés	-(DEB_411 + DEB_413 + DEB_416 + DEB_418)
-070	2033-A-SD	Créances - Clients et comptes rattachés - amortissements	-DEB_491
-072	2033-A-SD	Créances - Autres	-(SLD_1097 + DEB_4096 + DEB_4098 + DEB_425 + DEB_4287 + DEB_43 + DEB_44 + DEB_45 + DEB_462 + DEB_465 + DEB_467 + DEB_4687 + DEB_478)
-074	2033-A-SD	Créances - Autres - amortissements	-(DEB_495 + DEB_496)
+068	2033-A-SD	Créances - Clients et comptes rattachés	DEB_411 + DEB_413 + DEB_416 + DEB_418
+070	2033-A-SD	Créances - Clients et comptes rattachés - amortissements	DEB_491
+072	2033-A-SD	Créances - Autres	DEB_1097 + DEB_4096 + DEB_4098 + DEB_425 + DEB_4287 + DEB_43 + DEB_44 + DEB_45 + DEB_462 + DEB_465 + DEB_467 + DEB_4687 + DEB_478
+074	2033-A-SD	Créances - Autres - amortissements	DEB_495 + DEB_496
 080	2033-A-SD	Valeurs mobilières de placement	SLD_50 + SLD_52
 082	2033-A-SD	Valeurs mobilières de placement - amortissements	SLD_59
 084	2033-A-SD	Disponibilités	-(SLD_51 + SLD_53 + SLD_54)
 086	2033-A-SD	Disponibilités - amortissements	0
-092	2033-A-SD	Charges constatées d'avance	-DEB_486
+092	2033-A-SD	Charges constatées d'avance	DEB_486
 094	2033-A-SD	Charges constatées d'avance - amortissemets	0
 096	2033-A-SD	Actif circulant	REP_050 + REP_060 + REP_064 + REP_068 + REP_072 + REP_080 + REP_084 + REP_092
 098	2033-A-SD	Actif circulant - amortissement	REP_052 + REP_062 + REP_066 + REP_070 + REP_074 + REP_082 + REP_086 + REP_094

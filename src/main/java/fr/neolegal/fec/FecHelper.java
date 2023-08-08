@@ -126,20 +126,17 @@ public abstract class FecHelper {
 
         switch (agregation.getAgregateur()) {
             case CREDIT:
-                comptes = comptes.entrySet().stream().filter(entry -> entry.getValue() > 0)
-                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-                break;
+                return comptes.entrySet().stream().filter(entry -> entry.getValue() > 0)
+                        .mapToDouble(Map.Entry::getValue).sum();
             case DEBIT:
-                comptes = comptes.entrySet().stream().filter(entry -> entry.getValue() < 0)
-                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-                break;
+                return comptes.entrySet().stream().filter(entry -> entry.getValue() < 0)
+                        .mapToDouble(entry -> -entry.getValue()).sum();
             case DIFFERENCE:
             case SOLDE:
             default:
-                break;
+                return comptes.values().stream().mapToDouble(Double::doubleValue).sum();
 
         }
-        return comptes.values().stream().mapToDouble(Double::doubleValue).sum();
     }
 
     public static Fec read(Path file) {
