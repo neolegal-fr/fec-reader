@@ -22,13 +22,13 @@ AV	2050-SD	Immobilisations en cours	-SLD_231
 AW	2050-SD	Immobilisations en cours - amortissements	SLD_2931
 AX	2050-SD	Avances et acomptes	-SLD_238
 AY	2050-SD	Avances et acomptes - amortissements	0
-BB	2050-SD	Créances rattachées à des participations	SLD_267 + SLD_268
+BB	2050-SD	Créances rattachées à des participations	-(SLD_267 + SLD_268)
 BC	2050-SD	Créances rattachées à des participations - amortissements	SLD_2967 + SLD_2968
-BD	2050-SD	Autres titres immobilisés	SLD_273 + SLD_271 + SLD_272 + SLD_27682
+BD	2050-SD	Autres titres immobilisés	-(SLD_273 + SLD_271 + SLD_272 + SLD_27682)
 BE	2050-SD	Autres titres immobilisés - amortissements	SLD_2973 + SLD_2971 + SLD_2972
-BF	2050-SD	Prêts	SLD_274 + SLD_27684
+BF	2050-SD	Prêts	-(SLD_274 + SLD_27684)
 BG	2050-SD	Prêts - amortissements	SLD_2974
-BH	2050-SD	Autres immobilisations financières	SLD_275 + SLD_2761 + SLD_27685 + SLD_27688
+BH	2050-SD	Autres immobilisations financières	-(SLD_275 + SLD_2761 + SLD_27685 + SLD_27688)
 BI	2050-SD	Autres immobilisations financières - amortissements	SLD_2975 + SLD_2976
 BJ	2050-SD	Total (II)	AB + CX + AF + AH + AJ + AL + AN + AP + AR + AT + AV + AX + CS + CU + BB + BD + BF + BH
 BK	2050-SD	Total (II) - amortissements	AC + CQ + AG + AI + AK + AM + AO + AQ + AS + AU + AW + AY + CT + CV + BC + BE + BG + BI
