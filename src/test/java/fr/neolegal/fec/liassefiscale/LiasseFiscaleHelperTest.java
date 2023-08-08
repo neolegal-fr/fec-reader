@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.util.Objects;
 
@@ -11,9 +12,6 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
-
 import fr.neolegal.fec.FecHelper;
 
 public class LiasseFiscaleHelperTest {
@@ -35,7 +33,7 @@ public class LiasseFiscaleHelperTest {
 
     @Test
     void getMontant_reelNormal() throws IOException {
-        CSVParser csvParser = CSVParser.parse("target/test-classes/123456789FEC20500930-expected.csv", CSVFormat.DEFAULT);
+        CSVParser csvParser = CSVParser.parse(Path.of("target/test-classes/123456789FEC20500930-expected.csv"), Charset.forName("UTF-8"), CSVFormat.DEFAULT);
 
         StringBuilder sb = new StringBuilder();
         for (CSVRecord csvRecord : csvParser) {
@@ -57,7 +55,7 @@ public class LiasseFiscaleHelperTest {
 
     @Test
     void getMontant_reelSimplifie() throws IOException {
-        CSVParser csvParser = CSVParser.parse("target/test-classes/000000000FEC20231231-expected.csv", CSVFormat.DEFAULT);
+        CSVParser csvParser = CSVParser.parse(Path.of("target/test-classes/000000000FEC20231231-expected.csv"), Charset.forName("UTF-8"), CSVFormat.DEFAULT);
 
         StringBuilder sb = new StringBuilder();
         for (CSVRecord csvRecord : csvParser) {
@@ -67,7 +65,7 @@ public class LiasseFiscaleHelperTest {
                 Double expected = Double.valueOf(csvRecord.get(1));
                 Double actual = liasseReelSimplifie.getMontant(repere).get();
                 if (!Objects.equals(expected, actual)) {
-                    sb.append(String.format("Montant du repère %s (%s) incorrect. Actual: %f, expected: %f", symbole, repere.getNom(), actual, expected));                    
+                    sb.append(String.format("Montant du repère %s (%s) incorrect. Actual: %f, expected: %f\r\n", symbole, repere.getNom(), actual, expected));                    
                 }
             }
         }
