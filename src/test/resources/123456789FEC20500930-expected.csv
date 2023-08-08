@@ -32,6 +32,7 @@ DE, 0
 DF, 0
 DG, 0
 DH, 121396
+DI, 126235, // 126234
 DL, 639231
 DM, 0
 DN, 0
@@ -48,6 +49,15 @@ EB, 0
 EC, 375482, // Devrait être 377357
 ED, 0
 EE, 1014713, // erreur : devrait être 1016587
+FA, 1212844
+FB, 0
+FC, 1212844, // expected : 1212827
+FD, 0
+FE, 0
+FF, 0
+FG, 0, // Expected : 17
+FH, 0
+FI, 0, // Expected : 17
 FL, 1212844
 FR, 1225777
 FS, 410953
