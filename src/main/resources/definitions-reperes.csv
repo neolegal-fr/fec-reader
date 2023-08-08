@@ -135,8 +135,8 @@ GD	2052-SD	Dotations d'exploitation aux provisions pour risques et charges	-SLD_
 GE	2052-SD	Autres charges d'exploitation	-(SLD_651 + SLD_653 + SLD_654 + SLD_658)
 GF	2052-SD	Total des charges d'exploitation (II)	FS + FT + FU + FV + FW + FX + FY + FZ + GA + GB + GC + GD + GE
 GG	2052-SD	Résultat d'exploitation	FR - GF
-GH	2052-SD	Opérations en commun - bénéfice	SLD_755
-GI	2052-SD	Opérations en commun - perte	-SLD_655
+GH	2052-SD	Opérations en commun - bénéfice	CRD_755
+GI	2052-SD	Opérations en commun - perte	DEB_655
 GJ	2052-SD	Produits financiers des participants	SLD_761
 GK	2052-SD	Produits des autres valeurs mobilières et créances de l'actif immobilisé	SLD_762
 GL	2052-SD	Autres intérêts et produits assimilés	SLD_763 + SLD_764 + SLD_765 + SLD_768
