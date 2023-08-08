@@ -35,7 +35,7 @@ public class RepereTest {
             List<AgregationComptes> comptes = RepereHelper.resolveComptes(repere);
             Set<AgregationComptes> doublons = comptes.stream()
                     .filter(agg1 -> comptes.stream()
-                            .filter(agg2 -> agg1.matches(agg2.getPrefixNumeroCompte()))
+                            .filter(agg2 -> agg1.isSupersetOf(agg2))
                             .count() > 1)
                     .collect(Collectors.toSet());
             if (!doublons.isEmpty()) {
@@ -45,5 +45,4 @@ public class RepereTest {
             }
         }
     }
-
 }

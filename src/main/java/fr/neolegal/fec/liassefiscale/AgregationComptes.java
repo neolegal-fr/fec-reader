@@ -1,7 +1,6 @@
 package fr.neolegal.fec.liassefiscale;
 
 import org.apache.commons.lang3.StringUtils;
-
 import lombok.Data;
 
 /**
@@ -18,8 +17,12 @@ public class AgregationComptes implements Comparable<AgregationComptes> {
         this.agregateur = aggregateur;
     }
 
-    public boolean matches(String numeroCompte) {
-        return StringUtils.startsWith(numeroCompte, prefixNumeroCompte);
+    public boolean appliesTo(String numeroCompte) {
+        return StringUtils.isNotBlank(numeroCompte) && StringUtils.isNotBlank(prefixNumeroCompte) && StringUtils.startsWith(numeroCompte, prefixNumeroCompte);
+    }
+
+    public boolean isSupersetOf(AgregationComptes other ) {
+        return agregateur == other.agregateur && appliesTo(other.prefixNumeroCompte);
     }
 
     @Override

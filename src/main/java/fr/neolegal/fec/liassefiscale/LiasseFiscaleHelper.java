@@ -8,12 +8,6 @@ import fr.neolegal.fec.Fec;
 
 public class LiasseFiscaleHelper {
 
-    public final static Character MIN_REPERE = 'A';
-    public final static Character MAX_REPERE = 'O';
-    public final static int MIN_NUM_COMPTE = 1;
-    public final static int MAX_NUM_COMPTE = 7999;
-    public final static String REPERE_REGEX = "(?i)([" + MIN_REPERE + "-" + MAX_REPERE + "][A-Z])";
-
     private LiasseFiscaleHelper() {
     }
 

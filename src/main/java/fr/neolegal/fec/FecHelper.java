@@ -115,7 +115,7 @@ public abstract class FecHelper {
          */
         Map<String, Double> comptes = new HashMap<>();
         for (LEC ligne : lignes) {
-            boolean includeLigne = agregation.matches(ligne.getCompteNum())
+            boolean includeLigne = agregation.appliesTo(ligne.getCompteNum())
                     && (agregation.getAgregateur().isRepriseSoldeIncluded()
                             || !StringUtils.equalsIgnoreCase(numEcritureRepriseSolde, ligne.getEcritureNum()));
             if (includeLigne) {
