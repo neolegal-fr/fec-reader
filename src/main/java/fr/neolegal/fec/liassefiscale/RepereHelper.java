@@ -12,10 +12,11 @@ import org.apache.commons.lang3.StringUtils;
 import fr.neolegal.fec.Fec;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
+import net.objecthunter.exp4j.VariableProvider;
+import net.objecthunter.exp4j.function.Function;
 
 public class RepereHelper {
 
-    
     public final static String REPERE_REGEX = "(?i)([A-Z][A-Z])";
     public final static String COMPTE_REGEX = "(?i)(((SLD)|(DIF)|(CRD)|(DEB))_[0-9]+)";
     public final static String REPERE_PREFIX = "REP_";
@@ -49,7 +50,6 @@ public class RepereHelper {
             return Optional.ofNullable(repere);
         }
 
-
         return Optional.empty();
     }
 
@@ -60,8 +60,7 @@ public class RepereHelper {
 
         candidate = candidate.trim();
         if (StringUtils.isNumeric(candidate)) {
-            int numCompte = Integer.parseInt(candidate);
-                return Optional.of(new AgregationComptes(candidate, AgregateurCompte.SOLDE));
+            return Optional.of(new AgregationComptes(candidate, AgregateurCompte.SOLDE));
         }
 
         for (AgregateurCompte agregateur : AgregateurCompte.values()) {
@@ -124,9 +123,13 @@ public class RepereHelper {
         return computeMontantLigneRepere(ligneRepere, fec);
     }
 
+
     public static double computeMontantLigneRepere(Repere repere, Fec fec) {
         FecVariableProvider variables = new FecVariableProvider(fec);
+        return computeMontantLigneRepere(repere, fec, variables);
+    }
 
+    public static double computeMontantLigneRepere(Repere repere, Fec fec, VariableProvider variables) {        
         if (StringUtils.isBlank(repere.getExpression())) {
             return 0.0;
         }

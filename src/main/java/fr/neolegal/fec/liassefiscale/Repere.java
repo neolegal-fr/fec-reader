@@ -40,8 +40,12 @@ public class Repere implements Comparable<Repere> {
             for (CSVRecord csvRecord : csvParser) {
                 if ((lineIndex > 1) && (csvRecord.size() > 0)) {
                     // La première ligne est obligatoirement une ligne d'en-tête
-                    Repere repere = new Repere(csvRecord.get(0), csvRecord.get(2), csvRecord.get(3),
-                            Formulaire.fromIdentifiant(csvRecord.get(1)));
+                    String symbole = csvRecord.get(0);
+                    Formulaire formulaire = Formulaire.fromIdentifiant(csvRecord.get(1));
+                    String nom = csvRecord.get(2);
+                    String expression = csvRecord.size() > 3 ? csvRecord.get(3) : null;
+                    Repere repere = new Repere(symbole, nom, expression,
+                            formulaire);
                     reperes.add(repere);
                 }
                 ++lineIndex;
