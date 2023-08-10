@@ -18,8 +18,8 @@ cice)  */
 @Data
 public class LiasseFiscale {
 
-    final String siren;
-    final LocalDate clotureExercice;
+    String siren;
+    LocalDate clotureExercice;
     final List<Formulaire> formulaires = new LinkedList<>();
 
     @Builder

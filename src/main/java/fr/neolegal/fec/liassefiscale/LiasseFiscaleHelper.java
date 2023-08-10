@@ -12,28 +12,41 @@ public class LiasseFiscaleHelper {
     private LiasseFiscaleHelper() {
     }
 
-    public static LiasseFiscale buildLiasseFiscale(Fec fec, RegimeImposition regime) {
-        LiasseFiscale liasse = LiasseFiscale.builder().siren(fec.getSiren()).clotureExercice(fec.getClotureExercice())
-                .build();
+    public static LiasseFiscale buildLiasseFiscale(RegimeImposition regime) {
+        LiasseFiscale liasse = LiasseFiscale.builder().build();
         for (NatureFormulaire formulaire : NatureFormulaire.values()) {
             if (formulaire.getRegimeImposition() == regime) {
-                liasse.getFormulaires().add(buildFormulaire(fec, formulaire));
-            }            
+                liasse.getFormulaires().add(buildFormulaire(formulaire));
+            }
         }
-        
+
         return liasse;
     }
 
-    public static Formulaire buildFormulaire(Fec fec, NatureFormulaire nature) {
+    public static LiasseFiscale buildLiasseFiscale(Fec fec, RegimeImposition regime) {
+
+        LiasseFiscale liasse = buildLiasseFiscale(regime);
+        liasse.setSiren(fec.getSiren());
+        liasse.setClotureExercice(fec.getClotureExercice());
+
+        VariableProvider provider = new FecVariableProvider(fec);
+        for (Formulaire formulaire : liasse.getFormulaires()) {
+            for (Repere repere : formulaire.getChamps().keySet()) {
+                Double montant = RepereHelper.computeMontantLigneRepere(repere, fec, provider).orElse(null);
+                formulaire.getChamps().put(repere, montant);
+            }
+        }
+
+        return liasse;
+    }
+
+    public static Formulaire buildFormulaire(NatureFormulaire nature) {
         Formulaire tableau = new Formulaire(nature);
-        VariableProvider provider = new FecVariableProvider(fec)
 
         List<Repere> reperes = Repere.DEFINITIONS.values().stream()
                 .filter(ligne -> Objects.equals(ligne.getFormulaire(), nature)).collect(Collectors.toList());
         for (Repere repere : reperes) {
-
-            Double montant = RepereHelper.computeMontantLigneRepere(repere, fec, provider).orElse(null);
-            tableau.getChamps().put(repere, montant);
+            tableau.getChamps().put(repere, null);
         }
         return tableau;
     }
