@@ -41,7 +41,7 @@ public class Repere implements Comparable<Repere> {
                 if ((lineIndex > 1) && (csvRecord.size() > 0)) {
                     // La première ligne est obligatoirement une ligne d'en-tête
                     String symbole = csvRecord.get(0);
-                    Formulaire formulaire = Formulaire.fromIdentifiant(csvRecord.get(1));
+                    NatureFormulaire formulaire = NatureFormulaire.fromIdentifiant(csvRecord.get(1));
                     String nom = csvRecord.get(2);
                     String expression = csvRecord.size() > 3 ? csvRecord.get(3) : null;
                     Repere repere = new Repere(symbole, nom, expression,
@@ -51,7 +51,7 @@ public class Repere implements Comparable<Repere> {
                 ++lineIndex;
             }
 
-            reperes.forEach(repere -> resultat.put(repere.getRepere(), repere));
+            reperes.forEach(repere -> resultat.put(repere.getSymbole(), repere));
 
         } catch (Exception e) {
             Logger.getLogger(Repere.class.getName()).log(Level.SEVERE,
@@ -65,10 +65,10 @@ public class Repere implements Comparable<Repere> {
         return DEFINITIONS.get(repere);
     }
 
-    final Formulaire formulaire;
+    final NatureFormulaire formulaire;
 
     /** Code alphabétique de 2 caractères en majuscule */
-    final String repere;
+    final String symbole;
 
     /** Nom du repère */
     final String nom;
@@ -77,8 +77,8 @@ public class Repere implements Comparable<Repere> {
     final String expression;
 
     @Builder
-    public Repere(String repere, String nom, String expression, Formulaire formulaire) {
-        this.repere = repere;
+    public Repere(String repere, String nom, String expression, NatureFormulaire formulaire) {
+        this.symbole = repere;
         this.expression = expression;
         this.nom = nom;
         this.formulaire = formulaire;
@@ -86,7 +86,7 @@ public class Repere implements Comparable<Repere> {
 
     @Override
     public String toString() {
-        return repere;
+        return symbole;
     }
 
     @Override
@@ -99,7 +99,7 @@ public class Repere implements Comparable<Repere> {
             return 1;
         }
 
-        int result = ObjectUtils.compare(repere, other.repere);
+        int result = ObjectUtils.compare(symbole, other.symbole);
         if (result != 0) {
             return result;
         }

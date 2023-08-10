@@ -20,7 +20,7 @@ public class LiasseFiscale {
 
     final String siren;
     final LocalDate clotureExercice;
-    final List<TableauComptable> formulaires = new LinkedList<>();
+    final List<Formulaire> formulaires = new LinkedList<>();
 
     @Builder
     public LiasseFiscale(String siren, LocalDate clotureExercice) {
@@ -29,8 +29,8 @@ public class LiasseFiscale {
     }
 
     /** Renvoie le formulaire correspondant. Le crée s'il n'existe pas dans la liasse. */
-    public TableauComptable getFormulaire(Formulaire formulaire) {
-        return formulaires.stream().filter(tableau -> tableau.getFormulaire() == formulaire).findFirst().orElse(TableauComptable.builder().build());
+    public Formulaire getFormulaire(NatureFormulaire formulaire) {
+        return formulaires.stream().filter(tableau -> tableau.getNature() == formulaire).findFirst().orElse(Formulaire.builder().build());
     }
 
     /** Renvoie le montant correspondant au repère passé en paramètre, s'il est connu. */
@@ -43,7 +43,7 @@ public class LiasseFiscale {
         if (Objects.isNull(repere)) {
             return Optional.empty();
         }
-        return getFormulaire(repere.getFormulaire()).getMontant(repere.getRepere());
+        return getFormulaire(repere.getFormulaire()).getMontant(repere.getSymbole());
     }
 
 }

@@ -14,24 +14,24 @@ public class LiasseFiscaleHelper {
     public static LiasseFiscale buildLiasseFiscale(Fec fec, RegimeImposition regime) {
         LiasseFiscale liasse = LiasseFiscale.builder().siren(fec.getSiren()).clotureExercice(fec.getClotureExercice())
                 .build();
-        for (Formulaire formulaire : Formulaire.values()) {
+        for (NatureFormulaire formulaire : NatureFormulaire.values()) {
             if (formulaire.getRegimeImposition() == regime) {
-                liasse.getFormulaires().add(buildTableauComptable(fec, formulaire));
+                liasse.getFormulaires().add(buildFormulaire(fec, formulaire));
             }            
         }
         
         return liasse;
     }
 
-    public static TableauComptable buildTableauComptable(Fec fec, Formulaire formulaire) {
-        TableauComptable tableau = new TableauComptable(formulaire);
+    public static Formulaire buildFormulaire(Fec fec, NatureFormulaire nature) {
+        Formulaire tableau = new Formulaire(nature);
 
         List<Repere> reperes = Repere.DEFINITIONS.values().stream()
-                .filter(ligne -> Objects.equals(ligne.getFormulaire(), formulaire)).collect(Collectors.toList());
+                .filter(ligne -> Objects.equals(ligne.getFormulaire(), nature)).collect(Collectors.toList());
         for (Repere repere : reperes) {
 
             Double montant = RepereHelper.computeMontantLigneRepere(repere, fec).orElse(null);
-            tableau.getLignes().put(repere, montant);
+            tableau.getChamps().put(repere, montant);
         }
         return tableau;
     }

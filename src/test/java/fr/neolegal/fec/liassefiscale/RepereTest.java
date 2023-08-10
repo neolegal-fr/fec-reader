@@ -39,7 +39,7 @@ public class RepereTest {
                             .count() > 1)
                     .collect(Collectors.toSet());
             if (!doublons.isEmpty()) {
-                fail("La règle de calcul pour le repère " + repere.getRepere()
+                fail("La règle de calcul pour le repère " + repere.getSymbole()
                         + " est invalide car elle référence plus d'une fois " + doublons.stream()
                                 .map(AgregationComptes::toString).collect(Collectors.joining(", ")));
             }

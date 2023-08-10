@@ -1,49 +1,44 @@
 package fr.neolegal.fec.liassefiscale;
 
-import lombok.Getter;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 
-@Getter
-public enum Formulaire {
-    DGFIP_2050_BILAN_ACTIF("2050-SD", "15949 * 05", "BILAN - ACTIF", RegimeImposition.REEL_NORMAL),
-    DGFIP_2051_BILAN_PASSIF("2051-SD", "15949 * 05", "BILAN - PASSIF", RegimeImposition.REEL_NORMAL),
-    DGFIP_2052_COMPTE_RESULTAT("2052-SD", "15949 * 05", "COMPTE DE RESULTAT DE L'EXERCICE (en liste)", RegimeImposition.REEL_NORMAL),
-    DGFIP_2053_COMPTE_RESULTAT("2053-SD", "15949 * 05", "COMPTE DE RESULTAT DE L'EXERCICE (suite)", RegimeImposition.REEL_NORMAL),
-    DGFIP_2054_IMMOBILISATIONS("2054-SD", "15949 * 05", "IMMOBILISATIONS", RegimeImposition.REEL_NORMAL),
-    DGFIP_2054_ECARTS_REEVALUATION("2054 bis-SD", "15949 * 05", "TABLEAU DES ECARTS DE REEVALUATION SUR IMMOBILISATIONS AMORTISSABLES", RegimeImposition.REEL_NORMAL),
-    DGFIP_2055_AMORTISSEMENTS("2055-SD", "15949 * 05", "IMMOBILISATIONS", RegimeImposition.REEL_NORMAL),
-    DGFIP_2056_PROVISIONS("2056-SD", "15949 * 05", "PROVISIONS INSCRITES AU BILAN", RegimeImposition.REEL_NORMAL),
-    DGFIP_2057_CREANCES("2057-SD", "15949 * 05", "ETAT DES ECHEANCES DES CREANCES ET DES DETTES A LA CLOTURE DE L'EXERCICE", RegimeImposition.REEL_NORMAL),
-    DGFIP_2058_A_RESULTAT_FISCAL("2058-A-SD", "15949 * 05", "DETERMINATION DU RESULTAT FISCAL", RegimeImposition.REEL_NORMAL),
-    DGFIP_2058_B_DEFICITS("2058-B-SD", "15949 * 05", "DEFICITS, INDEMNITES POUR CONGES A PAYER ET PROVISIONS NON DEDUCTIBLES", RegimeImposition.REEL_NORMAL),
-    DGFIP_2058_C_AFFECTATION_RESULTAT("2058-C-SD", "15949 * 05", "TABLEAU D'AFFECTTION DU RESULTAT ET RENSEIGNEMENTS DIVERS", RegimeImposition.REEL_NORMAL),
-    DGFIP_2033_A_BILAN_SIMPLIFIE("2033-A-SD", "15948 * 05", "BILAN SIMPLIFIE", RegimeImposition.REEL_SIMPLIFIE),
-    DGFIP_2033_B_COMPTE_RESULTAT_SIMPLIFIE("2033-B-SD", "15948 * 05", "COMPTE DE RESULTAT SIMPLIFIE", RegimeImposition.REEL_SIMPLIFIE),
-    DGFIP_2033_C_IMMOBILISATIONS_AMORTISSEMENTS("2033-C-SD", "15948 * 05", "IMMOBILISATIONS - AMORTISSEMENTS - PLUS-VALUES - MOINS-VALUES", RegimeImposition.REEL_SIMPLIFIE),
-    DGFIP_2033_D_PROVISIONS_AMORTISSEMENTS("2033-D-SD", "15948 * 05", "RELEVE DES PROVISIONS - AMORTISSEMENTS DEROGATOIRES - DEFICITS", RegimeImposition.REEL_SIMPLIFIE);
+import org.apache.commons.lang3.ObjectUtils;
 
-    String identifiant;
-    String cerfa;
-    String titre;
-    RegimeImposition regimeImposition;
+import lombok.Builder;
+import lombok.Data;
 
-    Formulaire(String identifiant, String cerfa, String titre, RegimeImposition regimeImposition) {
-        this.identifiant = identifiant;
-        this.cerfa = cerfa;
-        this.titre = titre;
-        this.regimeImposition = regimeImposition;
+@Data
+public class Formulaire {
+    NatureFormulaire nature;
+    Map<Repere, Double> champs = new HashMap<>();
+
+    @Builder
+    public Formulaire(NatureFormulaire nature, Map<Repere, Double> champs) {
+        this.nature = nature;
+        this.champs = ObjectUtils.firstNonNull(champs, new HashMap<>());
     }
 
-    @Override
-    public String toString() {
-        return identifiant;
+    public Formulaire(NatureFormulaire formulaire) {
+        this(formulaire, null);
     }
 
-    public static Formulaire fromIdentifiant(String string) {
-        for (Formulaire formulaire : Formulaire.values()) {
-            if (formulaire.identifiant.equals(string)) {
-                return formulaire;
-            }
+    public Double getMontant(String repere, Double defaultMontant) {
+        return getMontant(repere).orElse(defaultMontant);
+    }
+
+    public Optional<Double> getMontant(String symboleRepere) {
+        Repere repere = Repere.get(symboleRepere);
+        if (Objects.isNull(repere)) {
+            return Optional.empty();
         }
-        return null;
+        return Optional.ofNullable(champs.get(repere));
+    }
+
+    Set<Repere> reperes() {
+        return champs.keySet();
     }
 }
