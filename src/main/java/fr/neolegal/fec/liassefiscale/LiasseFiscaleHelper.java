@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import fr.neolegal.fec.Fec;
+import net.objecthunter.exp4j.VariableProvider;
 
 public class LiasseFiscaleHelper {
 
@@ -25,12 +26,13 @@ public class LiasseFiscaleHelper {
 
     public static Formulaire buildFormulaire(Fec fec, NatureFormulaire nature) {
         Formulaire tableau = new Formulaire(nature);
+        VariableProvider provider = new FecVariableProvider(fec)
 
         List<Repere> reperes = Repere.DEFINITIONS.values().stream()
                 .filter(ligne -> Objects.equals(ligne.getFormulaire(), nature)).collect(Collectors.toList());
         for (Repere repere : reperes) {
 
-            Double montant = RepereHelper.computeMontantLigneRepere(repere, fec).orElse(null);
+            Double montant = RepereHelper.computeMontantLigneRepere(repere, fec, provider).orElse(null);
             tableau.getChamps().put(repere, montant);
         }
         return tableau;
