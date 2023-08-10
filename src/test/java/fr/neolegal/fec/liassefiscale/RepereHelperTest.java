@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -64,6 +65,11 @@ public class RepereHelperTest {
 
     @Test
     void computeMontantLigneRepere() {
-        assertEquals(41056.0, RepereHelper.computeMontantLigneRepere("DV", fec));
+        assertEquals(Optional.of(41056.0), RepereHelper.computeMontantLigneRepere("DV", fec));
+    }
+
+    @Test
+    void computeMontantLigneRepere_whenRepereInconnu() {
+        assertEquals(Optional.empty(), RepereHelper.computeMontantLigneRepere("YY", fec));
     }
 }

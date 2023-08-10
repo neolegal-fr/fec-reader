@@ -30,7 +30,7 @@ public class LiasseFiscaleHelper {
                 .filter(ligne -> Objects.equals(ligne.getFormulaire(), formulaire)).collect(Collectors.toList());
         for (Repere repere : reperes) {
 
-            double montant = RepereHelper.computeMontantLigneRepere(repere, fec);
+            Double montant = RepereHelper.computeMontantLigneRepere(repere, fec).orElse(null);
             tableau.getLignes().put(repere, montant);
         }
         return tableau;

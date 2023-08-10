@@ -41,7 +41,7 @@ public class LiasseFiscaleHelperTest {
                 String symbole = csvRecord.get(0);
                 Repere repere = Repere.DEFINITIONS.get(symbole);
                 Double expected = Double.valueOf(csvRecord.get(1));
-                Double actual = liasseReelNormal.getMontant(repere).get();
+                Double actual = liasseReelNormal.getMontant(repere).orElse(0.0);
                 if (!Objects.equals(expected, actual)) {
                     sb.append(String.format("Montant du repère %s (%s) incorrect. Actual: %f, expected: %f", symbole, repere.getNom(), actual, expected));                    
                 }
@@ -63,7 +63,7 @@ public class LiasseFiscaleHelperTest {
                 String symbole = csvRecord.get(0);
                 Repere repere = Repere.DEFINITIONS.get(symbole);
                 Double expected = Double.valueOf(csvRecord.get(1));
-                Double actual = liasseReelSimplifie.getMontant(repere).get();
+                Double actual = liasseReelSimplifie.getMontant(repere).orElse(0.0);
                 if (!Objects.equals(expected, actual)) {
                     sb.append(String.format("Montant du repère %s (%s) incorrect. Actual: %f, expected: %f\r\n", symbole, repere.getNom(), actual, expected));                    
                 }

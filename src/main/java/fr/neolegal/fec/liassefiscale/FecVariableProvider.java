@@ -29,7 +29,7 @@ public class FecVariableProvider implements VariableProvider {
         if (compteMatch.isPresent()) {
             montant = FecHelper.computeAgregationComptes(fec.getLignes(), compteMatch.get());
         } else if (repereMatch.isPresent()) {
-            montant = RepereHelper.computeMontantLigneRepere(repereMatch.get(), fec, this);
+            montant = RepereHelper.computeMontantLigneRepere(repereMatch.get(), fec, this).orElse(0.0);
         }
         cache.put(variable, montant);
 

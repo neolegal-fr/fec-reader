@@ -81,24 +81,24 @@ public class RepereHelper {
         return comptes.getComptes();
     }
 
-    public static double computeMontantLigneRepere(String repere, Fec fec) {
+    public static Optional<Double> computeMontantLigneRepere(String repere, Fec fec) {
         Repere ligneRepere = Repere.get(repere);
         return computeMontantLigneRepere(ligneRepere, fec);
     }
 
 
-    public static double computeMontantLigneRepere(Repere repere, Fec fec) {
+    public static Optional<Double> computeMontantLigneRepere(Repere repere, Fec fec) {
         FecVariableProvider variables = new FecVariableProvider(fec);
         return computeMontantLigneRepere(repere, fec, variables);
     }
 
-    public static double computeMontantLigneRepere(Repere repere, Fec fec, VariableProvider variables) {        
-        if (StringUtils.isBlank(repere.getExpression())) {
-            return 0.0;
+    public static Optional<Double> computeMontantLigneRepere(Repere repere, Fec fec, VariableProvider variables) {        
+        if (Objects.isNull(repere) || StringUtils.isBlank(repere.getExpression())) {
+            return Optional.empty();
         }
 
         Expression expression = new ExpressionBuilder(repere.getExpression()).variables(variables).build();
 
-        return Math.round(expression.evaluate());
+        return Optional.of((double)Math.round(expression.evaluate()));
     }
 }

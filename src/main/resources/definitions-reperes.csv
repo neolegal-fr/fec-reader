@@ -9,7 +9,7 @@ AI	2050-SD	Fonds commercial - Amortissement	SLD_2807 + SLD_2906 + SLD_2907
 AJ	2050-SD	Autres immobilisations incorporelles	-(SLD_208 + SLD_232)
 AK	2050-SD	Autres immobilisations incorporelles - amortissements	SLD_2808 + SLD_2908 + SLD_2932
 AL	2050-SD	Avances et acomptes sur immobilisations incorporelles	-SLD_237
-AM	2050-SD	Avances et acomptes sur immobilisations incorporelles - amortissements	0
+AM	2050-SD	Avances et acomptes sur immobilisations incorporelles - amortissements	
 AN	2050-SD	Terrains	-(SLD_211 + SLD_212)
 AO	2050-SD	Terrains - amortissements	SLD_2811 + SLD_2812 + SLD_2911
 AP	2050-SD	Constructions	-(SLD_213 + SLD_214)
@@ -21,7 +21,7 @@ AU	2050-SD	Autres immobilisations corporelles - amortissements	SLD_2818
 AV	2050-SD	Immobilisations en cours	-SLD_231
 AW	2050-SD	Immobilisations en cours - amortissements	SLD_2931
 AX	2050-SD	Avances et acomptes	-SLD_238
-AY	2050-SD	Avances et acomptes - amortissements	0
+AY	2050-SD	Avances et acomptes - amortissements	
 BB	2050-SD	Créances rattachées à des participations	-(SLD_267 + SLD_268)
 BC	2050-SD	Créances rattachées à des participations - amortissements	SLD_2967 + SLD_2968
 BD	2050-SD	Autres titres immobilisés	-(SLD_273 + SLD_271 + SLD_272 + SLD_27682)
@@ -43,28 +43,28 @@ BS	2050-SD	Stocks - Produits intermédiaires et finis - amortissements	SLD_395
 BT	2050-SD	Stocks - Marchandises	-SLD_37
 BU	2050-SD	Stocks - Marchandises - amortissements	SLD_397
 BV	2050-SD	Avances et acomptes sur commandes	DEB_4091
-BW	2050-SD	Avances et acomptes sur commandes - amortissements	0
+BW	2050-SD	Avances et acomptes sur commandes - amortissements	
 BX	2050-SD	Créances - Clients et comptes rattachés	DEB_411 + DEB_413 + DEB_416 + DEB_418
 BY	2050-SD	Créances - Clients et comptes rattachés - amortissements	DEB_491
 BZ	2050-SD	Créances - Autres	DEB_4096 - SLD_1097 + DEB_4098 + DEB_425 + DEB_4287 + DEB_4387 + DEB_441 + DEB_443 + DEB_444 + DEB_4452 + DEB_4456 + DEB_44581 + DEB_44582 + DEB_44586 + DEB_4487 + SLD_ + DEB_451 + DEB_455 + DEB_4561 + DEB_4563 + DEB_4564 + DEB_4565 + DEB_4566 + DEB_4567 + DEB_4568 + DEB_4569 + DEB_458 + DEB_462 + DEB_465 + DEB_467 + DEB_4687 + DEB_478
 CA	2050-SD	Créances - Autres - amortissements	DEB_495 + DEB_496
 CB	2050-SD	Créances - Capital souscrit et appelé, non versé	DEB_4562
-CC	2050-SD	Créances - Capital souscrit et appelé, non versé - amortissements	0
+CC	2050-SD	Créances - Capital souscrit et appelé, non versé - amortissements	
 CD	2050-SD	Divers - Valeurs mobilières de placement	-SLD_50
 CE	2050-SD	Divers - Valeurs mobilières de placement - amortissements	SLD_59
 CF	2050-SD	Divers - Disponibilités	-(SLD_51 + SLD_53 + SLD_54)
-CG	2050-SD	Divers - Disponibilités - amortissements	0
+CG	2050-SD	Divers - Disponibilités - amortissements	
 CH	2050-SD	Charges constatées d'avance	DEB_486
-CI	2050-SD	Charges constatées d'avance - amortissements	0
+CI	2050-SD	Charges constatées d'avance - amortissements	
 CJ	2050-SD	Total (III)	BL + BN + BP + BR + BT + BV + BX + BZ + CB + CD + CF
 CK	2050-SD	Total (III) - amortissements	BM + BO + BQ + BS + BU + BW + BY + CA + CC + CE + CG + CI
-CM	2050-SD	Primes de remboursement des obligations	0
+CM	2050-SD	Primes de remboursement des obligations	
 CN	2050-SD	Écarts de conversion actif	DEB_476
 CO	2050-SD	TOTAL GÉNÉRAL (I à VI)	AA + BJ + CJ + CW + CM + CN
-CP	2050-SD	Part à moins d'1 an des immobilisations financières nettes	0
-CR	2050-SD	Part à plus d'1 an des immobilisations financières nettes	0
-CS	2050-SD	Participations évaluées selon la méthode de mise en équivalence	0
-CT	2050-SD	Participations évaluées selon la méthode de mise en équivalence - amortissements	0
+CP	2050-SD	Part à moins d'1 an des immobilisations financières nettes	
+CR	2050-SD	Part à plus d'1 an des immobilisations financières nettes	
+CS	2050-SD	Participations évaluées selon la méthode de mise en équivalence	
+CT	2050-SD	Participations évaluées selon la méthode de mise en équivalence - amortissements	
 CU	2050-SD	Autres participations	SLD_261 + SLD_266
 CV	2050-SD	Autres participations - amortissements	SLD_2961 + SLD_2966
 CW	2050-SD	Frais d'émission d'emprunt à étaler	DEB_481
@@ -103,13 +103,13 @@ ED	2051-SD	Ecarts de conversion passif	CRD_477
 EE	2051-SD	Total général	DL + DO + DR + EC + ED
 EI	2051-SD	Emprunts participatifs	SLD_17
 FA	2052-SD	Ventes de marchandises - France	SLD_707 + SLD_708 + SLD_7097
-FB	2052-SD	Ventes de marchandises - Exportations	0
+FB	2052-SD	Ventes de marchandises - Exportations	
 FC	2052-SD	Ventes de marchandises	FA + FB
 FD	2052-SD	Production vendue de biens en France	SLD_701 + SLD_702 + SLD_703 + SLD_7091 + SLD_7092
-FE	2052-SD	Production vendue de biens à l'international	0
+FE	2052-SD	Production vendue de biens à l'international	
 FF	2052-SD	Production vendue de biens	FD + FE
 FG	2052-SD	Production vendue de services en France	SLD_704 + SLD_705 + SLD_706
-FH	2052-SD	Production vendue de services à l'international	0
+FH	2052-SD	Production vendue de services à l'international	
 FI	2052-SD	Production vendue de services	FG + FH
 FJ	2052-SD	Chiffre d'affaires net	FA + FD + FG
 FK	2052-SD	Chiffre d'affaires net	FB + FE + FH
@@ -165,12 +165,12 @@ HK	2053-SD	Impôts sur les bénéfices	-(SLD_695 + SLD_698 + SLD_699)
 HL	2053-SD	Total des produits	FR + GH + GP + HD
 HM	2053-SD	Total des charges	GF + GI + GU + HH + HJ + HK
 HN	2053-SD	Résultat de l'exercice	HL - HM
-WE	2058-A-SD	Amortissements exédentaires	0
-WF	2058-A-SD	Autres charges et dépenses somptuaires	0
+WE	2058-A-SD	Amortissements exédentaires	
+WF	2058-A-SD	Autres charges et dépenses somptuaires	
 ZB	2058-C-SD	Réserve légale	DIF_1061
 ZD	2058-C-SD	Autres réserves	DIF_1068
 ZE	2058-C-SD	Dividendes	DIF_457
-ZF	2058-C-SD	Autres répartitions	0
+ZF	2058-C-SD	Autres répartitions	
 ZG	2058-C-SD	Report à nouveau	DIF_110
 010	2033-A-SD	Fonds commercial	-(SLD_206 + SLD_207)
 012	2033-A-SD	Fonds commercial - Amortissement	SLD_2807 + SLD_2906 + SLD_2907
@@ -187,7 +187,7 @@ ZG	2058-C-SD	Report à nouveau	DIF_110
 060	2033-A-SD	Stocks - Marchandises	DEB_37
 062	2033-A-SD	Stocks - Marchandises - amortissements	DEB_397
 064	2033-A-SD	Avances et acomptes versés sur commandes	DEB_4091
-066	2033-A-SD	Avances et acomptes versés sur commandes - amortissements	0
+066	2033-A-SD	Avances et acomptes versés sur commandes - amortissements	
 068	2033-A-SD	Créances - Clients et comptes rattachés	DEB_411 + DEB_413 + DEB_416 + DEB_418
 070	2033-A-SD	Créances - Clients et comptes rattachés - amortissements	DEB_491
 072	2033-A-SD	Créances - Autres	DEB_1097 + DEB_4096 + DEB_4098 + DEB_425 + DEB_4287 + DEB_43 + DEB_44 + DEB_45 + DEB_462 + DEB_465 + DEB_467 + DEB_4687 + DEB_478
@@ -195,9 +195,9 @@ ZG	2058-C-SD	Report à nouveau	DIF_110
 080	2033-A-SD	Valeurs mobilières de placement	DEB_50 + DEB_52
 082	2033-A-SD	Valeurs mobilières de placement - amortissements	DEB_59
 084	2033-A-SD	Disponibilités	DEB_51 + DEB_53 + DEB_54
-086	2033-A-SD	Disponibilités - amortissements	0
+086	2033-A-SD	Disponibilités - amortissements	
 092	2033-A-SD	Charges constatées d'avance	DEB_486
-094	2033-A-SD	Charges constatées d'avance - amortissements	0
+094	2033-A-SD	Charges constatées d'avance - amortissements	
 096	2033-A-SD	Actif circulant	REP_050 + REP_060 + REP_064 + REP_068 + REP_072 + REP_080 + REP_084 + REP_092
 098	2033-A-SD	Actif circulant - amortissement	REP_052 + REP_062 + REP_066 + REP_070 + REP_074 + REP_082 + REP_086 + REP_094
 110	2033-A-SD	Total général	REP_044 + REP_096
@@ -216,11 +216,11 @@ ZG	2058-C-SD	Report à nouveau	DIF_110
 166	2033-B-SD	Dettes fournisseurs et comptes rattachés	CRD_401 + CRD_403 + CRD_4081 + CRD_4088	// https://www.compta-online.com/quel-compte-pour-quelle-case-de-la-liasse-le-bilan-et-les-tableaux-2050-et-2051-ou-2033a-ao1177
 172	2033-B-SD	Autres dettes	CRD_421 + CRD_422 + CRD_424 + CRD_427 + CRD_4282 + CRD_4286 + CRD_43 + CRD_442 + CRD_443 + CRD_444 + CRD_4455 + CRD_4457 + CRD_44584 + CRD_44587 + CRD_446 + CRD_447 + CRD_4482 + CRD_4486 + CRD_449 + CRD_457 + CRD_1685 + CRD_269 + CRD_279 + CRD_404 + CRD_405 + CRD_4084 + CRD_4196 + CRD_4197 + CRD_4198 + CRD_464 + CRD_467 + CRD_4686 + CRD_478 + CRD_509
 174	2033-B-SD	Produits constatés d'avance	CRD_487
-209	2033-B-SD	Ventes de marchandises - exportations	0
+209	2033-B-SD	Ventes de marchandises - exportations	
 210	2033-B-SD	Ventes de marchandises	SLD_707
 214	2033-B-SD	Production vendue de biens	SLD_701 + SLD_702 + SLD_703 + SLD_7091 + SLD_7092
-215	2033-B-SD	Production vendue de biens à l'international	0
-217	2033-B-SD	Production vendue de services à l'international	0
+215	2033-B-SD	Production vendue de biens à l'international	
+217	2033-B-SD	Production vendue de services à l'international	
 218	2033-B-SD	Production vendue de services	SLD_704 + SLD_705 + SLD_706
 222	2033-B-SD	Production stockée	SLD_713
 224	2033-B-SD	Production immobilisée	SLD_72
