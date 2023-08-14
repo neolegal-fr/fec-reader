@@ -6,7 +6,7 @@
 
     <groupId>fr.neolegal</groupId>
     <artifactId>fec-reader</artifactId>
-    <version>0.1.9</version>
+    <version>0.1.10</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <url>https://github.com/nicolasriousset/fec-reader</url>

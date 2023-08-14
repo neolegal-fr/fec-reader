@@ -42,7 +42,7 @@ public abstract class FecHelper {
      * SirenFECAAAAMMJJ, où " Siren " est le Siren du contribuable mentionné à
      * l'article L. 47 A et AAAAMMJJ la date de clôture de l'exercice comptable.
      */
-    static Optional<LocalDate> parseClotureExercice(String filename) {
+    public static Optional<LocalDate> parseClotureExercice(String filename) {
         filename = FilenameUtils.removeExtension(filename);
 
         if (StringUtils.isBlank(filename)) {
@@ -67,7 +67,7 @@ public abstract class FecHelper {
      * SirenFECAAAAMMJJ, où " Siren " est le Siren du contribuable mentionné à
      * l'article L. 47 A et AAAAMMJJ la date de clôture de l'exercice comptable.
      */
-    static Optional<String> parseSiren(String filename) {
+    public static Optional<String> parseSiren(String filename) {
         if (StringUtils.isBlank(filename)) {
             return Optional.empty();
         }
