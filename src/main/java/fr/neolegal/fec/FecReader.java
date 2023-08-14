@@ -64,7 +64,11 @@ public class FecReader {
         return guessSeparator(path, charset).map(delimiter -> CSVFormat.newFormat(delimiter));
     }
 
-    public Fec read(Path path) throws FileNotFoundException, IOException {
+    public Fec read(Path file) throws FileNotFoundException, IOException {
+        return read(file, file.getFileName().toString());
+    }
+
+    public Fec read(Path path, String originalFileName) throws FileNotFoundException, IOException {
         Fec.FecBuilder builder = Fec.builder();
 
         List<Anomalie> anomalies = new LinkedList<>();
@@ -72,19 +76,18 @@ public class FecReader {
         Charset charset = Charset.forName(charsetMatch.getName());
         CSVFormat format = guessCsvFormat(path, charset).orElseThrow(() -> new InvalidParameterException(
                 "Aucun séparateur de zone détecté. Les zones sont obligatoirement séparées par une tabulation ou le caractère '|'"));
-
-        String filename = path.getFileName().toString();
-        Optional<String> sirenMatch = FecHelper.parseSiren(filename);
+        
+        Optional<String> sirenMatch = FecHelper.parseSiren(originalFileName);
         sirenMatch.ifPresentOrElse(siren -> builder.siren(siren),
-                () -> anomalies.add(new Anomalie(NatureAnomalie.SIREN, filename,
-                        String.format("Format du nom de fichier incorrect, numéro SIREN non trouvé : %s", filename))));
+                () -> anomalies.add(new Anomalie(NatureAnomalie.SIREN, originalFileName,
+                        String.format("Format du nom de fichier incorrect, numéro SIREN non trouvé : %s", originalFileName))));
 
-        Optional<LocalDate> clotureExerciceMatch = FecHelper.parseClotureExercice(filename);
+        Optional<LocalDate> clotureExerciceMatch = FecHelper.parseClotureExercice(originalFileName);
         clotureExerciceMatch.ifPresentOrElse(cloture -> builder.clotureExercice(cloture),
-                () -> anomalies.add(new Anomalie(NatureAnomalie.CLOTURE_EXERCICE, filename,
+                () -> anomalies.add(new Anomalie(NatureAnomalie.CLOTURE_EXERCICE, originalFileName,
                         String.format(
                                 "Format du nom de fichier incorrect, date de clôture de l'exercice non trouvée : %s",
-                                filename))));
+                                originalFileName))));
 
         // Les enregistrements sont séparés par le caractère de contrôle Retour chariot
         // et/ ou Fin de ligne ;

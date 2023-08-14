@@ -9,12 +9,14 @@ import org.apache.commons.lang3.ObjectUtils;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 /** Fichier des écitures comptables */
 @Getter
+@Setter
 public class Fec {
-    final String siren;
-    final LocalDate clotureExercice;
+    String siren;
+    LocalDate clotureExercice;
     final List<LEC> lignes;
     final long nombreEcritures;
     final List<Anomalie> anomalies;

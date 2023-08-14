@@ -139,12 +139,19 @@ public abstract class FecHelper {
         }
     }
 
-    public static Fec read(Path file) {
+    /** DAns le cas où le nom du fichier physique ne correspond pas au nom original du fichier,
+     * ce dernier est passé en paramètre pour pouvoir en extraire le SIREN et la date de clôture
+     */
+    public static Fec read(Path file, String originalFileName) {
         FecReader reader = new FecReader();
         try {
-            return reader.read(file);
+            return reader.read(file, originalFileName);
         } catch (Exception e) {
             return null;
         }
+    }
+
+    public static Fec read(Path file) {        
+        return read(file, file.getFileName().toString());
     }
 }
