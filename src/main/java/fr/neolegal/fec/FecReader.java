@@ -16,7 +16,8 @@ import java.util.Scanner;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import org.apache.commons.lang3.StringUtils;
+import static org.apache.commons.lang3.StringUtils.equalsAnyIgnoreCase;
+import static org.apache.commons.lang3.StringUtils.countMatches;
 import org.apache.tika.parser.txt.CharsetDetector;
 import org.apache.tika.parser.txt.CharsetMatch;
 
@@ -42,8 +43,8 @@ public class FecReader {
         try (Scanner scanner = new Scanner(path, charset)) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                int tabCount = StringUtils.countMatches(line, TAB_SEPARATOR);
-                int pipeCount = StringUtils.countMatches(line, PIPE_SEPARATOR);
+                int tabCount = countMatches(line, TAB_SEPARATOR);
+                int pipeCount = countMatches(line, PIPE_SEPARATOR);
                 if (tabCount > 0 || pipeCount > 0) {
                     return Optional.of(tabCount > pipeCount ? TAB_SEPARATOR : PIPE_SEPARATOR);
                 }
@@ -52,11 +53,17 @@ public class FecReader {
         return Optional.empty();
     }
 
-    CharsetMatch guessCharset(Path path) throws IOException {
+    Charset guessCharset(Path path) throws IOException {
+        // Les fichiers sont encodés soit en UTF-8, soit en ISO 8859-15
         CharsetDetector detector = new CharsetDetector();
         try (FileInputStream inputStream = new FileInputStream(path.toFile())) {
             detector.setText(inputStream.readAllBytes());
-            return detector.detect();
+            CharsetMatch match = detector.detect();
+            String charSetName = match.getName();
+            if (!equalsAnyIgnoreCase(charSetName, "UTF-8", "ISO-8859-15")) {
+                charSetName = "UTF-8";
+            }
+            return Charset.forName(charSetName);
         }
     }
 
@@ -72,8 +79,7 @@ public class FecReader {
         Fec.FecBuilder builder = Fec.builder();
 
         List<Anomalie> anomalies = new LinkedList<>();
-        CharsetMatch charsetMatch = guessCharset(path);
-        Charset charset = Charset.forName(charsetMatch.getName());
+        Charset charset = guessCharset(path);
         CSVFormat format = guessCsvFormat(path, charset).orElseThrow(() -> new InvalidParameterException(
                 "Aucun séparateur de zone détecté. Les zones sont obligatoirement séparées par une tabulation ou le caractère '|'"));
         
@@ -126,7 +132,7 @@ public class FecReader {
     }
 
     static String getValueOrNull(CSVRecord ligne, int colIndex) {
-        return ligne.size() > colIndex ? ligne.get(colIndex) : null;
+        return ligne.size() > colIndex ? ligne.get(colIndex).trim() : null;
     }
 
     /**
