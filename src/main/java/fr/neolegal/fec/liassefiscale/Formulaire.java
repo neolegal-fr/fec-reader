@@ -30,6 +30,10 @@ public class Formulaire {
         return getMontant(repere).orElse(defaultMontant);
     }
 
+    public void setMontant(Repere repere, Double montant) {
+        champs.put(repere, montant);
+    }
+
     public Optional<Double> getMontant(String symboleRepere) {
         Repere repere = Repere.get(symboleRepere);
         if (Objects.isNull(repere)) {

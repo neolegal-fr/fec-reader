@@ -3,7 +3,7 @@ Librairie JAVA de Lecture des fichiers des écritures comptables conformes aux n
 
 La librairie ne supporte que les fichiers en format plat (CSV), pas le format XML.
 
-En plus de la la lecture du contenu du fichier, la librairie permet également de recalculer les montants de la liasse fiscale (tableaux comptables bilan-actif, passif, etc définis dans le formulaire DGFiP N° 2050-SD 2023, cerfa N° 15949 * 05).
+En plus de la lecture du contenu du fichier, la librairie permet également de recalculer les montants de la liasse fiscale (tableaux comptables bilan-actif, passif, etc définis dans le formulaire DGFiP N° 2050-SD 2023, cerfa N° 15949 * 05).
 
 ## Utilisation
 ### Maven

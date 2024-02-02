@@ -70,6 +70,7 @@ CV	2050-SD	Autres participations - amortissements	SLD_2961 + SLD_2966
 CW	2050-SD	Frais d'émission d'emprunt à étaler	DEB_481
 CX	2050-SD	Frais de développement	SLD_203
 CQ	2050-SD	Frais de développement - amortissement	SLD_2803
+
 DA	2051-SD	Capital social ou individuel	SLD_101 + SLD_108
 DB	2051-SD	Primes d'émission, de fusion, d'apport	SLD_104
 DC	2051-SD	Ecarts de réévaluation	SLD_105 + SLD_107 
@@ -102,6 +103,7 @@ EC	2051-SD	Total (IV)	DS + DT + DU + DV + DW + DX + DY + DZ + EA + EB
 ED	2051-SD	Ecarts de conversion passif	CRD_477
 EE	2051-SD	Total général	DL + DO + DR + EC + ED
 EI	2051-SD	Emprunts participatifs	SLD_17
+
 FA	2052-SD	Ventes de marchandises - France	SLD_707 + SLD_708 + SLD_7097
 FB	2052-SD	Ventes de marchandises - Exportations	
 FC	2052-SD	Ventes de marchandises	FA + FB
@@ -151,6 +153,7 @@ GT	2052-SD	Charges nettes sur cessions de valeurs mobilières de placement	-SLD_
 GU	2052-SD	Total des charges financières (VI)	GQ + GR + GS + GT
 GV	2052-SD	Résultat net financier	GP - GU
 GW	2052-SD	Résultat courant avant impôts	GG + GH - GI + GV
+
 HA	2053-SD	Produits exceptionnels sur opérations de gestion	SLD_771
 HB	2053-SD	Produits exceptionnels sur opérations en capital	SLD_775 + SLD_777 + SLD_778
 HC	2053-SD	Reprises sur provisions et transferts de charges	SLD_787 + SLD_797
@@ -165,13 +168,16 @@ HK	2053-SD	Impôts sur les bénéfices	-(SLD_695 + SLD_698 + SLD_699)
 HL	2053-SD	Total des produits	FR + GH + GP + HD
 HM	2053-SD	Total des charges	GF + GI + GU + HH + HJ + HK
 HN	2053-SD	Résultat de l'exercice	HL - HM
+
 WE	2058-A-SD	Amortissements exédentaires	
 WF	2058-A-SD	Autres charges et dépenses somptuaires	
+
 ZB	2058-C-SD	Réserve légale	DIF_1061
 ZD	2058-C-SD	Autres réserves	DIF_1068
 ZE	2058-C-SD	Dividendes	DIF_457
 ZF	2058-C-SD	Autres répartitions	
 ZG	2058-C-SD	Report à nouveau	DIF_110
+
 010	2033-A-SD	Fonds commercial	-(SLD_206 + SLD_207)
 012	2033-A-SD	Fonds commercial - Amortissement	SLD_2807 + SLD_2906 + SLD_2907
 014	2033-A-SD	Immobilisations incorporelles - Autres	-(CRD_109 + SLD_201 + SLD_203 + SLD_205 + SLD_208)
@@ -202,6 +208,7 @@ ZG	2058-C-SD	Report à nouveau	DIF_110
 098	2033-A-SD	Actif circulant - amortissement	REP_052 + REP_062 + REP_066 + REP_070 + REP_074 + REP_082 + REP_086 + REP_094
 110	2033-A-SD	Total général	REP_044 + REP_096
 112	2033-A-SD	Total général - Amortissements	REP_048 + REP_098
+
 120	2033-B-SD	Capital social ou individuel	SLD_101 + SLD_108
 124	2033-B-SD	Ecarts de réévaluation	SLD_105 + SLD_107 
 126	2033-B-SD	Réserve légale	SLD_1061
@@ -247,3 +254,71 @@ ZG	2058-C-SD	Report à nouveau	DIF_110
 310	2033-B-SD	Bénéfices ou pertes	(REP_232 + REP_280 + REP_290) - (REP_264 + REP_294 + REP_300 + REP_306)
 312	2033-B-SD	Résultat fiscal (bénéfice)	CRD_310
 314	2033-B-SD	Résultat fiscal (perte)	DEB_310
+
+AA	2139-A-SD	Immobilisations incorporelles \ Frais d’établissement \ Brut	-SLD_201
+AB	2139-A-SD	Immobilisations incorporelles \ Frais d’établissement \ Amortissements	SLD_2801
+AC	2139-A-SD	Immobilisations incorporelles \ Autres \ Brut	-(SLD_208 + SLD_232)
+AD	2139-A-SD	Immobilisations incorporelles \ Autres \ Amortissements	SLD_2808 + SLD_2908 + SLD_2932
+AE	2139-A-SD	Immobilisations corporelles \ Terrains \ Brut   -(SLD_211 + SLD_212)
+AF	2139-A-SD	Immobilisations corporelles \ Terrains \ Amortissements SLD_2811 + SLD_2812 + SLD_2911
+
+AG	2139-A-SD	Immobilisations corporelles \ Améliorations du fonds \ Brut	SLD_217
+AH	2139-A-SD	Immobilisations corporelles \ Améliorations du fonds \ Amortissements	SLD_2817
+
+AJ	2139-A-SD	Immobilisations corporelles \ Constructions \ Brut	-(SLD_213 + SLD_214)
+AK	2139-A-SD	Immobilisations corporelles \ Constructions \ Amortissements	SLD_2813 + SLD_2814
+AL	2139-A-SD	Immobilisations corporelles \ Installations, techniques, matériel et outillage \ Brut	-SLD_237
+AM	2139-A-SD	Immobilisations corporelles \ Installations, techniques, matériel et outillage \ Amortissements	
+AN	2139-A-SD	Immobilisations corporelles \ Plantations pérennes \ Brut	-(SLD_211 + SLD_212)
+AP	2139-A-SD	Immobilisations corporelles \ Plantations pérennes \ Amortissements	-(SLD_213 + SLD_214)
+AQ	2139-A-SD	Autres immobilisations corporelles \ Brut	SLD_2813 + SLD_2814
+AR	2139-A-SD	Autres immobilisations corporelles \ Amortissements	-SLD_215
+AS	2139-A-SD	Immobilisations corporelles en cours \ Brut	SLD_2815
+AT	2139-A-SD	Immobilisations corporelles en cours \ Amortissements	-SLD_218
+AU	2139-A-SD	Immobilisations financières \ Brut	SLD_2818
+AV	2139-A-SD	Immobilisations financières \ Amortissements	-SLD_231
+AW	2139-A-SD	Actif immobilisé \ Total \ Brut	SLD_2931
+AX	2139-A-SD	Actif immobilisé \ Total \ Amortissements	-SLD_238
+AY	2139-A-SD	Stocks \ Brut	
+AZ	2139-A-SD	Stocks \ Amortissements	
+BA	2139-A-SD	Avances et acomptes versés sur commandes \Brut	-(SLD_267 + SLD_268)
+BB	2139-A-SD	Avances et acomptes versés sur commandes \ Amortissements	-(SLD_267 + SLD_268)
+BC	2139-A-SD	Créances \ Clients et comptes rattachés \ Brut	SLD_2967 + SLD_2968
+BD	2139-A-SD	Créances \ Clients et comptes rattachés \ Amortissements	-(SLD_273 + SLD_271 + SLD_272 + SLD_27682)
+BE	2139-A-SD	Créances \ Autres \ Brut	SLD_2973 + SLD_2971 + SLD_2972
+BF	2139-A-SD	Créances \ Autres \ Amortissements	-(SLD_274 + SLD_27684)
+BG	2139-A-SD	Valeurs mobilières de placement \ Brut	SLD_2974
+BH	2139-A-SD	Valeurs mobilières de placement \ Amortissements	-(SLD_275 + SLD_2761 + SLD_27685 + SLD_27688)
+BJ	2139-A-SD	Caisses, Banques, C.C.P. et autres disponibilités \ Brut	AB + CX + AF + AH + AJ + AL + AN + AP + AR + AT + AV + AX + CS + CU + BB + BD + BF + BH
+BK	2139-A-SD	Caisses, Banques, C.C.P. et autres disponibilités \ Amortissements	AC + CQ + AG + AI + AK + AM + AO + AQ + AS + AU + AW + AY + CT + CV + BC + BE + BG + BI
+BN	2139-A-SD	Charges constatées d’avance \ Brut	-SLD_33
+BO	2139-A-SD	Charges constatées d’avance \ Amortissements	SLD_393
+BP	2139-A-SD	Actif Circulant \ Total \ Brut	AY + BJ + BN
+BQ	2139-A-SD	Actif Circulant \Amortissements	AZ + BK + BO
+BR	2139-A-SD	Actif \ Total \ Brut	-SLD_35
+BS	2139-A-SD	Actif \ Total \ Amortissements	SLD_395
+CA	2139-A-SD	Capital social	DEB_495 + DEB_496
+CB	2139-A-SD	Écarts de réévaluation	DEB_4562
+CC	2139-A-SD	Réserves et report à nouveau	
+CD	2139-A-SD	Report à nouveau	-SLD_50
+CE	2139-A-SD	Résultat de l’exercice	SLD_59
+CT	2139-A-SD	Subventions d’investissement	
+CF	2139-A-SD	Subventions d’investissement et provisions réglementées	-(SLD_51 + SLD_53 + SLD_54)
+CG	2139-A-SD	Capitaux propres \ Total	
+CH	2139-A-SD	Capitaux propres \Total Provisions pour risques et charges	DEB_486
+CR	2139-A-SD	Dettes \ Concours bancaires courants et découverts bancaires
+CO	2139-A-SD	Dettes \ Emprunts fonciers
+CS	2139-A-SD	Dettes \ Autres emprunts et dettes assimilées (dont emprunts fonciers)
+CJ	2139-A-SD	Dettes \ Avances et acomptes reçus sur commandes en cours
+CK	2139-A-SD	Dettes \ Fournisseurs et comptes rattachés
+CL	2139-A-SD	Dettes \ Autres dettes
+CM	2139-A-SD	Dettes \ Produits constatés d’avance
+CN	2139-A-SD	Dettes \ Total
+CP	2139-A-SD	Passif \ Total
+DD	2139-A-SD	Nombre d'associés
+DA	2139-A-SD	Dont immobilisations financières à moins d’un an
+DB	2139-A-SD	Dont créances à plus d’un an
+DC	2139-A-SD	Dont dettes à plus d’un an
+DE	2139-A-SD	Coût de revient des immobilisations acquises ou créées au cours de l’exercice
+DF	2139-A-SD	Prix de vente hors T.V.A. des immobilisations cédées au cours de l’exercice
+

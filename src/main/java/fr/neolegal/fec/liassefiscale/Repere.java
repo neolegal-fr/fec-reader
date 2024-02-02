@@ -14,6 +14,7 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import lombok.Builder;
 import lombok.Data;
@@ -38,11 +39,11 @@ public class Repere implements Comparable<Repere> {
 
             CSVParser csvParser = CSVParser.parse(is, Charset.forName("UTF-8"), CSVFormat.MYSQL);
             for (CSVRecord csvRecord : csvParser) {
-                if ((lineIndex > 1) && (csvRecord.size() > 0)) {
+                if ((lineIndex > 1) && (csvRecord.size() > 0) && (StringUtils.isNotBlank(csvRecord.get(0)))) {
                     // La première ligne est obligatoirement une ligne d'en-tête
                     String symbole = csvRecord.get(0);
                     NatureFormulaire formulaire = NatureFormulaire.fromIdentifiant(csvRecord.get(1));
-                    String nom = csvRecord.get(2);
+                    String nom = csvRecord.size() > 2 ? csvRecord.get(2) : null;
                     String expression = csvRecord.size() > 3 ? csvRecord.get(3) : null;
                     Repere repere = new Repere(symbole, nom, expression,
                             formulaire);
