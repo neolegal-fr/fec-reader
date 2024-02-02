@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -29,7 +28,8 @@ public class RepereTest {
          * On vérifie que les règles de calcul définies dans le fichier de configuration
          * sont valides
          */
-        List<Repere> reperes = new LinkedList<>(Repere.DEFINITIONS.values());
+        List<Repere> reperes = Repere.DEFINITIONS.values().stream().flatMap(r -> r.values().stream())
+                .collect(Collectors.toList());
         Collections.sort(reperes);
         for (Repere repere : reperes) {
             List<AgregationComptes> comptes = RepereHelper.resolveComptes(repere);

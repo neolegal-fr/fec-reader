@@ -2,7 +2,6 @@ package fr.neolegal.fec.liassefiscale;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -35,11 +34,7 @@ public class Formulaire {
     }
 
     public Optional<Double> getMontant(String symboleRepere) {
-        Repere repere = Repere.get(symboleRepere);
-        if (Objects.isNull(repere)) {
-            return Optional.empty();
-        }
-        return Optional.ofNullable(champs.get(repere));
+        return Repere.get(nature, symboleRepere).map(repere -> champs.get(repere));
     }
 
     Set<Repere> reperes() {

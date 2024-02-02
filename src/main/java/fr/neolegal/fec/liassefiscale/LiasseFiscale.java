@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import lombok.Builder;
 import lombok.Data;
@@ -20,23 +21,33 @@ public class LiasseFiscale {
 
     String siren;
     LocalDate clotureExercice;
+    RegimeImposition regime;
     final List<Formulaire> formulaires = new LinkedList<>();
 
     @Builder
-    public LiasseFiscale(String siren, LocalDate clotureExercice) {
+    public LiasseFiscale(RegimeImposition regime, String siren, LocalDate clotureExercice) {
         this.siren = siren;
         this.clotureExercice = clotureExercice;
+        this.regime = regime;
     }
 
-    /** Renvoie le formulaire correspondant. Le crée s'il n'existe pas dans la liasse. */
+    /**
+     * Renvoie le formulaire correspondant. Le crée s'il n'existe pas dans la
+     * liasse.
+     */
     public Formulaire getFormulaire(NatureFormulaire formulaire) {
-        return formulaires.stream().filter(tableau -> tableau.getNature() == formulaire).findFirst().orElse(Formulaire.builder().build());
+        return formulaires.stream().filter(tableau -> tableau.getNature() == formulaire).findFirst()
+                .orElse(Formulaire.builder().build());
     }
 
-    /** Renvoie le montant correspondant au repère passé en paramètre, s'il est connu. */
+    /**
+     * Renvoie le montant correspondant au repère passé en paramètre, s'il est
+     * connu.
+     */
     public Optional<Double> getMontant(String repere) {
-        Repere rep = Repere.get(repere);
-        return getMontant(rep);
+        return Repere
+                .get(formulaires.stream().map(formulaire -> formulaire.getNature()).collect(Collectors.toSet()), repere)
+                .flatMap(r -> getMontant(r));
     }
 
     public Optional<Double> getMontant(Repere repere) {

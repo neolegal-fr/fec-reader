@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,8 +21,8 @@ import lombok.Data;
 
 @Data
 public class Repere implements Comparable<Repere> {
-   
-    public static Map<String, Repere> DEFINITIONS = loadDefinitionsReperes();
+
+    public static Map<NatureFormulaire, Map<String, Repere>> DEFINITIONS = loadDefinitionsReperes();
 
     /**
      * Documentation des calculs :
@@ -30,11 +30,11 @@ public class Repere implements Comparable<Repere> {
      * 
      * @throws IOException
      */
-    private static Map<String, Repere> loadDefinitionsReperes() {
-        Map<String, Repere> resultat = new HashMap<String, Repere>();
+    private static Map<NatureFormulaire, Map<String, Repere>> loadDefinitionsReperes() {
+        Map<NatureFormulaire, Map<String, Repere>> definitions = new HashMap<>();
         int lineIndex = 1;
         try {
-            List<Repere> reperes = new LinkedList<>();
+
             InputStream is = Repere.class.getClassLoader().getResourceAsStream("definitions-reperes.csv");
 
             CSVParser csvParser = CSVParser.parse(is, Charset.forName("UTF-8"), CSVFormat.MYSQL);
@@ -43,27 +43,40 @@ public class Repere implements Comparable<Repere> {
                     // La première ligne est obligatoirement une ligne d'en-tête
                     String symbole = csvRecord.get(0);
                     NatureFormulaire formulaire = NatureFormulaire.fromIdentifiant(csvRecord.get(1));
-                    String nom = csvRecord.size() > 2 ? csvRecord.get(2) : null;
-                    String expression = csvRecord.size() > 3 ? csvRecord.get(3) : null;
-                    Repere repere = new Repere(symbole, nom, expression,
-                            formulaire);
-                    reperes.add(repere);
+                    if (formulaire != null) {
+                        String nom = csvRecord.size() > 2 ? csvRecord.get(2) : null;
+                        String expression = csvRecord.size() > 3 ? csvRecord.get(3) : null;
+                        Repere repere = new Repere(symbole, nom, expression, formulaire);
+                        Map<String, Repere> reperes = definitions.getOrDefault(formulaire, new HashMap<>());                    
+                        reperes.put(repere.getSymbole(), repere);    
+                        definitions.put(formulaire, reperes);
+                    } else {
+                        Logger.getLogger(Repere.class.getName()).log(Level.SEVERE,
+                        String.format("Erreur lors du chargement des définitions de repères à la ligne %d, l'identifiant de formulaire %s est inconnue", lineIndex, csvRecord.get(1)));    
+                    }
                 }
                 ++lineIndex;
             }
-
-            reperes.forEach(repere -> resultat.put(repere.getSymbole(), repere));
-
         } catch (Exception e) {
             Logger.getLogger(Repere.class.getName()).log(Level.SEVERE,
                     String.format("Erreur lors du chargement des définitions de repères à la ligne %d", lineIndex), e);
         }
 
-        return resultat;
+        return definitions;
     }
 
-    public static Repere get(String repere) {
-        return DEFINITIONS.get(repere);
+    public static Optional<Repere> get(RegimeImposition regime, String repere) {
+        return get(regime.formulaires(), repere);
+    }
+
+    /** Renvoie le premier repère trouvé dans la liste de formulaires passée en paramètre */
+    public static Optional<Repere> get(Set<NatureFormulaire> formulaires, String repere) {
+        return formulaires.stream().flatMap(f -> get(f, repere).stream()).findFirst();
+    }
+
+    public static Optional<Repere> get(NatureFormulaire formulaire, String repere) {
+        Map<String, Repere> reperes = DEFINITIONS.getOrDefault(formulaire, Map.of());
+        return Optional.ofNullable(reperes.get(repere));
     }
 
     final NatureFormulaire formulaire;
@@ -106,5 +119,9 @@ public class Repere implements Comparable<Repere> {
         }
 
         return ObjectUtils.compare(formulaire, other.formulaire);
+    }
+
+    public RegimeImposition getRegimeImposition() {        
+        return formulaire != null ? formulaire.getRegimeImposition() : null;
     }
 }

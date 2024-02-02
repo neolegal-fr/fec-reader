@@ -215,7 +215,7 @@ ZG	2058-C-SD	Report à nouveau	DIF_110
 130	2033-B-SD	Réserves règlementées	SLD_1062 + SLD_1064
 132	2033-B-SD	Réserves statutaires ou contractuelles	SLD_1063+SLD_1068
 134	2033-B-SD	Report à nouveau	SLD_11
-136	2033-B-SD	Résultat de l'exercice	HN	SLD_12
+136	2033-B-SD	Résultat de l'exercice	SLD_12
 140	2033-B-SD	Provisions règlementées	SLD_14
 154	2033-B-SD	Provisions pour risques et charges	SLD_15
 156	2033-B-SD	Emprunts et dettes assimilées	CRD_164 + CRD_168 + CRD_512 + CRD_514 + CRD_517 + CRD_5186 + CRD_519 + CRD_162 + CRD_165 + CRD_166 + CRD_1675 + CRD_17 + CRD_426 + CRD_451 + CRD_455 + CRD_456 + CRD_458
@@ -287,11 +287,11 @@ BC	2139-A-SD	Créances \ Clients et comptes rattachés \ Brut	SLD_2967 + SLD_296
 BD	2139-A-SD	Créances \ Clients et comptes rattachés \ Amortissements	-(SLD_273 + SLD_271 + SLD_272 + SLD_27682)
 BE	2139-A-SD	Créances \ Autres \ Brut	SLD_2973 + SLD_2971 + SLD_2972
 BF	2139-A-SD	Créances \ Autres \ Amortissements	-(SLD_274 + SLD_27684)
-BG	2139-A-SD	Valeurs mobilières de placement \ Brut	SLD_2974
-BH	2139-A-SD	Valeurs mobilières de placement \ Amortissements	-(SLD_275 + SLD_2761 + SLD_27685 + SLD_27688)
-BJ	2139-A-SD	Caisses, Banques, C.C.P. et autres disponibilités \ Brut	AB + CX + AF + AH + AJ + AL + AN + AP + AR + AT + AV + AX + CS + CU + BB + BD + BF + BH
-BK	2139-A-SD	Caisses, Banques, C.C.P. et autres disponibilités \ Amortissements	AC + CQ + AG + AI + AK + AM + AO + AQ + AS + AU + AW + AY + CT + CV + BC + BE + BG + BI
-BN	2139-A-SD	Charges constatées d’avance \ Brut	-SLD_33
+BG	2139-A-SD	Valeurs mobilières de placement \ Brut	
+BH	2139-A-SD	Valeurs mobilières de placement \ Amortissements	
+BJ	2139-A-SD	Caisses, Banques, C.C.P. et autres disponibilités \ Brut	
+BK	2139-A-SD	Caisses, Banques, C.C.P. et autres disponibilités \ Amortissements	
+BN	2139-A-SD	Charges constatées d’avance \ Brut	
 BO	2139-A-SD	Charges constatées d’avance \ Amortissements	SLD_393
 BP	2139-A-SD	Actif Circulant \ Total \ Brut	AY + BJ + BN
 BQ	2139-A-SD	Actif Circulant \Amortissements	AZ + BK + BO

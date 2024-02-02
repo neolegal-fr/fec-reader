@@ -5,13 +5,12 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
+import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -32,11 +31,9 @@ public class LiasseFiscaleHelper {
     }
 
     public static LiasseFiscale buildLiasseFiscale(RegimeImposition regime) {
-        LiasseFiscale liasse = LiasseFiscale.builder().build();
-        for (NatureFormulaire formulaire : NatureFormulaire.values()) {
-            if (formulaire.getRegimeImposition() == regime) {
+        LiasseFiscale liasse = LiasseFiscale.builder().regime(regime).build();
+        for (NatureFormulaire formulaire : regime.formulaires()) {
                 liasse.getFormulaires().add(buildFormulaire(formulaire));
-            }
         }
 
         return liasse;
@@ -48,10 +45,10 @@ public class LiasseFiscaleHelper {
         liasse.setSiren(fec.getSiren());
         liasse.setClotureExercice(fec.getClotureExercice());
 
-        VariableProvider provider = new FecVariableProvider(fec);
+        VariableProvider provider = new FecVariableProvider(fec, regime);
         for (Formulaire formulaire : liasse.getFormulaires()) {
             for (Repere repere : formulaire.getChamps().keySet()) {
-                Double montant = RepereHelper.computeMontantLigneRepere(repere, fec, provider).orElse(null);
+                Double montant = RepereHelper.computeMontantRepereCellule(repere, fec, provider).orElse(null);
                 formulaire.getChamps().put(repere, montant);
             }
         }
@@ -60,14 +57,13 @@ public class LiasseFiscaleHelper {
     }
 
     public static Formulaire buildFormulaire(NatureFormulaire nature) {
-        Formulaire tableau = new Formulaire(nature);
+        Formulaire formulaire = new Formulaire(nature);
 
-        List<Repere> reperes = Repere.DEFINITIONS.values().stream()
-                .filter(ligne -> Objects.equals(ligne.getFormulaire(), nature)).collect(Collectors.toList());
+        Collection<Repere> reperes = Repere.DEFINITIONS.getOrDefault(nature, Map.of()).values();
         for (Repere repere : reperes) {
-            tableau.getChamps().put(repere, null);
+            formulaire.getChamps().put(repere, null);
         }
-        return tableau;
+        return formulaire;
     }
 
     public static LiasseFiscale readLiasseFiscalePDF(String filename) throws IOException {
@@ -82,12 +78,14 @@ public class LiasseFiscaleHelper {
                 Page page = pi.next();
                 Optional<NatureFormulaire> match = resolveNatureFormulaire(page);
                 if (match.isPresent()) {
+                    NatureFormulaire natureFormulaire = match.get();
+                    liasse.setRegime(natureFormulaire.getRegimeImposition());
                     List<Table> tables = sea.extract(page);
                     writeTablesAsSvg(tables, String.format("tables-page-%d.html", page.getPageNumber()));
                     Optional<Table> tableMatch = tables.stream()
                             .max(Comparator.comparing(Table::getRowCount));
                     if (tableMatch.isPresent()) {
-                        Formulaire formulaire = parseFormulaire(tableMatch.get(), match.get());
+                        Formulaire formulaire = parseFormulaire(tableMatch.get(), natureFormulaire);
                         liasse.getFormulaires().add(formulaire);
                     }
                 }
@@ -107,9 +105,10 @@ public class LiasseFiscaleHelper {
                 for (RectangularTextContainer<?> cell : row) {
                     String text = cell.getText().trim();
                     if (found && cell.getWidth() > 10) {
-                        Double montant = NumberUtils.toDouble(text.replaceAll(" ", ""), 0.0);
+                        double montant = NumberUtils.toDouble(text.replaceAll(" ", ""), 0.0);
                         formulaire.setMontant(repere, montant);
-                        break;
+                        if (montant != 0.0)
+                            break;
                     }
                     
                     if (StringUtils.equalsIgnoreCase(repere.getSymbole(), text)) {

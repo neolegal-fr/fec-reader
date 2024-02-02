@@ -18,23 +18,23 @@ public class RepereHelperTest {
 
     @Test
     void isLigneRepere_returnFalse_whenEmptyOrNull() {
-        assertFalse(RepereHelper.isLigneRepere(null));
-        assertFalse(RepereHelper.isLigneRepere(""));
+        assertFalse(RepereHelper.isRepereCellule(RegimeImposition.REEL_NORMAL, null));
+        assertFalse(RepereHelper.isRepereCellule(RegimeImposition.REEL_NORMAL, ""));
     }
 
     @Test
     void isLigneRepere_returnsTrue() {
-        assertTrue(RepereHelper.isLigneRepere("AA"));
-        assertTrue(RepereHelper.isLigneRepere("REP_FL"));
-        assertTrue(RepereHelper.isLigneRepere("REP_310"));
+        assertTrue(RepereHelper.isRepereCellule(RegimeImposition.REEL_NORMAL, "AA"));
+        assertTrue(RepereHelper.isRepereCellule(RegimeImposition.REEL_NORMAL, "REP_FL"));
+        assertTrue(RepereHelper.isRepereCellule(RegimeImposition.REEL_SIMPLIFIE, "REP_310"));
     }
 
     @Test
     void isLigneRepere_returnsFalse() {
-        assertFalse(RepereHelper.isLigneRepere("ZZ"));
-        assertFalse(RepereHelper.isLigneRepere("6354"));
-        assertFalse(RepereHelper.isLigneRepere("S_7"));
-        assertFalse(RepereHelper.isLigneRepere("D_7"));
+        assertFalse(RepereHelper.isRepereCellule(RegimeImposition.REEL_NORMAL, "ZZ"));
+        assertFalse(RepereHelper.isRepereCellule(RegimeImposition.REEL_NORMAL, "6354"));
+        assertFalse(RepereHelper.isRepereCellule(RegimeImposition.REEL_NORMAL, "S_7"));
+        assertFalse(RepereHelper.isRepereCellule(RegimeImposition.REEL_NORMAL, "D_7"));
     }
 
     @Test
@@ -59,17 +59,19 @@ public class RepereHelperTest {
 
     @Test
     void resolveComptes() {
-        assertFalse(RepereHelper.resolveComptes("FR").isEmpty());
-        assertTrue(RepereHelper.resolveComptes("ZZ").isEmpty());
+        assertFalse(RepereHelper.resolveComptes(RegimeImposition.REEL_NORMAL, "FR").isEmpty());
+        assertTrue(RepereHelper.resolveComptes(RegimeImposition.REEL_NORMAL, "ZZ").isEmpty());
     }
 
     @Test
     void computeMontantLigneRepere() {
-        assertEquals(Optional.of(41056.0), RepereHelper.computeMontantLigneRepere("DV", fec));
+        assertEquals(Optional.of(41056.0),
+                RepereHelper.computeMontantRepereCellule(RegimeImposition.REEL_NORMAL, "DV", fec));
     }
 
     @Test
     void computeMontantLigneRepere_whenRepereInconnu() {
-        assertEquals(Optional.empty(), RepereHelper.computeMontantLigneRepere("YY", fec));
+        assertEquals(Optional.empty(),
+                RepereHelper.computeMontantRepereCellule(RegimeImposition.REEL_NORMAL, "YY", fec));
     }
 }

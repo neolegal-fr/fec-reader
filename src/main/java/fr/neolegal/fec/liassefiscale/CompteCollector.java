@@ -9,15 +9,17 @@ import net.objecthunter.exp4j.VariableProvider;
 @Data
 public class CompteCollector implements VariableProvider {
 
+    RegimeImposition regime;
     List<AgregationComptes> comptes = new LinkedList<>();
 
-    public CompteCollector() {
+    public CompteCollector(RegimeImposition regime) {
+        this.regime = regime;
     }
 
     @Override
     public Double get(String variable) {
         RepereHelper.parseNumeroCompte(variable).ifPresent(compte -> comptes.add(compte));
-        RepereHelper.parseLigneRepere(variable).ifPresent(repere -> comptes.addAll(RepereHelper.resolveComptes(repere)));
+        RepereHelper.parseRepereCellule(regime, variable).ifPresent(repere -> comptes.addAll(RepereHelper.resolveComptes(repere)));
         return 0.0;    
     }
 
@@ -27,7 +29,7 @@ public class CompteCollector implements VariableProvider {
 
     @Override
     public boolean contains(String name) {
-        return RepereHelper.isLigneRepere(name) || RepereHelper.isNumeroCompte(name);
+        return RepereHelper.isRepereCellule(regime, name) || RepereHelper.isNumeroCompte(name);
     }
 
 }

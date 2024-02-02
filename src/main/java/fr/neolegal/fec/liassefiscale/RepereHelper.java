@@ -22,11 +22,11 @@ public class RepereHelper {
         return parseNumeroCompte(candidate).isPresent();
     }
 
-    static boolean isLigneRepere(String candidate) {
-        return parseLigneRepere(candidate).isPresent();
+    static boolean isRepereCellule(RegimeImposition regime, String candidate) {
+        return parseRepereCellule(regime, candidate).isPresent();
     }
 
-    static Optional<Repere> parseLigneRepere(String candidate) {
+    static Optional<Repere> parseRepereCellule(RegimeImposition regime, String candidate) {
         if (StringUtils.isBlank(candidate)) {
             return Optional.empty();
         }
@@ -34,14 +34,12 @@ public class RepereHelper {
         candidate = candidate.trim();
         if (candidate.length() == 2 && candidate.matches(REPERE_REGEX)) {
             String symbole = candidate.toUpperCase();
-            Repere repere = Repere.DEFINITIONS.get(symbole);
-            return Optional.ofNullable(repere);
+            return Repere.get(regime, symbole);
         }
 
         if (StringUtils.startsWithIgnoreCase(candidate, REPERE_PREFIX)) {
             String symbole = StringUtils.substring(candidate, REPERE_PREFIX.length()).toUpperCase();
-            Repere repere = Repere.DEFINITIONS.get(symbole);
-            return Optional.ofNullable(repere);
+            return Repere.get(regime, symbole);
         }
 
         return Optional.empty();
@@ -67,38 +65,32 @@ public class RepereHelper {
         return Optional.empty();
     }
 
-    public static List<AgregationComptes> resolveComptes(String symboleRepere) {
-        Repere repere = Repere.DEFINITIONS.get(symboleRepere);
-        if (Objects.isNull(repere)) {
-            return List.of();
-        }
-        return resolveComptes(repere);   
+    public static List<AgregationComptes> resolveComptes(RegimeImposition regime, String symboleRepere) {
+        return Repere.get(regime, symboleRepere).map(repere -> resolveComptes(repere)).orElse(List.of());
     }
 
     public static List<AgregationComptes> resolveComptes(Repere repere) {
-        CompteCollector comptes = new CompteCollector();
-        computeMontantLigneRepere(repere, Fec.builder().build(), comptes);
+        CompteCollector comptes = new CompteCollector(repere.getRegimeImposition());
+        computeMontantRepereCellule(repere, Fec.builder().build(), comptes);
         return comptes.getComptes();
     }
 
-    public static Optional<Double> computeMontantLigneRepere(String repere, Fec fec) {
-        Repere ligneRepere = Repere.get(repere);
-        return computeMontantLigneRepere(ligneRepere, fec);
+    public static Optional<Double> computeMontantRepereCellule(RegimeImposition regime, String repere, Fec fec) {
+        return Repere.get(regime, repere).flatMap(repereCellule -> computeMontantRepereCellule(repereCellule, fec));
     }
 
-
-    public static Optional<Double> computeMontantLigneRepere(Repere repere, Fec fec) {
-        FecVariableProvider variables = new FecVariableProvider(fec);
-        return computeMontantLigneRepere(repere, fec, variables);
+    public static Optional<Double> computeMontantRepereCellule(Repere repere, Fec fec) {
+        FecVariableProvider variables = new FecVariableProvider(fec, repere.getRegimeImposition());
+        return computeMontantRepereCellule(repere, fec, variables);
     }
 
-    public static Optional<Double> computeMontantLigneRepere(Repere repere, Fec fec, VariableProvider variables) {        
+    public static Optional<Double> computeMontantRepereCellule(Repere repere, Fec fec, VariableProvider variables) {
         if (Objects.isNull(repere) || StringUtils.isBlank(repere.getExpression())) {
             return Optional.empty();
         }
 
         Expression expression = new ExpressionBuilder(repere.getExpression()).variables(variables).build();
 
-        return Optional.of((double)Math.round(expression.evaluate()));
+        return Optional.of((double) Math.round(expression.evaluate()));
     }
 }
