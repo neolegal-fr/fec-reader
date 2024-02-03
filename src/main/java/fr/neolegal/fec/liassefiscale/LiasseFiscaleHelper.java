@@ -68,7 +68,7 @@ public class LiasseFiscaleHelper {
 
     public static LiasseFiscale readLiasseFiscalePDF(String filename) throws IOException {
         LiasseFiscale liasse = LiasseFiscale.builder().build();
-        SpreadsheetExtractionAlgorithm sea = new SpreadsheetExtractionAlgorithm(10);
+        SpreadsheetExtractionAlgorithm sea = new SpreadsheetExtractionAlgorithm(50);
 
         try (InputStream in = new FileInputStream(filename);
                 PDDocument document = PDDocument.load(in);
@@ -79,7 +79,9 @@ public class LiasseFiscaleHelper {
                 Optional<NatureFormulaire> match = resolveNatureFormulaire(page);
                 if (match.isPresent()) {
                     NatureFormulaire natureFormulaire = match.get();
-                    liasse.setRegime(natureFormulaire.getRegimeImposition());
+                    if (liasse.getRegime() == null) {
+                        liasse.setRegime(natureFormulaire.getRegimeImposition());
+                    }
                     List<Table> tables = sea.extract(page);
                     writeTablesAsSvg(tables, String.format("tables-page-%d.html", page.getPageNumber()));
                     Optional<Table> tableMatch = tables.stream()
@@ -104,9 +106,9 @@ public class LiasseFiscaleHelper {
                 }
                 for (RectangularTextContainer<?> cell : row) {
                     String text = cell.getText().trim();
-                    if (found && cell.getWidth() > 10 && cell.getHeight() > 10 ) {
+                    if (found && cell.getWidth() > 10 && cell.getHeight() > 10) {
                         boolean isNegative = text.startsWith("(");
-                        text =  text.replaceAll(" ()", "");
+                        text = text.replaceAll(" ()", "");
 
                         double montant = NumberUtils.toDouble(text, 0.0);
                         if (isNegative) {
@@ -161,7 +163,7 @@ public class LiasseFiscaleHelper {
                     table.getWidth() + 50.0, table.getHeight() + 10.0));
             for (List<RectangularTextContainer> row : table.getRows()) {
                 for (RectangularTextContainer<?> cell : row) {
-                    if (true /*cell.height > 10 && cell.width > 10*/) {
+                    if (true /* cell.height > 10 && cell.width > 10 */) {
                         String text = cell.getText();
                         sb.append("<g>");
                         sb.append(String.format(Locale.US,
