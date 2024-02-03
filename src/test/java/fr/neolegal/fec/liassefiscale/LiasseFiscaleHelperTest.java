@@ -69,8 +69,12 @@ public class LiasseFiscaleHelperTest {
                 CSVFormat.DEFAULT);
 
         StringBuilder sb = new StringBuilder();
+        int total = 0;
+        int success = 0;
+        int unknown = 0;
         for (CSVRecord csvRecord : csvParser) {
             if (csvRecord.size() > 1) {
+                ++total;
                 String symbole = csvRecord.get(0);
                 Optional<Repere> match = Repere.get(liasse.getRegime(), symbole);
                 if (match.isPresent()) {
@@ -80,25 +84,59 @@ public class LiasseFiscaleHelperTest {
                     if (!Objects.equals(expected, actual)) {
                         sb.append(String.format("Montant du repère %s (%s) incorrect. Actual: %f, expected: %f\r\n",
                                 symbole, repere.getNom(), actual, expected));
+                    } else {
+                        ++success;
                     }
                 } else {
+                    ++unknown;
                     sb.append(String.format("Repère inconnu : %s\r\n", symbole));
                 }
             }
         }
 
         if (sb.length() > 0) {
-            fail(sb.toString());
+            fail(String.format("%.02f%% de réussite, %d erreurs, %d inconnus\r\n", ((float)success / (float)(total-unknown))*100, total - success - unknown, unknown) + sb.toString());
         }
 
     }
 
     @Test
-    void readLiasseFiscalePDF() throws IOException {
+    void readLiasseFiscalePDF_A() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-A.pdf");
+                .readLiasseFiscalePDF("target/test-classes/liasse-publique-A.pdf");
 
-        checkParsedLiasse(liasse, "target/test-classes/liasse-A-expected.csv");
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-A-expected.csv");
     }
 
+    @Test
+    void readLiasseFiscalePDF_B() throws IOException {
+        LiasseFiscale liasse = LiasseFiscaleHelper
+                .readLiasseFiscalePDF("target/test-classes/liasse-publique-B.pdf");
+
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-B-expected.csv");
+    }    
+
+    @Test
+    void readLiasseFiscalePDF_C() throws IOException {
+        LiasseFiscale liasse = LiasseFiscaleHelper
+                .readLiasseFiscalePDF("target/test-classes/liasse-publique-C.pdf");
+
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-C-expected.csv");
+    }
+    
+    @Test
+    void readLiasseFiscalePDF_D() throws IOException {
+        LiasseFiscale liasse = LiasseFiscaleHelper
+                .readLiasseFiscalePDF("target/test-classes/liasse-publique-D.pdf");
+
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-D-expected.csv");
+    }
+    
+    @Test
+    void readLiasseFiscalePDF_E() throws IOException {
+        LiasseFiscale liasse = LiasseFiscaleHelper
+                .readLiasseFiscalePDF("target/test-classes/liasse-publique-E.pdf");
+
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-E-expected.csv");
+    }
 }
