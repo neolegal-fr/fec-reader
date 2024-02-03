@@ -83,7 +83,7 @@ public class LiasseFiscaleHelper {
                         liasse.setRegime(natureFormulaire.getRegimeImposition());
                     }
                     List<Table> tables = sea.extract(page);
-                    writeTablesAsSvg(tables, String.format("tables-page-%d.html", page.getPageNumber()));
+                    // writeTablesAsSvg(tables, String.format("tables-page-%d.html", page.getPageNumber()));
                     Optional<Table> tableMatch = tables.stream()
                             .max(Comparator.comparing(Table::getRowCount));
                     if (tableMatch.isPresent()) {
