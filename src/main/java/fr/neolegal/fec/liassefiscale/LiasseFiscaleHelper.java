@@ -68,7 +68,11 @@ public class LiasseFiscaleHelper {
 
     public static LiasseFiscale readLiasseFiscalePDF(String filename) throws IOException {
         LiasseFiscale liasse = LiasseFiscale.builder().build();
-        SpreadsheetExtractionAlgorithm sea = new SpreadsheetExtractionAlgorithm(50);
+        // Détermination empirique des distances entre les lignes et les colonnes des tableaux 
+        // des liasses fiscales
+        SpreadsheetExtractionAlgorithm sea = new SpreadsheetExtractionAlgorithm()
+                .withMaxGapBetweenAlignedHorizontalRulings(20)
+                .withMinSpacingBetweenRulings(10f);
 
         try (InputStream in = new FileInputStream(filename);
                 PDDocument document = PDDocument.load(in);

@@ -106,7 +106,7 @@ public class LiasseFiscaleHelperTest {
         LiasseFiscale liasse = LiasseFiscaleHelper
                 .readLiasseFiscalePDF("target/test-classes/liasse-publique-A.pdf");
 
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-A-expected.csv", 69);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-A-expected.csv", 71);
     }
 
     @Test
@@ -123,7 +123,7 @@ public class LiasseFiscaleHelperTest {
         LiasseFiscale liasse = LiasseFiscaleHelper
                 .readLiasseFiscalePDF("target/test-classes/liasse-publique-C.pdf");
 
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-C-expected.csv", 59);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-C-expected.csv", 60);
     }
     
     @Test
