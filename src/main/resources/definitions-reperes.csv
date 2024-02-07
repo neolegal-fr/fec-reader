@@ -169,14 +169,345 @@ HL	2053-SD	Total des produits	FR + GH + GP + HD
 HM	2053-SD	Total des charges	GF + GI + GU + HH + HJ + HK
 HN	2053-SD	Résultat de l'exercice	HL - HM
 
+3T	2056-SD	Provisions pour reconstitution des gisements miniers et pétroliers
+3U	2056-SD	Provisions pour investissement (art. 237 bis A–II)
+3V	2056-SD	Provisions pour hausse des prix (1)
+3X	2056-SD	Amortissements dérogatoires
+D3	2056-SD	Dont majorations exceptionnelles de 30 %
+IJ	2056-SD	Provisions pour prêts d'installation (art. 39 quinquies H du CGI)
+3Y	2056-SD	Autres provisions réglementées (1)
+3Z	2056-SD	TOTAL I
+4A	2056-SD	Provisions pour litiges
+4E	2056-SD	Provisions pour garanties données aux clients
+4J	2056-SD	Provisions pour pertes sur marchés à terme
+4N	2056-SD	Provisions pour amendes et pénalités
+4T	2056-SD	Provisions pour pertes de change
+4X	2056-SD	Provisions pour pensions et obligations similaires
+5B	2056-SD	Provisions pour impôts (1)
+5F	2056-SD	Provisions pour renouvellement des immobilisations
+EO	2056-SD	Provisions pour gros entretien et grandes révisions
+5R	2056-SD	Provisions pour charges sociales et fiscales sur congés à payer
+5V	2056-SD	Autres provisions pour risques et charges
+5Z	2056-SD	TOTAL II
+6A	2056-SD	Provisions pour dépréciation sur immobilisations incorporelles
+6E	2056-SD	Provisions pour dépréciation sur immobilisations corporelles
+Ø2	2056-SD	Provisions pour dépréciation sur immobilisations titres mis en équivalence
+9U	2056-SD	Provisions pour dépréciation sur immobilisations titres de participation
+Ø6	2056-SD	Provisions pour dépréciation sur immobilisations autres immobilisations financières (1
+6N	2056-SD	Provisions pour dépréciation Sur stocks et en cours
+6T	2056-SD	Provisions pour dépréciation Sur comptes clients
+6X	2056-SD	Autres provisions pour dépréciation
+7B	2056-SD	TOTAL III
+7C	2056-SD	TOTAL GÉNÉRAL (I + II + III)
+TA	2056-SD	Provisions pour reconstitution des gisements miniers et pétroliers
+TD	2056-SD	Provisions pour investissement (art. 237 bis A–II)
+TG	2056-SD	Provisions pour hausse des prix (1)
+TM	2056-SD	Amortissements dérogatoires
+D4	2056-SD	Dont majorations exceptionnelles de 30 %
+IK	2056-SD	Provisions pour prêts d'installation (art. 39 quinquies H du CGI)
+TP	2056-SD	Autres provisions réglementées (1)
+TS	2056-SD	TOTAL I
+4B	2056-SD	Provisions pour litiges
+4F	2056-SD	Provisions pour garanties données aux clients
+4K	2056-SD	Provisions pour pertes sur marchés à terme
+4P	2056-SD	Provisions pour amendes et pénalités
+4U	2056-SD	Provisions pour pertes de change
+4Y	2056-SD	Provisions pour pensions et obligations similaires
+5C	2056-SD	Provisions pour impôts (1)
+5H	2056-SD	Provisions pour renouvellement des immobilisations
+EP	2056-SD	Provisions pour gros entretien et grandes révisions
+5S	2056-SD	Provisions pour charges sociales et fiscales sur congés à payer
+5W	2056-SD	Autres provisions pour risques et charges
+TV	2056-SD	TOTAL II
+6B	2056-SD	Provisions pour dépréciation sur immobilisations incorporelles
+6F	2056-SD	Provisions pour dépréciation sur immobilisations corporelles
+Ø3	2056-SD	Provisions pour dépréciation sur immobilisations titres mis en équivalence
+9V	2056-SD	Provisions pour dépréciation sur immobilisations titres de participation
+Ø7	2056-SD	Provisions pour dépréciation sur immobilisations autres immobilisations financières (1
+6P	2056-SD	Provisions pour dépréciation Sur stocks et en cours
+6U	2056-SD	Provisions pour dépréciation Sur comptes clients
+6Y	2056-SD	Autres provisions pour dépréciation
+TY	2056-SD	TOTAL III
+UB	2056-SD	TOTAL GÉNÉRAL (I + II + III) \ Augmentations : Dotations de l'exercice
+UE	2056-SD	Dont dotations et reprises d'exploitation
+UG	2056-SD	Dont dotations et reprises financières
+UJ	2056-SD	Dont dotations et reprises exceptionnelles
+TB	2056-SD	Provisions pour reconstitution des gisements miniers et pétroliers
+TE	2056-SD	Provisions pour investissement (art. 237 bis A–II)
+TH	2056-SD	Provisions pour hausse des prix (1)
+TN	2056-SD	Amortissements dérogatoires
+D5	2056-SD	Dont majorations exceptionnelles de 30 %
+IL	2056-SD	Provisions pour prêts d'installation (art. 39 quinquies H du CGI)
+TQ	2056-SD	Autres provisions réglementées (1)
+TT	2056-SD	TOTAL I
+4C	2056-SD	Provisions pour litiges
+4G	2056-SD	Provisions pour garanties données aux clients
+4L	2056-SD	Provisions pour pertes sur marchés à terme
+4R	2056-SD	Provisions pour amendes et pénalités
+4V	2056-SD	Provisions pour pertes de change
+4Z	2056-SD	Provisions pour pensions et obligations similaires
+5D	2056-SD	Provisions pour impôts (1)
+5J	2056-SD	Provisions pour renouvellement des immobilisations
+EQ	2056-SD	Provisions pour gros entretien et grandes révisions
+5T	2056-SD	Provisions pour charges sociales et fiscales sur congés à payer
+5X	2056-SD	Autres provisions pour risques et charges
+TW	2056-SD	TOTAL II
+6C	2056-SD	Provisions pour dépréciation sur immobilisations incorporelles
+6G	2056-SD	Provisions pour dépréciation sur immobilisations corporelles
+Ø4	2056-SD	Provisions pour dépréciation sur immobilisations titres mis en équivalence
+9W	2056-SD	Provisions pour dépréciation sur immobilisations titres de participation
+Ø8	2056-SD	Provisions pour dépréciation sur immobilisations autres immobilisations financières (1
+6R	2056-SD	Provisions pour dépréciation Sur stocks et en cours
+6V	2056-SD	Provisions pour dépréciation Sur comptes clients
+6Z	2056-SD	Autres provisions pour dépréciation
+TZ	2056-SD	TOTAL III
+UC	2056-SD	TOTAL GÉNÉRAL (I + II + III) \ Augmentations : Dotations de l'exercice
+UF	2056-SD	Dont dotations et reprises d'exploitation
+UH	2056-SD	Dont dotations et reprises financières
+UK	2056-SD	Dont dotations et reprises exceptionnelles
+TC	2056-SD	Provisions pour reconstitution des gisements miniers et pétroliers
+TF	2056-SD	Provisions pour investissement (art. 237 bis A–II)
+TI	2056-SD	Provisions pour hausse des prix (1)
+TO	2056-SD	Amortissements dérogatoires
+D6	2056-SD	Dont majorations exceptionnelles de 30 %
+IM	2056-SD	Provisions pour prêts d'installation (art. 39 quinquies H du CGI)
+TR	2056-SD	Autres provisions réglementées (1)
+TU	2056-SD	TOTAL I
+4D	2056-SD	Provisions pour litiges
+4H	2056-SD	Provisions pour garanties données aux clients
+4M	2056-SD	Provisions pour pertes sur marchés à terme
+4S	2056-SD	Provisions pour amendes et pénalités
+4W	2056-SD	Provisions pour pertes de change
+5A	2056-SD	Provisions pour pensions et obligations similaires
+5E	2056-SD	Provisions pour impôts (1)
+5K	2056-SD	Provisions pour renouvellement des immobilisations
+ER	2056-SD	Provisions pour gros entretien et grandes révisions
+5U	2056-SD	Provisions pour charges sociales et fiscales sur congés à payer
+5Y	2056-SD	Autres provisions pour risques et charges
+TX	2056-SD	TOTAL II
+6D	2056-SD	Provisions pour dépréciation sur immobilisations incorporelles
+6H	2056-SD	Provisions pour dépréciation sur immobilisations corporelles
+Ø5	2056-SD	Provisions pour dépréciation sur immobilisations titres mis en équivalence
+9X	2056-SD	Provisions pour dépréciation sur immobilisations titres de participation
+Ø9	2056-SD	Provisions pour dépréciation sur immobilisations autres immobilisations financières (1
+6S	2056-SD	Provisions pour dépréciation Sur stocks et en cours
+6W	2056-SD	Provisions pour dépréciation Sur comptes clients
+7A	2056-SD	Autres provisions pour dépréciation
+UA	2056-SD	TOTAL III
+UD	2056-SD	TOTAL GÉNÉRAL (I + II + III) \ Augmentations : Dotations de l'exercice
+10	2056-SD	Titres mis en équivalence : montant de la dépréciation à la clôture de l'exercice
+
+UL	2057-SD	Créances rattachées à des participations \ Montant brut
+UP	2057-SD	Prêts \ Montant brut
+UT	2057-SD	Autres immobilisations financières \ Montant brut
+UM	2057-SD	Créances rattachées à des participations \ A 1 an au plus
+UR	2057-SD	Prêts \ A 1 an au plus
+UV	2057-SD	Autres immobilisations financières \ A 1 an au plus
+UN	2057-SD	Créances rattachées à des participations \ A plus d'un an
+US	2057-SD	Prêts \ A plus d'un an
+UW	2057-SD	Autres immobilisations financières \ A plus d'un an
+VA	2057-SD	Clients douteux ou litigieux
+UX	2057-SD	Autres créances clients
+UO	2057-SD	Provision pour dépréciation antérieurement constituée
+Z1	2057-SD	Créance représentative de titres prêtés ou remis en garantie
+UY	2057-SD	Personnel et comptes rattachés
+UZ	2057-SD	Sécurité sociale et autres organismes sociaux
+VM	2057-SD	Impôts sur les bénéfices
+VB	2057-SD	Taxe sur la valeur ajoutée
+VN	2057-SD	Autres impôts, taxes et versements assimilés
+VP	2057-SD	Divers
+VC	2057-SD	Groupe et associés
+VR	2057-SD	Débiteurs divers (dont créances relatives à des opérations de pension de titres)
+VS	2057-SD	Charges constatées d'avance
+VT	2057-SD	TOTAUX \ Montant brut
+VU	2057-SD	TOTAUX \ A 1 an au plus
+VV	2057-SD	TOTAUX \ A plus d'un an
+VD	2057-SD	Prêts accordés en cours d'exercice
+VE	2057-SD	Remboursements obtenus en cours d'exercice
+VF	2057-SD	Prêts et avances consentis aux associés
+7Y	2057-SD	Emprunts obligataires convertibles
+7Z	2057-SD	Autres emprunts obligataires
+VG	2057-SD	Emprunts et dettes auprès des établissements de crédit à 1 an maximum à l'origine
+VH	2057-SD	Emprunts et dettes auprès des établissements de crédit à plus d'1 an à l'origine
+8A	2057-SD	Emprunts et dettes financières divers
+8B	2057-SD	Fournisseurs et comptes rattachés
+8C	2057-SD	Personnel et comptes rattachés
+8D	2057-SD	Sécurité sociale et autres organismes sociaux
+8E	2057-SD	Impôts sur les bénéfices
+VW	2057-SD	Taxe sur la valeur ajoutée
+VX	2057-SD	Obligations cautionnées
+VQ	2057-SD	Autres impôts, taxes et assimilés
+8J	2057-SD	Dettes sur immobilisations et comptes rattachés
+VI	2057-SD	Groupe et associés
+8K	2057-SD	Autres dettes (dont dettes relatives à des opérations de pension de titres)
+Z2	2057-SD	Dette représentative de titres empruntés ou remis en garantie
+8L	2057-SD	Produits constatés d'avance
+VY	2057-SD	TOTAUX \ Montant brut
+VZ	2057-SD	TOTAUX \ A 1 an au plus
+VJ	2057-SD	Emprunts souscrits en cours d'exercice
+VK	2057-SD	Emprunts remboursés en cours d'exercice
+VL	2057-SD	Montant des divers emprunts et dettes contractés auprès des associés personnes physiques
+
+WD	2058-A-SD	Avantages personnels non déductibles
 WE	2058-A-SD	Amortissements exédentaires	
 WF	2058-A-SD	Autres charges et dépenses somptuaires	
+WG	2058-A-SD	Taxe sur les véhicules des sociétés
+RA	2058-A-SD	Fraction des loyers à réintégrer dans le cadre d'un crédit bail immobilier et de levée d'option
+WI	2058-A-SD	Provisions et charges à payer non déductibles
+WJ	2058-A-SD	Amendes et pénalités
+RB	2058-A-SD	Part des loyers dispensée de réintégration
+XX	2058-A-SD	Charges à payer liées à des états et territoires non coopératifs non déductibles
+XZ	2058-A-SD	Charges financières
+WA	2058-A-SD	BÉNÉFICE COMPTABLE DE L'EXERCICE
+WB	2058-A-SD	Rémunération du travail de l'exploitant ou des associés
+XE	2058-A-SD	Charges non admises en déduction du résultat fiscal
+XW	2058-A-SD	Charges non admises en déduction du résultat fiscal
+XY	2058-A-SD	Réintégrations prévues à l'article 155 du CGI
+WL	2058-A-SD	Quote–part de personnes ou un GIE
+L7	2058-A-SD	Résultats bénéficiaires visés à l'article 209 B du CG
+I7	2058-A-SD	Impôt sur les sociétés
+K7	2058-A-SD	Bénéfices réalisés par une société
+I8	2058-A-SD	Moins-values nettes à long terme imposées au taux de 15 % ou de 19 %
+ZN	2058-A-SD	Moins-values nettes à long terme imposées au taux de 0 %
+WN	2058-A-SD	Fraction imposable des plus-values réalisées au cours d'exercices antérieurs \ Plus–values nettes à court terme
+WO	2058-A-SD	Fraction imposable des plus-values réalisées au cours d'exercices antérieurs \ Plus–values soumises au régime des fusions
+XR	2058-A-SD	Écarts de valeurs liquidatives sur OPC
+SU	2058-A-SD	Intérêts excédentaires
+SW	2058-A-SD	Zones d'entreprise
+M8	2058-A-SD	Quote–part de 12 % des plus–values à taux zéro
+WQ	2058-A-SD	Réintégrations diverses à détailler sur feuillet séparé
+Y1	2058-A-SD	Réintégration des charges affectées aux activités éligibles au régime de la taxation au tonnage
+Y3	2058-A-SD	Résultat fiscal afférent à l'activité relevant du régime optionnel de taxation au tonnage
+WR	2058-A-SD	TOTAL I
+WS	2058-A-SD	PERTE COMPTABLE DE L'EXERCICE
+WT	2058-A-SD	Quote–part dans les pertes subies par une société de personnes ou un G.I.E.
+WU	2058-A-SD	Provisions et charges à payer non déductibles, antérieurement taxées, et réintégrées dans les résultats comptables de l'exercice
+WV	2058-A-SD	Plus-values nettes à long terme imposées au taux de 15
+WH	2058-A-SD	Plus-values nettes à long terme imposées au taux de 0 %
+WP	2058-A-SD	Plus-values nettes à long terme imposées au taux de 19%
+WW	2058-A-SD	Plus-values nettes à long terme imputées sur les moins–values nettes à long terme antérieures
+XB	2058-A-SD	Plus-values nettes à long terme imputées sur les déficits antérieurs
+I6	2058-A-SD	Autres plus–values imposées au taux de 19 %
+WZ	2058-A-SD	Fraction des plus–values nettes à court terme de l’exercice dont l’imposition est différée
+2A	2058-A-SD	Quote–part des frais et charges restant imposable à déduire des produits nets de participation
+XA	2058-A-SD	Régime des sociétés mères et des filiales - Produit net des actions et parts d’intérêts
+ZX	2058-A-SD	Produits de participations inéligibles au régime des sociétés mères déductibles à hauteur de 99 %
+ZY	2058-A-SD	Déduction autorisée au titre des investissements réalisés dans les collectivités d’Outre–mer
+XD	2058-A-SD	Majoration d’amortissement
+K9	2058-A-SD	Reprise d’entreprises en difficultés
+L2	2058-A-SD	Entreprises nouvelles
+L5	2058-A-SD	Jeunes entreprises innovantes
+0V	2058-A-SD	Zone franche urbaine –TE
+K3	2058-A-SD	Sociétés investissement immobilier cotée
+PA	2058-A-SD	Zone de restructuration de la défense
+PP	2058-A-SD	Bassin urbain à dynamiser
+1F	2058-A-SD	Bassin d’emploi à redynamiser
+XC	2058-A-SD	Zone franche d’activités NG
+PC	2058-A-SD	Zone de revitalisation rurale
+PB	2058-A-SD	Zone de développement prioritaire
+XF	2058-A-SD	Abattement sur le bénéfice et exonérations
+XS	2058-A-SD	Écarts de valeurs liquidatives sur OPC
+X9	2058-A-SD	Dont déduction exceptionnelle
+YI	2058-A-SD	Dont déduction exceptionnelle pour investissement
+YA	2058-A-SD	Dont déduction exceptionnelle pour investissement
+YL	2058-A-SD	Dont déduction exceptionnelle pour investissement
+YB	2058-A-SD	Dont déduction exceptionnelle pour investissement
+YH	2058-A-SD	Dont déduction exceptionnelle simulateur de conduite
+YC	2058-A-SD	Dont déduction exceptionnelle pour investissement
+ZI	2058-A-SD	Créance dégagée par le report en arrière de déficit
+YD	2058-A-SD	Dont déduction exceptionnelle pour investissement
+XG	2058-A-SD	Déductions diverses à détailler sur feuillet séparé
+Y2	2058-A-SD	Déduction des produits affectés aux activités éligibles au régime de la taxation au tonnage
+XH	2058-A-SD	TOTAL II
+XI	2058-A-SD	RÉSULTAT FISCAL \ bénéfice
+XJ	2058-A-SD	RÉSULTAT FISCAL \ déficit
+ZL	2058-A-SD	Déficit de l’exercice reporté en arrière
+XL	2058-A-SD	Déficits antérieurs imputés sur les résultats de l’exercice
+XN	2058-A-SD	RÉSULTAT FISCAL \ bénéfice
+XO	2058-A-SD	RÉSULTAT FISCAL \ déficit
 
+K4	2058-A-SD	Déficits restant à reporter au titre de l’exercice précédent
+K4bis	2058-A-SD	Déficits transférés de plein droit
+K4ter	2058-A-SD	Nombre d’opérations sur l’exercice
+K5	2058-A-SD	Déficits imputés
+K6	2058-A-SD	Déficits reportables
+YJ	2058-A-SD	Déficits de l’exercice
+YK	2058-A-SD	Total des déficits restant à reporter
+ZT	2058-A-SD	Montant déductible correspondant aux droits acquis par les salariés pour les entreprises placées sous le régime de l’article 39–1. 1 e bis Al. 1e r du CGI, dotations de l’exercice
+ZV	2058-A-SD	Indemnités pour congés à payer, charges sociales et fiscales correspondantes non déductibles \ Dotations de l'exercice
+ZW	2058-A-SD	Indemnités pour congés à payer, charges sociales et fiscales correspondantes non déductibles \ Reprises sur l'exercice
+8X	2058-A-SD	Provisions pour risques et charges \ Dotations de l'exercice
+8Y	2058-A-SD	Provisions pour risques et charges \ Reprises sur l'exercice
+8Z	2058-A-SD	Provisions pour risques et charges \ Dotations de l'exercice
+9A	2058-A-SD	Provisions pour risques et charges \ Reprises sur l'exercice
+9B	2058-A-SD	Provisions pour risques et charges \ Dotations de l'exercice
+9C	2058-A-SD	Provisions pour risques et charges \ Reprises sur l'exercice
+9D	2058-A-SD	Provisions pour dépréciation \ Dotations de l'exercice
+9E	2058-A-SD	Provisions pour dépréciation \ Reprises sur l'exercice
+9F	2058-A-SD	Provisions pour dépréciation \ Dotations de l'exercice
+9G	2058-A-SD	Provisions pour dépréciation \ Reprises sur l'exercice
+9H	2058-A-SD	Provisions pour dépréciation \ Dotations de l'exercice
+9J	2058-A-SD	Provisions pour dépréciation \ Reprises sur l'exercice
+9K	2058-A-SD	Charges à payer \ Dotations de l'exercice
+9L	2058-A-SD	Charges à payer \ Reprises sur l'exercice
+9M	2058-A-SD	Charges à payer \ Dotations de l'exercice
+9N	2058-A-SD	Charges à payer \ Reprises sur l'exercice
+9P	2058-A-SD	Charges à payer \ Dotations de l'exercice
+9R	2058-A-SD	Charges à payer \ Reprises sur l'exercice
+9S	2058-A-SD	Charges à payer \ Dotations de l'exercice
+9T	2058-A-SD	Charges à payer \ Reprises sur l'exercice
+YN	2058-A-SD	TOTAUX \ Dotations de l'exercice
+YO	2058-A-SD	TOTAUX \ Reprises sur l'exercice
+L1	2058-A-SD	Montant de la réintégration ou de la déduction au début de l'exercice
+
+ØC	2058-C-SD	Report à nouveau figurant au bilan de l’exercice antérieur à celui pour lequel la déclaration est établie
 ZB	2058-C-SD	Réserve légale	DIF_1061
 ZD	2058-C-SD	Autres réserves	DIF_1068
+ØD	2058-C-SD	Résultat de l’exercice précédant celui pour lequel la déclaration est établie
 ZE	2058-C-SD	Dividendes	DIF_457
+ØE	2058-C-SD	Prélèvements sur les réserves
 ZF	2058-C-SD	Autres répartitions	
 ZG	2058-C-SD	Report à nouveau	DIF_110
+ØF	2058-C-SD	TOTAL I
+ZH	2058-C-SD	TOTAL II
+J7	2058-C-SD	prix de revient des biens pris en crédit–bail
+YQ	2058-C-SD	Engagements de crédit–bail mobilier
+YR	2058-C-SD	Engagements de crédit–bail immobilier
+YS	2058-C-SD	Effets portés à l’escompte et non échus
+YT	2058-C-SD	Sous–traitance
+J8	2058-C-SD	montant des loyers des biens pris en location pour une durée > 6 mois
+XQ	2058-C-SD	Locations, charges locatives et de copropriété
+YU	2058-C-SD	Personnel extérieur à l’entreprise
+SS	2058-C-SD	Rémunérations d’intermédiaires et honoraires (hors rétrocessions)
+YV	2058-C-SD	Rétrocessions d’honoraires, commissions et courtages
+ES	2058-C-SD	ont cotisations versées aux organisations syndicales et professionnelles
+ST	2058-C-SD	Autres comptes
+ZJ	2058-C-SD	Total du poste correspondant à la ligne FW du tableau n° 2052
+YW	2058-C-SD	Taxe professionnelle
+ZS	2058-C-SD	taxe intérieure sur les produits pétroliers
+9Z	2058-C-SD	Autres impôts, taxes et versements assimilés
+YX	2058-C-SD	Total du compte correspondant à la ligne FX du tableau n° 2052
+YY	2058-C-SD	Montant de la T.V.A. collectée
+YZ	2058-C-SD	Montant de la T.V.A. déductible comptabilisée au cours de l’exercice au titre des biens et services ne constituant pas des immobilisations
+ØB	2058-C-SD	Montant brut des salaires
+ØS	2058-C-SD	Montant de la plus–value constatée en franchise d’impôt
+ZK	2058-C-SD	Taux d’intérêt le plus élevé servi aux associés à raison des sommes mises à la disposition de la société
+XP	2058-C-SD	Numéro du centre de gestion agréé
+ZR	2058-C-SD	Filiales et participations
+RG	2058-C-SD	Aides perçues ayant donné droit à la réduction d’impôt prévue au 4 de l’article 238 bis du CGI
+RH	2058-C-SD	Montant de l’investissement reçu qui a donné lieu à amortissement exceptionnel
+JA	2058-C-SD	Société : résultat comme si elle n’avait jamais été membre du groupe.
+JK	2058-C-SD	Plus-values à 15%
+JL	2058-C-SD	Plus-values à 0%
+JM	2058-C-SD	Plus-values à 19%
+JC	2058-C-SD	Imputations
+JD	2058-C-SD	Groupe : résultat d’ensemble
+JN	2058-C-SD	Plus-values à 15%
+JO	2058-C-SD	Plus-values à 0%
+JP	2058-C-SD	Plus-values à 19%
+JF	2058-C-SD	Imputations
+JH	2058-C-SD	1 si société mère, 2 si société filiale
+JJ	2058-C-SD	N° SIRET de la société mère du groupe
 
 010	2033-A-SD	Fonds commercial	-(SLD_206 + SLD_207)
 012	2033-A-SD	Fonds commercial - Amortissement	SLD_2807 + SLD_2906 + SLD_2907
@@ -255,8 +586,8 @@ ZG	2058-C-SD	Report à nouveau	DIF_110
 312	2033-B-SD	Résultat fiscal (bénéfice)	CRD_310
 314	2033-B-SD	Résultat fiscal (perte)	DEB_310
 
-AA	2139-A-SD	Immobilisations incorporelles \ Frais d’établissement \ Brut	-SLD_201
-AB	2139-A-SD	Immobilisations incorporelles \ Frais d’établissement \ Amortissements	SLD_2801
+AA	2139-A-SD	Immobilisations incorporelles \ Frais d'établissement \ Brut	-SLD_201
+AB	2139-A-SD	Immobilisations incorporelles \ Frais d'établissement \ Amortissements	SLD_2801
 AC	2139-A-SD	Immobilisations incorporelles \ Autres \ Brut	-(SLD_208 + SLD_232)
 AD	2139-A-SD	Immobilisations incorporelles \ Autres \ Amortissements	SLD_2808 + SLD_2908 + SLD_2932
 AE	2139-A-SD	Immobilisations corporelles \ Terrains \ Brut   -(SLD_211 + SLD_212)
@@ -291,8 +622,8 @@ BG	2139-A-SD	Valeurs mobilières de placement \ Brut
 BH	2139-A-SD	Valeurs mobilières de placement \ Amortissements	
 BJ	2139-A-SD	Caisses, Banques, C.C.P. et autres disponibilités \ Brut	
 BK	2139-A-SD	Caisses, Banques, C.C.P. et autres disponibilités \ Amortissements	
-BN	2139-A-SD	Charges constatées d’avance \ Brut	
-BO	2139-A-SD	Charges constatées d’avance \ Amortissements	SLD_393
+BN	2139-A-SD	Charges constatées d'avance \ Brut	
+BO	2139-A-SD	Charges constatées d'avance \ Amortissements	SLD_393
 BP	2139-A-SD	Actif Circulant \ Total \ Brut	AY + BJ + BN
 BQ	2139-A-SD	Actif Circulant \Amortissements	AZ + BK + BO
 BR	2139-A-SD	Actif \ Total \ Brut	-SLD_35
@@ -301,9 +632,9 @@ CA	2139-A-SD	Capital social	DEB_495 + DEB_496
 CB	2139-A-SD	Écarts de réévaluation	DEB_4562
 CC	2139-A-SD	Réserves et report à nouveau	
 CD	2139-A-SD	Report à nouveau	-SLD_50
-CE	2139-A-SD	Résultat de l’exercice	SLD_59
-CT	2139-A-SD	Subventions d’investissement	
-CF	2139-A-SD	Subventions d’investissement et provisions réglementées	-(SLD_51 + SLD_53 + SLD_54)
+CE	2139-A-SD	Résultat de l'exercice	SLD_59
+CT	2139-A-SD	Subventions d'investissement	
+CF	2139-A-SD	Subventions d'investissement et provisions réglementées	-(SLD_51 + SLD_53 + SLD_54)
 CG	2139-A-SD	Capitaux propres \ Total	
 CH	2139-A-SD	Capitaux propres \Total Provisions pour risques et charges	DEB_486
 CR	2139-A-SD	Dettes \ Concours bancaires courants et découverts bancaires
@@ -312,13 +643,12 @@ CS	2139-A-SD	Dettes \ Autres emprunts et dettes assimilées (dont emprunts fonci
 CJ	2139-A-SD	Dettes \ Avances et acomptes reçus sur commandes en cours
 CK	2139-A-SD	Dettes \ Fournisseurs et comptes rattachés
 CL	2139-A-SD	Dettes \ Autres dettes
-CM	2139-A-SD	Dettes \ Produits constatés d’avance
+CM	2139-A-SD	Dettes \ Produits constatés d'avance
 CN	2139-A-SD	Dettes \ Total
 CP	2139-A-SD	Passif \ Total
 DD	2139-A-SD	Nombre d'associés
-DA	2139-A-SD	Dont immobilisations financières à moins d’un an
-DB	2139-A-SD	Dont créances à plus d’un an
-DC	2139-A-SD	Dont dettes à plus d’un an
-DE	2139-A-SD	Coût de revient des immobilisations acquises ou créées au cours de l’exercice
-DF	2139-A-SD	Prix de vente hors T.V.A. des immobilisations cédées au cours de l’exercice
-
+DA	2139-A-SD	Dont immobilisations financières à moins d'un an
+DB	2139-A-SD	Dont créances à plus d'un an
+DC	2139-A-SD	Dont dettes à plus d'un an
+DE	2139-A-SD	Coût de revient des immobilisations acquises ou créées au cours de l'exercice
+DF	2139-A-SD	Prix de vente hors T.V.A. des immobilisations cédées au cours de l'exercice
