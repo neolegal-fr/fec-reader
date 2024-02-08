@@ -68,10 +68,11 @@ public class LiasseFiscaleHelper {
 
     public static LiasseFiscale readLiasseFiscalePDF(String filename) throws IOException {
         LiasseFiscale liasse = LiasseFiscale.builder().build();
-        // Détermination empirique des distances entre les lignes et les colonnes des tableaux 
+        // Détermination empirique des distances entre les lignes et les colonnes des
+        // tableaux
         // des liasses fiscales
         SpreadsheetExtractionAlgorithm sea = new SpreadsheetExtractionAlgorithm()
-                .withMaxGapBetweenAlignedHorizontalRulings(20)
+                .withMaxGapBetweenAlignedHorizontalRulings(30)
                 .withMinSpacingBetweenRulings(10f);
 
         try (InputStream in = new FileInputStream(filename);
@@ -81,7 +82,8 @@ public class LiasseFiscaleHelper {
             while (pi.hasNext()) {
                 Page page = pi.next();
                 Optional<NatureFormulaire> match = resolveNatureFormulaire(page);
-                if (match.isPresent()) {
+                if (match.isPresent() && liasse.getFormulaires().stream()
+                        .noneMatch(formulaire -> match.get().equals(formulaire.getNature()))) {
                     NatureFormulaire natureFormulaire = match.get();
                     if (liasse.getRegime() == null) {
                         liasse.setRegime(natureFormulaire.getRegimeImposition());
@@ -110,7 +112,7 @@ public class LiasseFiscaleHelper {
                 }
                 for (RectangularTextContainer<?> cell : row) {
                     String text = cell.getText().trim();
-                    if (found && cell.getWidth() > 10 && cell.getHeight() > 10) {
+                    if (found) {
                         boolean isNegative = text.startsWith("(");
                         text = text.replaceAll(" ()", "");
 

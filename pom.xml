@@ -6,7 +6,7 @@
 
     <groupId>fr.neolegal</groupId>
     <artifactId>fec-reader</artifactId>
-    <version>0.1.14-SNAPSHOT</version>
+    <version>0.1.14</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <url>https://github.com/nicolasriousset/fec-reader</url>
@@ -100,7 +100,7 @@
         <dependency>
             <groupId>fr.neolegal</groupId>
             <artifactId>tabula</artifactId>
-            <version>1.0.7</version>
+            <version>1.0.8</version>
         </dependency>
     </dependencies>
 
