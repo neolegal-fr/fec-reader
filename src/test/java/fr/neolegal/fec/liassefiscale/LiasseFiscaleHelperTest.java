@@ -1,17 +1,21 @@
 package fr.neolegal.fec.liassefiscale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Path;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 import fr.neolegal.fec.FecHelper;
 
@@ -157,6 +161,7 @@ public class LiasseFiscaleHelperTest {
                 .readLiasseFiscalePDF("target/test-classes/liasse-publique-G.pdf");
 
         // checkParsedLiasse(liasse, "target/test-classes/liasse-publique-G-expected.csv", 0);
+        assertNotNull(liasse);
     }    
 
     @Test
@@ -166,4 +171,27 @@ public class LiasseFiscaleHelperTest {
 
         checkParsedLiasse(liasse, "target/test-classes/liasse-publique-H-expected.csv", 11);
     }        
+
+    @Test
+    void readLiasseFiscalePDF_I() throws IOException {
+        LiasseFiscale liasse = LiasseFiscaleHelper
+                .readLiasseFiscalePDF("target/test-classes/liasse-anonyme-I.pdf");
+
+        checkParsedLiasse(liasse, "target/test-classes/liasse-anonyme-I-expected.csv", 453);
+    }   
+    
+    void writeExpectedValuesCsv(LiasseFiscale liasse, String filePath) throws IOException {
+        StringBuilder builder = new StringBuilder();
+
+        for (Formulaire formulaire : liasse.getFormulaires()) {            
+            for (Repere repere : formulaire.reperes()) {
+                builder.append(repere.getSymbole());
+                builder.append(",");
+                builder.append(String.format(Locale.US,"%.2f", liasse.getMontant(repere).orElse(0.0)));
+                builder.append("\r\n");
+            }
+        }    
+        
+        FileUtils.writeStringToFile(new File(filePath), builder.toString(), "UTF-8");
+    }
 }

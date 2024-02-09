@@ -1,9 +1,11 @@
 # fec-reader
-Librairie JAVA de Lecture des fichiers des écritures comptables conformes aux normes codifiées à l’article A.47 A-1 du livre des procédures fiscales.
+Librairie JAVA de :
+* lecture des fichiers des écritures comptables conformes aux normes codifiées à l’article A.47 A-1 du livre des procédures fiscales.
+* calcul des montants de la liasse fiscale (tableaux comptables bilan-actif, passif, etc définis dans le formulaire DGFiP N° 2050-SD 2023, cerfa N° 15949 * 05)
+* extraction des données des formulaires de liasse fiscale en PDF
 
-La librairie ne supporte que les fichiers en format plat (CSV), pas le format XML.
+La librairie ne supporte que les fichiers FEC en format plat (CSV), pas le format XML, et les liasses fiscales en PDF (pas les liasses scannées).
 
-En plus de la lecture du contenu du fichier, la librairie permet également de recalculer les montants de la liasse fiscale (tableaux comptables bilan-actif, passif, etc définis dans le formulaire DGFiP N° 2050-SD 2023, cerfa N° 15949 * 05).
 
 ## Utilisation
 ### Maven
@@ -13,7 +15,7 @@ Pour utiliser la librairie avec Maven, ajouter la dépendance:
 <dependency>
     <groupId>fr.neolegal</groupId>
     <artifactId>fec-reader</artifactId>
-    <version>0.1.2</version>
+    <version>0.1.15</version>
 </dependency>
 ```
 

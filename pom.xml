@@ -6,7 +6,7 @@
 
     <groupId>fr.neolegal</groupId>
     <artifactId>fec-reader</artifactId>
-    <version>0.1.14</version>
+    <version>0.1.15</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <url>https://github.com/nicolasriousset/fec-reader</url>
@@ -100,7 +100,7 @@
         <dependency>
             <groupId>fr.neolegal</groupId>
             <artifactId>tabula</artifactId>
-            <version>1.0.8</version>
+            <version>1.0.9</version>
         </dependency>
     </dependencies>
 
@@ -183,7 +183,7 @@
                     <serverId>ossrh</serverId>
                     <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
                     <!-- Pas d'auto release, il faut aller sur  https://s01.oss.sonatype.org/ pour publier les artefacts-->
-                    <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
         </plugins>
