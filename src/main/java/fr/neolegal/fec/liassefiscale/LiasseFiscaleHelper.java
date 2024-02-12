@@ -5,12 +5,19 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import static java.util.Objects.isNull;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -21,6 +28,7 @@ import net.objecthunter.exp4j.VariableProvider;
 import technology.tabula.ObjectExtractor;
 import technology.tabula.Page;
 import technology.tabula.PageIterator;
+import technology.tabula.Rectangle;
 import technology.tabula.RectangularTextContainer;
 import technology.tabula.Table;
 import technology.tabula.extractors.SpreadsheetExtractionAlgorithm;
@@ -69,10 +77,10 @@ public class LiasseFiscaleHelper {
     public static LiasseFiscale readLiasseFiscalePDF(String filename) throws IOException {
         LiasseFiscale liasse = LiasseFiscale.builder().build();
         // Détermination empirique des distances entre les lignes et les colonnes des
-        // tableaux
-        // des liasses fiscales
+        // tableaux des liasses fiscales
         SpreadsheetExtractionAlgorithm sea = new SpreadsheetExtractionAlgorithm()
                 .withMaxGapBetweenAlignedHorizontalRulings(30)
+                .withMaxGapBetweenAlignedVerticalRulings(15)
                 .withMinSpacingBetweenRulings(10f);
 
         try (InputStream in = new FileInputStream(filename);
@@ -89,17 +97,71 @@ public class LiasseFiscaleHelper {
                         liasse.setRegime(natureFormulaire.getRegimeImposition());
                     }
                     List<Table> tables = sea.extract(page);
-                    // writeTablesAsSvg(tables, String.format("tables-page-%d.html", page.getPageNumber()));
+                    writeTablesAsSvg(tables, String.format("tables-page-%d.html", page.getPageNumber()));
                     Optional<Table> tableMatch = tables.stream()
                             .max(Comparator.comparing(Table::getRowCount));
                     if (tableMatch.isPresent()) {
-                        Formulaire formulaire = parseFormulaire(tableMatch.get(), natureFormulaire);
+                        Table table = tableMatch.get();
+                        Formulaire formulaire = parseFormulaire(table, natureFormulaire);
                         liasse.getFormulaires().add(formulaire);
+
+                        if (NatureFormulaire.DGFIP_2050_BILAN_ACTIF.equals(natureFormulaire)) {
+                            if (StringUtils.isEmpty(liasse.getSiren())) {
+                                liasse.setSiren(parseSiren(page, table).orElse(null));
+                            }
+                            if (isNull(liasse.getClotureExercice())) {
+                                liasse.setClotureExercice(parseClotureExercice(table).orElse(null));
+                            }
+                        }
                     }
                 }
             }
         }
         return liasse;
+    }
+
+    private static Optional<LocalDate> parseClotureExercice(Table table) {
+        Pattern pattern = Pattern.compile(".*clos le.*", Pattern.CASE_INSENSITIVE);
+        for (List<RectangularTextContainer> row : table.getRows()) {
+            for (RectangularTextContainer<?> cell : row) {
+                String text = cell.getText().trim();
+                Matcher matcher = pattern.matcher(text);
+                if (matcher.find()) {
+                    String date = text.replaceAll("[^\\d]", "");
+                    try {
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+                        return Optional.of(LocalDate.parse(date, formatter));
+                    } catch (Exception e) {
+                        return Optional.empty();
+                    }
+                }
+            }
+        }
+
+        return Optional.empty();
+    }
+
+    private static Optional<String> parseSiren(Page page, Table table) {
+        Pattern sirenPattern = Pattern.compile(".*SIRET.*", Pattern.CASE_INSENSITIVE);
+        for (List<RectangularTextContainer> row : table.getRows()) {
+            List<RectangularTextContainer> cells = row.stream().filter(cell -> cell.getArea() > 0.0).collect(Collectors.toList());
+            Rectangle rowArea = cells.size() > 0 ? cells.get(0) : new Rectangle();
+            for (RectangularTextContainer<?> cell : cells) {
+                rowArea.setTop(Math.min(rowArea.getTop(), cell.getTop()));
+                rowArea.setLeft(Math.min(rowArea.getLeft(), cell.getLeft()));
+                rowArea.setBottom(Math.max(rowArea.getBottom(), cell.getBottom()));
+                rowArea.setRight(Math.max(rowArea.getRight(), cell.getRight()));
+            }
+            String text = page.getText(rowArea).stream().map(te -> te.getText()).collect(Collectors.joining());
+            Matcher matcher = sirenPattern.matcher(text);
+            if (matcher.matches()) {
+                String siren = StringUtils.left(text.replaceAll("[^\\d]", ""), 9);
+                return Optional.of(siren);
+            }
+
+        }
+
+        return Optional.empty();
     }
 
     private static Formulaire parseFormulaire(Table table, NatureFormulaire natureFormulaire) {
