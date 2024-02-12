@@ -142,26 +142,34 @@ public class LiasseFiscaleHelper {
     }
 
     private static Optional<String> parseSiren(Page page, Table table) {
-        Pattern sirenPattern = Pattern.compile(".*SIRET.*", Pattern.CASE_INSENSITIVE);
+        Pattern sirenPattern = Pattern.compile(".*S\\s?I\\s?R\\s?E\\s?T.*", Pattern.CASE_INSENSITIVE);
         for (List<RectangularTextContainer> row : table.getRows()) {
-            List<RectangularTextContainer> cells = row.stream().filter(cell -> cell.getArea() > 0.0).collect(Collectors.toList());
-            Rectangle rowArea = cells.size() > 0 ? cells.get(0) : new Rectangle();
-            for (RectangularTextContainer<?> cell : cells) {
-                rowArea.setTop(Math.min(rowArea.getTop(), cell.getTop()));
-                rowArea.setLeft(Math.min(rowArea.getLeft(), cell.getLeft()));
-                rowArea.setBottom(Math.max(rowArea.getBottom(), cell.getBottom()));
-                rowArea.setRight(Math.max(rowArea.getRight(), cell.getRight()));
-            }
-            String text = page.getText(rowArea).stream().map(te -> te.getText()).collect(Collectors.joining());
-            Matcher matcher = sirenPattern.matcher(text);
+            String rowText = getRowText(page, row);
+            Matcher matcher = sirenPattern.matcher(rowText);
             if (matcher.matches()) {
-                String siren = StringUtils.left(text.replaceAll("[^\\d]", ""), 9);
+                String siren = StringUtils.left(rowText.replaceAll("[^\\d]", ""), 9);
                 return Optional.of(siren);
             }
 
         }
 
         return Optional.empty();
+    }
+
+    private static String getRowText(Page page, List<RectangularTextContainer> row) {
+        return getRowText(page, row, " ");
+    }
+
+    private static String getRowText(Page page, List<RectangularTextContainer> row, String delimiter) {
+        List<RectangularTextContainer> cells = row.stream().filter(cell -> cell.getArea() > 0.0).collect(Collectors.toList());
+        Rectangle rowArea = cells.size() > 0 ? cells.get(0) : new Rectangle();
+        for (RectangularTextContainer<?> cell : cells) {
+            rowArea.setTop(Math.min(rowArea.getTop(), cell.getTop()));
+            rowArea.setLeft(Math.min(rowArea.getLeft(), cell.getLeft()));
+            rowArea.setBottom(Math.max(rowArea.getBottom(), cell.getBottom()));
+            rowArea.setRight(Math.max(rowArea.getRight(), cell.getRight()));
+        }
+        return page.getText(rowArea).stream().map(te -> te.getText()).collect(Collectors.joining(delimiter));
     }
 
     private static Formulaire parseFormulaire(Table table, NatureFormulaire natureFormulaire) {
