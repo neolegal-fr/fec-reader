@@ -97,7 +97,7 @@ public class LiasseFiscaleHelper {
                         liasse.setRegime(natureFormulaire.getRegimeImposition());
                     }
                     List<Table> tables = sea.extract(page);
-                    writeTablesAsSvg(tables, String.format("tables-page-%d.html", page.getPageNumber()));
+                    // writeTablesAsSvg(tables, String.format("tables-page-%d.html", page.getPageNumber()));
                     Optional<Table> tableMatch = tables.stream()
                             .max(Comparator.comparing(Table::getRowCount));
                     if (tableMatch.isPresent()) {
@@ -220,11 +220,6 @@ public class LiasseFiscaleHelper {
         if (!StringUtils.containsAnyIgnoreCase(pageText, "DGFiP", "N°")) {
             return Optional.empty();
         }
-        // if (page.getText().stream()
-        // .noneMatch(textElem -> StringUtils.containsAnyIgnoreCase(textElem.getText(),
-        // "DGFiP", "N°"))) {
-        // return Optional.empty();
-        // }
 
         for (NatureFormulaire formulaire : NatureFormulaire.values()) {
             if (StringUtils.containsIgnoreCase(pageText, formulaire.getNumero().toString())) {
