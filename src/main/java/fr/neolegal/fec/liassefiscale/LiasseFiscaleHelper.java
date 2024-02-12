@@ -122,7 +122,8 @@ public class LiasseFiscaleHelper {
 
     private static Optional<LocalDate> parseClotureExercice(Table table) {
         Pattern pattern = Pattern.compile(".*clos le.*", Pattern.CASE_INSENSITIVE);
-        for (List<RectangularTextContainer> row : table.getRows()) {
+        for (@SuppressWarnings("rawtypes")
+        List<RectangularTextContainer> row : table.getRows()) {
             for (RectangularTextContainer<?> cell : row) {
                 String text = cell.getText().trim();
                 Matcher matcher = pattern.matcher(text);
@@ -141,6 +142,7 @@ public class LiasseFiscaleHelper {
         return Optional.empty();
     }
 
+    @SuppressWarnings("rawtypes")
     private static Optional<String> parseSiren(Page page, Table table) {
         Pattern sirenPattern = Pattern.compile(".*S\\s?I\\s?R\\s?E\\s?T.*", Pattern.CASE_INSENSITIVE);
         for (List<RectangularTextContainer> row : table.getRows()) {
@@ -156,12 +158,16 @@ public class LiasseFiscaleHelper {
         return Optional.empty();
     }
 
+    @SuppressWarnings("rawtypes")
     private static String getRowText(Page page, List<RectangularTextContainer> row) {
         return getRowText(page, row, " ");
     }
 
+    @SuppressWarnings("rawtypes")
     private static String getRowText(Page page, List<RectangularTextContainer> row, String delimiter) {
-        List<RectangularTextContainer> cells = row.stream().filter(cell -> cell.getArea() > 0.0).collect(Collectors.toList());
+
+        List<RectangularTextContainer> cells = row.stream().filter(cell -> cell.getArea() > 0.0)
+                .collect(Collectors.toList());
         Rectangle rowArea = cells.size() > 0 ? cells.get(0) : new Rectangle();
         for (RectangularTextContainer<?> cell : cells) {
             rowArea.setTop(Math.min(rowArea.getTop(), cell.getTop()));
@@ -172,6 +178,7 @@ public class LiasseFiscaleHelper {
         return page.getText(rowArea).stream().map(te -> te.getText()).collect(Collectors.joining(delimiter));
     }
 
+    @SuppressWarnings("rawtypes")
     private static Formulaire parseFormulaire(Table table, NatureFormulaire natureFormulaire) {
         Formulaire formulaire = buildFormulaire(natureFormulaire);
         for (Repere repere : formulaire.reperes()) {
@@ -228,6 +235,7 @@ public class LiasseFiscaleHelper {
         return Optional.empty();
     }
 
+    @SuppressWarnings("rawtypes")
     private static void writeTablesAsSvg(List<Table> tables, String htmlFileName) throws IOException {
         StringBuilder sb = new StringBuilder();
         sb.append("<html><body>");
