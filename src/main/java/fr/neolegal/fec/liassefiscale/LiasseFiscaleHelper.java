@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -22,6 +23,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.pdfbox.text.PDFTextStripperByArea;
 
 import fr.neolegal.fec.Fec;
 import net.objecthunter.exp4j.VariableProvider;
@@ -83,12 +85,13 @@ public class LiasseFiscaleHelper {
                 .withMaxGapBetweenAlignedVerticalRulings(15)
                 .withMinSpacingBetweenRulings(10f);
 
+        List<Table> docTables = new LinkedList<>();
         try (InputStream in = new FileInputStream(filename);
                 PDDocument document = PDDocument.load(in);
                 ObjectExtractor extractor = new ObjectExtractor(document)) {
             PageIterator pi = extractor.extract();
             while (pi.hasNext()) {
-                Page page = pi.next();
+                Page page = pi.next();                
                 Optional<NatureFormulaire> match = resolveNatureFormulaire(page);
                 if (match.isPresent() && liasse.getFormulaires().stream()
                         .noneMatch(formulaire -> match.get().equals(formulaire.getNature()))) {
@@ -96,45 +99,38 @@ public class LiasseFiscaleHelper {
                     if (liasse.getRegime() == null) {
                         liasse.setRegime(natureFormulaire.getRegimeImposition());
                     }
-                    List<Table> tables = sea.extract(page);
-                    // writeTablesAsSvg(tables, String.format("tables-page-%d.html", page.getPageNumber()));
-                    Optional<Table> tableMatch = tables.stream()
+                    List<Table> pageTables = sea.extract(page);                    
+                    Optional<Table> tableMatch = pageTables.stream()
                             .max(Comparator.comparing(Table::getRowCount));
-                    if (tableMatch.isPresent()) {
+                    if (tableMatch.isPresent()) {                        
                         Table table = tableMatch.get();
+                        docTables.add(table);
                         Formulaire formulaire = parseFormulaire(table, natureFormulaire);
                         liasse.getFormulaires().add(formulaire);
 
-                        if (NatureFormulaire.DGFIP_2050_BILAN_ACTIF.equals(natureFormulaire)) {
-                            if (StringUtils.isEmpty(liasse.getSiren())) {
-                                liasse.setSiren(parseSiren(page, table).orElse(null));
-                            }
-                            if (isNull(liasse.getClotureExercice())) {
-                                liasse.setClotureExercice(parseClotureExercice(table).orElse(null));
-                            }
+                        String tableText = extractTableText(table, page);
+                        if (StringUtils.isEmpty(liasse.getSiren()) && natureFormulaire.containsSiren()) {
+                            liasse.setSiren(parseSiren(tableText).orElse(null));
+                        }
+                        if (isNull(liasse.getClotureExercice()) && natureFormulaire.containsClotureExercice()) {
+                            liasse.setClotureExercice(parseClotureExercice(table).orElse(null));
                         }
                     }
                 }
             }
         }
+        // writeTablesAsSvg(docTables, "tables.html");
         return liasse;
     }
 
-    private static Optional<LocalDate> parseClotureExercice(Table table) {
-        Pattern pattern = Pattern.compile(".*clos le.*", Pattern.CASE_INSENSITIVE);
-        for (@SuppressWarnings("rawtypes")
-        List<RectangularTextContainer> row : table.getRows()) {
+    @SuppressWarnings("rawtypes")
+    static Optional<LocalDate> parseClotureExercice(Table table) {
+        for (List<RectangularTextContainer> row : table.getRows()) {
             for (RectangularTextContainer<?> cell : row) {
-                String text = cell.getText().trim();
-                Matcher matcher = pattern.matcher(text);
-                if (matcher.find()) {
-                    String date = text.replaceAll("[^\\d]", "");
-                    try {
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
-                        return Optional.of(LocalDate.parse(date, formatter));
-                    } catch (Exception e) {
-                        return Optional.empty();
-                    }
+                String text = cell.getText();
+                Optional<LocalDate> match = parseClotureExercice(text);
+                if (match.isPresent()) {
+                    return match;
                 }
             }
         }
@@ -142,25 +138,35 @@ public class LiasseFiscaleHelper {
         return Optional.empty();
     }
 
-    @SuppressWarnings("rawtypes")
-    private static Optional<String> parseSiren(Page page, Table table) {
-        Pattern sirenPattern = Pattern.compile(".*S\\s?I\\s?R\\s?E\\s?T.*", Pattern.CASE_INSENSITIVE);
-        for (List<RectangularTextContainer> row : table.getRows()) {
-            String rowText = getRowText(page, row);
-            Matcher matcher = sirenPattern.matcher(rowText);
-            if (matcher.matches()) {
-                String siren = StringUtils.left(rowText.replaceAll("[^\\d]", ""), 9);
-                return Optional.of(siren);
+    static Optional<LocalDate> parseClotureExercice(String text) {
+        Pattern pattern = Pattern.compile(".*N[,\\s]+(clos le|c l o s   l e)([\\s,:]*)(.+)",
+                Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
+        Matcher matcher = pattern.matcher(text);
+        if (matcher.matches()) {
+            String date = matcher.group(3);
+            date = StringUtils.left(date.replaceAll("[^\\d]", ""), 8);
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+                return Optional.of(LocalDate.parse(date, formatter));
+            } catch (Exception e) {
+                return Optional.empty();
             }
-
         }
 
         return Optional.empty();
     }
 
-    @SuppressWarnings("rawtypes")
-    private static String getRowText(Page page, List<RectangularTextContainer> row) {
-        return getRowText(page, row, " ");
+    static Optional<String> parseSiren(String text) {
+        Pattern sirenPattern = Pattern.compile(".*(SIREN|SIRET|S I R E N|S I R E T)[^\\d]{0,5}(.+)",
+                Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
+        Matcher matcher = sirenPattern.matcher(text);
+        if (matcher.matches()) {
+            String siren = StringUtils.left(matcher.group(2), 18);
+            siren = StringUtils.left(siren.replaceAll("[^\\d]", ""), 9);
+            return Optional.of(siren);
+        }
+
+        return Optional.empty();
     }
 
     @SuppressWarnings("rawtypes")
@@ -210,19 +216,41 @@ public class LiasseFiscaleHelper {
         return formulaire;
     }
 
-    private static Optional<NatureFormulaire> resolveNatureFormulaire(Page page) throws IOException {
+    @SuppressWarnings("rawtypes")
+    private static String extractTableText(Table table, Page page) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        for (List<RectangularTextContainer> row : table.getRows()) {
+            sb.append(getRowText(page, row, ""));
+            sb.append("\r\n");
+        }
+        return sb.toString();
+    }
 
+    @SuppressWarnings("unused")
+    private static String extractPageText(Page page) throws IOException {
         PDFTextStripper reader = new PDFTextStripper();
         reader.setStartPage(page.getPageNumber());
         reader.setEndPage(page.getPageNumber());
-        String pageText = reader.getText(page.getPDDoc());
+        return reader.getText(page.getPDDoc());
+    }
 
-        if (!StringUtils.containsAnyIgnoreCase(pageText, "DGFiP", "N°")) {
+    private static Optional<NatureFormulaire> resolveNatureFormulaire(Page page) throws IOException {
+        PDFTextStripperByArea stripper = new PDFTextStripperByArea();
+        // On ne regarde que le texte de l'en-tete. Empiriquement, on estime que l'en-tête fait 8% de la hauteur max
+        Rectangle rect = new Rectangle(0, 0, page.width, (int)((double)page.height * 0.08));
+        stripper.addRegion("header", rect);
+
+        stripper.extractRegions(page.getPDPage());
+
+        String headerText = stripper.getTextForRegion("header");
+
+
+        if (!StringUtils.containsAnyIgnoreCase(headerText, "DGFiP", "N°")) {
             return Optional.empty();
         }
 
         for (NatureFormulaire formulaire : NatureFormulaire.values()) {
-            if (StringUtils.containsIgnoreCase(pageText, formulaire.getNumero().toString())) {
+            if (StringUtils.containsIgnoreCase(headerText, formulaire.getNumero().toString())) {
                 return Optional.of(formulaire);
             }
         }
@@ -230,7 +258,7 @@ public class LiasseFiscaleHelper {
         return Optional.empty();
     }
 
-    @SuppressWarnings("rawtypes")
+    @SuppressWarnings({ "rawtypes", "unused" })
     private static void writeTablesAsSvg(List<Table> tables, String htmlFileName) throws IOException {
         StringBuilder sb = new StringBuilder();
         sb.append("<html><body>");
@@ -239,7 +267,7 @@ public class LiasseFiscaleHelper {
             sb.append("<h1>Table " + i + "</h1>");
             sb.append(String.format(Locale.US,
                     "<svg width=\"100%%\" viewbox=\"0 0 %s %s\" xmlns=\"http://www.w3.org/2000/svg\">",
-                    table.getWidth() + 50.0, table.getHeight() + 10.0));
+                    table.getWidth() + 50.0, table.getHeight() + 50.0));
             for (List<RectangularTextContainer> row : table.getRows()) {
                 for (RectangularTextContainer<?> cell : row) {
                     if (true /* cell.height > 10 && cell.width > 10 */) {

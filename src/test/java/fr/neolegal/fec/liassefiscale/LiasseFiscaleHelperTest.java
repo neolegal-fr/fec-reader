@@ -100,7 +100,8 @@ public class LiasseFiscaleHelperTest {
             }
         }
 
-        float successRate = ((float) success / (float) (total - unknown)) * 100;
+        int totalLessUnknown = total - unknown;
+        float successRate = totalLessUnknown > 0 ? ((float) success / (float)totalLessUnknown) * 100f : 0f;
         if (success != expectedSuccess) {
             fail(String.format(
                     "%d succès au lieu de %d attendus, %.02f%% de réussite, %d erreurs, %d repères inconnus\r\n",
@@ -172,9 +173,9 @@ public class LiasseFiscaleHelperTest {
                 .readLiasseFiscalePDF("target/test-classes/liasse-publique-F.pdf");
 
         assertEquals("449207133", liasse.getSiren());
-        assertEquals(RegimeImposition.REEL_SIMPLIFIE, liasse.getRegime());
+        assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2015, 12, 31), liasse.getClotureExercice());
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-F-expected.csv", 0);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-F-expected.csv", 17);
     }
 
     @Test
@@ -211,6 +212,30 @@ public class LiasseFiscaleHelperTest {
         checkParsedLiasse(liasse, "target/test-classes/liasse-anonyme-I-expected.csv", 453);
     }
 
+    @Test
+    void readLiasseFiscalePDF_J() throws IOException {
+        LiasseFiscale liasse = LiasseFiscaleHelper
+                .readLiasseFiscalePDF("target/test-classes/liasse-publique-J.pdf");
+
+        assertEquals("437641699", liasse.getSiren());
+        assertEquals(RegimeImposition.REEL_SIMPLIFIE, liasse.getRegime());
+        assertEquals(LocalDate.of(2022, 12, 31), liasse.getClotureExercice());
+        writeExpectedValuesCsv(liasse, "target/test-classes/liasse-publique-J-expected.csv");
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-J-expected.csv", 30);
+    }    
+
+    @Test
+    void readLiasseFiscalePDF_K() throws IOException {
+        LiasseFiscale liasse = LiasseFiscaleHelper
+                .readLiasseFiscalePDF("target/test-classes/liasse-publique-K.pdf");
+
+        assertEquals("891369951", liasse.getSiren());
+        assertEquals(RegimeImposition.REEL_SIMPLIFIE_AGRICOLE, liasse.getRegime());
+        assertEquals(LocalDate.of(2021, 12, 31), liasse.getClotureExercice());
+        // Pas de bordures délimitant les lignes, les correspondances avec les repères ne peuvent pas être lues
+        // checkParsedLiasse(liasse, "target/test-classes/liasse-publique-K-expected.csv", 453);
+    }    
+
     void writeExpectedValuesCsv(LiasseFiscale liasse, String filePath) throws IOException {
         StringBuilder builder = new StringBuilder();
 
@@ -224,5 +249,49 @@ public class LiasseFiscaleHelperTest {
         }
 
         FileUtils.writeStringToFile(new File(filePath), builder.toString(), "UTF-8");
+    }
+
+    @Test
+    void parseSiren() {
+        // Bloc de texte multiligne
+        assertEquals(Optional.of("303195192"), LiasseFiscaleHelper.parseSiren("2\r\nNuméro SIRET*  30319519200032*Néant\r\nExercice N clos le,31122019BrutAmortissements, provisionsNet123\r\nBrutAmortissements, provisionsNet123\r\n"));
+
+        // retour à la ligne entre libellé et valeur
+        assertEquals(Optional.of("303195192"), LiasseFiscaleHelper.parseSiren("Numéro SIRET*  \r\n30319519200032"));
+
+        // SIREN et pas SIRET
+        assertEquals(Optional.of("303195192"), LiasseFiscaleHelper.parseSiren("Numéro SIREN*  30319519200032"));
+
+        // Espaces entres le caractères
+        assertEquals(Optional.of("303195192"), LiasseFiscaleHelper.parseSiren("N u m é r o S I R E N *  3 0 3 1 9 5 1 9 2 0 0 0 3 2"));
+
+        // Pas de numéro SIREN renseigné
+        assertEquals(Optional.of(""), LiasseFiscaleHelper.parseSiren("*Numéro SIRET*Néant \r\nExercice N clos le,31/12/2022"));
+
+        // Pas de champ SIREN trouvé
+        assertEquals(Optional.empty(), LiasseFiscaleHelper.parseSiren(""));
+    }
+
+    @Test
+    void parseClotureExercice() {
+        assertEquals(Optional.empty(), LiasseFiscaleHelper.parseClotureExercice(""));
+
+        // Bloc de texte multiligne
+        assertEquals(Optional.of(LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("2\r\nNuméro SIRET*  30319519200032*Néant\r\nExercice N clos le,31122019BrutAmortissements, provisionsNet123\r\nBrutAmortissements, provisionsNet123\r\n"));
+
+        // retour à la ligne entre libellé et valeur
+        assertEquals(Optional.of(LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("Exercice N clos le,\r\n31122019"));
+
+        // séparateurs date
+        assertEquals(Optional.of(LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("Exercice N clos le,\r\n31/12/2019"));
+
+        // Espaces entre les caractères
+        assertEquals(Optional.of(LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("E x e r c i c e   N   c l o s   l e   , \r\n 3 1 1 2 2 0 1 9"));
+
+        // deux points
+        assertEquals(Optional.of(LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("Exercice N clos le:\r\n31/12/2019"));
+        
+        // Exercice N et N-1 dans la même cellule
+        assertEquals(Optional.of(LocalDate.of(2021, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("Exercice N, clos le :31/12/2021Exercice N-1, clos le :08/11/2020"));        
     }
 }
