@@ -91,26 +91,37 @@ public class LiasseFiscaleHelper {
                 ObjectExtractor extractor = new ObjectExtractor(document)) {
             PageIterator pi = extractor.extract();
             while (pi.hasNext()) {
-                Page page = pi.next();                
+                Page page = pi.next();
                 Optional<NatureFormulaire> match = resolveNatureFormulaire(page);
-                if (match.isPresent() && liasse.getFormulaires().stream()
-                        .noneMatch(formulaire -> match.get().equals(formulaire.getNature()))) {
+                if (match.isPresent()) {
                     NatureFormulaire natureFormulaire = match.get();
                     if (liasse.getRegime() == null) {
                         liasse.setRegime(natureFormulaire.getRegimeImposition());
                     }
-                    List<Table> pageTables = sea.extract(page);                    
+                    List<Table> pageTables = sea.extract(page);
                     Optional<Table> tableMatch = pageTables.stream()
                             .max(Comparator.comparing(Table::getRowCount));
-                    if (tableMatch.isPresent()) {                        
+                    if (tableMatch.isPresent()) {
                         Table table = tableMatch.get();
                         docTables.add(table);
                         Formulaire formulaire = parseFormulaire(table, natureFormulaire);
-                        liasse.getFormulaires().add(formulaire);
 
-                        String tableText = extractTableText(table, page);
+                        // On peut à tort crorie qu'une page correspond à un formulaire, et le trouver
+                        // deux fois dans la liasse. Dans cette situation, on conserve le formulaire
+                        // avec le plus de valeurs renseignées
+                        Formulaire existingFormulaire = liasse.getFormulaires().stream()
+                                .filter(f -> f.getNature().equals(natureFormulaire)).findFirst().orElse(null);
+                        if (existingFormulaire != null) {
+                            if (existingFormulaire.nbMontantsNonNull() < formulaire.nbMontantsNonNull()) {
+                                liasse.getFormulaires().remove(existingFormulaire);
+                                liasse.getFormulaires().add(formulaire);
+                            }
+                        } else {
+                            liasse.getFormulaires().add(formulaire);
+                        }
+
                         if (StringUtils.isEmpty(liasse.getSiren()) && natureFormulaire.containsSiren()) {
-                            liasse.setSiren(parseSiren(tableText).orElse(null));
+                            liasse.setSiren(parseSiren(table, page).orElse(null));
                         }
                         if (isNull(liasse.getClotureExercice()) && natureFormulaire.containsClotureExercice()) {
                             liasse.setClotureExercice(parseClotureExercice(table).orElse(null));
@@ -119,7 +130,7 @@ public class LiasseFiscaleHelper {
                 }
             }
         }
-        // writeTablesAsSvg(docTables, "tables.html");
+        writeTablesAsSvg(docTables, "tables.html");
         return liasse;
     }
 
@@ -139,21 +150,45 @@ public class LiasseFiscaleHelper {
     }
 
     static Optional<LocalDate> parseClotureExercice(String text) {
-        Pattern pattern = Pattern.compile(".*N[,\\s]+(clos le|c l o s   l e)([\\s,:]*)(.+)",
+        final String regex = "(clos le|c l o s   l e)([\\s,:]*)(.+)";
+        // Il peut y avoir les dates de cloture des exercices N, et N-1, on s'assure de
+        // matcher le N
+        Pattern pattern = Pattern.compile(".*N[,\\s]+" + regex,
                 Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
         Matcher matcher = pattern.matcher(text);
+        String date = "";
         if (matcher.matches()) {
-            String date = matcher.group(3);
+            date = matcher.group(3);
             date = StringUtils.left(date.replaceAll("[^\\d]", ""), 8);
-            try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
-                return Optional.of(LocalDate.parse(date, formatter));
-            } catch (Exception e) {
-                return Optional.empty();
+        } else {
+
+            // PAs de correspondance, il n'y a peut être pas de N
+            pattern = Pattern.compile(".*" + regex,
+                    Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
+            matcher = pattern.matcher(text);
+            if (matcher.matches()) {
+                date = matcher.group(3);
+                date = StringUtils.left(date.replaceAll("[^\\d]", ""), 8);
             }
         }
 
-        return Optional.empty();
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(date.length() == 8 ? "ddMMyyyy" : "ddMMyy");
+            return Optional.of(LocalDate.parse(date, formatter));
+        } catch (Exception e) {
+            return Optional.empty();
+        }
+    }
+
+    static Optional<String> parseSiren(Table table, Page page) throws IOException {
+        String tableText = extractTableText(table, page);
+        return parseSiren(tableText).or(() -> {
+            try {
+                return parseSiren(extractPageText(page));
+            } catch (IOException e) {
+                return Optional.empty();
+            }
+        });
     }
 
     static Optional<String> parseSiren(String text) {
@@ -236,26 +271,16 @@ public class LiasseFiscaleHelper {
 
     private static Optional<NatureFormulaire> resolveNatureFormulaire(Page page) throws IOException {
         PDFTextStripperByArea stripper = new PDFTextStripperByArea();
-        // On ne regarde que le texte de l'en-tete. Empiriquement, on estime que l'en-tête fait 8% de la hauteur max
-        Rectangle rect = new Rectangle(0, 0, page.width, (int)((double)page.height * 0.08));
+        // On ne regarde que le texte de l'en-tete. Empiriquement, on estime que
+        // l'en-tête fait 8% de la hauteur max
+        Rectangle rect = new Rectangle(0, 0, page.width, (int) ((double) page.height * 0.08));
         stripper.addRegion("header", rect);
 
         stripper.extractRegions(page.getPDPage());
 
         String headerText = stripper.getTextForRegion("header");
 
-
-        if (!StringUtils.containsAnyIgnoreCase(headerText, "DGFiP", "N°")) {
-            return Optional.empty();
-        }
-
-        for (NatureFormulaire formulaire : NatureFormulaire.values()) {
-            if (StringUtils.containsIgnoreCase(headerText, formulaire.getNumero().toString())) {
-                return Optional.of(formulaire);
-            }
-        }
-
-        return Optional.empty();
+        return NatureFormulaire.resolve(headerText);
     }
 
     @SuppressWarnings({ "rawtypes", "unused" })

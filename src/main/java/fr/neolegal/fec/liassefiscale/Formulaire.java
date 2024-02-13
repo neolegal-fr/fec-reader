@@ -40,4 +40,8 @@ public class Formulaire {
     Set<Repere> reperes() {
         return champs.keySet();
     }
+
+    long nbMontantsNonNull() {
+        return champs.values().stream().filter(montant -> montant != null && montant != 0.0).count();
+    }
 }

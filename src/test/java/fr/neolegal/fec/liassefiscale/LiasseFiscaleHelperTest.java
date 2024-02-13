@@ -9,9 +9,13 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -221,7 +225,7 @@ public class LiasseFiscaleHelperTest {
         assertEquals(RegimeImposition.REEL_SIMPLIFIE, liasse.getRegime());
         assertEquals(LocalDate.of(2022, 12, 31), liasse.getClotureExercice());
         writeExpectedValuesCsv(liasse, "target/test-classes/liasse-publique-J-expected.csv");
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-J-expected.csv", 30);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-J-expected.csv", 75);
     }    
 
     @Test
@@ -232,15 +236,27 @@ public class LiasseFiscaleHelperTest {
         assertEquals("891369951", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_SIMPLIFIE_AGRICOLE, liasse.getRegime());
         assertEquals(LocalDate.of(2021, 12, 31), liasse.getClotureExercice());
-        // Pas de bordures délimitant les lignes, les correspondances avec les repères ne peuvent pas être lues
-        // checkParsedLiasse(liasse, "target/test-classes/liasse-publique-K-expected.csv", 453);
+        // Pas de bordures horizontales pour délimiter chaque ligne, les correspondances avec les repères ne peuvent pas toutes être lues
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-K-expected.csv", 56);
+    }    
+
+    @Test
+    void readLiasseFiscalePDF_L() throws IOException {
+        LiasseFiscale liasse = LiasseFiscaleHelper
+                .readLiasseFiscalePDF("target/test-classes/liasse-publique-L.pdf");
+
+        assertEquals("524166816", liasse.getSiren());
+        assertEquals(RegimeImposition.REEL_SIMPLIFIE_AGRICOLE, liasse.getRegime());
+        assertEquals(LocalDate.of(2016, 8, 31), liasse.getClotureExercice());
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-L-expected.csv", 125);
     }    
 
     void writeExpectedValuesCsv(LiasseFiscale liasse, String filePath) throws IOException {
         StringBuilder builder = new StringBuilder();
 
         for (Formulaire formulaire : liasse.getFormulaires()) {
-            for (Repere repere : formulaire.reperes()) {
+            Set<Repere> sortedReperes = new TreeSet<>(formulaire.reperes());
+            for (Repere repere : sortedReperes) {
                 builder.append(repere.getSymbole());
                 builder.append(",");
                 builder.append(String.format(Locale.US, "%.2f", liasse.getMontant(repere).orElse(0.0)));
@@ -293,5 +309,8 @@ public class LiasseFiscaleHelperTest {
         
         // Exercice N et N-1 dans la même cellule
         assertEquals(Optional.of(LocalDate.of(2021, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("Exercice N, clos le :31/12/2021Exercice N-1, clos le :08/11/2020"));        
+
+        // Date clôture sur 6 positions seulement
+        assertEquals(Optional.of(LocalDate.of(2016, 8, 31)), LiasseFiscaleHelper.parseClotureExercice("EXERCICE CLOS LE 310816"));
     }
 }
