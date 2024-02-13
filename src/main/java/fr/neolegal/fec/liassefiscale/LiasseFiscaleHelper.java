@@ -130,7 +130,7 @@ public class LiasseFiscaleHelper {
                 }
             }
         }
-        writeTablesAsSvg(docTables, "tables.html");
+        // writeTablesAsSvg(docTables, "tables.html");
         return liasse;
     }
 
