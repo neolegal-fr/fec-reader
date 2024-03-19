@@ -23,6 +23,7 @@ public class LiasseFiscale {
     LocalDate clotureExercice;
     RegimeImposition regime;
     final List<Formulaire> formulaires = new LinkedList<>();
+    final List<Annexe> annexes = new LinkedList<>();
 
     @Builder
     public LiasseFiscale(RegimeImposition regime, String siren, LocalDate clotureExercice) {
@@ -36,8 +37,13 @@ public class LiasseFiscale {
      * liasse.
      */
     public Formulaire getFormulaire(NatureFormulaire formulaire) {
-        return formulaires.stream().filter(tableau -> tableau.getNature() == formulaire).findFirst()
-                .orElse(Formulaire.builder().build());
+        return formulaires.stream().filter(f -> f.getNature() == formulaire).findFirst()
+                .orElse(Formulaire.builder().nature(formulaire).build());
+    }
+
+    public Annexe getAnnexe(NatureAnnexe annexe) {
+        return annexes.stream().filter(a -> a.getNatureAnnexe() == annexe).findFirst()
+                .orElse(Annexe.builder().natureAnnexe(annexe).build());
     }
 
     /**

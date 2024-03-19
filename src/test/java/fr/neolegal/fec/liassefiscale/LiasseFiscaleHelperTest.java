@@ -136,6 +136,13 @@ public class LiasseFiscaleHelperTest {
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2019, 12, 31), liasse.getClotureExercice());
         checkParsedLiasse(liasse, "target/test-classes/liasse-publique-B-expected.csv", 0);
+
+        assertEquals(5, liasse.getAnnexes().size());
+
+        Annexe provisions = liasse.getAnnexe(NatureAnnexe.PROVISIONS);
+        assertEquals(3, provisions.getLignes().size());
+        assertEquals("Créances rattachées à des participations", provisions.getCellule(1, 0));
+        assertEquals("Titres immobilisés PFALZWERKE", provisions.getCellule(2, 0));
     }
 
     @Test
@@ -245,8 +252,8 @@ public class LiasseFiscaleHelperTest {
         LiasseFiscale liasse = LiasseFiscaleHelper
                 .readLiasseFiscalePDF("target/test-classes/liasse-publique-L.pdf");
 
-        assertEquals("524166816", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_SIMPLIFIE_AGRICOLE, liasse.getRegime());
+        assertEquals("524166816", liasse.getSiren());
         assertEquals(LocalDate.of(2016, 8, 31), liasse.getClotureExercice());
         checkParsedLiasse(liasse, "target/test-classes/liasse-publique-L-expected.csv", 125);
     }    

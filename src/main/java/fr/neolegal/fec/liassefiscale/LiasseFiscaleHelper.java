@@ -92,9 +92,11 @@ public class LiasseFiscaleHelper {
             PageIterator pi = extractor.extract();
             while (pi.hasNext()) {
                 Page page = pi.next();
-                Optional<NatureFormulaire> match = resolveNatureFormulaire(page);
-                if (match.isPresent()) {
-                    NatureFormulaire natureFormulaire = match.get();
+                String header = extractHeader(page);
+                Optional<NatureFormulaire> formulaireHeaderMatch = NatureFormulaire.resolve(header);
+                Optional<NatureAnnexe> annexeHeaderMatch = NatureAnnexe.resolve(header);
+                if (formulaireHeaderMatch.isPresent() && annexeHeaderMatch.isEmpty()) {
+                    NatureFormulaire natureFormulaire = formulaireHeaderMatch.get();
                     if (liasse.getRegime() == null) {
                         liasse.setRegime(natureFormulaire.getRegimeImposition());
                     }
@@ -106,9 +108,9 @@ public class LiasseFiscaleHelper {
                         docTables.add(table);
                         Formulaire formulaire = parseFormulaire(table, natureFormulaire);
 
-                        // On peut à tort crorie qu'une page correspond à un formulaire, et le trouver
-                        // deux fois dans la liasse. Dans cette situation, on conserve le formulaire
-                        // avec le plus de valeurs renseignées
+                        // On peut à tort croire qu'une page correspond à un formulaire (ex : annexe),
+                        // et le trouver deux fois dans la liasse. Dans cette situation,
+                        // le formulaire avec le plus de valeurs renseignées est sélectionné
                         Formulaire existingFormulaire = liasse.getFormulaires().stream()
                                 .filter(f -> f.getNature().equals(natureFormulaire)).findFirst().orElse(null);
                         if (existingFormulaire != null) {
@@ -126,6 +128,16 @@ public class LiasseFiscaleHelper {
                         if (isNull(liasse.getClotureExercice()) && natureFormulaire.containsClotureExercice()) {
                             liasse.setClotureExercice(parseClotureExercice(table).orElse(null));
                         }
+                    }
+                } else if (formulaireHeaderMatch.isPresent() && annexeHeaderMatch.isPresent()) {
+                    List<Table> pageTables = sea.extract(page);
+                    Optional<Table> tableMatch = pageTables.stream()
+                            .max(Comparator.comparing(Table::getRowCount));
+                    if (tableMatch.isPresent()) {
+                        Table table = tableMatch.get();
+                        docTables.add(table);
+                        Annexe annexe = parseAnnexe(table, annexeHeaderMatch.get(), formulaireHeaderMatch.get());
+                        liasse.getAnnexes().add(annexe);
                     }
                 }
             }
@@ -252,6 +264,25 @@ public class LiasseFiscaleHelper {
     }
 
     @SuppressWarnings("rawtypes")
+    private static Annexe parseAnnexe(Table table, NatureAnnexe natureAnnexe, NatureFormulaire natureFormulaire) {
+        Annexe annexe = Annexe.builder().natureAnnexe(natureAnnexe).natureFormulaire(natureFormulaire).build();
+
+        for (List<RectangularTextContainer> row : table.getRows()) {
+            List<String> ligne = new LinkedList<>();
+            boolean blankLine = true;
+            for (RectangularTextContainer<?> cell : row) {
+                String text = cell.getText().trim();
+                blankLine = blankLine && text.isEmpty();
+                ligne.add(text);
+            }
+            if (!blankLine) {
+                annexe.getLignes().add(ligne);
+            }
+        }        
+        return annexe;
+    }
+
+    @SuppressWarnings("rawtypes")
     private static String extractTableText(Table table, Page page) throws IOException {
         StringBuilder sb = new StringBuilder();
         for (List<RectangularTextContainer> row : table.getRows()) {
@@ -269,7 +300,7 @@ public class LiasseFiscaleHelper {
         return reader.getText(page.getPDDoc());
     }
 
-    private static Optional<NatureFormulaire> resolveNatureFormulaire(Page page) throws IOException {
+    private static String extractHeader(Page page) throws IOException {
         PDFTextStripperByArea stripper = new PDFTextStripperByArea();
         // On ne regarde que le texte de l'en-tete. Empiriquement, on estime que
         // l'en-tête fait 8% de la hauteur max
@@ -278,9 +309,7 @@ public class LiasseFiscaleHelper {
 
         stripper.extractRegions(page.getPDPage());
 
-        String headerText = stripper.getTextForRegion("header");
-
-        return NatureFormulaire.resolve(headerText);
+        return stripper.getTextForRegion("header");
     }
 
     @SuppressWarnings({ "rawtypes", "unused" })
