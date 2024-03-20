@@ -25,7 +25,7 @@ public class NatureFormulaireTest {
 
     @Test
     void resolve_whenIdentifiantIncompletNoDgFip() {
-        assertEquals(Optional.empty(), NatureFormulaire.resolve("2139 A"));
+        assertEquals(Optional.of(NatureFormulaire.DGFIP_2139_A_BILAN_SIMPLIFIE), NatureFormulaire.resolve("2139 A"));
     }    
 
     @Test
@@ -36,5 +36,10 @@ public class NatureFormulaireTest {
     @Test
     void resolve_whenNumeroWithDgFip() {
         assertEquals(Optional.of(NatureFormulaire.DGFIP_2139_A_BILAN_SIMPLIFIE), NatureFormulaire.resolve("N° 2139"));
+    }    
+
+    @Test
+    void resolve_whenTitre() {
+        assertEquals(Optional.of(NatureFormulaire.DGFIP_2033_A_BILAN_SIMPLIFIE), NatureFormulaire.resolve("--- Bilan simplifié --- "));
     }    
 }

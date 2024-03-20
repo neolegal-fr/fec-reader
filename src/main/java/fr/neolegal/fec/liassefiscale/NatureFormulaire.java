@@ -1,12 +1,15 @@
 package fr.neolegal.fec.liassefiscale;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import lombok.Getter;
@@ -14,46 +17,49 @@ import lombok.Getter;
 @Getter
 public enum NatureFormulaire {
     DGFIP_2050_BILAN_ACTIF(2050, null, "2050-SD", "15949", "BILAN - ACTIF", RegimeImposition.REEL_NORMAL, true,
-        true),
+            true, null),
     DGFIP_2051_BILAN_PASSIF(2051, null, "2051-SD", "15949", "BILAN - PASSIF", RegimeImposition.REEL_NORMAL, false,
-        false),
+            false, null),
     DGFIP_2052_COMPTE_RESULTAT(2052, null, "2052-SD", "15949", "COMPTE DE RESULTAT DE L'EXERCICE (en liste)",
-        RegimeImposition.REEL_NORMAL, false, false),
+            RegimeImposition.REEL_NORMAL, false, false, null),
     DGFIP_2053_COMPTE_RESULTAT(2053, null, "2053-SD", "15949", "COMPTE DE RESULTAT DE L'EXERCICE (suite)",
-        RegimeImposition.REEL_NORMAL, false, false),
+            RegimeImposition.REEL_NORMAL, false, false,
+            Set.of(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS,
+                    NatureAnnexe.PRODUITS_ET_CHARGES_ANTERIEURS)),
     DGFIP_2054_IMMOBILISATIONS(2054, null, "2054-SD", "15949", "IMMOBILISATIONS", RegimeImposition.REEL_NORMAL,
-        false, false),
+            false, false, null),
     DGFIP_2054_ECARTS_REEVALUATION(2054, "bis", "2054 bis-SD", "15949",
-        "TABLEAU DES ECARTS DE REEVALUATION SUR IMMOBILISATIONS AMORTISSABLES", RegimeImposition.REEL_NORMAL, false,
-        false),
+            "TABLEAU DES ECARTS DE REEVALUATION SUR IMMOBILISATIONS AMORTISSABLES", RegimeImposition.REEL_NORMAL, false,
+            false, null),
     DGFIP_2055_AMORTISSEMENTS(2055, null, "2055-SD", "15949", "IMMOBILISATIONS", RegimeImposition.REEL_NORMAL,
-        false, false),
+            false, false, null),
     DGFIP_2056_PROVISIONS(2056, null, "2056-SD", "15949", "PROVISIONS INSCRITES AU BILAN",
-        RegimeImposition.REEL_NORMAL, false, false),
+            RegimeImposition.REEL_NORMAL, false, false, null),
     DGFIP_2057_CREANCES(2057, null, "2057-SD", "15949",
-        "ETAT DES ECHEANCES DES CREANCES ET DES DETTES A LA CLOTURE DE L'EXERCICE", RegimeImposition.REEL_NORMAL,
-        false, false),
+            "ETAT DES ECHEANCES DES CREANCES ET DES DETTES A LA CLOTURE DE L'EXERCICE", RegimeImposition.REEL_NORMAL,
+            false, false, null),
     DGFIP_2058_A_RESULTAT_FISCAL(2058, "A", "2058-A-SD", "15949", "DETERMINATION DU RESULTAT FISCAL",
-        RegimeImposition.REEL_NORMAL, false, false),
+            RegimeImposition.REEL_NORMAL, false, false, null),
     DGFIP_2058_B_DEFICITS(2058, "B", "2058-B-SD", "15949",
-        "DEFICITS, INDEMNITES POUR CONGES A PAYER ET PROVISIONS NON DEDUCTIBLES", RegimeImposition.REEL_NORMAL,
-        false, false),
+            "DEFICITS, INDEMNITES POUR CONGES A PAYER ET PROVISIONS NON DEDUCTIBLES", RegimeImposition.REEL_NORMAL,
+            false, false, null),
     DGFIP_2058_C_AFFECTATION_RESULTAT(2058, "C", "2058-C-SD", "15949",
-        "TABLEAU D'AFFECTTION DU RESULTAT ET RENSEIGNEMENTS DIVERS", RegimeImposition.REEL_NORMAL, false, false),
-    DGFIP_2033_A_BILAN_SIMPLIFIE(2033, "A", "2033-A-SD", "15948", "BILAN SIMPLIFIE",
-        RegimeImposition.REEL_SIMPLIFIE, true, true),
+            "TABLEAU D'AFFECTTION DU RESULTAT ET RENSEIGNEMENTS DIVERS", RegimeImposition.REEL_NORMAL, false, false,
+            null),
+    DGFIP_2033_A_BILAN_SIMPLIFIE(2033, "A", "2033-A-SD", "15948", "BILAN SIMPLIFIÉ",
+            RegimeImposition.REEL_SIMPLIFIE, true, true, null),
     DGFIP_2033_B_COMPTE_RESULTAT_SIMPLIFIE(2033, "B", "2033-B-SD", "15948", "COMPTE DE RESULTAT SIMPLIFIE",
-        RegimeImposition.REEL_SIMPLIFIE, false, false),
+            RegimeImposition.REEL_SIMPLIFIE, false, false, null),
     DGFIP_2033_C_IMMOBILISATIONS_AMORTISSEMENTS(2033, "C", "2033-C-SD", "15948",
-        "IMMOBILISATIONS - AMORTISSEMENTS - PLUS-VALUES - MOINS-VALUES", RegimeImposition.REEL_SIMPLIFIE, false,
-        false),
+            "IMMOBILISATIONS - AMORTISSEMENTS - PLUS-VALUES - MOINS-VALUES", RegimeImposition.REEL_SIMPLIFIE, false,
+            false, null),
     DGFIP_2033_D_PROVISIONS_AMORTISSEMENTS(2033, "D", "2033-D-SD", "15948",
-        "RELEVE DES PROVISIONS - AMORTISSEMENTS DEROGATOIRES - DEFICITS", RegimeImposition.REEL_SIMPLIFIE, false,
-        false),
+            "RELEVE DES PROVISIONS - AMORTISSEMENTS DEROGATOIRES - DEFICITS", RegimeImposition.REEL_SIMPLIFIE, false,
+            false, null),
     DGFIP_2139_A_BILAN_SIMPLIFIE(2139, "A", "2139-A-SD", "11145", "BILAN SIMPLIFIÉ",
-        RegimeImposition.REEL_SIMPLIFIE_AGRICOLE, true, true),
+            RegimeImposition.REEL_SIMPLIFIE_AGRICOLE, true, true, null),
     DGFIP_2139_B_COMPTE_RESULTAT_SIMPLIFIE(2139, "B", "2139-B-SD", "11146",
-        "COMPTE DE RESULTAT SIMPLIFIÉ DE L'EXERCICE", RegimeImposition.REEL_SIMPLIFIE_AGRICOLE, false, true);
+            "COMPTE DE RESULTAT SIMPLIFIÉ DE L'EXERCICE", RegimeImposition.REEL_SIMPLIFIE_AGRICOLE, false, true, null);
 
     Integer numero;
     String page;
@@ -63,9 +69,11 @@ public enum NatureFormulaire {
     RegimeImposition regimeImposition;
     boolean containsSiren;
     boolean containsClotureExercice;
+    Set<NatureAnnexe> annexes = new HashSet<>();
 
     NatureFormulaire(Integer numero, String page, String identifiant, String cerfa, String titre,
-            RegimeImposition regimeImposition, boolean containsSiren, boolean containsClotureExercice) {
+            RegimeImposition regimeImposition, boolean containsSiren, boolean containsClotureExercice,
+            Set<NatureAnnexe> annexes) {
         this.numero = numero;
         this.page = page;
         this.identifiant = identifiant;
@@ -74,6 +82,7 @@ public enum NatureFormulaire {
         this.regimeImposition = regimeImposition;
         this.containsSiren = containsSiren;
         this.containsClotureExercice = containsClotureExercice;
+        this.annexes = ObjectUtils.firstNonNull(annexes, Set.of());
     }
 
     @Override
@@ -99,16 +108,19 @@ public enum NatureFormulaire {
     }
 
     public static Optional<NatureFormulaire> resolve(String header) {
-        // Si l'en-tête contient l'identifiant exact, bingo
-        for (NatureFormulaire formulaire : NatureFormulaire.values()) {
-            if (StringUtils.containsIgnoreCase(header, formulaire.getIdentifiant())) {
-                return Optional.of(formulaire);
-            }
+        return resolve(header, true);
+    }
+
+    public static Optional<NatureFormulaire> resolve(String header, boolean checkTitre) {
+        if (StringUtils.isBlank(header)) {
+            return Optional.empty();
         }
 
-        // Pas d'identifiant exact, est ce bien un en-tête de formulaire ?
-        if (!StringUtils.containsAnyIgnoreCase(header, "DGFiP", "N°")) {
-            return Optional.empty();
+        // Si l'en-tête contient l'identifiant exact, bingo
+        for (NatureFormulaire formulaire : NatureFormulaire.values()) {
+            if (StrUtils.containsIgnoreCase(header, formulaire.getIdentifiant())) {
+                return Optional.of(formulaire);
+            }
         }
 
         List<NatureFormulaire> formulairesAvecPage = Stream.of(NatureFormulaire.values())
@@ -136,11 +148,20 @@ public enum NatureFormulaire {
             }
         }
 
-        // Finalement, test des formulaires avec un numéro de page, mais sans le
-        // préciser
+        // Test des formulaires avec un numéro de page, mais sans
+        // préciser le numéro de page
         for (NatureFormulaire formulaire : formulairesAvecPage) {
             if (StringUtils.contains(header, formulaire.getNumero().toString())) {
                 return Optional.of(formulaire);
+            }
+        }
+
+        // Recherche du titre
+        if (checkTitre) {
+            for (NatureFormulaire formulaire : values()) {
+                if (StrUtils.containsIgnoreCase(header, formulaire.getTitre())) {
+                    return Optional.of(formulaire);
+                }
             }
         }
 

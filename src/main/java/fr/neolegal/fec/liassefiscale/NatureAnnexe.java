@@ -7,9 +7,11 @@ import lombok.Getter;
 
 @Getter
 public enum NatureAnnexe {
-    PROVISIONS("Provisions"),
-    REINTEGRATIONS("Réintégrations"),
+    PROVISIONS("PROVISIONS INSCRITES AU BILAN"),
+    REINTEGRATIONS("REINTEGRATIONS"),
     DEDUCTIONS("Déductions"),
+    PRODUITS_ET_CHARGES_EXCEPTIONNELS("Produits et charges exceptionnels"),
+    PRODUITS_ET_CHARGES_ANTERIEURS("produits et charges sur exercices"),
     INCONNUE(null);
 
     String intitule;
@@ -18,22 +20,17 @@ public enum NatureAnnexe {
         this.intitule = intitule;
     }
 
-    @Override
-    public String toString() {
-        return intitule;
-    }
-
     public static Optional<NatureAnnexe> resolve(String header) {
-        boolean formulaireReferenceFound = NatureFormulaire.resolve(header).isPresent();
+        boolean formulaireReferenceFound = NatureFormulaire.resolve(header, false).isPresent();
 
         // Si l'en-tête contient une formulation comme "Formulaire obligatoire (article
         // 38 sexdecies RB de l'annexe III au Code Général des Impôts)"),
         // ce n'est pas une annexe mais un formulaire
-        if (formulaireReferenceFound && StringUtils.containsAnyIgnoreCase(header, "de l'annexe")) {
+        if (formulaireReferenceFound && StrUtils.containsIgnoreCase(header, "de l'annexe")) {
             return Optional.empty();
         }
 
-        boolean annexeKeywordFound = StringUtils.containsAnyIgnoreCase(header, "annexe");
+        boolean annexeKeywordFound = StrUtils.containsIgnoreCase(header, "annexe");
 
         // Le titre d'une annexe reprend souvent le titre du formulaire
         // associé, et ses identifiants, mais pas systématiquement
@@ -49,7 +46,7 @@ public enum NatureAnnexe {
             }
         }
 
-        if (StringUtils.containsAnyIgnoreCase(header, "annexe")) {
+        if (annexeKeywordFound) {
             // C'est une annexe, mais on ne sait pas de quelle nature
             return Optional.of(NatureAnnexe.INCONNUE);
         }

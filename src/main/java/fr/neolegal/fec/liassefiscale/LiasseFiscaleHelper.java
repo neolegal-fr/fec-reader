@@ -92,9 +92,9 @@ public class LiasseFiscaleHelper {
             PageIterator pi = extractor.extract();
             while (pi.hasNext()) {
                 Page page = pi.next();
-                String header = extractHeader(page);
+                String header = extractPageHeader(page);
                 Optional<NatureFormulaire> formulaireHeaderMatch = NatureFormulaire.resolve(header);
-                Optional<NatureAnnexe> annexeHeaderMatch = NatureAnnexe.resolve(header);
+                Optional<NatureAnnexe> annexeHeaderMatch = resolveNatureAnnexe(page);
                 if (formulaireHeaderMatch.isPresent() && annexeHeaderMatch.isEmpty()) {
                     NatureFormulaire natureFormulaire = formulaireHeaderMatch.get();
                     if (liasse.getRegime() == null) {
@@ -136,14 +136,29 @@ public class LiasseFiscaleHelper {
                     if (tableMatch.isPresent()) {
                         Table table = tableMatch.get();
                         docTables.add(table);
-                        Annexe annexe = parseAnnexe(table, annexeHeaderMatch.get(), formulaireHeaderMatch.get());
-                        liasse.getAnnexes().add(annexe);
+                        NatureAnnexe natureAnnexe = annexeHeaderMatch.get();
+                        List<? extends List<String>> lignes = parseAnnexe(table, natureAnnexe, false);
+                        liasse.getFormulaire(formulaireHeaderMatch.get()).getOrAddAnnexe(annexeHeaderMatch.get())
+                                .getLignes().addAll(lignes);
                     }
                 }
             }
         }
         // writeTablesAsSvg(docTables, "tables.html");
         return liasse;
+    }
+
+    private static Optional<NatureAnnexe> resolveNatureAnnexe(Page page) throws IOException {
+        // On cherche d'abord dans l'en-tête de la page
+        Optional<NatureAnnexe> result = NatureAnnexe.resolve(extractPageHeader(page));
+        if (result.isPresent() && result.get() == NatureAnnexe.INCONNUE) {
+            // C'est une annexe, mais on ne sait pas de quelle nature
+            // On va plus loin et analyse le corps du document
+            String pageText = extractPageText(page);
+            Optional<NatureAnnexe> deeperResolution = NatureAnnexe.resolve(pageText);
+            return deeperResolution.or(() -> result);
+        }
+        return result;
     }
 
     @SuppressWarnings("rawtypes")
@@ -260,26 +275,84 @@ public class LiasseFiscaleHelper {
                 }
             }
         }
+
+        for (NatureAnnexe natureAnnexe : natureFormulaire.getAnnexes()) {
+            formulaire.getOrAddAnnexe(natureAnnexe).getLignes()
+                    .addAll(parseAnnexe(table, natureAnnexe, true));
+        }
+
         return formulaire;
     }
 
     @SuppressWarnings("rawtypes")
-    private static Annexe parseAnnexe(Table table, NatureAnnexe natureAnnexe, NatureFormulaire natureFormulaire) {
-        Annexe annexe = Annexe.builder().natureAnnexe(natureAnnexe).natureFormulaire(natureFormulaire).build();
+    private static List<? extends List<String>> parseAnnexe(Table table, NatureAnnexe natureAnnexe,
+            boolean searchTitle) {
+        List<List<String>> resultat = new LinkedList<>();
 
-        for (List<RectangularTextContainer> row : table.getRows()) {
+        List<List<RectangularTextContainer>> rows = table.getRows();
+        if (rows.isEmpty()) {
+            return resultat;
+        }
+
+        int headerRowIndex = 0;
+        if (searchTitle) {
+            for (int i = 0; i < rows.size() && headerRowIndex == 0; ++i) {
+                // On cherche la première ligne contenant le nom de l'annexe
+                // Les données seront présentes sur les lignes suivantes
+                for (RectangularTextContainer<?> cell : rows.get(i)) {
+                    String text = cell.getText().trim();
+                    if (StrUtils.containsIgnoreCase(text, natureAnnexe.getIntitule())) {
+                        headerRowIndex = i;
+                    }
+                }
+            }
+
+            // La ligne d'en-tête peut être composée de cellules fusionnées
+            // On cherche la prochaine ligne commençant au
+            List<RectangularTextContainer> headerRow = rows.get(headerRowIndex);
+            float rowStartPos = headerRow.get(0).getLeft();
+            while ((headerRowIndex + 1) < rows.size() && rows.get(headerRowIndex + 1).get(0).getLeft() != rowStartPos) {
+                ++headerRowIndex;
+            }
+        }
+
+        List<RectangularTextContainer> prevRow = null;
+        boolean moreData = true;
+        for (int i = headerRowIndex + 1; i < rows.size() && moreData; ++i) {
+            List<RectangularTextContainer> row = rows.get(i);
             List<String> ligne = new LinkedList<>();
-            boolean blankLine = true;
+            boolean emptyRow = true;
             for (RectangularTextContainer<?> cell : row) {
                 String text = cell.getText().trim();
-                blankLine = blankLine && text.isEmpty();
+                emptyRow = emptyRow && text.isEmpty();
                 ligne.add(text);
             }
-            if (!blankLine) {
-                annexe.getLignes().add(ligne);
+
+            moreData = !emptyRow && (isNull(prevRow) || sameRowStructure(row, prevRow));
+            if (moreData) {
+                prevRow = row;
+                resultat.add(ligne);
             }
-        }        
-        return annexe;
+        }
+
+        return resultat;
+    }
+
+    @SuppressWarnings("rawtypes")
+    private static boolean sameRowStructure(List<RectangularTextContainer> row,
+            List<RectangularTextContainer> other) {
+        if (isNull(row) || isNull(other) || row.size() != other.size()) {
+            return false;
+        }
+
+        for (int i = 0; i < row.size(); ++i) {
+            RectangularTextContainer<?> cell = row.get(i);
+            RectangularTextContainer<?> otherCell = other.get(i);
+            if (cell.getWidth() != otherCell.getWidth()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @SuppressWarnings("rawtypes")
@@ -292,7 +365,6 @@ public class LiasseFiscaleHelper {
         return sb.toString();
     }
 
-    @SuppressWarnings("unused")
     private static String extractPageText(Page page) throws IOException {
         PDFTextStripper reader = new PDFTextStripper();
         reader.setStartPage(page.getPageNumber());
@@ -300,16 +372,14 @@ public class LiasseFiscaleHelper {
         return reader.getText(page.getPDDoc());
     }
 
-    private static String extractHeader(Page page) throws IOException {
+    private static String extractPageHeader(Page page) throws IOException {
         PDFTextStripperByArea stripper = new PDFTextStripperByArea();
-        // On ne regarde que le texte de l'en-tete. Empiriquement, on estime que
-        // l'en-tête fait 8% de la hauteur max
         Rectangle rect = new Rectangle(0, 0, page.width, (int) ((double) page.height * 0.08));
-        stripper.addRegion("header", rect);
+        stripper.addRegion("top", rect);
 
         stripper.extractRegions(page.getPDPage());
 
-        return stripper.getTextForRegion("header");
+        return stripper.getTextForRegion("top");
     }
 
     @SuppressWarnings({ "rawtypes", "unused" })

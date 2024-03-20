@@ -37,7 +37,7 @@ public class NatureAnnexeTest {
     void resolve_whenIntituleAnnexeSansRefFormulaireNotMotAnnexe() {
         // En l'absence de référence à un formulaire, et du mot clé "annexe", la
         // présence de l'identifiant suffit à considérer la page comme une annexe
-        assertEquals(Optional.of(NatureAnnexe.PROVISIONS), NatureAnnexe.resolve("Provisions pour hausse des prix"));
+        assertEquals(Optional.of(NatureAnnexe.PROVISIONS), NatureAnnexe.resolve("PROVISIONS INSCRITES AU BILAN"));
     }
 
 }

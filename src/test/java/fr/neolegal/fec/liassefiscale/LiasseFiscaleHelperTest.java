@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
@@ -137,12 +135,26 @@ public class LiasseFiscaleHelperTest {
         assertEquals(LocalDate.of(2019, 12, 31), liasse.getClotureExercice());
         checkParsedLiasse(liasse, "target/test-classes/liasse-publique-B-expected.csv", 0);
 
-        assertEquals(5, liasse.getAnnexes().size());
-
         Annexe provisions = liasse.getAnnexe(NatureAnnexe.PROVISIONS);
-        assertEquals(3, provisions.getLignes().size());
-        assertEquals("Créances rattachées à des participations", provisions.getCellule(1, 0));
-        assertEquals("Titres immobilisés PFALZWERKE", provisions.getCellule(2, 0));
+        assertEquals(2, provisions.getLignes().size());
+        assertEquals("Créances rattachées à des participations", provisions.getCellule(0, 0));
+        assertEquals("Titres immobilisés PFALZWERKE", provisions.getCellule(1, 0));
+
+        Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
+        assertEquals(13, produitsChargesExceptionnels.getLignes().size());
+        assertEquals("Valeur comptable des immobilisations incorporelles cédées", produitsChargesExceptionnels.getCellule(0, 0));
+        assertEquals("Reprise sur amortissement dérogatoire (amortissement dégressif)", produitsChargesExceptionnels.getCellule(12, 0));        
+
+        Annexe produitsChargesAnterieurs = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_ANTERIEURS);
+        assertEquals(6, produitsChargesAnterieurs.getLignes().size());
+        assertEquals("Décomptes de charges locatives 2018", produitsChargesAnterieurs.getCellule(0, 0));
+        assertEquals("CVAE 2018 ajustement", produitsChargesAnterieurs.getCellule(5, 0));        
+
+        Annexe reintegrations = liasse.getAnnexe(NatureAnnexe.REINTEGRATIONS);
+        assertEquals(4, reintegrations.getLignes().size());
+        assertEquals("Qutoe part perte 2018 GEIE affectée en 2019 et déduite en 2018", reintegrations.getCellule(0, 0));
+        assertEquals("CICE", reintegrations.getCellule(3, 0));
+
     }
 
     @Test
@@ -221,6 +233,13 @@ public class LiasseFiscaleHelperTest {
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2022, 12, 31), liasse.getClotureExercice());
         checkParsedLiasse(liasse, "target/test-classes/liasse-anonyme-I-expected.csv", 453);
+
+        Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
+        assertEquals(1, produitsChargesExceptionnels.getLignes().size());
+        assertEquals("Pénalités, amendes fiscales et pénales", produitsChargesExceptionnels.getCellule(0, 0));
+
+        Annexe produitsChargesAnterieurs = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_ANTERIEURS);
+        assertEquals(0, produitsChargesAnterieurs.getLignes().size());
     }
 
     @Test
