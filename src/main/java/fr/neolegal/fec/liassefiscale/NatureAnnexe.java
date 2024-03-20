@@ -39,7 +39,7 @@ public enum NatureAnnexe {
         // avec également le mot "annexe", soit un intitulé d'annexe sans référence à un
         // formulaire
         for (NatureAnnexe candidat : values()) {
-            if (StringUtils.containsIgnoreCase(header, candidat.getIntitule())) {
+            if (StrUtils.containsIgnoreCase(header, candidat.getIntitule())) {
                 if (!formulaireReferenceFound || annexeKeywordFound) {
                     return Optional.of(candidat);
                 }

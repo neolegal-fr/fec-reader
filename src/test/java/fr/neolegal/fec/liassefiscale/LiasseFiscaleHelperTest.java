@@ -121,6 +121,21 @@ public class LiasseFiscaleHelperTest {
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2019, 12, 31), liasse.getClotureExercice());
         checkParsedLiasse(liasse, "target/test-classes/liasse-publique-A-expected.csv", 71);
+
+        Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
+        assertEquals(0, produitsChargesExceptionnels.getLignes().size());
+
+        Annexe produitsChargesAnterieurs = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_ANTERIEURS);
+        assertEquals(3, produitsChargesAnterieurs.getLignes().size());
+        // Les libellés sont tronqués, ils ne sont pas dans la bonne colonne, et il en manque un
+        assertEquals("olde compte fournisseurs", produitsChargesAnterieurs.getCellule(0, 2));
+        assertEquals("egul salaires 2017+2018", produitsChargesAnterieurs.getCellule(2, 2));        
+
+        Annexe reintegrations = liasse.getAnnexe(NatureAnnexe.REINTEGRATIONS);
+        assertEquals(0, reintegrations.getLignes().size());
+
+        Annexe deductions = liasse.getAnnexe(NatureAnnexe.DEDUCTIONS);
+        assertEquals(0, deductions.getLignes().size());
     }
 
     @Test
@@ -155,6 +170,9 @@ public class LiasseFiscaleHelperTest {
         assertEquals("Qutoe part perte 2018 GEIE affectée en 2019 et déduite en 2018", reintegrations.getCellule(0, 0));
         assertEquals("CICE", reintegrations.getCellule(3, 0));
 
+        Annexe deductions = liasse.getAnnexe(NatureAnnexe.DEDUCTIONS);
+        assertEquals(1, deductions.getLignes().size());
+        assertEquals("Suramortissement de 40%", deductions.getCellule(0, 0));
     }
 
     @Test
@@ -166,6 +184,12 @@ public class LiasseFiscaleHelperTest {
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2017, 12, 31), liasse.getClotureExercice());
         checkParsedLiasse(liasse, "target/test-classes/liasse-publique-C-expected.csv", 60);
+
+        Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
+        assertEquals(0, produitsChargesExceptionnels.getLignes().size());
+
+        Annexe produitsChargesAnterieurs = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_ANTERIEURS);
+        assertEquals(0, produitsChargesAnterieurs.getLignes().size());
     }
 
     @Test
@@ -177,6 +201,12 @@ public class LiasseFiscaleHelperTest {
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2019, 03, 31), liasse.getClotureExercice());
         checkParsedLiasse(liasse, "target/test-classes/liasse-publique-D-expected.csv", 13);
+
+        Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
+        assertEquals(0, produitsChargesExceptionnels.getLignes().size());
+
+        Annexe produitsChargesAnterieurs = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_ANTERIEURS);
+        assertEquals(0, produitsChargesAnterieurs.getLignes().size());        
     }
 
     @Test
@@ -188,6 +218,12 @@ public class LiasseFiscaleHelperTest {
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2015, 12, 31), liasse.getClotureExercice());
         checkParsedLiasse(liasse, "target/test-classes/liasse-publique-E-expected.csv", 6);
+
+        Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
+        assertEquals(0, produitsChargesExceptionnels.getLignes().size());
+
+        Annexe produitsChargesAnterieurs = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_ANTERIEURS);
+        assertEquals(0, produitsChargesAnterieurs.getLignes().size());        
     }
 
     @Test
@@ -199,6 +235,30 @@ public class LiasseFiscaleHelperTest {
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2015, 12, 31), liasse.getClotureExercice());
         checkParsedLiasse(liasse, "target/test-classes/liasse-publique-F-expected.csv", 17);
+
+        Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
+        assertEquals(2, produitsChargesExceptionnels.getLignes().size());
+        assertEquals("CHARGES EXECEPTIONNELLES", produitsChargesExceptionnels.getCellule(0, 0));
+        assertEquals("REGULARISTAIONS", produitsChargesExceptionnels.getCellule(1, 0));        
+
+        Annexe produitsChargesAnterieurs = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_ANTERIEURS);
+        assertEquals(0, produitsChargesAnterieurs.getLignes().size());        
+
+        Annexe provisions = liasse.getAnnexe(NatureAnnexe.PROVISIONS);
+        assertEquals(0, provisions.getLignes().size());        
+
+        Annexe reintegrations = liasse.getAnnexe(NatureAnnexe.REINTEGRATIONS);
+        assertEquals(2, reintegrations.getLignes().size());        
+        // La première ligne ne devrait pas apparaître
+        assertEquals("Détail des réintégrations diverses", reintegrations.getCellule(0, 0));        
+        assertEquals("IRCM MADA", reintegrations.getCellule(1, 0));        
+
+        Annexe deductions = liasse.getAnnexe(NatureAnnexe.DEDUCTIONS);
+        assertEquals(2, deductions.getLignes().size());        
+        // La première ligne ne devrait pas apparaître
+        assertEquals("Détail des déductions diverses", deductions.getCellule(0, 0));        
+        assertEquals("Produit d'impôt", deductions.getCellule(1, 0));        
+
     }
 
     @Test
@@ -222,6 +282,15 @@ public class LiasseFiscaleHelperTest {
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2018, 12, 31), liasse.getClotureExercice());
         checkParsedLiasse(liasse, "target/test-classes/liasse-publique-H-expected.csv", 420);
+
+        Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
+        assertEquals(1, produitsChargesExceptionnels.getLignes().size());
+        assertEquals("Détail en annexe", produitsChargesExceptionnels.getCellule(0, 0));
+
+        Annexe produitsChargesAnterieurs = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_ANTERIEURS);
+        assertEquals(1, produitsChargesAnterieurs.getLignes().size());        
+        assertEquals("Détail en annexe", produitsChargesAnterieurs.getCellule(0, 0));
+
     }
 
     @Test
@@ -240,6 +309,19 @@ public class LiasseFiscaleHelperTest {
 
         Annexe produitsChargesAnterieurs = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_ANTERIEURS);
         assertEquals(0, produitsChargesAnterieurs.getLignes().size());
+
+        Annexe reintegrations = liasse.getAnnexe(NatureAnnexe.REINTEGRATIONS);
+        assertEquals(2, reintegrations.getLignes().size());
+        // La première ligne, avec libellé, devrait être ignorée
+        assertEquals("Libellé", reintegrations.getCellule(0, 0));
+        assertEquals("Intérêts exc art 212bis CGI après application des règles de sous-capitalisation", reintegrations.getCellule(1, 0));
+
+        Annexe deductions = liasse.getAnnexe(NatureAnnexe.DEDUCTIONS);
+        assertEquals(2, deductions.getLignes().size());
+        // La première ligne, avec libellé, devrait être ignorée
+        assertEquals("Libellé", deductions.getCellule(0, 0));
+        assertEquals("CIR 2022", deductions.getCellule(1, 0));
+
     }
 
     @Test
