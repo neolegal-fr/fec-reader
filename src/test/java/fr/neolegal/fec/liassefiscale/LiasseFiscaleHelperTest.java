@@ -183,7 +183,7 @@ public class LiasseFiscaleHelperTest {
         assertEquals("529770646", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2017, 12, 31), liasse.getClotureExercice());
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-C-expected.csv", 60);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-C-expected.csv", 62);
 
         Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
         assertEquals(0, produitsChargesExceptionnels.getLignes().size());
@@ -356,7 +356,7 @@ public class LiasseFiscaleHelperTest {
         assertEquals(RegimeImposition.REEL_SIMPLIFIE_AGRICOLE, liasse.getRegime());
         assertEquals("524166816", liasse.getSiren());
         assertEquals(LocalDate.of(2016, 8, 31), liasse.getClotureExercice());
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-L-expected.csv", 125);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-L-expected.csv", 126);
     }    
 
     void writeExpectedValuesCsv(LiasseFiscale liasse, String filePath) throws IOException {
@@ -420,5 +420,14 @@ public class LiasseFiscaleHelperTest {
 
         // Date clôture sur 6 positions seulement
         assertEquals(Optional.of(LocalDate.of(2016, 8, 31)), LiasseFiscaleHelper.parseClotureExercice("EXERCICE CLOS LE 310816"));
+    }
+
+    @Test
+    void parseNumber() {
+        assertEquals(0.0, LiasseFiscaleHelper.parseNumber(""));
+        assertEquals(1.0, LiasseFiscaleHelper.parseNumber("1"));
+        assertEquals(1000.25, LiasseFiscaleHelper.parseNumber("1 000.25"));
+        assertEquals(-1000.0, LiasseFiscaleHelper.parseNumber(" (1 000)"));
+        assertEquals(0.0, LiasseFiscaleHelper.parseNumber(" (0)"));
     }
 }

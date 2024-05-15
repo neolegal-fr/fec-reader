@@ -258,13 +258,7 @@ public class LiasseFiscaleHelper {
                 for (RectangularTextContainer<?> cell : row) {
                     String text = cell.getText().trim();
                     if (found) {
-                        boolean isNegative = text.startsWith("(");
-                        text = text.replaceAll("[ \\(\\)]", "");
-
-                        double montant = NumberUtils.toDouble(text, 0.0);
-                        if (isNegative) {
-                            montant = -montant;
-                        }
+                        double montant = parseNumber(text);
                         formulaire.setMontant(repere, montant);
                         break;
                     }
@@ -282,6 +276,19 @@ public class LiasseFiscaleHelper {
         }
 
         return formulaire;
+    }
+
+    public static double parseNumber(String text) {
+        text = text.trim();
+        boolean isNegative = text.startsWith("(") || text.endsWith(")");
+        text = text.replaceAll("[\\s\\(\\)]", "");
+
+        double number = NumberUtils.toDouble(text, 0.0);
+        if (isNegative && number != 0.0) {
+            number = -number;
+        }
+
+        return number;
     }
 
     @SuppressWarnings("rawtypes")
