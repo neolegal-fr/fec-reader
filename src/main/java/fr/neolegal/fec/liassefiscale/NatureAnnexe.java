@@ -1,8 +1,6 @@
 package fr.neolegal.fec.liassefiscale;
 
 import java.util.Optional;
-import org.apache.commons.lang3.StringUtils;
-
 import lombok.Getter;
 
 @Getter
@@ -12,6 +10,8 @@ public enum NatureAnnexe {
     DEDUCTIONS("Déductions"),
     PRODUITS_ET_CHARGES_EXCEPTIONNELS("Produits et charges exceptionnels"),
     PRODUITS_ET_CHARGES_ANTERIEURS("produits et charges sur exercices"),
+    DETERMINATION_REVENUS_SOCIETE_IMMOBILIERE("DÉTERMINATION DES REVENUS DE LA SOCIÉTÉ IMMOBILIÈRE"),
+    ASSOCIES_USUFRUITIERS_REPARTITION_RESULTAT("LISTE DES ASSOCIÉES ET USUFRUITIERS ET RÉPARTITION DU RÉSULTAT"),
     INCONNUE(null);
 
     String intitule;

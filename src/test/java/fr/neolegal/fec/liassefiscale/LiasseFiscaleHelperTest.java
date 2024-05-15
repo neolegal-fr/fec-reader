@@ -30,7 +30,7 @@ public class LiasseFiscaleHelperTest {
                 .buildLiasseFiscale(FecHelper.read(Path.of("target/test-classes/123456789FEC20500930.txt")),
                         RegimeImposition.REEL_NORMAL);
         assertEquals(RegimeImposition.REEL_NORMAL, liasseReelNormal.getRegime());
-        assertEquals(12, liasseReelNormal.getFormulaires().size());
+        assertEquals(13, liasseReelNormal.getFormulaires().size());
     }
 
     @Test
@@ -40,7 +40,7 @@ public class LiasseFiscaleHelperTest {
                         RegimeImposition.REEL_SIMPLIFIE);
 
         assertEquals(RegimeImposition.REEL_SIMPLIFIE, liasseReelSimplifie.getRegime());
-        assertEquals(4, liasseReelSimplifie.getFormulaires().size());
+        assertEquals(5, liasseReelSimplifie.getFormulaires().size());
     }
 
     @Test
@@ -120,7 +120,7 @@ public class LiasseFiscaleHelperTest {
         assertEquals("303195192", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2019, 12, 31), liasse.getClotureExercice());
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-A-expected.csv", 71);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-A-expected.csv", 86);
 
         Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
         assertEquals(0, produitsChargesExceptionnels.getLignes().size());

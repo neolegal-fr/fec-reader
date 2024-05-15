@@ -509,6 +509,38 @@ JF	2058-C-SD	Imputations
 JH	2058-C-SD	1 si société mère, 2 si société filiale
 JJ	2058-C-SD	N° SIRET de la société mère du groupe
 
+YP	2059-E-SD	Effectif moyen du personnel
+YF	2059-E-SD	Effectif moyen du personnel \ Dont apprentis
+YG	2059-E-SD	Effectif moyen du personnel \ Dont handicapés
+RG	2059-E-SD	Effectif affectés à l'activité artisanale
+OA	2059-E-SD	Ventes de produits fabriqués, prestations de services et marchandises 
+OK	2059-E-SD	Redevances pour concessions, brevets, licences et assimilées
+OL	2059-E-SD	Plus-values de cession d'immobilisations corporelles ou incorporelles si rattachées à une activité normale et courante
+OT	2059-E-SD	Refacturations de frais inscrites au compte de transfert de charges 
+OX	2059-E-SD	Chiffre d'affaires de référence CVAE \ TOTAL
+OH	2059-E-SD	Autres produits de gestion courante (hors quotes-parts de résultat sur opérations faites en commun)
+OE	2059-E-SD	Production immobilisée à hauteur des seules charges déductibles ayant concouru à sa formation
+OF	2059-E-SD	Subventions d'exploitation reçues
+OD	2059-E-SD	Variation positive des stocks
+OI	2059-E-SD	Transferts de charges déductibles de la valeur ajoutée
+XT	2059-E-SD	Rentrées sur créances amorties lorsqu'elles se rapportent au résultat d'exploitation
+OM	2059-E-SD	Autres produits à retenir pour le calcul de la valeur ajoutée \ Total
+ON	2059-E-SD	Achats
+OQ	2059-E-SD	Variation négative des stocks
+OR	2059-E-SD	Services extérieurs, à l'exception des loyers et redevances
+OS	2059-E-SD	Loyers et redevances
+OZ	2059-E-SD	Taxes déductibles de la valeur ajoutée
+OW	2059-E-SD	Autres charges de gestion courante (hors quotes-parts de résultat sur opérations faites en commun)
+OU	2059-E-SD	Fraction déductible de la valeur ajoutée des dotations aux amortissements
+O9	2059-E-SD	Charges déductibles de la valeur ajoutée
+OY	2059-E-SD	Moins-values de cession d'immobilisations corporelles ou incorporelles si rattachées à une activité normale et courante
+OJ	2059-E-SD	Charges à retenir pour le calcul de la valeur ajoutée \ TOTAL 3
+OG	2059-E-SD	Calcul de la valeur ajoutée 
+SA	2059-E-SD	Valeur ajoutée assujettie à la CVAE
+GX	2059-E-SD	Chiffre d'affaires de référence CVAE
+HX	2059-E-SD	Effectifs au sens de la CVAE
+HX	2059-E-SD	Chiffre d'affaires du groupe économique
+
 010	2033-A-SD	Fonds commercial	-(SLD_206 + SLD_207)
 012	2033-A-SD	Fonds commercial - Amortissement	SLD_2807 + SLD_2906 + SLD_2907
 014	2033-A-SD	Immobilisations incorporelles - Autres	-(CRD_109 + SLD_201 + SLD_203 + SLD_205 + SLD_208)

@@ -44,8 +44,11 @@ public enum NatureFormulaire {
             "DEFICITS, INDEMNITES POUR CONGES A PAYER ET PROVISIONS NON DEDUCTIBLES", RegimeImposition.REEL_NORMAL,
             false, false, null),
     DGFIP_2058_C_AFFECTATION_RESULTAT(2058, "C", "2058-C-SD", "15949",
-            "TABLEAU D'AFFECTTION DU RESULTAT ET RENSEIGNEMENTS DIVERS", RegimeImposition.REEL_NORMAL, false, false,
+            "TABLEAU D'AFFECTATION DU RESULTAT ET RENSEIGNEMENTS DIVERS", RegimeImposition.REEL_NORMAL, false, false,
             null),
+    DGFIP_2059_E_DETERMINATION_EFFECTIFS(2059, "E", "2059-E-SD", null,
+            "DÉTERMINATION DES EFFECTIFS ET DE LA VALEUR AJOUTÉE", RegimeImposition.REEL_NORMAL, false, false,
+            null),            
     DGFIP_2033_A_BILAN_SIMPLIFIE(2033, "A", "2033-A-SD", "15948", "BILAN SIMPLIFIÉ",
             RegimeImposition.REEL_SIMPLIFIE, true, true, null),
     DGFIP_2033_B_COMPTE_RESULTAT_SIMPLIFIE(2033, "B", "2033-B-SD", "15948", "COMPTE DE RESULTAT SIMPLIFIE",
@@ -59,7 +62,11 @@ public enum NatureFormulaire {
     DGFIP_2139_A_BILAN_SIMPLIFIE(2139, "A", "2139-A-SD", "11145", "BILAN SIMPLIFIÉ",
             RegimeImposition.REEL_SIMPLIFIE_AGRICOLE, true, true, null),
     DGFIP_2139_B_COMPTE_RESULTAT_SIMPLIFIE(2139, "B", "2139-B-SD", "11146",
-            "COMPTE DE RESULTAT SIMPLIFIÉ DE L'EXERCICE", RegimeImposition.REEL_SIMPLIFIE_AGRICOLE, false, true, null);
+            "COMPTE DE RESULTAT SIMPLIFIÉ DE L'EXERCICE", RegimeImposition.REEL_SIMPLIFIE_AGRICOLE, false, true, null),
+    DGFIP_2072_COMPTE_RESULTAT_SIMPLIFIE(2072, "B", "2072-S-SD", "10338",
+            "DÉCLARATION DES SOCIÉTÉS IMMOBILIÈRES NON SOUMISES A L’IMPÔT SUR LES SOCIÉTÉS",
+            RegimeImposition.REEL_SIMPLIFIE, false, true, Set.of(NatureAnnexe.DETERMINATION_REVENUS_SOCIETE_IMMOBILIERE,
+                    NatureAnnexe.ASSOCIES_USUFRUITIERS_REPARTITION_RESULTAT));
 
     Integer numero;
     String page;
