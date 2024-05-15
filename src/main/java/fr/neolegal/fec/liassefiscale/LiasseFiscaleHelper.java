@@ -259,7 +259,7 @@ public class LiasseFiscaleHelper {
                     String text = cell.getText().trim();
                     if (found) {
                         boolean isNegative = text.startsWith("(");
-                        text = text.replaceAll(" ()", "");
+                        text = text.replaceAll("[ \\(\\)]", "");
 
                         double montant = NumberUtils.toDouble(text, 0.0);
                         if (isNegative) {
