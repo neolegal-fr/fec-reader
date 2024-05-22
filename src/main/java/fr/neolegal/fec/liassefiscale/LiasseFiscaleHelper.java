@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.pdfbox.text.PDFTextStripperByArea;
@@ -83,7 +84,8 @@ public class LiasseFiscaleHelper {
         SpreadsheetExtractionAlgorithm sea = new SpreadsheetExtractionAlgorithm()
                 .withMaxGapBetweenAlignedHorizontalRulings(30)
                 .withMaxGapBetweenAlignedVerticalRulings(15)
-                .withMinSpacingBetweenRulings(10f);
+                .withMinColumnWidth(9f)
+                .withMinRowHeight(10f);
 
         List<Table> docTables = new LinkedList<>();
         try (InputStream in = new FileInputStream(filename);
@@ -164,11 +166,30 @@ public class LiasseFiscaleHelper {
     @SuppressWarnings("rawtypes")
     static Optional<LocalDate> parseClotureExercice(Table table) {
         for (List<RectangularTextContainer> row : table.getRows()) {
-            for (RectangularTextContainer<?> cell : row) {
+            for (int i = 0; i < row.size(); i++) {
+                RectangularTextContainer<?> cell = row.get(i);
                 String text = cell.getText();
-                Optional<LocalDate> match = parseClotureExercice(text);
-                if (match.isPresent()) {
-                    return match;
+                Pair<Boolean, LocalDate> match = parseClotureExercice(text);
+                if (match.getKey()) {
+                    if (match.getValue() != null) {
+                        return Optional.of(match.getValue());
+                    }
+                    // la date est peut être dans les cellules suivantes
+                    String date = "";
+                    boolean moreNumbers = true;
+                    for (int j = i + 1; j < row.size() && date.length() < 8 && moreNumbers; j++) {
+                        RectangularTextContainer<?> nextCell = row.get(j);
+                        String digit = nextCell.getText();
+                        if (StringUtils.isNotBlank(digit)) {
+                            digit = digit.replaceAll("[^\\d]", "");                            
+                            date = date + digit;
+                        }                        
+                        moreNumbers = StringUtils.isNotBlank(digit);
+                    }
+                    Optional<LocalDate> result = parseDate(date);
+                    if (result.isPresent()) {
+                        return result;
+                    }
                 }
             }
         }
@@ -176,7 +197,7 @@ public class LiasseFiscaleHelper {
         return Optional.empty();
     }
 
-    static Optional<LocalDate> parseClotureExercice(String text) {
+    static Pair<Boolean, LocalDate> parseClotureExercice(String text) {
         final String regex = "(clos le|c l o s   l e)([\\s,:]*)(.+)";
         // Il peut y avoir les dates de cloture des exercices N, et N-1, on s'assure de
         // matcher le N
@@ -193,14 +214,19 @@ public class LiasseFiscaleHelper {
             pattern = Pattern.compile(".*" + regex,
                     Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
             matcher = pattern.matcher(text);
-            if (matcher.matches()) {
-                date = matcher.group(3);
-                date = StringUtils.left(date.replaceAll("[^\\d]", ""), 8);
+            if (!matcher.matches()) {
+                return Pair.of(false, null);
             }
+            date = matcher.group(3);
+            date = StringUtils.left(date.replaceAll("[^\\d]", ""), 8);
         }
 
+        return Pair.of(true, parseDate(date).orElse(null));
+    }
+
+    static Optional<LocalDate> parseDate(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(date.length() == 8 ? "ddMMyyyy" : "ddMMyy");
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(date.length() == 8 ? "ddMMyyyy" : "ddMMyy");
             return Optional.of(LocalDate.parse(date, formatter));
         } catch (Exception e) {
             return Optional.empty();

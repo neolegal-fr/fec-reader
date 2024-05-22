@@ -19,6 +19,7 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
 import fr.neolegal.fec.FecHelper;
 
@@ -120,7 +121,7 @@ public class LiasseFiscaleHelperTest {
         assertEquals("303195192", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2019, 12, 31), liasse.getClotureExercice());
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-A-expected.csv", 86);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-A-expected.csv", 88);
 
         Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
         assertEquals(0, produitsChargesExceptionnels.getLignes().size());
@@ -128,8 +129,8 @@ public class LiasseFiscaleHelperTest {
         Annexe produitsChargesAnterieurs = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_ANTERIEURS);
         assertEquals(3, produitsChargesAnterieurs.getLignes().size());
         // Les libellés sont tronqués, ils ne sont pas dans la bonne colonne, et il en manque un
-        assertEquals("olde compte fournisseurs", produitsChargesAnterieurs.getCellule(0, 2));
-        assertEquals("egul salaires 2017+2018", produitsChargesAnterieurs.getCellule(2, 2));        
+        assertEquals("olde compte fournisseurs", produitsChargesAnterieurs.getCellule(0, 3));
+        assertEquals("egul salaires 2017+2018", produitsChargesAnterieurs.getCellule(2, 3));        
 
         Annexe reintegrations = liasse.getAnnexe(NatureAnnexe.REINTEGRATIONS);
         assertEquals(0, reintegrations.getLignes().size());
@@ -217,7 +218,7 @@ public class LiasseFiscaleHelperTest {
         assertEquals("402207153", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2015, 12, 31), liasse.getClotureExercice());
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-E-expected.csv", 6);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-E-expected.csv", 7);
 
         Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
         assertEquals(0, produitsChargesExceptionnels.getLignes().size());
@@ -234,7 +235,7 @@ public class LiasseFiscaleHelperTest {
         assertEquals("449207133", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2015, 12, 31), liasse.getClotureExercice());
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-F-expected.csv", 17);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-F-expected.csv", 20);
 
         Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
         assertEquals(2, produitsChargesExceptionnels.getLignes().size());
@@ -281,7 +282,7 @@ public class LiasseFiscaleHelperTest {
         assertEquals("451209852", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2018, 12, 31), liasse.getClotureExercice());
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-H-expected.csv", 420);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-H-expected.csv", 421);
 
         Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
         assertEquals(1, produitsChargesExceptionnels.getLignes().size());
@@ -301,7 +302,7 @@ public class LiasseFiscaleHelperTest {
         assertEquals("", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2022, 12, 31), liasse.getClotureExercice());
-        checkParsedLiasse(liasse, "target/test-classes/liasse-anonyme-I-expected.csv", 453);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-anonyme-I-expected.csv", 455);
 
         Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
         assertEquals(1, produitsChargesExceptionnels.getLignes().size());
@@ -398,28 +399,28 @@ public class LiasseFiscaleHelperTest {
 
     @Test
     void parseClotureExercice() {
-        assertEquals(Optional.empty(), LiasseFiscaleHelper.parseClotureExercice(""));
+        assertEquals(Pair.of(false, null), LiasseFiscaleHelper.parseClotureExercice(""));
 
         // Bloc de texte multiligne
-        assertEquals(Optional.of(LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("2\r\nNuméro SIRET*  30319519200032*Néant\r\nExercice N clos le,31122019BrutAmortissements, provisionsNet123\r\nBrutAmortissements, provisionsNet123\r\n"));
+        assertEquals(Pair.of(true, LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("2\r\nNuméro SIRET*  30319519200032*Néant\r\nExercice N clos le,31122019BrutAmortissements, provisionsNet123\r\nBrutAmortissements, provisionsNet123\r\n"));
 
         // retour à la ligne entre libellé et valeur
-        assertEquals(Optional.of(LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("Exercice N clos le,\r\n31122019"));
+        assertEquals(Pair.of(true, LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("Exercice N clos le,\r\n31122019"));
 
         // séparateurs date
-        assertEquals(Optional.of(LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("Exercice N clos le,\r\n31/12/2019"));
+        assertEquals(Pair.of(true, LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("Exercice N clos le,\r\n31/12/2019"));
 
         // Espaces entre les caractères
-        assertEquals(Optional.of(LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("E x e r c i c e   N   c l o s   l e   , \r\n 3 1 1 2 2 0 1 9"));
+        assertEquals(Pair.of(true, LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("E x e r c i c e   N   c l o s   l e   , \r\n 3 1 1 2 2 0 1 9"));
 
         // deux points
-        assertEquals(Optional.of(LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("Exercice N clos le:\r\n31/12/2019"));
+        assertEquals(Pair.of(true, LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("Exercice N clos le:\r\n31/12/2019"));
         
         // Exercice N et N-1 dans la même cellule
-        assertEquals(Optional.of(LocalDate.of(2021, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("Exercice N, clos le :31/12/2021Exercice N-1, clos le :08/11/2020"));        
+        assertEquals(Pair.of(true, LocalDate.of(2021, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("Exercice N, clos le :31/12/2021Exercice N-1, clos le :08/11/2020"));        
 
         // Date clôture sur 6 positions seulement
-        assertEquals(Optional.of(LocalDate.of(2016, 8, 31)), LiasseFiscaleHelper.parseClotureExercice("EXERCICE CLOS LE 310816"));
+        assertEquals(Pair.of(true, LocalDate.of(2016, 8, 31)), LiasseFiscaleHelper.parseClotureExercice("EXERCICE CLOS LE 310816"));
     }
 
     @Test
