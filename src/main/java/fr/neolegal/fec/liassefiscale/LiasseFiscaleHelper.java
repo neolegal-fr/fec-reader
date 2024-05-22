@@ -78,6 +78,10 @@ public class LiasseFiscaleHelper {
     }
 
     public static LiasseFiscale readLiasseFiscalePDF(String filename) throws IOException {
+        return readLiasseFiscalePDF(filename, null);
+    }
+
+    public static LiasseFiscale readLiasseFiscalePDF(String filename, String htmlDebugFilename) throws IOException {
         LiasseFiscale liasse = LiasseFiscale.builder().build();
         // Détermination empirique des distances entre les lignes et les colonnes des
         // tableaux des liasses fiscales
@@ -146,7 +150,11 @@ public class LiasseFiscaleHelper {
                 }
             }
         }
-        // writeTablesAsSvg(docTables, "tables.html");
+
+        if (StringUtils.isNotBlank(htmlDebugFilename)) {
+            writeTablesAsSvg(docTables, htmlDebugFilename);
+        }
+
         return liasse;
     }
 

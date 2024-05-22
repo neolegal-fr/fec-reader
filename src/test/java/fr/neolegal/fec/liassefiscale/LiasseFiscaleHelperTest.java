@@ -352,7 +352,7 @@ public class LiasseFiscaleHelperTest {
     @Test
     void readLiasseFiscalePDF_L() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-L.pdf");
+                .readLiasseFiscalePDF("target/test-classes/liasse-publique-L.pdf", "tables.html");
 
         assertEquals(RegimeImposition.REEL_SIMPLIFIE_AGRICOLE, liasse.getRegime());
         assertEquals("524166816", liasse.getSiren());
