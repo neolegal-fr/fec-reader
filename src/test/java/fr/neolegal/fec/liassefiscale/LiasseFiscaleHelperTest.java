@@ -116,7 +116,7 @@ public class LiasseFiscaleHelperTest {
     @Test
     void readLiasseFiscalePDF_A() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-A.pdf");
+                .readLiasseFiscalePDF("target/test-classes/liasse-publique-A.pdf", true);
 
         assertEquals("303195192", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
@@ -144,7 +144,7 @@ public class LiasseFiscaleHelperTest {
         // Dans cette liasse, les repères de cellules sont des images, donc impossible
         // de les lire.
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-B.pdf");
+                .readLiasseFiscalePDF("target/test-classes/liasse-publique-B.pdf", true);
 
         assertEquals("558501912", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
@@ -179,7 +179,7 @@ public class LiasseFiscaleHelperTest {
     @Test
     void readLiasseFiscalePDF_C() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-C.pdf");
+                .readLiasseFiscalePDF("target/test-classes/liasse-publique-C.pdf", true);
 
         assertEquals("529770646", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
@@ -196,7 +196,7 @@ public class LiasseFiscaleHelperTest {
     @Test
     void readLiasseFiscalePDF_D() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-D.pdf");
+                .readLiasseFiscalePDF("target/test-classes/liasse-publique-D.pdf", true);
 
         assertEquals("523128205", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
@@ -213,7 +213,7 @@ public class LiasseFiscaleHelperTest {
     @Test
     void readLiasseFiscalePDF_E() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-E.pdf");
+                .readLiasseFiscalePDF("target/test-classes/liasse-publique-E.pdf", true);
 
         assertEquals("402207153", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
@@ -230,7 +230,7 @@ public class LiasseFiscaleHelperTest {
     @Test
     void readLiasseFiscalePDF_F() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-F.pdf");
+                .readLiasseFiscalePDF("target/test-classes/liasse-publique-F.pdf", true);
 
         assertEquals("449207133", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
@@ -267,7 +267,7 @@ public class LiasseFiscaleHelperTest {
         // Impossible de lire cette liasse, les copier/coller manuels de sont contenu ne
         // fonctionnent même pas, peut être un un problème d'encodage.
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-G.pdf");
+                .readLiasseFiscalePDF("target/test-classes/liasse-publique-G.pdf", true);
 
         // checkParsedLiasse(liasse,
         // "target/test-classes/liasse-publique-G-expected.csv", 0);
@@ -277,7 +277,7 @@ public class LiasseFiscaleHelperTest {
     @Test
     void readLiasseFiscalePDF_H() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-H.pdf");
+                .readLiasseFiscalePDF("target/test-classes/liasse-publique-H.pdf", true);
 
         assertEquals("451209852", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
@@ -297,7 +297,7 @@ public class LiasseFiscaleHelperTest {
     @Test
     void readLiasseFiscalePDF_I() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-anonyme-I.pdf");
+                .readLiasseFiscalePDF("target/test-classes/liasse-anonyme-I.pdf", true);
 
         assertEquals("", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
@@ -328,7 +328,7 @@ public class LiasseFiscaleHelperTest {
     @Test
     void readLiasseFiscalePDF_J() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-J.pdf");
+                .readLiasseFiscalePDF("target/test-classes/liasse-publique-J.pdf", true);
 
         assertEquals("437641699", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_SIMPLIFIE, liasse.getRegime());
@@ -340,7 +340,7 @@ public class LiasseFiscaleHelperTest {
     @Test
     void readLiasseFiscalePDF_K() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-K.pdf");
+                .readLiasseFiscalePDF("target/test-classes/liasse-publique-K.pdf", true);
 
         assertEquals("891369951", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_SIMPLIFIE_AGRICOLE, liasse.getRegime());
@@ -352,7 +352,7 @@ public class LiasseFiscaleHelperTest {
     @Test
     void readLiasseFiscalePDF_L() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-L.pdf", "tables.html");
+                .readLiasseFiscalePDF("target/test-classes/liasse-publique-L.pdf", true);
 
         assertEquals(RegimeImposition.REEL_SIMPLIFIE_AGRICOLE, liasse.getRegime());
         assertEquals("524166816", liasse.getSiren());

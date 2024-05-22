@@ -19,6 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.tuple.Pair;
@@ -78,10 +79,10 @@ public class LiasseFiscaleHelper {
     }
 
     public static LiasseFiscale readLiasseFiscalePDF(String filename) throws IOException {
-        return readLiasseFiscalePDF(filename, null);
+        return readLiasseFiscalePDF(filename, false);
     }
 
-    public static LiasseFiscale readLiasseFiscalePDF(String filename, String htmlDebugFilename) throws IOException {
+    public static LiasseFiscale readLiasseFiscalePDF(String filename, boolean outputDebugHtmlFile) throws IOException {
         LiasseFiscale liasse = LiasseFiscale.builder().build();
         // Détermination empirique des distances entre les lignes et les colonnes des
         // tableaux des liasses fiscales
@@ -151,7 +152,8 @@ public class LiasseFiscaleHelper {
             }
         }
 
-        if (StringUtils.isNotBlank(htmlDebugFilename)) {
+        if (outputDebugHtmlFile) {
+            String htmlDebugFilename = FilenameUtils.removeExtension(filename) + ".html";
             writeTablesAsSvg(docTables, htmlDebugFilename);
         }
 
