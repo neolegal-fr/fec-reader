@@ -7,6 +7,13 @@ Librairie JAVA de :
 La librairie ne supporte que les fichiers FEC en format plat (CSV), pas le format XML, et les liasses fiscales en PDF (pas les liasses scannées).
 
 
+## Environnement de développement
+
+1. Installer VS Code avec les extensions Java
+2. Installer gnupg pour pouvoir publier une nouvelle version de la librairie sur les repos Maven : https://gpg4win.org/download.html
+3. Importer dans Kleopatra le certificat de signature des binaires (clé publique et clé privée / secret)
+4. mvn clean deploy
+
 ## Utilisation
 ### Maven
 
