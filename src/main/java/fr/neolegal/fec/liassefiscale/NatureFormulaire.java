@@ -47,7 +47,7 @@ public enum NatureFormulaire {
             "TABLEAU D'AFFECTATION DU RESULTAT ET RENSEIGNEMENTS DIVERS", RegimeImposition.REEL_NORMAL, false, false,
             null),
     DGFIP_2059_E_DETERMINATION_EFFECTIFS(2059, "E", "2059-E-SD", null,
-            "DÉTERMINATION DES EFFECTIFS ET DE LA VALEUR AJOUTÉE", RegimeImposition.REEL_NORMAL, false, false,
+            "DÉTERMINATION DES EFFECTIFS ET DE LA VALEUR AJOUTÉE", RegimeImposition.REEL_NORMAL, false, true,
             null),            
     DGFIP_2033_A_BILAN_SIMPLIFIE(2033, "A", "2033-A-SD", "15948", "BILAN SIMPLIFIÉ",
             RegimeImposition.REEL_SIMPLIFIE, true, true, null),

@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -90,7 +91,7 @@ public class LiasseFiscaleHelper {
                 .withMaxGapBetweenAlignedHorizontalRulings(30)
                 .withMaxGapBetweenAlignedVerticalRulings(15)
                 .withMinColumnWidth(9f)
-                .withMinRowHeight(10f);
+                .withMinRowHeight(9f);
 
         List<Table> docTables = new LinkedList<>();
         try (InputStream in = new FileInputStream(filename);
@@ -133,7 +134,7 @@ public class LiasseFiscaleHelper {
                             liasse.setSiren(parseSiren(table, page).orElse(null));
                         }
                         if (isNull(liasse.getClotureExercice()) && natureFormulaire.containsClotureExercice()) {
-                            liasse.setClotureExercice(parseClotureExercice(table).orElse(null));
+                            liasse.setClotureExercice(parseClotureExercice(table, page).orElse(null));
                         }
                     }
                 } else if (formulaireHeaderMatch.isPresent() && annexeHeaderMatch.isPresent()) {
@@ -173,6 +174,26 @@ public class LiasseFiscaleHelper {
         return result;
     }
 
+    static Optional<LocalDate> parseClotureExercice(Table table, Page page) throws IOException {
+        return parseClotureExercice(table).or(() -> {
+            try {
+                return parseClotureExercice(page);
+            } catch (IOException e) {
+                return Optional.empty();
+            }
+        });
+    }
+
+    static Optional<LocalDate> parseClotureExercice(Page page) throws IOException {
+        String pageText = extractPageText(page);
+
+        Pair<Boolean, LocalDate> result = parseClotureExercice(pageText);
+        if (result.getKey()) {
+            return Optional.ofNullable(result.getValue());
+        }
+        return Optional.empty();
+    }
+
     @SuppressWarnings("rawtypes")
     static Optional<LocalDate> parseClotureExercice(Table table) {
         for (List<RectangularTextContainer> row : table.getRows()) {
@@ -191,12 +212,12 @@ public class LiasseFiscaleHelper {
                         RectangularTextContainer<?> nextCell = row.get(j);
                         String digit = nextCell.getText();
                         if (StringUtils.isNotBlank(digit)) {
-                            digit = digit.replaceAll("[^\\d]", "");                            
+                            digit = digit.replaceAll("[^\\d]", "");
                             date = date + digit;
-                        }                        
+                        }
                         moreNumbers = StringUtils.isNotBlank(digit);
                     }
-                    Optional<LocalDate> result = parseDate(date);
+                    Optional<LocalDate> result = parseDate(date, false);
                     if (result.isPresent()) {
                         return result;
                     }
@@ -208,36 +229,77 @@ public class LiasseFiscaleHelper {
     }
 
     static Pair<Boolean, LocalDate> parseClotureExercice(String text) {
-        final String regex = "(clos le|c l o s   l e)([\\s,:]*)(.+)";
+        final String regex = "(clos le|c l o s   l e)([\\s,:]*?)(.+)";
         // Il peut y avoir les dates de cloture des exercices N, et N-1, on s'assure de
         // matcher le N
         Pattern pattern = Pattern.compile(".*N[,\\s]+" + regex,
                 Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
         Matcher matcher = pattern.matcher(text);
-        String date = "";
+        String candidate = "";
         if (matcher.matches()) {
-            date = matcher.group(3);
-            date = StringUtils.left(date.replaceAll("[^\\d]", ""), 8);
+            candidate = matcher.group(3);
         } else {
 
             // PAs de correspondance, il n'y a peut être pas de N
-            pattern = Pattern.compile(".*" + regex,
+            pattern = Pattern.compile(".*?" + regex,
                     Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
             matcher = pattern.matcher(text);
             if (!matcher.matches()) {
                 return Pair.of(false, null);
             }
-            date = matcher.group(3);
-            date = StringUtils.left(date.replaceAll("[^\\d]", ""), 8);
+            candidate = matcher.group(3);
         }
 
-        return Pair.of(true, parseDate(date).orElse(null));
+        Optional<LocalDate> match = parseDate(candidate, false);
+        if (match.isPresent()) {
+            return Pair.of(true, match.get());
+        }
+
+        // Parfois, la date se retrouve avant le libellé, ou beaucoup plus loin à cause de l'algo d'extraction du texte
+        // On sait que la date de clôture doit être présente, on élargit la recherche à tout le texte de la page, 
+        // en se restreignant à un format de date avec séparateur pour limiter les faux positifs
+        return Pair.of(true, parseDate(text, true).orElse(null));
     }
 
-    static Optional<LocalDate> parseDate(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(date.length() == 8 ? "ddMMyyyy" : "ddMMyy");
+    static Optional<LocalDate> parseDate(String str) {
+        return parseDate(str, false);
+    }
+
+    static Optional<LocalDate> parseDate(String str, boolean dateSeparatorsRequired) {
+        str = str.replaceAll("[\\s\\r\\n]", "");
+        String pattern = null;
+
+        Map<String, String> formats = new LinkedHashMap<>();
+        formats.put("\\d{4}/\\d{2}/\\d{2}", "yyyy/MM/dd");
+        formats.put("\\d{4}-\\d{2}-\\d{2}", "yyyy-MM-dd");
+        formats.put("\\d{2}/\\d{2}/\\d{4}", "dd/MM/yyyy");
+        formats.put("\\d{2}-\\d{2}-\\d{4}", "dd-MM-yyyy");
+        formats.put("\\d{2}/\\d{2}/\\d{2}", "dd/MM/yy");
+        formats.put("\\d{2}-\\d{2}-\\d{2}", "dd-MM-yy");
+        if (!dateSeparatorsRequired) {
+            formats.put("\\d{8}", "ddMMyyyy");
+            formats.put("\\d{6}", "ddMMyy");
+        }
+
+        String candidate = null;
+        int distanceToCandidate = Integer.MAX_VALUE;
+        for (Map.Entry<String, String> entry : formats.entrySet()) {
+            Pattern p = Pattern.compile("(.*?)(" + entry.getKey() + ").*");
+            Matcher m = p.matcher(str);
+            if (m.matches() && m.group(1).length() < distanceToCandidate) {
+                distanceToCandidate = m.group(1).length();
+                candidate = m.group(2);
+                pattern = entry.getValue();
+            }
+        }
+        if (isNull(pattern) || isNull(candidate)) {
+            return Optional.empty();
+        }
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+
         try {
-            return Optional.of(LocalDate.parse(date, formatter));
+            return Optional.of(LocalDate.parse(candidate, formatter));
         } catch (Exception e) {
             return Optional.empty();
         }
@@ -434,7 +496,7 @@ public class LiasseFiscaleHelper {
             sb.append("<h1>Table " + i + "</h1>");
             sb.append(String.format(Locale.US,
                     "<svg width=\"100%%\" viewbox=\"0 0 %s %s\" xmlns=\"http://www.w3.org/2000/svg\">",
-                    table.getWidth() + 50.0, table.getHeight() + 50.0));
+                    table.getWidth() + 50.0, table.getHeight() + 100.0));
             for (List<RectangularTextContainer> row : table.getRows()) {
                 for (RectangularTextContainer<?> cell : row) {
                     if (true /* cell.height > 10 && cell.width > 10 */) {

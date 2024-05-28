@@ -104,7 +104,7 @@ public class LiasseFiscaleHelperTest {
         }
 
         int totalLessUnknown = total - unknown;
-        float successRate = totalLessUnknown > 0 ? ((float) success / (float)totalLessUnknown) * 100f : 0f;
+        float successRate = totalLessUnknown > 0 ? ((float) success / (float) totalLessUnknown) * 100f : 0f;
         if (success != expectedSuccess) {
             fail(String.format(
                     "%d succès au lieu de %d attendus, %.02f%% de réussite, %d erreurs, %d repères inconnus\r\n",
@@ -118,19 +118,20 @@ public class LiasseFiscaleHelperTest {
         LiasseFiscale liasse = LiasseFiscaleHelper
                 .readLiasseFiscalePDF("target/test-classes/liasse-publique-A.pdf", true);
 
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-A-expected.csv", 88);
         assertEquals("303195192", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2019, 12, 31), liasse.getClotureExercice());
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-A-expected.csv", 88);
 
         Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
         assertEquals(0, produitsChargesExceptionnels.getLignes().size());
 
         Annexe produitsChargesAnterieurs = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_ANTERIEURS);
         assertEquals(3, produitsChargesAnterieurs.getLignes().size());
-        // Les libellés sont tronqués, ils ne sont pas dans la bonne colonne, et il en manque un
+        // Les libellés sont tronqués, ils ne sont pas dans la bonne colonne, et il en
+        // manque un
         assertEquals("olde compte fournisseurs", produitsChargesAnterieurs.getCellule(0, 3));
-        assertEquals("egul salaires 2017+2018", produitsChargesAnterieurs.getCellule(2, 3));        
+        assertEquals("egul salaires 2017+2018", produitsChargesAnterieurs.getCellule(2, 3));
 
         Annexe reintegrations = liasse.getAnnexe(NatureAnnexe.REINTEGRATIONS);
         assertEquals(0, reintegrations.getLignes().size());
@@ -146,9 +147,6 @@ public class LiasseFiscaleHelperTest {
         LiasseFiscale liasse = LiasseFiscaleHelper
                 .readLiasseFiscalePDF("target/test-classes/liasse-publique-B.pdf", true);
 
-        assertEquals("558501912", liasse.getSiren());
-        assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
-        assertEquals(LocalDate.of(2019, 12, 31), liasse.getClotureExercice());
         checkParsedLiasse(liasse, "target/test-classes/liasse-publique-B-expected.csv", 0);
 
         Annexe provisions = liasse.getAnnexe(NatureAnnexe.PROVISIONS);
@@ -158,13 +156,15 @@ public class LiasseFiscaleHelperTest {
 
         Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
         assertEquals(13, produitsChargesExceptionnels.getLignes().size());
-        assertEquals("Valeur comptable des immobilisations incorporelles cédées", produitsChargesExceptionnels.getCellule(0, 0));
-        assertEquals("Reprise sur amortissement dérogatoire (amortissement dégressif)", produitsChargesExceptionnels.getCellule(12, 0));        
+        assertEquals("Valeur comptable des immobilisations incorporelles cédées",
+                produitsChargesExceptionnels.getCellule(0, 0));
+        assertEquals("Reprise sur amortissement dérogatoire (amortissement dégressif)",
+                produitsChargesExceptionnels.getCellule(12, 0));
 
         Annexe produitsChargesAnterieurs = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_ANTERIEURS);
         assertEquals(6, produitsChargesAnterieurs.getLignes().size());
         assertEquals("Décomptes de charges locatives 2018", produitsChargesAnterieurs.getCellule(0, 0));
-        assertEquals("CVAE 2018 ajustement", produitsChargesAnterieurs.getCellule(5, 0));        
+        assertEquals("CVAE 2018 ajustement", produitsChargesAnterieurs.getCellule(5, 0));
 
         Annexe reintegrations = liasse.getAnnexe(NatureAnnexe.REINTEGRATIONS);
         assertEquals(4, reintegrations.getLignes().size());
@@ -174,6 +174,10 @@ public class LiasseFiscaleHelperTest {
         Annexe deductions = liasse.getAnnexe(NatureAnnexe.DEDUCTIONS);
         assertEquals(1, deductions.getLignes().size());
         assertEquals("Suramortissement de 40%", deductions.getCellule(0, 0));
+
+        assertEquals("558501912", liasse.getSiren());
+        assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
+        assertEquals(LocalDate.of(2019, 12, 31), liasse.getClotureExercice());
     }
 
     @Test
@@ -181,10 +185,10 @@ public class LiasseFiscaleHelperTest {
         LiasseFiscale liasse = LiasseFiscaleHelper
                 .readLiasseFiscalePDF("target/test-classes/liasse-publique-C.pdf", true);
 
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-C-expected.csv", 62);
         assertEquals("529770646", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2017, 12, 31), liasse.getClotureExercice());
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-C-expected.csv", 62);
 
         Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
         assertEquals(0, produitsChargesExceptionnels.getLignes().size());
@@ -198,16 +202,16 @@ public class LiasseFiscaleHelperTest {
         LiasseFiscale liasse = LiasseFiscaleHelper
                 .readLiasseFiscalePDF("target/test-classes/liasse-publique-D.pdf", true);
 
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-D-expected.csv", 13);
         assertEquals("523128205", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2019, 03, 31), liasse.getClotureExercice());
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-D-expected.csv", 13);
 
         Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
         assertEquals(0, produitsChargesExceptionnels.getLignes().size());
 
         Annexe produitsChargesAnterieurs = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_ANTERIEURS);
-        assertEquals(0, produitsChargesAnterieurs.getLignes().size());        
+        assertEquals(0, produitsChargesAnterieurs.getLignes().size());
     }
 
     @Test
@@ -215,16 +219,16 @@ public class LiasseFiscaleHelperTest {
         LiasseFiscale liasse = LiasseFiscaleHelper
                 .readLiasseFiscalePDF("target/test-classes/liasse-publique-E.pdf", true);
 
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-E-expected.csv", 7);
         assertEquals("402207153", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2015, 12, 31), liasse.getClotureExercice());
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-E-expected.csv", 7);
 
         Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
         assertEquals(0, produitsChargesExceptionnels.getLignes().size());
 
         Annexe produitsChargesAnterieurs = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_ANTERIEURS);
-        assertEquals(0, produitsChargesAnterieurs.getLignes().size());        
+        assertEquals(0, produitsChargesAnterieurs.getLignes().size());
     }
 
     @Test
@@ -232,33 +236,33 @@ public class LiasseFiscaleHelperTest {
         LiasseFiscale liasse = LiasseFiscaleHelper
                 .readLiasseFiscalePDF("target/test-classes/liasse-publique-F.pdf", true);
 
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-F-expected.csv", 20);
         assertEquals("449207133", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2015, 12, 31), liasse.getClotureExercice());
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-F-expected.csv", 20);
 
         Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
         assertEquals(2, produitsChargesExceptionnels.getLignes().size());
         assertEquals("CHARGES EXECEPTIONNELLES", produitsChargesExceptionnels.getCellule(0, 0));
-        assertEquals("REGULARISTAIONS", produitsChargesExceptionnels.getCellule(1, 0));        
+        assertEquals("REGULARISTAIONS", produitsChargesExceptionnels.getCellule(1, 0));
 
         Annexe produitsChargesAnterieurs = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_ANTERIEURS);
-        assertEquals(0, produitsChargesAnterieurs.getLignes().size());        
+        assertEquals(0, produitsChargesAnterieurs.getLignes().size());
 
         Annexe provisions = liasse.getAnnexe(NatureAnnexe.PROVISIONS);
-        assertEquals(0, provisions.getLignes().size());        
+        assertEquals(0, provisions.getLignes().size());
 
         Annexe reintegrations = liasse.getAnnexe(NatureAnnexe.REINTEGRATIONS);
-        assertEquals(2, reintegrations.getLignes().size());        
+        assertEquals(2, reintegrations.getLignes().size());
         // La première ligne ne devrait pas apparaître
-        assertEquals("Détail des réintégrations diverses", reintegrations.getCellule(0, 0));        
-        assertEquals("IRCM MADA", reintegrations.getCellule(1, 0));        
+        assertEquals("Détail des réintégrations diverses", reintegrations.getCellule(0, 0));
+        assertEquals("IRCM MADA", reintegrations.getCellule(1, 0));
 
         Annexe deductions = liasse.getAnnexe(NatureAnnexe.DEDUCTIONS);
-        assertEquals(2, deductions.getLignes().size());        
+        assertEquals(2, deductions.getLignes().size());
         // La première ligne ne devrait pas apparaître
-        assertEquals("Détail des déductions diverses", deductions.getCellule(0, 0));        
-        assertEquals("Produit d'impôt", deductions.getCellule(1, 0));        
+        assertEquals("Détail des déductions diverses", deductions.getCellule(0, 0));
+        assertEquals("Produit d'impôt", deductions.getCellule(1, 0));
 
     }
 
@@ -279,17 +283,17 @@ public class LiasseFiscaleHelperTest {
         LiasseFiscale liasse = LiasseFiscaleHelper
                 .readLiasseFiscalePDF("target/test-classes/liasse-publique-H.pdf", true);
 
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-H-expected.csv", 421);
         assertEquals("451209852", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2018, 12, 31), liasse.getClotureExercice());
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-H-expected.csv", 421);
 
         Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
         assertEquals(1, produitsChargesExceptionnels.getLignes().size());
         assertEquals("Détail en annexe", produitsChargesExceptionnels.getCellule(0, 0));
 
         Annexe produitsChargesAnterieurs = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_ANTERIEURS);
-        assertEquals(1, produitsChargesAnterieurs.getLignes().size());        
+        assertEquals(1, produitsChargesAnterieurs.getLignes().size());
         assertEquals("Détail en annexe", produitsChargesAnterieurs.getCellule(0, 0));
 
     }
@@ -299,10 +303,10 @@ public class LiasseFiscaleHelperTest {
         LiasseFiscale liasse = LiasseFiscaleHelper
                 .readLiasseFiscalePDF("target/test-classes/liasse-anonyme-I.pdf", true);
 
+        checkParsedLiasse(liasse, "target/test-classes/liasse-anonyme-I-expected.csv", 455);
         assertEquals("", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2022, 12, 31), liasse.getClotureExercice());
-        checkParsedLiasse(liasse, "target/test-classes/liasse-anonyme-I-expected.csv", 455);
 
         Annexe produitsChargesExceptionnels = liasse.getAnnexe(NatureAnnexe.PRODUITS_ET_CHARGES_EXCEPTIONNELS);
         assertEquals(1, produitsChargesExceptionnels.getLignes().size());
@@ -315,7 +319,8 @@ public class LiasseFiscaleHelperTest {
         assertEquals(2, reintegrations.getLignes().size());
         // La première ligne, avec libellé, devrait être ignorée
         assertEquals("Libellé", reintegrations.getCellule(0, 0));
-        assertEquals("Intérêts exc art 212bis CGI après application des règles de sous-capitalisation", reintegrations.getCellule(1, 0));
+        assertEquals("Intérêts exc art 212bis CGI après application des règles de sous-capitalisation",
+                reintegrations.getCellule(1, 0));
 
         Annexe deductions = liasse.getAnnexe(NatureAnnexe.DEDUCTIONS);
         assertEquals(2, deductions.getLignes().size());
@@ -330,35 +335,51 @@ public class LiasseFiscaleHelperTest {
         LiasseFiscale liasse = LiasseFiscaleHelper
                 .readLiasseFiscalePDF("target/test-classes/liasse-publique-J.pdf", true);
 
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-J-expected.csv", 75);
         assertEquals("437641699", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_SIMPLIFIE, liasse.getRegime());
         assertEquals(LocalDate.of(2022, 12, 31), liasse.getClotureExercice());
-        writeExpectedValuesCsv(liasse, "target/test-classes/liasse-publique-J-expected.csv");
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-J-expected.csv", 75);
-    }    
+    }
 
     @Test
     void readLiasseFiscalePDF_K() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
                 .readLiasseFiscalePDF("target/test-classes/liasse-publique-K.pdf", true);
 
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-K-expected.csv", 56);
         assertEquals("891369951", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_SIMPLIFIE_AGRICOLE, liasse.getRegime());
         assertEquals(LocalDate.of(2021, 12, 31), liasse.getClotureExercice());
-        // Pas de bordures horizontales pour délimiter chaque ligne, les correspondances avec les repères ne peuvent pas toutes être lues
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-K-expected.csv", 56);
-    }    
+        // Pas de bordures horizontales pour délimiter chaque ligne, les correspondances
+        // avec les repères ne peuvent pas toutes être lues
+    }
 
     @Test
     void readLiasseFiscalePDF_L() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
                 .readLiasseFiscalePDF("target/test-classes/liasse-publique-L.pdf", true);
 
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-L-expected.csv", 126);
         assertEquals(RegimeImposition.REEL_SIMPLIFIE_AGRICOLE, liasse.getRegime());
         assertEquals("524166816", liasse.getSiren());
         assertEquals(LocalDate.of(2016, 8, 31), liasse.getClotureExercice());
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-L-expected.csv", 126);
-    }    
+    }
+
+    @Test
+    void readLiasseFiscalePDF_custom() throws IOException {
+        LiasseFiscale liasse = LiasseFiscaleHelper
+                .readLiasseFiscalePDF(
+                        "C:\\Users\\NicolasRiousset\\OneDrive - NeoLegal\\Clients\\Rose\\441 - LIASSE 2023 ROSE.pdf",
+                        true);
+
+        // writeExpectedValuesCsv(liasse,
+        //         "C:\\Users\\NicolasRiousset\\OneDrive - NeoLegal\\Clients\\Rose\\441 - LIASSE 2023 ROSE.csv");
+        checkParsedLiasse(liasse,
+                "C:\\Users\\NicolasRiousset\\OneDrive - NeoLegal\\Clients\\Rose\\441 - LIASSE 2023 ROSE.csv", 125);
+        assertEquals(RegimeImposition.REEL_SIMPLIFIE_AGRICOLE, liasse.getRegime());
+        assertEquals("838757730", liasse.getSiren());
+        assertEquals(LocalDate.of(2023, 12, 31), liasse.getClotureExercice());
+    }
 
     void writeExpectedValuesCsv(LiasseFiscale liasse, String filePath) throws IOException {
         StringBuilder builder = new StringBuilder();
@@ -379,7 +400,8 @@ public class LiasseFiscaleHelperTest {
     @Test
     void parseSiren() {
         // Bloc de texte multiligne
-        assertEquals(Optional.of("303195192"), LiasseFiscaleHelper.parseSiren("2\r\nNuméro SIRET*  30319519200032*Néant\r\nExercice N clos le,31122019BrutAmortissements, provisionsNet123\r\nBrutAmortissements, provisionsNet123\r\n"));
+        assertEquals(Optional.of("303195192"), LiasseFiscaleHelper.parseSiren(
+                "2\r\nNuméro SIRET*  30319519200032*Néant\r\nExercice N clos le,31122019BrutAmortissements, provisionsNet123\r\nBrutAmortissements, provisionsNet123\r\n"));
 
         // retour à la ligne entre libellé et valeur
         assertEquals(Optional.of("303195192"), LiasseFiscaleHelper.parseSiren("Numéro SIRET*  \r\n30319519200032"));
@@ -388,10 +410,12 @@ public class LiasseFiscaleHelperTest {
         assertEquals(Optional.of("303195192"), LiasseFiscaleHelper.parseSiren("Numéro SIREN*  30319519200032"));
 
         // Espaces entres le caractères
-        assertEquals(Optional.of("303195192"), LiasseFiscaleHelper.parseSiren("N u m é r o S I R E N *  3 0 3 1 9 5 1 9 2 0 0 0 3 2"));
+        assertEquals(Optional.of("303195192"),
+                LiasseFiscaleHelper.parseSiren("N u m é r o S I R E N *  3 0 3 1 9 5 1 9 2 0 0 0 3 2"));
 
         // Pas de numéro SIREN renseigné
-        assertEquals(Optional.of(""), LiasseFiscaleHelper.parseSiren("*Numéro SIRET*Néant \r\nExercice N clos le,31/12/2022"));
+        assertEquals(Optional.of(""),
+                LiasseFiscaleHelper.parseSiren("*Numéro SIRET*Néant \r\nExercice N clos le,31/12/2022"));
 
         // Pas de champ SIREN trouvé
         assertEquals(Optional.empty(), LiasseFiscaleHelper.parseSiren(""));
@@ -402,25 +426,32 @@ public class LiasseFiscaleHelperTest {
         assertEquals(Pair.of(false, null), LiasseFiscaleHelper.parseClotureExercice(""));
 
         // Bloc de texte multiligne
-        assertEquals(Pair.of(true, LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("2\r\nNuméro SIRET*  30319519200032*Néant\r\nExercice N clos le,31122019BrutAmortissements, provisionsNet123\r\nBrutAmortissements, provisionsNet123\r\n"));
+        assertEquals(Pair.of(true, LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseClotureExercice(
+                "2\r\nNuméro SIRET*  30319519200032*Néant\r\nExercice N clos le,31122019BrutAmortissements, provisionsNet123\r\nBrutAmortissements, provisionsNet123\r\n"));
 
         // retour à la ligne entre libellé et valeur
-        assertEquals(Pair.of(true, LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("Exercice N clos le,\r\n31122019"));
+        assertEquals(Pair.of(true, LocalDate.of(2019, 12, 31)),
+                LiasseFiscaleHelper.parseClotureExercice("Exercice N clos le,\r\n31122019"));
 
         // séparateurs date
-        assertEquals(Pair.of(true, LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("Exercice N clos le,\r\n31/12/2019"));
+        assertEquals(Pair.of(true, LocalDate.of(2019, 12, 31)),
+                LiasseFiscaleHelper.parseClotureExercice("Exercice N clos le,\r\n31/12/2019"));
 
         // Espaces entre les caractères
-        assertEquals(Pair.of(true, LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("E x e r c i c e   N   c l o s   l e   , \r\n 3 1 1 2 2 0 1 9"));
+        assertEquals(Pair.of(true, LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper
+                .parseClotureExercice("E x e r c i c e   N   c l o s   l e   , \r\n 3 1 1 2 2 0 1 9"));
 
         // deux points
-        assertEquals(Pair.of(true, LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("Exercice N clos le:\r\n31/12/2019"));
-        
+        assertEquals(Pair.of(true, LocalDate.of(2019, 12, 31)),
+                LiasseFiscaleHelper.parseClotureExercice("Exercice N clos le:\r\n31/12/2019"));
+
         // Exercice N et N-1 dans la même cellule
-        assertEquals(Pair.of(true, LocalDate.of(2021, 12, 31)), LiasseFiscaleHelper.parseClotureExercice("Exercice N, clos le :31/12/2021Exercice N-1, clos le :08/11/2020"));        
+        assertEquals(Pair.of(true, LocalDate.of(2021, 12, 31)), LiasseFiscaleHelper
+                .parseClotureExercice("Exercice N, clos le :31/12/2021Exercice N-1, clos le :08/11/2020"));
 
         // Date clôture sur 6 positions seulement
-        assertEquals(Pair.of(true, LocalDate.of(2016, 8, 31)), LiasseFiscaleHelper.parseClotureExercice("EXERCICE CLOS LE 310816"));
+        assertEquals(Pair.of(true, LocalDate.of(2016, 8, 31)),
+                LiasseFiscaleHelper.parseClotureExercice("EXERCICE CLOS LE 310816"));
     }
 
     @Test
@@ -431,4 +462,18 @@ public class LiasseFiscaleHelperTest {
         assertEquals(-1000.0, LiasseFiscaleHelper.parseNumber(" (1 000)"));
         assertEquals(0.0, LiasseFiscaleHelper.parseNumber(" (0)"));
     }
+
+    @Test
+    void parseDate() {
+        assertEquals(Optional.of(LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseDate("31/12/2019"));        
+        assertEquals(Optional.of(LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseDate("31-12-2019"));
+        assertEquals(Optional.of(LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseDate("2019/12/31"));
+        assertEquals(Optional.of(LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseDate("2019-12-31"));
+        assertEquals(Optional.of(LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseDate("31/12/19"));
+        assertEquals(Optional.of(LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseDate("31-12-19"));
+        assertEquals(Optional.of(LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseDate("311219"));
+        assertEquals(Optional.of(LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseDate("31122019"));
+        assertEquals(Optional.of(LocalDate.of(2019, 12, 31)), LiasseFiscaleHelper.parseDate(" 31/12/2019 a"));
+        assertEquals(Optional.of(LocalDate.of(2021, 12, 31)), LiasseFiscaleHelper.parseDate("31/12/2021ExerciceN-1closle08/11/2020"));
+     }
 }
