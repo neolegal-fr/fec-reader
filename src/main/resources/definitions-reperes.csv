@@ -744,3 +744,21 @@ HE	2139-B-SD	Superficie de l'exploitation \ En fermage
 HF	2139-B-SD	Superficie de l'exploitation \ En métayage
 GB	2139-B-SD	Montant de la TVA, déductible sur biens et service (sauf immobilisations)
 GC	2139-B-SD	Montant de la TVA déductible afférente aux stocks
+
+DF	2145-SD	Capitaux propres \ Réserves règlementées
+DG	2145-SD	Capitaux propres \ Autres réserves
+DH	2145-SD	Capitaux propres \ Report à nouveau
+DL	2145-SD	Capitaux propres \ Total
+EB	2145-SD	Bilan Passif \ Total Général
+DI	2145-SD	Résultat de l'exercice
+FR	2146-SD	Chiffre d'affaires
+FY	2146-SD	Total des produits d'exploitation
+GM	2146-SD	Total des charges d'exploitation
+GT	2146-SD	Total des produits financiers
+GG	2146-SD	Autres charges sociales
+GN	2146-SD	Résultat d'exploitation
+GY	2146-SD	Résultat financier
+HK	2146-BIS-SD	Résultat exceptionnel
+HO	2146-BIS-SD	Résultat courant
+WF	2151-SD	Amortissements excédentaires et autres amortissements non déductibles
+UR	2151Ter-SD	Effectif moyen du personnel

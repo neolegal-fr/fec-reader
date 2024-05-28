@@ -131,7 +131,7 @@ public class LiasseFiscaleHelper {
                         }
 
                         if (StringUtils.isEmpty(liasse.getSiren()) && natureFormulaire.containsSiren()) {
-                            liasse.setSiren(parseSiren(table, page).orElse(null));
+                            liasse.setSiren(parseSiren(page).orElse(null));
                         }
                         if (isNull(liasse.getClotureExercice()) && natureFormulaire.containsClotureExercice()) {
                             liasse.setClotureExercice(parseClotureExercice(table, page).orElse(null));
@@ -284,7 +284,7 @@ public class LiasseFiscaleHelper {
         String candidate = null;
         int distanceToCandidate = Integer.MAX_VALUE;
         for (Map.Entry<String, String> entry : formats.entrySet()) {
-            Pattern p = Pattern.compile("(.*?)(" + entry.getKey() + ").*");
+            Pattern p = Pattern.compile("(.*?)(" + entry.getKey() + ").*", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
             Matcher m = p.matcher(str);
             if (m.matches() && m.group(1).length() < distanceToCandidate) {
                 distanceToCandidate = m.group(1).length();
@@ -305,15 +305,9 @@ public class LiasseFiscaleHelper {
         }
     }
 
-    static Optional<String> parseSiren(Table table, Page page) throws IOException {
-        String tableText = extractTableText(table, page);
-        return parseSiren(tableText).or(() -> {
-            try {
-                return parseSiren(extractPageText(page));
-            } catch (IOException e) {
-                return Optional.empty();
-            }
-        });
+    static Optional<String> parseSiren(Page page) throws IOException {
+        String pageText = extractPageText(page);
+        return parseSiren(pageText);
     }
 
     static Optional<String> parseSiren(String text) {
@@ -460,20 +454,11 @@ public class LiasseFiscaleHelper {
         return true;
     }
 
-    @SuppressWarnings("rawtypes")
-    private static String extractTableText(Table table, Page page) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        for (List<RectangularTextContainer> row : table.getRows()) {
-            sb.append(getRowText(page, row, ""));
-            sb.append("\r\n");
-        }
-        return sb.toString();
-    }
-
     private static String extractPageText(Page page) throws IOException {
         PDFTextStripper reader = new PDFTextStripper();
         reader.setStartPage(page.getPageNumber());
         reader.setEndPage(page.getPageNumber());
+        reader.setSortByPosition(true);
         return reader.getText(page.getPDDoc());
     }
 

@@ -366,20 +366,18 @@ public class LiasseFiscaleHelperTest {
     }
 
     @Test
-    void readLiasseFiscalePDF_custom() throws IOException {
+    void readLiasseFiscalePDF_M() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF(
-                        "C:\\Users\\NicolasRiousset\\OneDrive - NeoLegal\\Clients\\Rose\\441 - LIASSE 2023 ROSE.pdf",
-                        true);
+                .readLiasseFiscalePDF("target/test-classes/liasse-publique-M-2145-réel-agricole.pdf", true);
 
         // writeExpectedValuesCsv(liasse,
-        //         "C:\\Users\\NicolasRiousset\\OneDrive - NeoLegal\\Clients\\Rose\\441 - LIASSE 2023 ROSE.csv");
-        checkParsedLiasse(liasse,
-                "C:\\Users\\NicolasRiousset\\OneDrive - NeoLegal\\Clients\\Rose\\441 - LIASSE 2023 ROSE.csv", 125);
-        assertEquals(RegimeImposition.REEL_SIMPLIFIE_AGRICOLE, liasse.getRegime());
-        assertEquals("838757730", liasse.getSiren());
-        assertEquals(LocalDate.of(2023, 12, 31), liasse.getClotureExercice());
-    }
+        // "target/test-classes/liasse-publique-M-2145-réel-agricole-expected.csv");
+
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-M-2145-réel-agricole-expected.csv", 14);
+        assertEquals(RegimeImposition.REEL_NORMAL_AGRICOLE, liasse.getRegime());
+        assertEquals("348614793", liasse.getSiren());
+        assertEquals(LocalDate.of(2014, 06, 30), liasse.getClotureExercice());
+    }    
 
     void writeExpectedValuesCsv(LiasseFiscale liasse, String filePath) throws IOException {
         StringBuilder builder = new StringBuilder();
