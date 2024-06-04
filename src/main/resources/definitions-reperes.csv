@@ -720,9 +720,12 @@ EV	2139-B-SD	Charges d'exploitation \ Impôts, taxes et versements assimilés
 EW	2139-B-SD	Charges d'exploitation \ Rémunérations \ dont rémunération du travail de l'exploitant
 EX	2139-B-SD	Charges d'exploitation \ Rémunérations
 DH	2139-B-SD	Charges d'exploitation \ Charges sociales \ dont cotisations personnelles de l'exploitant)
-EY	2139-B-SD	Charges d'exploitation \ Charges sociales
-HJ	2139-B-SD	Charges d'exploitation \ Dotations aux amortissements et provisions \ dont provisions
+EY	2139-B-SD	Charges d'exploitation \ Cotisations personnelles de l'exploitant
+DL	2139-B-SD	Charges d'exploitation \ dont cotisations facultatives Madelin 
+DM	2139-B-SD	Charges d'exploitation \ dont cotisations facultatives aux nouveaux plans d'épargne retraite 
+DG	2139-B-SD	Charges d'exploitation \ Autres charges sociales
 EZ	2139-B-SD	Charges d'exploitation \ Dotations aux amortissements et provisions
+HJ	2139-B-SD	Charges d'exploitation \ Dotations aux amortissements et provisions \ dont provisions
 FA	2139-B-SD	Charges d'exploitation \ Autres charges \dont quotes-parts de résultat sur opérations faites en commun)
 FB	2139-B-SD	Charges d'exploitation \ Autres charges
 FC	2139-B-SD	Charges d'exploitation \ Total des Charges d'exploitation (II)
