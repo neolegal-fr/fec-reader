@@ -335,7 +335,8 @@ public class LiasseFiscaleHelperTest {
         LiasseFiscale liasse = LiasseFiscaleHelper
                 .readLiasseFiscalePDF("target/test-classes/liasse-publique-J.pdf", true);
 
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-J-expected.csv", 75);
+        // writeExpectedValuesCsv(liasse, "target/test-classes/liasse-publique-J-expected.csv");
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-J-expected.csv", 88);
         assertEquals("437641699", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_SIMPLIFIE, liasse.getRegime());
         assertEquals(LocalDate.of(2022, 12, 31), liasse.getClotureExercice());
