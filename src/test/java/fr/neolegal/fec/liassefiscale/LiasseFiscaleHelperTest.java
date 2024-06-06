@@ -41,7 +41,7 @@ public class LiasseFiscaleHelperTest {
                         RegimeImposition.REEL_SIMPLIFIE);
 
         assertEquals(RegimeImposition.REEL_SIMPLIFIE, liasseReelSimplifie.getRegime());
-        assertEquals(5, liasseReelSimplifie.getFormulaires().size());
+        assertEquals(6, liasseReelSimplifie.getFormulaires().size());
     }
 
     @Test
