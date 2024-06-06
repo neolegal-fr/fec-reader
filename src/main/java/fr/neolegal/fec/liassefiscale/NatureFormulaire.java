@@ -88,7 +88,7 @@ public enum NatureFormulaire {
                         false, null),
         DGFIP_2146_COMPTE_RESULTAT(2146, null, "2146-SD", "15947", "COMPTE DE RESULTAT DE L'EXERCICE (en liste)",
                         RegimeImposition.REEL_NORMAL_AGRICOLE, false, false, null),
-        DGFIP_2146_COMPTE_RESULTAT_SUITE(2146, null, "2146-Bis-SD", null, "COMPTE DE RESULTAT DE L'EXERCICE (Suite)",
+        DGFIP_2146_COMPTE_RESULTAT_SUITE(2146, "Bis", "2146-Bis-SD", null, "COMPTE DE RESULTAT DE L'EXERCICE (Suite)",
                         RegimeImposition.REEL_NORMAL_AGRICOLE, false, false, null),
         DGFIP_2151_DETERMINATION_RESULTAt_FISCAL(2151, null, "2151-SD", "15947", "DÉTERMINATION DU RÉSULTAT FISCAL",
                         RegimeImposition.REEL_NORMAL_AGRICOLE, false, false, null),

@@ -791,8 +791,16 @@ GT	2146-SD	Total des produits financiers
 GG	2146-SD	Autres charges sociales
 GN	2146-SD	Résultat d'exploitation
 GY	2146-SD	Résultat financier
-HK	2146-BIS-SD	Résultat exceptionnel
-HO	2146-BIS-SD	Résultat courant
 
+HE	2146-Bis-SD	Total des Produits Exceptionnels
+HJ	2146-Bis-SD	Total des Charges Exceptionnelles
+HK	2146-Bis-SD	Résultat exceptionnel
+HM	2146-Bis-SD	Total des produits
+HN	2146-Bis-SD	Total des charges
+HO	2146-Bis-SD	Résultat courant
+
+WB	2151-SD	Rémunération du travail de l'exploitant ou des associés de sociétés soumises à l'impôt sur le revenu
+WD	2151-SD	Avantages personnels non déductibles
+WG	2151-SD	Autres charges et dépenses somptuaires
 WF	2151-SD	Amortissements excédentaires et autres amortissements non déductibles
 UR	2151Ter-SD	Effectif moyen du personnel
