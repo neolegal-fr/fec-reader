@@ -21,8 +21,6 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -87,7 +85,7 @@ public class LiasseFiscaleHelper {
         return readLiasseFiscalePDF(filename, false);
     }
 
-    public static LiasseFiscale readLiasseFiscalePDF(String filename, boolean outputDebugHtmlFile) throws IOException {
+    public static LiasseFiscale readLiasseFiscalePDF(String filename, boolean outputDebugFiles) throws IOException {
         LiasseFiscale liasse = LiasseFiscale.builder().build();
         // Détermination empirique des distances entre les lignes et les colonnes des
         // tableaux des liasses fiscales
@@ -157,7 +155,7 @@ public class LiasseFiscaleHelper {
             }
         }
 
-        if (outputDebugHtmlFile) {
+        if (outputDebugFiles) {
             String htmlDebugFilename = FilenameUtils.removeExtension(filename) + ".html";
             writeTablesAsSvg(docTables, htmlDebugFilename);
             
@@ -331,21 +329,6 @@ public class LiasseFiscaleHelper {
     }
 
     @SuppressWarnings("rawtypes")
-    private static String getRowText(Page page, List<RectangularTextContainer> row, String delimiter) {
-
-        List<RectangularTextContainer> cells = row.stream().filter(cell -> cell.getArea() > 0.0)
-                .collect(Collectors.toList());
-        Rectangle rowArea = cells.size() > 0 ? cells.get(0) : new Rectangle();
-        for (RectangularTextContainer<?> cell : cells) {
-            rowArea.setTop(Math.min(rowArea.getTop(), cell.getTop()));
-            rowArea.setLeft(Math.min(rowArea.getLeft(), cell.getLeft()));
-            rowArea.setBottom(Math.max(rowArea.getBottom(), cell.getBottom()));
-            rowArea.setRight(Math.max(rowArea.getRight(), cell.getRight()));
-        }
-        return page.getText(rowArea).stream().map(te -> te.getText()).collect(Collectors.joining(delimiter));
-    }
-
-    @SuppressWarnings("rawtypes")
     private static Formulaire parseFormulaire(Table table, NatureFormulaire natureFormulaire) {
         Formulaire formulaire = buildFormulaire(natureFormulaire);
         for (Repere repere : formulaire.reperes()) {
@@ -480,7 +463,7 @@ public class LiasseFiscaleHelper {
         return stripper.getTextForRegion("top");
     }
 
-    @SuppressWarnings({ "rawtypes", "unused" })
+    @SuppressWarnings({ "rawtypes" })
     private static void writeTablesAsSvg(List<Table> tables, String htmlFileName) throws IOException {
         StringBuilder sb = new StringBuilder();
         sb.append("<html><body>");
