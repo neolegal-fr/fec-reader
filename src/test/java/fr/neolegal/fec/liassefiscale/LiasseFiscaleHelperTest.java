@@ -303,7 +303,7 @@ public class LiasseFiscaleHelperTest {
         LiasseFiscale liasse = LiasseFiscaleHelper
                 .readLiasseFiscalePDF("target/test-classes/liasse-anonyme-I.pdf", true);
 
-        checkParsedLiasse(liasse, "target/test-classes/liasse-anonyme-I-expected.csv", 455);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-anonyme-I-expected.csv", 531);
         assertEquals("", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2022, 12, 31), liasse.getClotureExercice());
@@ -335,7 +335,6 @@ public class LiasseFiscaleHelperTest {
         LiasseFiscale liasse = LiasseFiscaleHelper
                 .readLiasseFiscalePDF("target/test-classes/liasse-publique-J.pdf", true);
 
-        // writeExpectedValuesCsv(liasse, "target/test-classes/liasse-publique-J-expected.csv");
         checkParsedLiasse(liasse, "target/test-classes/liasse-publique-J-expected.csv", 88);
         assertEquals("437641699", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_SIMPLIFIE, liasse.getRegime());
@@ -379,22 +378,6 @@ public class LiasseFiscaleHelperTest {
         assertEquals("348614793", liasse.getSiren());
         assertEquals(LocalDate.of(2014, 06, 30), liasse.getClotureExercice());
     }    
-
-    void writeExpectedValuesCsv(LiasseFiscale liasse, String filePath) throws IOException {
-        StringBuilder builder = new StringBuilder();
-
-        for (Formulaire formulaire : liasse.getFormulaires()) {
-            Set<Repere> sortedReperes = new TreeSet<>(formulaire.reperes());
-            for (Repere repere : sortedReperes) {
-                builder.append(repere.getSymbole());
-                builder.append(",");
-                builder.append(String.format(Locale.US, "%.2f", liasse.getMontant(repere).orElse(0.0)));
-                builder.append("\r\n");
-            }
-        }
-
-        FileUtils.writeStringToFile(new File(filePath), builder.toString(), "UTF-8");
-    }
 
     @Test
     void parseSiren() {

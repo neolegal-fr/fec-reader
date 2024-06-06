@@ -1,6 +1,7 @@
 package fr.neolegal.fec.liassefiscale;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,10 +17,13 @@ import java.util.Locale;
 import java.util.Map;
 import static java.util.Objects.isNull;
 import java.util.Optional;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -156,6 +160,9 @@ public class LiasseFiscaleHelper {
         if (outputDebugHtmlFile) {
             String htmlDebugFilename = FilenameUtils.removeExtension(filename) + ".html";
             writeTablesAsSvg(docTables, htmlDebugFilename);
+            
+            String csvFileName = FilenameUtils.removeExtension(filename) + ".csv";
+            writeLiasseAsCsv(liasse, csvFileName);
         }
 
         return liasse;
@@ -348,7 +355,8 @@ public class LiasseFiscaleHelper {
                     break;
                 }
                 for (RectangularTextContainer<?> cell : row) {
-                    String text = cell.getText().trim();
+                    // Des espaces peuvent être détectés à tort entre les lettres
+                    String text = cell.getText().replaceAll("\\s", "");
                     if (found) {
                         double montant = parseNumber(text);
                         formulaire.setMontant(repere, montant);
@@ -510,5 +518,22 @@ public class LiasseFiscaleHelper {
         writer.write(html);
         writer.close();
     }
+
+    private static void writeLiasseAsCsv(LiasseFiscale liasse, String filePath) throws IOException {
+        StringBuilder builder = new StringBuilder();
+
+        for (Formulaire formulaire : liasse.getFormulaires()) {
+            Set<Repere> sortedReperes = new TreeSet<>(formulaire.reperes());
+            for (Repere repere : sortedReperes) {
+                builder.append(repere.getSymbole());
+                builder.append(",");
+                builder.append(String.format(Locale.US, "%.2f", liasse.getMontant(repere).orElse(0.0)));
+                builder.append("\r\n");
+            }
+        }
+
+        FileUtils.writeStringToFile(new File(filePath), builder.toString(), "UTF-8");
+    }
+
 
 }
