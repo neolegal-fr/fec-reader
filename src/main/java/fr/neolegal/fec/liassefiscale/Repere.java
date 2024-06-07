@@ -1,6 +1,6 @@
 package fr.neolegal.fec.liassefiscale;
 
-import java.util.List;
+import java.awt.Point;
 import org.apache.commons.lang3.ObjectUtils;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,14 +22,15 @@ public class Repere implements Comparable<Repere> {
     @JsonProperty("formuleFEC")
     String expression;
 
-    List<Coordonnees> coordonnees;
+    /** Chemin d'accès à la valeur, relativement à la position du repère */
+    Point acces;
 
     @Builder
-    public Repere(String symbole, String nom, String expression, List<Coordonnees> coordonnees) {
+    public Repere(String symbole, String nom, String expression, Point access) {
         this.symbole = symbole;
         this.expression = expression;
         this.nom = nom;
-        this.coordonnees = coordonnees;
+        this.acces = access;
     }
 
     public Repere() {

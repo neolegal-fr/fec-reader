@@ -1,5 +1,6 @@
 package fr.neolegal.fec.liassefiscale;
 
+import java.awt.Point;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,7 +27,10 @@ import java.util.regex.Pattern;
 import static org.apache.commons.collections4.CollectionUtils.emptyIfNull;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang3.StringUtils;
+import static org.apache.commons.lang3.StringUtils.equalsIgnoreCase;
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
+import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.apache.commons.lang3.StringUtils.left;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -53,7 +57,7 @@ public class LiasseFiscaleHelper {
         for (ModeleFormulaire modele : FormulaireHelper.getModelesFormulaires()) {
             if (Objects.equals(regime, modele.getRegimeImposition())) {
                 liasse.getFormulaires().add(Formulaire.builder().modele(modele).build());
-            }            
+            }
         }
 
         return liasse;
@@ -127,7 +131,7 @@ public class LiasseFiscaleHelper {
                             liasse.getFormulaires().add(formulaire);
                         }
 
-                        if (StringUtils.isEmpty(liasse.getSiren()) && modele.isContainsSiren()) {
+                        if (isBlank(liasse.getSiren()) && modele.isContainsSiren()) {
                             liasse.setSiren(parseSiren(page).orElse(null));
                         }
                         if (isNull(liasse.getClotureExercice()) && modele.isContainsClotureExercice()) {
@@ -211,11 +215,11 @@ public class LiasseFiscaleHelper {
                     for (int j = i + 1; j < row.size() && date.length() < 8 && moreNumbers; j++) {
                         RectangularTextContainer<?> nextCell = row.get(j);
                         String digit = nextCell.getText();
-                        if (StringUtils.isNotBlank(digit)) {
+                        if (isNotBlank(digit)) {
                             digit = digit.replaceAll("[^\\d]", "");
                             date = date + digit;
                         }
-                        moreNumbers = StringUtils.isNotBlank(digit);
+                        moreNumbers = isNotBlank(digit);
                     }
                     Optional<LocalDate> result = parseDate(date, false);
                     if (result.isPresent()) {
@@ -319,8 +323,8 @@ public class LiasseFiscaleHelper {
                 Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
         Matcher matcher = sirenPattern.matcher(text);
         if (matcher.matches()) {
-            String siren = StringUtils.left(matcher.group(2), 18);
-            siren = StringUtils.left(siren.replaceAll("[^\\d]", ""), 9);
+            String siren = left(matcher.group(2), 18);
+            siren = left(siren.replaceAll("[^\\d]", ""), 9);
             return Optional.of(siren);
         }
 
@@ -330,25 +334,21 @@ public class LiasseFiscaleHelper {
     @SuppressWarnings("rawtypes")
     private static Formulaire parseFormulaire(Table table, ModeleFormulaire modele) {
         Formulaire formulaire = Formulaire.builder().modele(modele).build();
-        for (Repere repere : formulaire.getAllReperes()) {
-            boolean found = false;
-            for (List<RectangularTextContainer> row : table.getRows()) {
-                if (found) {
-                    break;
-                }
-                for (RectangularTextContainer<?> cell : row) {
-                    // Des espaces peuvent être détectés à tort entre les lettres
-                    String text = cell.getText().replaceAll("\\s", "");
-                    if (found) {
-                        double montant = parseNumber(text);
-                        formulaire.setMontant(repere, montant);
-                        break;
-                    }
 
-                    if (StringUtils.equalsIgnoreCase(repere.getSymbole(), text)) {
-                        found = true;
-                    }
-                }
+        List<List<RectangularTextContainer>> rows = table.getRows();
+        for (int rowIndex = 0; rowIndex < rows.size(); ++rowIndex) {
+            List<RectangularTextContainer> row = rows.get(rowIndex);
+            for (int colIndex = 0; colIndex < row.size(); ++colIndex) {
+                RectangularTextContainer<?> cell = row.get(colIndex);
+                String text = getTrimmedText(cell);
+                Point origine = new Point(colIndex, rowIndex);
+                formulaire.getRepere(text).ifPresent(repere -> {
+                    Point posValeur = computePositionValeur(repere, table, origine);
+                    RectangularTextContainer<?> cellValeur = getCell(table, posValeur.y, posValeur.x);
+                    String valeur = getTrimmedText(cellValeur);
+                    double montant = parseNumber(valeur);
+                    formulaire.setMontant(repere, montant);
+                });
             }
         }
 
@@ -358,6 +358,21 @@ public class LiasseFiscaleHelper {
         }
 
         return formulaire;
+    }
+
+    private static Point computePositionValeur(Repere repere, Table table, Point origine) {
+        Point navigation = isNull(repere.getAcces()) ? new Point(1, 0) : repere.getAcces();
+        Point posValeur = new Point(origine);
+        posValeur.translate(navigation.x, navigation.y);
+        return posValeur;
+    }
+
+    private static RectangularTextContainer<?> getCell(Table table, int rowIndex, int colIndex) {
+        return table.getRows().get(rowIndex).get(colIndex);
+    }
+
+    private static String getTrimmedText(RectangularTextContainer<?> cell) {
+        return cell.getText().replaceAll("\\s", "");
     }
 
     public static double parseNumber(String text) {
