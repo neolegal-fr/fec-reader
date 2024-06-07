@@ -14,19 +14,15 @@ import lombok.Data;
 
 @Data
 public class Formulaire {
-    NatureFormulaire nature;
-    Map<Repere, Double> champs = new HashMap<>();
+    ModeleFormulaire modele;
+    Map<String, Double> valeurs = new HashMap<>();
     List<Annexe> annexes = new LinkedList<>();
 
     @Builder
-    public Formulaire(NatureFormulaire nature, Map<Repere, Double> champs, List<Annexe> annexes) {
-        this.nature = nature;
-        this.champs = ObjectUtils.firstNonNull(champs, new HashMap<>());
+    public Formulaire(ModeleFormulaire modele, Map<String, Double> valeurs, List<Annexe> annexes) {
+        this.modele = modele;
+        this.valeurs = ObjectUtils.firstNonNull(valeurs, new HashMap<>());
         this.annexes = ObjectUtils.firstNonNull(annexes, new LinkedList<>());
-    }
-
-    public Formulaire(NatureFormulaire formulaire) {
-        this(formulaire, null, null);
     }
 
     public Double getMontant(String repere, Double defaultMontant) {
@@ -34,19 +30,23 @@ public class Formulaire {
     }
 
     public void setMontant(Repere repere, Double montant) {
-        champs.put(repere, montant);
+        setMontant(repere.getSymbole(), montant);
+    }
+
+    public void setMontant(String repere, Double montant) {
+        valeurs.put(repere, montant);
     }
 
     public Optional<Double> getMontant(String symboleRepere) {
-        return Repere.get(nature, symboleRepere).map(repere -> champs.get(repere));
+        return Optional.ofNullable(valeurs.get(symboleRepere));
     }
 
-    Set<Repere> reperes() {
-        return champs.keySet();
+    Set<Repere> getAllReperes() {
+        return modele.getAllReperes();
     }
 
     long nbMontantsNonNull() {
-        return champs.values().stream().filter(montant -> montant != null && montant != 0.0).count();
+        return valeurs.values().stream().filter(montant -> montant != null && montant != 0.0).count();
     }
 
     public Optional<Annexe> getAnnexe(NatureAnnexe natureAnnexe) {

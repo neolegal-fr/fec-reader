@@ -5,8 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
 import lombok.Builder;
 import lombok.Data;
 
@@ -35,9 +33,9 @@ public class LiasseFiscale {
      * Renvoie le formulaire correspondant. Le crée s'il n'existe pas dans la
      * liasse.
      */
-    public Formulaire getFormulaire(NatureFormulaire formulaire) {
-        return formulaires.stream().filter(f -> f.getNature() == formulaire).findFirst()
-                .orElse(Formulaire.builder().nature(formulaire).build());
+    public Formulaire getFormulaire(ModeleFormulaire modele) {
+        return formulaires.stream().filter(f -> Objects.equals(f.getModele(), modele)).findFirst()
+                .orElse(Formulaire.builder().modele(modele).build());
     }
 
     public Annexe getAnnexe(NatureAnnexe natureAnnexe) {
@@ -50,16 +48,14 @@ public class LiasseFiscale {
      * connu.
      */
     public Optional<Double> getMontant(String repere) {
-        return Repere
-                .get(formulaires.stream().map(formulaire -> formulaire.getNature()).collect(Collectors.toSet()), repere)
-                .flatMap(r -> getMontant(r));
+        return formulaires.stream().flatMap(f -> f.getMontant(repere).stream()).findFirst();
     }
 
     public Optional<Double> getMontant(Repere repere) {
         if (Objects.isNull(repere)) {
             return Optional.empty();
         }
-        return getFormulaire(repere.getFormulaire()).getMontant(repere.getSymbole());
+        return getMontant(repere.getSymbole());
     }
 
 }

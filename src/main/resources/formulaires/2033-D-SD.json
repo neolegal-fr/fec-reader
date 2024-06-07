@@ -1,0 +1,12 @@
+{
+  "identifiant" : "2033-D-SD",
+  "numero" : 2033,
+  "page" : "D",
+  "cerfa" : "15948",
+  "nom" : "RELEVE DES PROVISIONS - AMORTISSEMENTS DEROGATOIRES - DEFICITS",
+  "regimeImposition" : "REEL_SIMPLIFIE",
+  "containsSiren" : false,
+  "containsClotureExercice" : false,
+  "reperes" : [ ],
+  "allReperes" : [ ]
+}

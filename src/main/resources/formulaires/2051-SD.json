@@ -1,0 +1,267 @@
+{
+  "identifiant" : "2051-SD",
+  "numero" : 2051,
+  "cerfa" : "15949",
+  "nom" : "BILAN - PASSIF",
+  "regimeImposition" : "REEL_NORMAL",
+  "containsSiren" : false,
+  "containsClotureExercice" : false,
+  "reperes" : [ {
+    "symbole" : "DA",
+    "nom" : "Capital social ou individuel",
+    "formuleFEC" : "SLD_101 + SLD_108"
+  }, {
+    "symbole" : "DB",
+    "nom" : "Primes d'émission, de fusion, d'apport",
+    "formuleFEC" : "SLD_104"
+  }, {
+    "symbole" : "DC",
+    "nom" : "Ecarts de réévaluation",
+    "formuleFEC" : "SLD_105 + SLD_107 "
+  }, {
+    "symbole" : "DD",
+    "nom" : "Réserve légale",
+    "formuleFEC" : "SLD_1061"
+  }, {
+    "symbole" : "DE",
+    "nom" : "Réserves statutaires ou contractuelles",
+    "formuleFEC" : "SLD_1063"
+  }, {
+    "symbole" : "DF",
+    "nom" : "Réserves règlementées",
+    "formuleFEC" : "SLD_1062 + SLD_1064"
+  }, {
+    "symbole" : "DG",
+    "nom" : "Autres réserves",
+    "formuleFEC" : "SLD_1068"
+  }, {
+    "symbole" : "DH",
+    "nom" : "Report à nouveau",
+    "formuleFEC" : "SLD_11"
+  }, {
+    "symbole" : "DI",
+    "nom" : "Résultat de l'exercice",
+    "formuleFEC" : "HN"
+  }, {
+    "symbole" : "DJ",
+    "nom" : "Subvention d'investissement",
+    "formuleFEC" : "SLD_13"
+  }, {
+    "symbole" : "DK",
+    "nom" : "Provisions règlementées",
+    "formuleFEC" : "SLD_14"
+  }, {
+    "symbole" : "DL",
+    "nom" : "Total (I)",
+    "formuleFEC" : "DA + DB + DC + DD + DE + DF + DG + DH + DI + DJ + DK"
+  }, {
+    "symbole" : "DM",
+    "nom" : "Produit des émissions de titres participatifs",
+    "formuleFEC" : "SLD_1671"
+  }, {
+    "symbole" : "DN",
+    "nom" : "Avances conditionnées",
+    "formuleFEC" : "SLD_1674"
+  }, {
+    "symbole" : "DO",
+    "nom" : "Total (II)",
+    "formuleFEC" : "DM + DN"
+  }, {
+    "symbole" : "DP",
+    "nom" : "Provisions pour risques",
+    "formuleFEC" : "SLD_151"
+  }, {
+    "symbole" : "DQ",
+    "nom" : "Provisions pour charges",
+    "formuleFEC" : "SLD_152 + SLD_153 + SLD_154 + SLD_155 + SLD_156 + SLD_157 + SLD_158"
+  }, {
+    "symbole" : "DR",
+    "nom" : "Total (III)",
+    "formuleFEC" : "DP + DQ"
+  }, {
+    "symbole" : "DS",
+    "nom" : "Emprunts obligataires convertibles",
+    "formuleFEC" : "SLD_161 + SLD_16881"
+  }, {
+    "symbole" : "DT",
+    "nom" : "Autres emprunts obligataires",
+    "formuleFEC" : "SLD_163 + SLD_16883"
+  }, {
+    "symbole" : "DU",
+    "nom" : "Emprunts et dettes auprès des établissements de crédit",
+    "formuleFEC" : "CRD_164 + CRD_16884 + CRD_512 + CRD_514 + CRD_517 + CRD_5186 + CRD_519"
+  }, {
+    "symbole" : "DV",
+    "nom" : "Emprunts et dettes financières divers",
+    "formuleFEC" : "CRD_162 + CRD_165 + CRD_166 + CRD_1675 + CRD_1681 + CRD_1687 + CRD_16882 + CRD_16885 + CRD_16886 + CRD_16887 + CRD_16888 + CRD_16889 + CRD_17 + CRD_426 + CRD_451 + CRD_455 + CRD_456 + CRD_458"
+  }, {
+    "symbole" : "DW",
+    "nom" : "Avances et acomptes reçus sur commandes en cours",
+    "formuleFEC" : "CRD_4191"
+  }, {
+    "symbole" : "DX",
+    "nom" : "Dettes fournisseurs et comptes rattachés",
+    "formuleFEC" : "CRD_401 + CRD_403 + CRD_4081 + CRD_4088"
+  }, {
+    "symbole" : "DY",
+    "nom" : "Dettes fiscales et sociales",
+    "formuleFEC" : "CRD_421 + CRD_422 + CRD_424 + CRD_427 + CRD_4282 + CRD_4286 + CRD_43 + CRD_442 + CRD_443 + CRD_444 + CRD_4455 + CRD_4457 + CRD_44584 + CRD_44587 + CRD_446 + CRD_447 + CRD_4482 + CRD_4486 + CRD_449 + CRD_457"
+  }, {
+    "symbole" : "DZ",
+    "nom" : "Dettes sur immobilisations et comptes rattachés",
+    "formuleFEC" : "CRD_1685 + CRD_269 + CRD_279 + CRD_404 + CRD_405 + CRD_4084"
+  }, {
+    "symbole" : "EA",
+    "nom" : "Autres dettes",
+    "formuleFEC" : "CRD_4196 + CRD_4197 + CRD_4198 + CRD_464 + CRD_467 + CRD_4686 + CRD_478 + CRD_509"
+  }, {
+    "symbole" : "EB",
+    "nom" : "Produits constatés d'avance",
+    "formuleFEC" : "CRD_487"
+  }, {
+    "symbole" : "EC",
+    "nom" : "Total (IV)",
+    "formuleFEC" : "DS + DT + DU + DV + DW + DX + DY + DZ + EA + EB"
+  }, {
+    "symbole" : "ED",
+    "nom" : "Ecarts de conversion passif",
+    "formuleFEC" : "CRD_477"
+  }, {
+    "symbole" : "EE",
+    "nom" : "Total général",
+    "formuleFEC" : "DL + DO + DR + EC + ED"
+  }, {
+    "symbole" : "EI",
+    "nom" : "Emprunts participatifs",
+    "formuleFEC" : "SLD_17"
+  } ],
+  "allReperes" : [ {
+    "symbole" : "DA",
+    "nom" : "Capital social ou individuel",
+    "formuleFEC" : "SLD_101 + SLD_108"
+  }, {
+    "symbole" : "DB",
+    "nom" : "Primes d'émission, de fusion, d'apport",
+    "formuleFEC" : "SLD_104"
+  }, {
+    "symbole" : "DC",
+    "nom" : "Ecarts de réévaluation",
+    "formuleFEC" : "SLD_105 + SLD_107 "
+  }, {
+    "symbole" : "DD",
+    "nom" : "Réserve légale",
+    "formuleFEC" : "SLD_1061"
+  }, {
+    "symbole" : "DE",
+    "nom" : "Réserves statutaires ou contractuelles",
+    "formuleFEC" : "SLD_1063"
+  }, {
+    "symbole" : "DF",
+    "nom" : "Réserves règlementées",
+    "formuleFEC" : "SLD_1062 + SLD_1064"
+  }, {
+    "symbole" : "DG",
+    "nom" : "Autres réserves",
+    "formuleFEC" : "SLD_1068"
+  }, {
+    "symbole" : "DH",
+    "nom" : "Report à nouveau",
+    "formuleFEC" : "SLD_11"
+  }, {
+    "symbole" : "DI",
+    "nom" : "Résultat de l'exercice",
+    "formuleFEC" : "HN"
+  }, {
+    "symbole" : "DJ",
+    "nom" : "Subvention d'investissement",
+    "formuleFEC" : "SLD_13"
+  }, {
+    "symbole" : "DK",
+    "nom" : "Provisions règlementées",
+    "formuleFEC" : "SLD_14"
+  }, {
+    "symbole" : "DL",
+    "nom" : "Total (I)",
+    "formuleFEC" : "DA + DB + DC + DD + DE + DF + DG + DH + DI + DJ + DK"
+  }, {
+    "symbole" : "DM",
+    "nom" : "Produit des émissions de titres participatifs",
+    "formuleFEC" : "SLD_1671"
+  }, {
+    "symbole" : "DN",
+    "nom" : "Avances conditionnées",
+    "formuleFEC" : "SLD_1674"
+  }, {
+    "symbole" : "DO",
+    "nom" : "Total (II)",
+    "formuleFEC" : "DM + DN"
+  }, {
+    "symbole" : "DP",
+    "nom" : "Provisions pour risques",
+    "formuleFEC" : "SLD_151"
+  }, {
+    "symbole" : "DQ",
+    "nom" : "Provisions pour charges",
+    "formuleFEC" : "SLD_152 + SLD_153 + SLD_154 + SLD_155 + SLD_156 + SLD_157 + SLD_158"
+  }, {
+    "symbole" : "DR",
+    "nom" : "Total (III)",
+    "formuleFEC" : "DP + DQ"
+  }, {
+    "symbole" : "DS",
+    "nom" : "Emprunts obligataires convertibles",
+    "formuleFEC" : "SLD_161 + SLD_16881"
+  }, {
+    "symbole" : "DT",
+    "nom" : "Autres emprunts obligataires",
+    "formuleFEC" : "SLD_163 + SLD_16883"
+  }, {
+    "symbole" : "DU",
+    "nom" : "Emprunts et dettes auprès des établissements de crédit",
+    "formuleFEC" : "CRD_164 + CRD_16884 + CRD_512 + CRD_514 + CRD_517 + CRD_5186 + CRD_519"
+  }, {
+    "symbole" : "DV",
+    "nom" : "Emprunts et dettes financières divers",
+    "formuleFEC" : "CRD_162 + CRD_165 + CRD_166 + CRD_1675 + CRD_1681 + CRD_1687 + CRD_16882 + CRD_16885 + CRD_16886 + CRD_16887 + CRD_16888 + CRD_16889 + CRD_17 + CRD_426 + CRD_451 + CRD_455 + CRD_456 + CRD_458"
+  }, {
+    "symbole" : "DW",
+    "nom" : "Avances et acomptes reçus sur commandes en cours",
+    "formuleFEC" : "CRD_4191"
+  }, {
+    "symbole" : "DX",
+    "nom" : "Dettes fournisseurs et comptes rattachés",
+    "formuleFEC" : "CRD_401 + CRD_403 + CRD_4081 + CRD_4088"
+  }, {
+    "symbole" : "DY",
+    "nom" : "Dettes fiscales et sociales",
+    "formuleFEC" : "CRD_421 + CRD_422 + CRD_424 + CRD_427 + CRD_4282 + CRD_4286 + CRD_43 + CRD_442 + CRD_443 + CRD_444 + CRD_4455 + CRD_4457 + CRD_44584 + CRD_44587 + CRD_446 + CRD_447 + CRD_4482 + CRD_4486 + CRD_449 + CRD_457"
+  }, {
+    "symbole" : "DZ",
+    "nom" : "Dettes sur immobilisations et comptes rattachés",
+    "formuleFEC" : "CRD_1685 + CRD_269 + CRD_279 + CRD_404 + CRD_405 + CRD_4084"
+  }, {
+    "symbole" : "EA",
+    "nom" : "Autres dettes",
+    "formuleFEC" : "CRD_4196 + CRD_4197 + CRD_4198 + CRD_464 + CRD_467 + CRD_4686 + CRD_478 + CRD_509"
+  }, {
+    "symbole" : "EB",
+    "nom" : "Produits constatés d'avance",
+    "formuleFEC" : "CRD_487"
+  }, {
+    "symbole" : "EC",
+    "nom" : "Total (IV)",
+    "formuleFEC" : "DS + DT + DU + DV + DW + DX + DY + DZ + EA + EB"
+  }, {
+    "symbole" : "ED",
+    "nom" : "Ecarts de conversion passif",
+    "formuleFEC" : "CRD_477"
+  }, {
+    "symbole" : "EE",
+    "nom" : "Total général",
+    "formuleFEC" : "DL + DO + DR + EC + ED"
+  }, {
+    "symbole" : "EI",
+    "nom" : "Emprunts participatifs",
+    "formuleFEC" : "SLD_17"
+  } ]
+}

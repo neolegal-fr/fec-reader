@@ -1,0 +1,11 @@
+{
+  "identifiant" : "2144-SD",
+  "numero" : 2144,
+  "cerfa" : "15947",
+  "nom" : "BILAN - ACTIF",
+  "regimeImposition" : "REEL_NORMAL_AGRICOLE",
+  "containsSiren" : true,
+  "containsClotureExercice" : true,
+  "reperes" : [ ],
+  "allReperes" : [ ]
+}

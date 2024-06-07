@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import lombok.Getter;
 
+@Deprecated
 @Getter
 public enum NatureFormulaire {
         DGFIP_2050_BILAN_ACTIF(2050, null, "2050-SD", "15949", "BILAN - ACTIF", RegimeImposition.REEL_NORMAL, true,

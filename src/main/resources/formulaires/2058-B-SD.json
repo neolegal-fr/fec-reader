@@ -1,0 +1,12 @@
+{
+  "identifiant" : "2058-B-SD",
+  "numero" : 2058,
+  "page" : "B",
+  "cerfa" : "15949",
+  "nom" : "DEFICITS, INDEMNITES POUR CONGES A PAYER ET PROVISIONS NON DEDUCTIBLES",
+  "regimeImposition" : "REEL_NORMAL",
+  "containsSiren" : false,
+  "containsClotureExercice" : false,
+  "reperes" : [ ],
+  "allReperes" : [ ]
+}

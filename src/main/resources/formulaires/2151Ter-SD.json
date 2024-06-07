@@ -1,0 +1,17 @@
+{
+  "identifiant" : "2151Ter-SD",
+  "numero" : 2151,
+  "cerfa" : "15947",
+  "nom" : "RENSEIGNEMENTS DIVERS",
+  "regimeImposition" : "REEL_NORMAL_AGRICOLE",
+  "containsSiren" : false,
+  "containsClotureExercice" : false,
+  "reperes" : [ {
+    "symbole" : "UR",
+    "nom" : "Effectif moyen du personnel"
+  } ],
+  "allReperes" : [ {
+    "symbole" : "UR",
+    "nom" : "Effectif moyen du personnel"
+  } ]
+}

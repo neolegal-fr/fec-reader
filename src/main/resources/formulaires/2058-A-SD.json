@@ -1,0 +1,802 @@
+{
+  "identifiant" : "2058-A-SD",
+  "numero" : 2058,
+  "page" : "A",
+  "cerfa" : "15949",
+  "nom" : "DETERMINATION DU RESULTAT FISCAL",
+  "regimeImposition" : "REEL_NORMAL",
+  "containsSiren" : false,
+  "containsClotureExercice" : false,
+  "sections" : [ {
+    "nom" : "Charges à payer",
+    "reperes" : [ {
+      "symbole" : "9K",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "9L",
+      "nom" : " Reprises sur l'exercice"
+    }, {
+      "symbole" : "9M",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "9N",
+      "nom" : " Reprises sur l'exercice"
+    }, {
+      "symbole" : "9P",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "9R",
+      "nom" : " Reprises sur l'exercice"
+    }, {
+      "symbole" : "9S",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "9T",
+      "nom" : " Reprises sur l'exercice"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "9K",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "9L",
+      "nom" : " Reprises sur l'exercice"
+    }, {
+      "symbole" : "9M",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "9N",
+      "nom" : " Reprises sur l'exercice"
+    }, {
+      "symbole" : "9P",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "9R",
+      "nom" : " Reprises sur l'exercice"
+    }, {
+      "symbole" : "9S",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "9T",
+      "nom" : " Reprises sur l'exercice"
+    } ]
+  }, {
+    "nom" : "Fraction imposable des plus-values réalisées au cours d'exercices antérieurs",
+    "reperes" : [ {
+      "symbole" : "WN",
+      "nom" : " Plus–values nettes à court terme"
+    }, {
+      "symbole" : "WO",
+      "nom" : " Plus–values soumises au régime des fusions"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "WN",
+      "nom" : " Plus–values nettes à court terme"
+    }, {
+      "symbole" : "WO",
+      "nom" : " Plus–values soumises au régime des fusions"
+    } ]
+  }, {
+    "nom" : "Indemnités pour congés à payer, charges sociales et fiscales correspondantes non déductibles",
+    "reperes" : [ {
+      "symbole" : "ZV",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "ZW",
+      "nom" : " Reprises sur l'exercice"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "ZV",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "ZW",
+      "nom" : " Reprises sur l'exercice"
+    } ]
+  }, {
+    "nom" : "Provisions pour dépréciation",
+    "reperes" : [ {
+      "symbole" : "9D",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "9E",
+      "nom" : " Reprises sur l'exercice"
+    }, {
+      "symbole" : "9F",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "9G",
+      "nom" : " Reprises sur l'exercice"
+    }, {
+      "symbole" : "9H",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "9J",
+      "nom" : " Reprises sur l'exercice"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "9D",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "9E",
+      "nom" : " Reprises sur l'exercice"
+    }, {
+      "symbole" : "9F",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "9G",
+      "nom" : " Reprises sur l'exercice"
+    }, {
+      "symbole" : "9H",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "9J",
+      "nom" : " Reprises sur l'exercice"
+    } ]
+  }, {
+    "nom" : "Provisions pour risques et charges",
+    "reperes" : [ {
+      "symbole" : "8X",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "8Y",
+      "nom" : " Reprises sur l'exercice"
+    }, {
+      "symbole" : "8Z",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "9A",
+      "nom" : " Reprises sur l'exercice"
+    }, {
+      "symbole" : "9B",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "9C",
+      "nom" : " Reprises sur l'exercice"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "8X",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "8Y",
+      "nom" : " Reprises sur l'exercice"
+    }, {
+      "symbole" : "8Z",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "9A",
+      "nom" : " Reprises sur l'exercice"
+    }, {
+      "symbole" : "9B",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "9C",
+      "nom" : " Reprises sur l'exercice"
+    } ]
+  }, {
+    "nom" : "Régime des sociétés mères et des filiales",
+    "reperes" : [ {
+      "symbole" : "XA",
+      "nom" : "Produit net des actions et parts d’intérêts"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "XA",
+      "nom" : "Produit net des actions et parts d’intérêts"
+    } ]
+  }, {
+    "nom" : "RÉSULTAT FISCAL",
+    "reperes" : [ {
+      "symbole" : "XI",
+      "nom" : " bénéfice"
+    }, {
+      "symbole" : "XJ",
+      "nom" : " déficit"
+    }, {
+      "symbole" : "XN",
+      "nom" : " bénéfice"
+    }, {
+      "symbole" : "XO",
+      "nom" : " déficit"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "XI",
+      "nom" : " bénéfice"
+    }, {
+      "symbole" : "XJ",
+      "nom" : " déficit"
+    }, {
+      "symbole" : "XN",
+      "nom" : " bénéfice"
+    }, {
+      "symbole" : "XO",
+      "nom" : " déficit"
+    } ]
+  }, {
+    "nom" : "TOTAUX",
+    "reperes" : [ {
+      "symbole" : "YN",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "YO",
+      "nom" : " Reprises sur l'exercice"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "YN",
+      "nom" : " Dotations de l'exercice"
+    }, {
+      "symbole" : "YO",
+      "nom" : " Reprises sur l'exercice"
+    } ]
+  } ],
+  "reperes" : [ {
+    "symbole" : "1F",
+    "nom" : "Bassin d’emploi à redynamiser"
+  }, {
+    "symbole" : "2A",
+    "nom" : "Quote–part des frais et charges restant imposable à déduire des produits nets de participation"
+  }, {
+    "symbole" : "I6",
+    "nom" : "Autres plus–values imposées au taux de 19 %"
+  }, {
+    "symbole" : "I7",
+    "nom" : "Impôt sur les sociétés"
+  }, {
+    "symbole" : "I8",
+    "nom" : "Moins-values nettes à long terme imposées au taux de 15 % ou de 19 %"
+  }, {
+    "symbole" : "K3",
+    "nom" : "Sociétés investissement immobilier cotée"
+  }, {
+    "symbole" : "K4",
+    "nom" : "Déficits restant à reporter au titre de l’exercice précédent"
+  }, {
+    "symbole" : "K4bis",
+    "nom" : "Déficits transférés de plein droit"
+  }, {
+    "symbole" : "K4ter",
+    "nom" : "Nombre d’opérations sur l’exercice"
+  }, {
+    "symbole" : "K5",
+    "nom" : "Déficits imputés"
+  }, {
+    "symbole" : "K6",
+    "nom" : "Déficits reportables"
+  }, {
+    "symbole" : "K7",
+    "nom" : "Bénéfices réalisés par une société"
+  }, {
+    "symbole" : "K9",
+    "nom" : "Reprise d’entreprises en difficultés"
+  }, {
+    "symbole" : "L1",
+    "nom" : "Montant de la réintégration ou de la déduction au début de l'exercice"
+  }, {
+    "symbole" : "L2",
+    "nom" : "Entreprises nouvelles"
+  }, {
+    "symbole" : "L5",
+    "nom" : "Jeunes entreprises innovantes"
+  }, {
+    "symbole" : "L7",
+    "nom" : "Résultats bénéficiaires visés à l'article 209 B du CG"
+  }, {
+    "symbole" : "M8",
+    "nom" : "Quote–part de 12 % des plus–values à taux zéro"
+  }, {
+    "symbole" : "PA",
+    "nom" : "Zone de restructuration de la défense"
+  }, {
+    "symbole" : "PB",
+    "nom" : "Zone de développement prioritaire"
+  }, {
+    "symbole" : "PC",
+    "nom" : "Zone de revitalisation rurale"
+  }, {
+    "symbole" : "PP",
+    "nom" : "Bassin urbain à dynamiser"
+  }, {
+    "symbole" : "RA",
+    "nom" : "Fraction des loyers à réintégrer dans le cadre d'un crédit bail immobilier et de levée d'option"
+  }, {
+    "symbole" : "RB",
+    "nom" : "Part des loyers dispensée de réintégration"
+  }, {
+    "symbole" : "SU",
+    "nom" : "Intérêts excédentaires"
+  }, {
+    "symbole" : "SW",
+    "nom" : "Zones d'entreprise"
+  }, {
+    "symbole" : "WA",
+    "nom" : "BÉNÉFICE COMPTABLE DE L'EXERCICE"
+  }, {
+    "symbole" : "WB",
+    "nom" : "Rémunération du travail de l'exploitant ou des associés"
+  }, {
+    "symbole" : "WD",
+    "nom" : "Avantages personnels non déductibles"
+  }, {
+    "symbole" : "WE",
+    "nom" : "Amortissements exédentaires",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "WF",
+    "nom" : "Autres charges et dépenses somptuaires",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "WG",
+    "nom" : "Taxe sur les véhicules des sociétés"
+  }, {
+    "symbole" : "WH",
+    "nom" : "Plus-values nettes à long terme imposées au taux de 0 %"
+  }, {
+    "symbole" : "WI",
+    "nom" : "Provisions et charges à payer non déductibles"
+  }, {
+    "symbole" : "WJ",
+    "nom" : "Amendes et pénalités"
+  }, {
+    "symbole" : "WL",
+    "nom" : "Quote–part de personnes ou un GIE"
+  }, {
+    "symbole" : "WP",
+    "nom" : "Plus-values nettes à long terme imposées au taux de 19%"
+  }, {
+    "symbole" : "WQ",
+    "nom" : "Réintégrations diverses à détailler sur feuillet séparé"
+  }, {
+    "symbole" : "WR",
+    "nom" : "TOTAL I"
+  }, {
+    "symbole" : "WS",
+    "nom" : "PERTE COMPTABLE DE L'EXERCICE"
+  }, {
+    "symbole" : "WT",
+    "nom" : "Quote–part dans les pertes subies par une société de personnes ou un G.I.E."
+  }, {
+    "symbole" : "WU",
+    "nom" : "Provisions et charges à payer non déductibles, antérieurement taxées, et réintégrées dans les résultats comptables de l'exercice"
+  }, {
+    "symbole" : "WV",
+    "nom" : "Plus-values nettes à long terme imposées au taux de 15"
+  }, {
+    "symbole" : "WW",
+    "nom" : "Plus-values nettes à long terme imputées sur les moins–values nettes à long terme antérieures"
+  }, {
+    "symbole" : "WZ",
+    "nom" : "Fraction des plus–values nettes à court terme de l’exercice dont l’imposition est différée"
+  }, {
+    "symbole" : "X9",
+    "nom" : "Dont déduction exceptionnelle"
+  }, {
+    "symbole" : "XB",
+    "nom" : "Plus-values nettes à long terme imputées sur les déficits antérieurs"
+  }, {
+    "symbole" : "XC",
+    "nom" : "Zone franche d’activités NG"
+  }, {
+    "symbole" : "XD",
+    "nom" : "Majoration d’amortissement"
+  }, {
+    "symbole" : "XE",
+    "nom" : "Charges non admises en déduction du résultat fiscal"
+  }, {
+    "symbole" : "XF",
+    "nom" : "Abattement sur le bénéfice et exonérations"
+  }, {
+    "symbole" : "XG",
+    "nom" : "Déductions diverses à détailler sur feuillet séparé"
+  }, {
+    "symbole" : "XH",
+    "nom" : "TOTAL II"
+  }, {
+    "symbole" : "XL",
+    "nom" : "Déficits antérieurs imputés sur les résultats de l’exercice"
+  }, {
+    "symbole" : "XR",
+    "nom" : "Écarts de valeurs liquidatives sur OPC"
+  }, {
+    "symbole" : "XS",
+    "nom" : "Écarts de valeurs liquidatives sur OPC"
+  }, {
+    "symbole" : "XW",
+    "nom" : "Charges non admises en déduction du résultat fiscal"
+  }, {
+    "symbole" : "XX",
+    "nom" : "Charges à payer liées à des états et territoires non coopératifs non déductibles"
+  }, {
+    "symbole" : "XY",
+    "nom" : "Réintégrations prévues à l'article 155 du CGI"
+  }, {
+    "symbole" : "XZ",
+    "nom" : "Charges financières"
+  }, {
+    "symbole" : "Y1",
+    "nom" : "Réintégration des charges affectées aux activités éligibles au régime de la taxation au tonnage"
+  }, {
+    "symbole" : "Y2",
+    "nom" : "Déduction des produits affectés aux activités éligibles au régime de la taxation au tonnage"
+  }, {
+    "symbole" : "Y3",
+    "nom" : "Résultat fiscal afférent à l'activité relevant du régime optionnel de taxation au tonnage"
+  }, {
+    "symbole" : "YA",
+    "nom" : "Dont déduction exceptionnelle pour investissement"
+  }, {
+    "symbole" : "YB",
+    "nom" : "Dont déduction exceptionnelle pour investissement"
+  }, {
+    "symbole" : "YC",
+    "nom" : "Dont déduction exceptionnelle pour investissement"
+  }, {
+    "symbole" : "YD",
+    "nom" : "Dont déduction exceptionnelle pour investissement"
+  }, {
+    "symbole" : "YH",
+    "nom" : "Dont déduction exceptionnelle simulateur de conduite"
+  }, {
+    "symbole" : "YI",
+    "nom" : "Dont déduction exceptionnelle pour investissement"
+  }, {
+    "symbole" : "YJ",
+    "nom" : "Déficits de l’exercice"
+  }, {
+    "symbole" : "YK",
+    "nom" : "Total des déficits restant à reporter"
+  }, {
+    "symbole" : "YL",
+    "nom" : "Dont déduction exceptionnelle pour investissement"
+  }, {
+    "symbole" : "ZI",
+    "nom" : "Créance dégagée par le report en arrière de déficit"
+  }, {
+    "symbole" : "ZL",
+    "nom" : "Déficit de l’exercice reporté en arrière"
+  }, {
+    "symbole" : "ZN",
+    "nom" : "Moins-values nettes à long terme imposées au taux de 0 %"
+  }, {
+    "symbole" : "ZT",
+    "nom" : "Montant déductible correspondant aux droits acquis par les salariés pour les entreprises placées sous le régime de l’article 39–1. 1 e bis Al. 1e r du CGI, dotations de l’exercice"
+  }, {
+    "symbole" : "ZX",
+    "nom" : "Produits de participations inéligibles au régime des sociétés mères déductibles à hauteur de 99 %"
+  }, {
+    "symbole" : "ZY",
+    "nom" : "Déduction autorisée au titre des investissements réalisés dans les collectivités d’Outre–mer"
+  }, {
+    "symbole" : "ØV",
+    "nom" : "Zone franche urbaine –TE"
+  } ],
+  "allReperes" : [ {
+    "symbole" : "1F",
+    "nom" : "Bassin d’emploi à redynamiser"
+  }, {
+    "symbole" : "2A",
+    "nom" : "Quote–part des frais et charges restant imposable à déduire des produits nets de participation"
+  }, {
+    "symbole" : "8X",
+    "nom" : " Dotations de l'exercice"
+  }, {
+    "symbole" : "8Y",
+    "nom" : " Reprises sur l'exercice"
+  }, {
+    "symbole" : "8Z",
+    "nom" : " Dotations de l'exercice"
+  }, {
+    "symbole" : "9A",
+    "nom" : " Reprises sur l'exercice"
+  }, {
+    "symbole" : "9B",
+    "nom" : " Dotations de l'exercice"
+  }, {
+    "symbole" : "9C",
+    "nom" : " Reprises sur l'exercice"
+  }, {
+    "symbole" : "9D",
+    "nom" : " Dotations de l'exercice"
+  }, {
+    "symbole" : "9E",
+    "nom" : " Reprises sur l'exercice"
+  }, {
+    "symbole" : "9F",
+    "nom" : " Dotations de l'exercice"
+  }, {
+    "symbole" : "9G",
+    "nom" : " Reprises sur l'exercice"
+  }, {
+    "symbole" : "9H",
+    "nom" : " Dotations de l'exercice"
+  }, {
+    "symbole" : "9J",
+    "nom" : " Reprises sur l'exercice"
+  }, {
+    "symbole" : "9K",
+    "nom" : " Dotations de l'exercice"
+  }, {
+    "symbole" : "9L",
+    "nom" : " Reprises sur l'exercice"
+  }, {
+    "symbole" : "9M",
+    "nom" : " Dotations de l'exercice"
+  }, {
+    "symbole" : "9N",
+    "nom" : " Reprises sur l'exercice"
+  }, {
+    "symbole" : "9P",
+    "nom" : " Dotations de l'exercice"
+  }, {
+    "symbole" : "9R",
+    "nom" : " Reprises sur l'exercice"
+  }, {
+    "symbole" : "9S",
+    "nom" : " Dotations de l'exercice"
+  }, {
+    "symbole" : "9T",
+    "nom" : " Reprises sur l'exercice"
+  }, {
+    "symbole" : "I6",
+    "nom" : "Autres plus–values imposées au taux de 19 %"
+  }, {
+    "symbole" : "I7",
+    "nom" : "Impôt sur les sociétés"
+  }, {
+    "symbole" : "I8",
+    "nom" : "Moins-values nettes à long terme imposées au taux de 15 % ou de 19 %"
+  }, {
+    "symbole" : "K3",
+    "nom" : "Sociétés investissement immobilier cotée"
+  }, {
+    "symbole" : "K4",
+    "nom" : "Déficits restant à reporter au titre de l’exercice précédent"
+  }, {
+    "symbole" : "K4bis",
+    "nom" : "Déficits transférés de plein droit"
+  }, {
+    "symbole" : "K4ter",
+    "nom" : "Nombre d’opérations sur l’exercice"
+  }, {
+    "symbole" : "K5",
+    "nom" : "Déficits imputés"
+  }, {
+    "symbole" : "K6",
+    "nom" : "Déficits reportables"
+  }, {
+    "symbole" : "K7",
+    "nom" : "Bénéfices réalisés par une société"
+  }, {
+    "symbole" : "K9",
+    "nom" : "Reprise d’entreprises en difficultés"
+  }, {
+    "symbole" : "L1",
+    "nom" : "Montant de la réintégration ou de la déduction au début de l'exercice"
+  }, {
+    "symbole" : "L2",
+    "nom" : "Entreprises nouvelles"
+  }, {
+    "symbole" : "L5",
+    "nom" : "Jeunes entreprises innovantes"
+  }, {
+    "symbole" : "L7",
+    "nom" : "Résultats bénéficiaires visés à l'article 209 B du CG"
+  }, {
+    "symbole" : "M8",
+    "nom" : "Quote–part de 12 % des plus–values à taux zéro"
+  }, {
+    "symbole" : "PA",
+    "nom" : "Zone de restructuration de la défense"
+  }, {
+    "symbole" : "PB",
+    "nom" : "Zone de développement prioritaire"
+  }, {
+    "symbole" : "PC",
+    "nom" : "Zone de revitalisation rurale"
+  }, {
+    "symbole" : "PP",
+    "nom" : "Bassin urbain à dynamiser"
+  }, {
+    "symbole" : "RA",
+    "nom" : "Fraction des loyers à réintégrer dans le cadre d'un crédit bail immobilier et de levée d'option"
+  }, {
+    "symbole" : "RB",
+    "nom" : "Part des loyers dispensée de réintégration"
+  }, {
+    "symbole" : "SU",
+    "nom" : "Intérêts excédentaires"
+  }, {
+    "symbole" : "SW",
+    "nom" : "Zones d'entreprise"
+  }, {
+    "symbole" : "WA",
+    "nom" : "BÉNÉFICE COMPTABLE DE L'EXERCICE"
+  }, {
+    "symbole" : "WB",
+    "nom" : "Rémunération du travail de l'exploitant ou des associés"
+  }, {
+    "symbole" : "WD",
+    "nom" : "Avantages personnels non déductibles"
+  }, {
+    "symbole" : "WE",
+    "nom" : "Amortissements exédentaires",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "WF",
+    "nom" : "Autres charges et dépenses somptuaires",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "WG",
+    "nom" : "Taxe sur les véhicules des sociétés"
+  }, {
+    "symbole" : "WH",
+    "nom" : "Plus-values nettes à long terme imposées au taux de 0 %"
+  }, {
+    "symbole" : "WI",
+    "nom" : "Provisions et charges à payer non déductibles"
+  }, {
+    "symbole" : "WJ",
+    "nom" : "Amendes et pénalités"
+  }, {
+    "symbole" : "WL",
+    "nom" : "Quote–part de personnes ou un GIE"
+  }, {
+    "symbole" : "WN",
+    "nom" : " Plus–values nettes à court terme"
+  }, {
+    "symbole" : "WO",
+    "nom" : " Plus–values soumises au régime des fusions"
+  }, {
+    "symbole" : "WP",
+    "nom" : "Plus-values nettes à long terme imposées au taux de 19%"
+  }, {
+    "symbole" : "WQ",
+    "nom" : "Réintégrations diverses à détailler sur feuillet séparé"
+  }, {
+    "symbole" : "WR",
+    "nom" : "TOTAL I"
+  }, {
+    "symbole" : "WS",
+    "nom" : "PERTE COMPTABLE DE L'EXERCICE"
+  }, {
+    "symbole" : "WT",
+    "nom" : "Quote–part dans les pertes subies par une société de personnes ou un G.I.E."
+  }, {
+    "symbole" : "WU",
+    "nom" : "Provisions et charges à payer non déductibles, antérieurement taxées, et réintégrées dans les résultats comptables de l'exercice"
+  }, {
+    "symbole" : "WV",
+    "nom" : "Plus-values nettes à long terme imposées au taux de 15"
+  }, {
+    "symbole" : "WW",
+    "nom" : "Plus-values nettes à long terme imputées sur les moins–values nettes à long terme antérieures"
+  }, {
+    "symbole" : "WZ",
+    "nom" : "Fraction des plus–values nettes à court terme de l’exercice dont l’imposition est différée"
+  }, {
+    "symbole" : "X9",
+    "nom" : "Dont déduction exceptionnelle"
+  }, {
+    "symbole" : "XA",
+    "nom" : "Produit net des actions et parts d’intérêts"
+  }, {
+    "symbole" : "XB",
+    "nom" : "Plus-values nettes à long terme imputées sur les déficits antérieurs"
+  }, {
+    "symbole" : "XC",
+    "nom" : "Zone franche d’activités NG"
+  }, {
+    "symbole" : "XD",
+    "nom" : "Majoration d’amortissement"
+  }, {
+    "symbole" : "XE",
+    "nom" : "Charges non admises en déduction du résultat fiscal"
+  }, {
+    "symbole" : "XF",
+    "nom" : "Abattement sur le bénéfice et exonérations"
+  }, {
+    "symbole" : "XG",
+    "nom" : "Déductions diverses à détailler sur feuillet séparé"
+  }, {
+    "symbole" : "XH",
+    "nom" : "TOTAL II"
+  }, {
+    "symbole" : "XI",
+    "nom" : " bénéfice"
+  }, {
+    "symbole" : "XJ",
+    "nom" : " déficit"
+  }, {
+    "symbole" : "XL",
+    "nom" : "Déficits antérieurs imputés sur les résultats de l’exercice"
+  }, {
+    "symbole" : "XN",
+    "nom" : " bénéfice"
+  }, {
+    "symbole" : "XO",
+    "nom" : " déficit"
+  }, {
+    "symbole" : "XR",
+    "nom" : "Écarts de valeurs liquidatives sur OPC"
+  }, {
+    "symbole" : "XS",
+    "nom" : "Écarts de valeurs liquidatives sur OPC"
+  }, {
+    "symbole" : "XW",
+    "nom" : "Charges non admises en déduction du résultat fiscal"
+  }, {
+    "symbole" : "XX",
+    "nom" : "Charges à payer liées à des états et territoires non coopératifs non déductibles"
+  }, {
+    "symbole" : "XY",
+    "nom" : "Réintégrations prévues à l'article 155 du CGI"
+  }, {
+    "symbole" : "XZ",
+    "nom" : "Charges financières"
+  }, {
+    "symbole" : "Y1",
+    "nom" : "Réintégration des charges affectées aux activités éligibles au régime de la taxation au tonnage"
+  }, {
+    "symbole" : "Y2",
+    "nom" : "Déduction des produits affectés aux activités éligibles au régime de la taxation au tonnage"
+  }, {
+    "symbole" : "Y3",
+    "nom" : "Résultat fiscal afférent à l'activité relevant du régime optionnel de taxation au tonnage"
+  }, {
+    "symbole" : "YA",
+    "nom" : "Dont déduction exceptionnelle pour investissement"
+  }, {
+    "symbole" : "YB",
+    "nom" : "Dont déduction exceptionnelle pour investissement"
+  }, {
+    "symbole" : "YC",
+    "nom" : "Dont déduction exceptionnelle pour investissement"
+  }, {
+    "symbole" : "YD",
+    "nom" : "Dont déduction exceptionnelle pour investissement"
+  }, {
+    "symbole" : "YH",
+    "nom" : "Dont déduction exceptionnelle simulateur de conduite"
+  }, {
+    "symbole" : "YI",
+    "nom" : "Dont déduction exceptionnelle pour investissement"
+  }, {
+    "symbole" : "YJ",
+    "nom" : "Déficits de l’exercice"
+  }, {
+    "symbole" : "YK",
+    "nom" : "Total des déficits restant à reporter"
+  }, {
+    "symbole" : "YL",
+    "nom" : "Dont déduction exceptionnelle pour investissement"
+  }, {
+    "symbole" : "YN",
+    "nom" : " Dotations de l'exercice"
+  }, {
+    "symbole" : "YO",
+    "nom" : " Reprises sur l'exercice"
+  }, {
+    "symbole" : "ZI",
+    "nom" : "Créance dégagée par le report en arrière de déficit"
+  }, {
+    "symbole" : "ZL",
+    "nom" : "Déficit de l’exercice reporté en arrière"
+  }, {
+    "symbole" : "ZN",
+    "nom" : "Moins-values nettes à long terme imposées au taux de 0 %"
+  }, {
+    "symbole" : "ZT",
+    "nom" : "Montant déductible correspondant aux droits acquis par les salariés pour les entreprises placées sous le régime de l’article 39–1. 1 e bis Al. 1e r du CGI, dotations de l’exercice"
+  }, {
+    "symbole" : "ZV",
+    "nom" : " Dotations de l'exercice"
+  }, {
+    "symbole" : "ZW",
+    "nom" : " Reprises sur l'exercice"
+  }, {
+    "symbole" : "ZX",
+    "nom" : "Produits de participations inéligibles au régime des sociétés mères déductibles à hauteur de 99 %"
+  }, {
+    "symbole" : "ZY",
+    "nom" : "Déduction autorisée au titre des investissements réalisés dans les collectivités d’Outre–mer"
+  }, {
+    "symbole" : "ØV",
+    "nom" : "Zone franche urbaine –TE"
+  } ]
+}

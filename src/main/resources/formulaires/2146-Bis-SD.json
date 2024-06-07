@@ -1,0 +1,47 @@
+{
+  "identifiant" : "2146-Bis-SD",
+  "numero" : 2146,
+  "page" : "Bis",
+  "nom" : "COMPTE DE RESULTAT DE L'EXERCICE (Suite)",
+  "regimeImposition" : "REEL_NORMAL_AGRICOLE",
+  "containsSiren" : false,
+  "containsClotureExercice" : false,
+  "reperes" : [ {
+    "symbole" : "HE",
+    "nom" : "Total des Produits Exceptionnels"
+  }, {
+    "symbole" : "HJ",
+    "nom" : "Total des Charges Exceptionnelles"
+  }, {
+    "symbole" : "HK",
+    "nom" : "Résultat exceptionnel"
+  }, {
+    "symbole" : "HM",
+    "nom" : "Total des produits"
+  }, {
+    "symbole" : "HN",
+    "nom" : "Total des charges"
+  }, {
+    "symbole" : "HO",
+    "nom" : "Résultat courant"
+  } ],
+  "allReperes" : [ {
+    "symbole" : "HE",
+    "nom" : "Total des Produits Exceptionnels"
+  }, {
+    "symbole" : "HJ",
+    "nom" : "Total des Charges Exceptionnelles"
+  }, {
+    "symbole" : "HK",
+    "nom" : "Résultat exceptionnel"
+  }, {
+    "symbole" : "HM",
+    "nom" : "Total des produits"
+  }, {
+    "symbole" : "HN",
+    "nom" : "Total des charges"
+  }, {
+    "symbole" : "HO",
+    "nom" : "Résultat courant"
+  } ]
+}

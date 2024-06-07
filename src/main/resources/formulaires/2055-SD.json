@@ -1,0 +1,11 @@
+{
+  "identifiant" : "2055-SD",
+  "numero" : 2055,
+  "cerfa" : "15949",
+  "nom" : "IMMOBILISATIONS",
+  "regimeImposition" : "REEL_NORMAL",
+  "containsSiren" : false,
+  "containsClotureExercice" : false,
+  "reperes" : [ ],
+  "allReperes" : [ ]
+}

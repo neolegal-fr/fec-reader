@@ -1,0 +1,13 @@
+{
+  "identifiant" : "2072-S-SD",
+  "numero" : 2072,
+  "page" : "B",
+  "cerfa" : "10338",
+  "nom" : "DÉCLARATION DES SOCIÉTÉS IMMOBILIÈRES NON SOUMISES A L’IMPÔT SUR LES SOCIÉTÉS",
+  "regimeImposition" : "REEL_SIMPLIFIE",
+  "containsSiren" : false,
+  "containsClotureExercice" : true,
+  "annexes" : [ "DETERMINATION_REVENUS_SOCIETE_IMMOBILIERE", "ASSOCIES_USUFRUITIERS_REPARTITION_RESULTAT" ],
+  "reperes" : [ ],
+  "allReperes" : [ ]
+}

@@ -1,0 +1,440 @@
+{
+  "identifiant" : "2052-SD",
+  "numero" : 2052,
+  "cerfa" : "15949",
+  "nom" : "COMPTE DE RESULTAT DE L'EXERCICE (en liste)",
+  "regimeImposition" : "REEL_NORMAL",
+  "containsSiren" : false,
+  "containsClotureExercice" : false,
+  "sections" : [ {
+    "nom" : "Opérations en commun",
+    "reperes" : [ {
+      "symbole" : "GH",
+      "nom" : "bénéfice",
+      "formuleFEC" : "CRD_755"
+    }, {
+      "symbole" : "GI",
+      "nom" : "perte",
+      "formuleFEC" : "DEB_655"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "GH",
+      "nom" : "bénéfice",
+      "formuleFEC" : "CRD_755"
+    }, {
+      "symbole" : "GI",
+      "nom" : "perte",
+      "formuleFEC" : "DEB_655"
+    } ]
+  }, {
+    "nom" : "Variation de stock",
+    "reperes" : [ {
+      "symbole" : "FT",
+      "nom" : "Marchandises",
+      "formuleFEC" : "-SLD_6037"
+    }, {
+      "symbole" : "FV",
+      "nom" : "Matières premières et approvisionnements",
+      "formuleFEC" : "-(SLD_6031 + SLD_6032)"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "FT",
+      "nom" : "Marchandises",
+      "formuleFEC" : "-SLD_6037"
+    }, {
+      "symbole" : "FV",
+      "nom" : "Matières premières et approvisionnements",
+      "formuleFEC" : "-(SLD_6031 + SLD_6032)"
+    } ]
+  }, {
+    "nom" : "Ventes de marchandises",
+    "reperes" : [ {
+      "symbole" : "FA",
+      "nom" : "France",
+      "formuleFEC" : "SLD_707 + SLD_708 + SLD_7097"
+    }, {
+      "symbole" : "FB",
+      "nom" : "Exportations",
+      "formuleFEC" : ""
+    } ],
+    "allReperes" : [ {
+      "symbole" : "FA",
+      "nom" : "France",
+      "formuleFEC" : "SLD_707 + SLD_708 + SLD_7097"
+    }, {
+      "symbole" : "FB",
+      "nom" : "Exportations",
+      "formuleFEC" : ""
+    } ]
+  } ],
+  "reperes" : [ {
+    "symbole" : "FC",
+    "nom" : "Ventes de marchandises",
+    "formuleFEC" : "FA + FB"
+  }, {
+    "symbole" : "FD",
+    "nom" : "Production vendue de biens en France",
+    "formuleFEC" : "SLD_701 + SLD_702 + SLD_703 + SLD_7091 + SLD_7092"
+  }, {
+    "symbole" : "FE",
+    "nom" : "Production vendue de biens à l'international",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "FF",
+    "nom" : "Production vendue de biens",
+    "formuleFEC" : "FD + FE"
+  }, {
+    "symbole" : "FG",
+    "nom" : "Production vendue de services en France",
+    "formuleFEC" : "SLD_704 + SLD_705 + SLD_706"
+  }, {
+    "symbole" : "FH",
+    "nom" : "Production vendue de services à l'international",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "FI",
+    "nom" : "Production vendue de services",
+    "formuleFEC" : "FG + FH"
+  }, {
+    "symbole" : "FJ",
+    "nom" : "Chiffre d'affaires net",
+    "formuleFEC" : "FA + FD + FG"
+  }, {
+    "symbole" : "FK",
+    "nom" : "Chiffre d'affaires net",
+    "formuleFEC" : "FB + FE + FH"
+  }, {
+    "symbole" : "FL",
+    "nom" : "Chiffre d'affaires net",
+    "formuleFEC" : "FJ + FK"
+  }, {
+    "symbole" : "FM",
+    "nom" : "Production stockée",
+    "formuleFEC" : "SLD_71"
+  }, {
+    "symbole" : "FN",
+    "nom" : "Production immobilisée",
+    "formuleFEC" : "SLD_72"
+  }, {
+    "symbole" : "FO",
+    "nom" : "Subvention d'exploitation",
+    "formuleFEC" : "SLD_74"
+  }, {
+    "symbole" : "FP",
+    "nom" : "Reprises sur amortissements et provisions, transfert de charges",
+    "formuleFEC" : "SLD_781 + SLD_791"
+  }, {
+    "symbole" : "FQ",
+    "nom" : "Autres produits",
+    "formuleFEC" : "SLD_750 + SLD_751 + SLD_752 + SLD_753 + SLD_754 + SLD_758"
+  }, {
+    "symbole" : "FR",
+    "nom" : "Total des Produits d'exploitation (I)",
+    "formuleFEC" : "FL + FM + FN + FO + FP + FQ"
+  }, {
+    "symbole" : "FS",
+    "nom" : "Achats de marchandises",
+    "formuleFEC" : "-(SLD_607 + SLD_6087 + SLD_6097)"
+  }, {
+    "symbole" : "FU",
+    "nom" : "Achats de matières premières et autres approvisionnements",
+    "formuleFEC" : "-(SLD_601 + SLD_602 + SLD_6091 + SLD_6092)"
+  }, {
+    "symbole" : "FW",
+    "nom" : "Autres achats et charges externes",
+    "formuleFEC" : "-(SLD_604 + SLD_605 + SLD_606 + SLD_6094 + SLD_6095 + SLD_61 + SLD_62)"
+  }, {
+    "symbole" : "FX",
+    "nom" : "Impôts, taxes et versements assimilés",
+    "formuleFEC" : "-SLD_63"
+  }, {
+    "symbole" : "FY",
+    "nom" : "Salaires et traitements",
+    "formuleFEC" : "-(SLD_641 + SLD_644 + SLD_648)"
+  }, {
+    "symbole" : "FZ",
+    "nom" : "Charges sociales",
+    "formuleFEC" : "-(SLD_645 + SLD_646 + SLD_647)"
+  }, {
+    "symbole" : "GA",
+    "nom" : "Dotations d'exploitation aux amortissements",
+    "formuleFEC" : "-(SLD_6811 + SLD_6812)"
+  }, {
+    "symbole" : "GB",
+    "nom" : "Dotations d'exploitation aux provisions sur immobilisations",
+    "formuleFEC" : "-SLD_6816"
+  }, {
+    "symbole" : "GC",
+    "nom" : "Dotations d'exploitation aux provisions sur actif circulant",
+    "formuleFEC" : "-SLD_6817"
+  }, {
+    "symbole" : "GD",
+    "nom" : "Dotations d'exploitation aux provisions pour risques et charges",
+    "formuleFEC" : "-SLD_6815"
+  }, {
+    "symbole" : "GE",
+    "nom" : "Autres Charges d'exploitation",
+    "formuleFEC" : "-(SLD_651 + SLD_653 + SLD_654 + SLD_658)"
+  }, {
+    "symbole" : "GF",
+    "nom" : "Total des Charges d'exploitation (II)",
+    "formuleFEC" : "FS + FT + FU + FV + FW + FX + FY + FZ + GA + GB + GC + GD + GE"
+  }, {
+    "symbole" : "GG",
+    "nom" : "Résultat d'exploitation",
+    "formuleFEC" : "FR - GF"
+  }, {
+    "symbole" : "GJ",
+    "nom" : "Produits financiers des participants",
+    "formuleFEC" : "SLD_761"
+  }, {
+    "symbole" : "GK",
+    "nom" : "Produits des autres valeurs mobilières et créances de l'actif immobilisé",
+    "formuleFEC" : "SLD_762"
+  }, {
+    "symbole" : "GL",
+    "nom" : "Autres intérêts et produits assimilés",
+    "formuleFEC" : "SLD_763 + SLD_764 + SLD_765 + SLD_768"
+  }, {
+    "symbole" : "GM",
+    "nom" : "Reprises sur provisions et transferts de charges",
+    "formuleFEC" : "SLD_786 + SLD_796"
+  }, {
+    "symbole" : "GN",
+    "nom" : "Différences positives de change",
+    "formuleFEC" : "SLD_766"
+  }, {
+    "symbole" : "GO",
+    "nom" : "Produits nets sur cessions de valeurs mobilières de placement",
+    "formuleFEC" : "SLD_767"
+  }, {
+    "symbole" : "GP",
+    "nom" : "Total des produits financiers (V)",
+    "formuleFEC" : "GJ + GK + GL + GM + GN + GO"
+  }, {
+    "symbole" : "GQ",
+    "nom" : "Dotation financière aux amortissements et provisions",
+    "formuleFEC" : "-SLD_686"
+  }, {
+    "symbole" : "GR",
+    "nom" : "Intérêts et charges assimilées",
+    "formuleFEC" : "-(SLD_661 + SLD_664 + SLD_665 + SLD_668)"
+  }, {
+    "symbole" : "GS",
+    "nom" : "Différences négatives de change",
+    "formuleFEC" : "-SLD_666"
+  }, {
+    "symbole" : "GT",
+    "nom" : "Charges nettes sur cessions de valeurs mobilières de placement",
+    "formuleFEC" : "-SLD_667"
+  }, {
+    "symbole" : "GU",
+    "nom" : "Total des charges financières (VI)",
+    "formuleFEC" : "GQ + GR + GS + GT"
+  }, {
+    "symbole" : "GV",
+    "nom" : "Résultat net financier",
+    "formuleFEC" : "GP - GU"
+  }, {
+    "symbole" : "GW",
+    "nom" : "Résultat courant avant impôts",
+    "formuleFEC" : "GG + GH - GI + GV"
+  } ],
+  "allReperes" : [ {
+    "symbole" : "FA",
+    "nom" : "France",
+    "formuleFEC" : "SLD_707 + SLD_708 + SLD_7097"
+  }, {
+    "symbole" : "FB",
+    "nom" : "Exportations",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "FC",
+    "nom" : "Ventes de marchandises",
+    "formuleFEC" : "FA + FB"
+  }, {
+    "symbole" : "FD",
+    "nom" : "Production vendue de biens en France",
+    "formuleFEC" : "SLD_701 + SLD_702 + SLD_703 + SLD_7091 + SLD_7092"
+  }, {
+    "symbole" : "FE",
+    "nom" : "Production vendue de biens à l'international",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "FF",
+    "nom" : "Production vendue de biens",
+    "formuleFEC" : "FD + FE"
+  }, {
+    "symbole" : "FG",
+    "nom" : "Production vendue de services en France",
+    "formuleFEC" : "SLD_704 + SLD_705 + SLD_706"
+  }, {
+    "symbole" : "FH",
+    "nom" : "Production vendue de services à l'international",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "FI",
+    "nom" : "Production vendue de services",
+    "formuleFEC" : "FG + FH"
+  }, {
+    "symbole" : "FJ",
+    "nom" : "Chiffre d'affaires net",
+    "formuleFEC" : "FA + FD + FG"
+  }, {
+    "symbole" : "FK",
+    "nom" : "Chiffre d'affaires net",
+    "formuleFEC" : "FB + FE + FH"
+  }, {
+    "symbole" : "FL",
+    "nom" : "Chiffre d'affaires net",
+    "formuleFEC" : "FJ + FK"
+  }, {
+    "symbole" : "FM",
+    "nom" : "Production stockée",
+    "formuleFEC" : "SLD_71"
+  }, {
+    "symbole" : "FN",
+    "nom" : "Production immobilisée",
+    "formuleFEC" : "SLD_72"
+  }, {
+    "symbole" : "FO",
+    "nom" : "Subvention d'exploitation",
+    "formuleFEC" : "SLD_74"
+  }, {
+    "symbole" : "FP",
+    "nom" : "Reprises sur amortissements et provisions, transfert de charges",
+    "formuleFEC" : "SLD_781 + SLD_791"
+  }, {
+    "symbole" : "FQ",
+    "nom" : "Autres produits",
+    "formuleFEC" : "SLD_750 + SLD_751 + SLD_752 + SLD_753 + SLD_754 + SLD_758"
+  }, {
+    "symbole" : "FR",
+    "nom" : "Total des Produits d'exploitation (I)",
+    "formuleFEC" : "FL + FM + FN + FO + FP + FQ"
+  }, {
+    "symbole" : "FS",
+    "nom" : "Achats de marchandises",
+    "formuleFEC" : "-(SLD_607 + SLD_6087 + SLD_6097)"
+  }, {
+    "symbole" : "FT",
+    "nom" : "Marchandises",
+    "formuleFEC" : "-SLD_6037"
+  }, {
+    "symbole" : "FU",
+    "nom" : "Achats de matières premières et autres approvisionnements",
+    "formuleFEC" : "-(SLD_601 + SLD_602 + SLD_6091 + SLD_6092)"
+  }, {
+    "symbole" : "FV",
+    "nom" : "Matières premières et approvisionnements",
+    "formuleFEC" : "-(SLD_6031 + SLD_6032)"
+  }, {
+    "symbole" : "FW",
+    "nom" : "Autres achats et charges externes",
+    "formuleFEC" : "-(SLD_604 + SLD_605 + SLD_606 + SLD_6094 + SLD_6095 + SLD_61 + SLD_62)"
+  }, {
+    "symbole" : "FX",
+    "nom" : "Impôts, taxes et versements assimilés",
+    "formuleFEC" : "-SLD_63"
+  }, {
+    "symbole" : "FY",
+    "nom" : "Salaires et traitements",
+    "formuleFEC" : "-(SLD_641 + SLD_644 + SLD_648)"
+  }, {
+    "symbole" : "FZ",
+    "nom" : "Charges sociales",
+    "formuleFEC" : "-(SLD_645 + SLD_646 + SLD_647)"
+  }, {
+    "symbole" : "GA",
+    "nom" : "Dotations d'exploitation aux amortissements",
+    "formuleFEC" : "-(SLD_6811 + SLD_6812)"
+  }, {
+    "symbole" : "GB",
+    "nom" : "Dotations d'exploitation aux provisions sur immobilisations",
+    "formuleFEC" : "-SLD_6816"
+  }, {
+    "symbole" : "GC",
+    "nom" : "Dotations d'exploitation aux provisions sur actif circulant",
+    "formuleFEC" : "-SLD_6817"
+  }, {
+    "symbole" : "GD",
+    "nom" : "Dotations d'exploitation aux provisions pour risques et charges",
+    "formuleFEC" : "-SLD_6815"
+  }, {
+    "symbole" : "GE",
+    "nom" : "Autres Charges d'exploitation",
+    "formuleFEC" : "-(SLD_651 + SLD_653 + SLD_654 + SLD_658)"
+  }, {
+    "symbole" : "GF",
+    "nom" : "Total des Charges d'exploitation (II)",
+    "formuleFEC" : "FS + FT + FU + FV + FW + FX + FY + FZ + GA + GB + GC + GD + GE"
+  }, {
+    "symbole" : "GG",
+    "nom" : "Résultat d'exploitation",
+    "formuleFEC" : "FR - GF"
+  }, {
+    "symbole" : "GH",
+    "nom" : "bénéfice",
+    "formuleFEC" : "CRD_755"
+  }, {
+    "symbole" : "GI",
+    "nom" : "perte",
+    "formuleFEC" : "DEB_655"
+  }, {
+    "symbole" : "GJ",
+    "nom" : "Produits financiers des participants",
+    "formuleFEC" : "SLD_761"
+  }, {
+    "symbole" : "GK",
+    "nom" : "Produits des autres valeurs mobilières et créances de l'actif immobilisé",
+    "formuleFEC" : "SLD_762"
+  }, {
+    "symbole" : "GL",
+    "nom" : "Autres intérêts et produits assimilés",
+    "formuleFEC" : "SLD_763 + SLD_764 + SLD_765 + SLD_768"
+  }, {
+    "symbole" : "GM",
+    "nom" : "Reprises sur provisions et transferts de charges",
+    "formuleFEC" : "SLD_786 + SLD_796"
+  }, {
+    "symbole" : "GN",
+    "nom" : "Différences positives de change",
+    "formuleFEC" : "SLD_766"
+  }, {
+    "symbole" : "GO",
+    "nom" : "Produits nets sur cessions de valeurs mobilières de placement",
+    "formuleFEC" : "SLD_767"
+  }, {
+    "symbole" : "GP",
+    "nom" : "Total des produits financiers (V)",
+    "formuleFEC" : "GJ + GK + GL + GM + GN + GO"
+  }, {
+    "symbole" : "GQ",
+    "nom" : "Dotation financière aux amortissements et provisions",
+    "formuleFEC" : "-SLD_686"
+  }, {
+    "symbole" : "GR",
+    "nom" : "Intérêts et charges assimilées",
+    "formuleFEC" : "-(SLD_661 + SLD_664 + SLD_665 + SLD_668)"
+  }, {
+    "symbole" : "GS",
+    "nom" : "Différences négatives de change",
+    "formuleFEC" : "-SLD_666"
+  }, {
+    "symbole" : "GT",
+    "nom" : "Charges nettes sur cessions de valeurs mobilières de placement",
+    "formuleFEC" : "-SLD_667"
+  }, {
+    "symbole" : "GU",
+    "nom" : "Total des charges financières (VI)",
+    "formuleFEC" : "GQ + GR + GS + GT"
+  }, {
+    "symbole" : "GV",
+    "nom" : "Résultat net financier",
+    "formuleFEC" : "GP - GU"
+  }, {
+    "symbole" : "GW",
+    "nom" : "Résultat courant avant impôts",
+    "formuleFEC" : "GG + GH - GI + GV"
+  } ]
+}

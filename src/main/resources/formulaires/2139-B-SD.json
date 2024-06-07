@@ -1,0 +1,704 @@
+{
+  "identifiant" : "2139-B-SD",
+  "numero" : 2139,
+  "page" : "B",
+  "cerfa" : "11146",
+  "nom" : "COMPTE DE RESULTAT SIMPLIFIÉ DE L'EXERCICE",
+  "regimeImposition" : "REEL_SIMPLIFIE_AGRICOLE",
+  "containsSiren" : false,
+  "containsClotureExercice" : true,
+  "sections" : [ {
+    "nom" : "Charges d'exploitation",
+    "sections" : [ {
+      "nom" : "Achats",
+      "reperes" : [ {
+        "symbole" : "EQ",
+        "nom" : " d'approvisionnement"
+      }, {
+        "symbole" : "ER",
+        "nom" : " d'animaux"
+      }, {
+        "symbole" : "ES",
+        "nom" : " autres achats et charges externes"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "EQ",
+        "nom" : " d'approvisionnement"
+      }, {
+        "symbole" : "ER",
+        "nom" : " d'animaux"
+      }, {
+        "symbole" : "ES",
+        "nom" : " autres achats et charges externes"
+      } ]
+    }, {
+      "nom" : "Autres charges",
+      "reperes" : [ {
+        "symbole" : "FA",
+        "nom" : "dont quotes-parts de résultat sur opérations faites en commun)"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "FA",
+        "nom" : "dont quotes-parts de résultat sur opérations faites en commun)"
+      } ]
+    }, {
+      "nom" : "Charges sociales",
+      "reperes" : [ {
+        "symbole" : "DH",
+        "nom" : " dont cotisations personnelles de l'exploitant)"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "DH",
+        "nom" : " dont cotisations personnelles de l'exploitant)"
+      } ]
+    }, {
+      "nom" : "Dotations aux amortissements et provisions",
+      "reperes" : [ {
+        "symbole" : "HJ",
+        "nom" : " dont provisions"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "HJ",
+        "nom" : " dont provisions"
+      } ]
+    }, {
+      "nom" : "Impôts, taxes et versements assimilés",
+      "reperes" : [ {
+        "symbole" : "EO",
+        "nom" : " dont taxes foncières"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "EO",
+        "nom" : " dont taxes foncières"
+      } ]
+    }, {
+      "nom" : "Rémunérations",
+      "reperes" : [ {
+        "symbole" : "EW",
+        "nom" : " dont rémunération du travail de l'exploitant"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "EW",
+        "nom" : " dont rémunération du travail de l'exploitant"
+      } ]
+    } ],
+    "reperes" : [ {
+      "symbole" : "DG",
+      "nom" : " Autres charges sociales"
+    }, {
+      "symbole" : "DL",
+      "nom" : " dont cotisations facultatives Madelin "
+    }, {
+      "symbole" : "DM",
+      "nom" : " dont cotisations facultatives aux nouveaux plans d'épargne retraite "
+    }, {
+      "symbole" : "ET",
+      "nom" : " Variation de stock"
+    }, {
+      "symbole" : "EU",
+      "nom" : " Loyer, fermage et charges locatives"
+    }, {
+      "symbole" : "EV",
+      "nom" : " Impôts, taxes et versements assimilés"
+    }, {
+      "symbole" : "EX",
+      "nom" : " Rémunérations"
+    }, {
+      "symbole" : "EY",
+      "nom" : " Cotisations personnelles de l'exploitant"
+    }, {
+      "symbole" : "EZ",
+      "nom" : " Dotations aux amortissements et provisions"
+    }, {
+      "symbole" : "FB",
+      "nom" : " Autres charges"
+    }, {
+      "symbole" : "FC",
+      "nom" : " Total des Charges d'exploitation (II)"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "DG",
+      "nom" : " Autres charges sociales"
+    }, {
+      "symbole" : "DH",
+      "nom" : " dont cotisations personnelles de l'exploitant)"
+    }, {
+      "symbole" : "DL",
+      "nom" : " dont cotisations facultatives Madelin "
+    }, {
+      "symbole" : "DM",
+      "nom" : " dont cotisations facultatives aux nouveaux plans d'épargne retraite "
+    }, {
+      "symbole" : "EO",
+      "nom" : " dont taxes foncières"
+    }, {
+      "symbole" : "EQ",
+      "nom" : " d'approvisionnement"
+    }, {
+      "symbole" : "ER",
+      "nom" : " d'animaux"
+    }, {
+      "symbole" : "ES",
+      "nom" : " autres achats et charges externes"
+    }, {
+      "symbole" : "ET",
+      "nom" : " Variation de stock"
+    }, {
+      "symbole" : "EU",
+      "nom" : " Loyer, fermage et charges locatives"
+    }, {
+      "symbole" : "EV",
+      "nom" : " Impôts, taxes et versements assimilés"
+    }, {
+      "symbole" : "EW",
+      "nom" : " dont rémunération du travail de l'exploitant"
+    }, {
+      "symbole" : "EX",
+      "nom" : " Rémunérations"
+    }, {
+      "symbole" : "EY",
+      "nom" : " Cotisations personnelles de l'exploitant"
+    }, {
+      "symbole" : "EZ",
+      "nom" : " Dotations aux amortissements et provisions"
+    }, {
+      "symbole" : "FA",
+      "nom" : "dont quotes-parts de résultat sur opérations faites en commun)"
+    }, {
+      "symbole" : "FB",
+      "nom" : " Autres charges"
+    }, {
+      "symbole" : "FC",
+      "nom" : " Total des Charges d'exploitation (II)"
+    }, {
+      "symbole" : "HJ",
+      "nom" : " dont provisions"
+    } ]
+  }, {
+    "nom" : "Déductions",
+    "sections" : [ {
+      "nom" : "Divers",
+      "reperes" : [ {
+        "symbole" : "HL",
+        "nom" : " dont déduction exceptionnelle (art. 39 decies du CGI)"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "HL",
+        "nom" : " dont déduction exceptionnelle (art. 39 decies du CGI)"
+      } ]
+    } ],
+    "reperes" : [ {
+      "symbole" : "FQ",
+      "nom" : " Régimes particuliers applicables dans les départements d'Outre-mer"
+    }, {
+      "symbole" : "FR",
+      "nom" : " Divers"
+    }, {
+      "symbole" : "FZ",
+      "nom" : " Déduction \"Entreprise Nouvelle Art.44 sexies\""
+    }, {
+      "symbole" : "JS",
+      "nom" : " Déduction \"Zone Franche D.O.M.\""
+    } ],
+    "allReperes" : [ {
+      "symbole" : "FQ",
+      "nom" : " Régimes particuliers applicables dans les départements d'Outre-mer"
+    }, {
+      "symbole" : "FR",
+      "nom" : " Divers"
+    }, {
+      "symbole" : "FZ",
+      "nom" : " Déduction \"Entreprise Nouvelle Art.44 sexies\""
+    }, {
+      "symbole" : "HL",
+      "nom" : " dont déduction exceptionnelle (art. 39 decies du CGI)"
+    }, {
+      "symbole" : "JS",
+      "nom" : " Déduction \"Zone Franche D.O.M.\""
+    } ]
+  }, {
+    "nom" : "Produits d'exploitation",
+    "sections" : [ {
+      "nom" : "Autres produits",
+      "reperes" : [ {
+        "symbole" : "EM",
+        "nom" : " dont quotes-parts de résultat sur opérations faites en commun"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "EM",
+        "nom" : " dont quotes-parts de résultat sur opérations faites en commun"
+      } ]
+    }, {
+      "nom" : "Indemnités et subventions d'exploitation",
+      "reperes" : [ {
+        "symbole" : "EK",
+        "nom" : " Dont TVA"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "EK",
+        "nom" : " Dont TVA"
+      } ]
+    }, {
+      "nom" : "Production vendues",
+      "reperes" : [ {
+        "symbole" : "EA",
+        "nom" : " produits végétaux"
+      }, {
+        "symbole" : "EB",
+        "nom" : " produits animaux"
+      }, {
+        "symbole" : "EC",
+        "nom" : " produits transformés"
+      }, {
+        "symbole" : "ED",
+        "nom" : " animaux"
+      }, {
+        "symbole" : "EE",
+        "nom" : " autre production vendue (biens et services)"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "EA",
+        "nom" : " produits végétaux"
+      }, {
+        "symbole" : "EB",
+        "nom" : " produits animaux"
+      }, {
+        "symbole" : "EC",
+        "nom" : " produits transformés"
+      }, {
+        "symbole" : "ED",
+        "nom" : " animaux"
+      }, {
+        "symbole" : "EE",
+        "nom" : " autre production vendue (biens et services)"
+      } ]
+    } ],
+    "reperes" : [ {
+      "symbole" : "EF",
+      "nom" : " Variation d'inventaire : animaux reproducteurs"
+    }, {
+      "symbole" : "EG",
+      "nom" : " Variation de production stockée"
+    }, {
+      "symbole" : "EH",
+      "nom" : " Production immobilisée"
+    }, {
+      "symbole" : "EJ",
+      "nom" : " Production autoconsommée"
+    }, {
+      "symbole" : "EL",
+      "nom" : " Indemnités et subventions d'exploitation"
+    }, {
+      "symbole" : "EN",
+      "nom" : " Autres produits"
+    }, {
+      "symbole" : "EP",
+      "nom" : " Total des Produits d'exploitation (I)"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "EA",
+      "nom" : " produits végétaux"
+    }, {
+      "symbole" : "EB",
+      "nom" : " produits animaux"
+    }, {
+      "symbole" : "EC",
+      "nom" : " produits transformés"
+    }, {
+      "symbole" : "ED",
+      "nom" : " animaux"
+    }, {
+      "symbole" : "EE",
+      "nom" : " autre production vendue (biens et services)"
+    }, {
+      "symbole" : "EF",
+      "nom" : " Variation d'inventaire : animaux reproducteurs"
+    }, {
+      "symbole" : "EG",
+      "nom" : " Variation de production stockée"
+    }, {
+      "symbole" : "EH",
+      "nom" : " Production immobilisée"
+    }, {
+      "symbole" : "EJ",
+      "nom" : " Production autoconsommée"
+    }, {
+      "symbole" : "EK",
+      "nom" : " Dont TVA"
+    }, {
+      "symbole" : "EL",
+      "nom" : " Indemnités et subventions d'exploitation"
+    }, {
+      "symbole" : "EM",
+      "nom" : " dont quotes-parts de résultat sur opérations faites en commun"
+    }, {
+      "symbole" : "EN",
+      "nom" : " Autres produits"
+    }, {
+      "symbole" : "EP",
+      "nom" : " Total des Produits d'exploitation (I)"
+    } ]
+  }, {
+    "nom" : "Produits et charges divers",
+    "sections" : [ {
+      "nom" : "Charges financières",
+      "reperes" : [ {
+        "symbole" : "DK",
+        "nom" : " dont charges nettes sur cessions de valeurs mobilières de placement"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "DK",
+        "nom" : " dont charges nettes sur cessions de valeurs mobilières de placement"
+      } ]
+    }, {
+      "nom" : "Produits financiers",
+      "reperes" : [ {
+        "symbole" : "DJ",
+        "nom" : " dont produits nets sur cessions de valeurs mobilières de placement"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "DJ",
+        "nom" : " dont produits nets sur cessions de valeurs mobilières de placement"
+      } ]
+    } ],
+    "reperes" : [ {
+      "symbole" : "FE",
+      "nom" : " Produits financiers"
+    }, {
+      "symbole" : "FF",
+      "nom" : " Produits exceptionnels"
+    }, {
+      "symbole" : "FG",
+      "nom" : " Charges financières"
+    }, {
+      "symbole" : "FH",
+      "nom" : " Charges exceptionnelles"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "DJ",
+      "nom" : " dont produits nets sur cessions de valeurs mobilières de placement"
+    }, {
+      "symbole" : "DK",
+      "nom" : " dont charges nettes sur cessions de valeurs mobilières de placement"
+    }, {
+      "symbole" : "FE",
+      "nom" : " Produits financiers"
+    }, {
+      "symbole" : "FF",
+      "nom" : " Produits exceptionnels"
+    }, {
+      "symbole" : "FG",
+      "nom" : " Charges financières"
+    }, {
+      "symbole" : "FH",
+      "nom" : " Charges exceptionnelles"
+    } ]
+  }, {
+    "nom" : "Réintégrations",
+    "sections" : [ {
+      "nom" : "Divers",
+      "reperes" : [ {
+        "symbole" : "HK",
+        "nom" : " dont provisions non déductibles"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "HK",
+        "nom" : " dont provisions non déductibles"
+      } ]
+    } ],
+    "reperes" : [ {
+      "symbole" : "FM",
+      "nom" : " Rémunérations et avantages personnels non déductibles"
+    }, {
+      "symbole" : "FN",
+      "nom" : " Amortissements excédentaires (art. 39-4 C.G.I.) et autres amortissements non déductibles"
+    }, {
+      "symbole" : "FO",
+      "nom" : " Impôts et taxes non déductibles"
+    }, {
+      "symbole" : "FP",
+      "nom" : " Divers"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "FM",
+      "nom" : " Rémunérations et avantages personnels non déductibles"
+    }, {
+      "symbole" : "FN",
+      "nom" : " Amortissements excédentaires (art. 39-4 C.G.I.) et autres amortissements non déductibles"
+    }, {
+      "symbole" : "FO",
+      "nom" : " Impôts et taxes non déductibles"
+    }, {
+      "symbole" : "FP",
+      "nom" : " Divers"
+    }, {
+      "symbole" : "HK",
+      "nom" : " dont provisions non déductibles"
+    } ]
+  }, {
+    "nom" : "RÉSULTAT FISCAL",
+    "reperes" : [ {
+      "symbole" : "FS",
+      "nom" : " Bénéfice"
+    }, {
+      "symbole" : "FT",
+      "nom" : " Déficit"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "FS",
+      "nom" : " Bénéfice"
+    }, {
+      "symbole" : "FT",
+      "nom" : " Déficit"
+    } ]
+  }, {
+    "nom" : "Superficie de l'exploitation",
+    "reperes" : [ {
+      "symbole" : "HC",
+      "nom" : " Totale"
+    }, {
+      "symbole" : "HD",
+      "nom" : " En faire-valoir direct"
+    }, {
+      "symbole" : "HE",
+      "nom" : " En fermage"
+    }, {
+      "symbole" : "HF",
+      "nom" : " En métayage"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "HC",
+      "nom" : " Totale"
+    }, {
+      "symbole" : "HD",
+      "nom" : " En faire-valoir direct"
+    }, {
+      "symbole" : "HE",
+      "nom" : " En fermage"
+    }, {
+      "symbole" : "HF",
+      "nom" : " En métayage"
+    } ]
+  } ],
+  "reperes" : [ {
+    "symbole" : "FD",
+    "nom" : "RÉSULTAT D'EXPLOITATION"
+  }, {
+    "symbole" : "FJ",
+    "nom" : "BÉNÉFICE OU PERTE"
+  }, {
+    "symbole" : "FK",
+    "nom" : "Bénéfice comptable"
+  }, {
+    "symbole" : "FL",
+    "nom" : "Déficit comptable"
+  }, {
+    "symbole" : "GA",
+    "nom" : "Montant de la TVA collectée"
+  }, {
+    "symbole" : "GB",
+    "nom" : "Montant de la TVA, déductible sur biens et service (sauf immobilisations)"
+  }, {
+    "symbole" : "GC",
+    "nom" : "Montant de la TVA déductible afférente aux stocks"
+  }, {
+    "symbole" : "HA",
+    "nom" : "Effectif moyen du personnel"
+  }, {
+    "symbole" : "HB",
+    "nom" : "Superficie mise à disposition pas l'associé"
+  } ],
+  "allReperes" : [ {
+    "symbole" : "DG",
+    "nom" : " Autres charges sociales"
+  }, {
+    "symbole" : "DH",
+    "nom" : " dont cotisations personnelles de l'exploitant)"
+  }, {
+    "symbole" : "DJ",
+    "nom" : " dont produits nets sur cessions de valeurs mobilières de placement"
+  }, {
+    "symbole" : "DK",
+    "nom" : " dont charges nettes sur cessions de valeurs mobilières de placement"
+  }, {
+    "symbole" : "DL",
+    "nom" : " dont cotisations facultatives Madelin "
+  }, {
+    "symbole" : "DM",
+    "nom" : " dont cotisations facultatives aux nouveaux plans d'épargne retraite "
+  }, {
+    "symbole" : "EA",
+    "nom" : " produits végétaux"
+  }, {
+    "symbole" : "EB",
+    "nom" : " produits animaux"
+  }, {
+    "symbole" : "EC",
+    "nom" : " produits transformés"
+  }, {
+    "symbole" : "ED",
+    "nom" : " animaux"
+  }, {
+    "symbole" : "EE",
+    "nom" : " autre production vendue (biens et services)"
+  }, {
+    "symbole" : "EF",
+    "nom" : " Variation d'inventaire : animaux reproducteurs"
+  }, {
+    "symbole" : "EG",
+    "nom" : " Variation de production stockée"
+  }, {
+    "symbole" : "EH",
+    "nom" : " Production immobilisée"
+  }, {
+    "symbole" : "EJ",
+    "nom" : " Production autoconsommée"
+  }, {
+    "symbole" : "EK",
+    "nom" : " Dont TVA"
+  }, {
+    "symbole" : "EL",
+    "nom" : " Indemnités et subventions d'exploitation"
+  }, {
+    "symbole" : "EM",
+    "nom" : " dont quotes-parts de résultat sur opérations faites en commun"
+  }, {
+    "symbole" : "EN",
+    "nom" : " Autres produits"
+  }, {
+    "symbole" : "EO",
+    "nom" : " dont taxes foncières"
+  }, {
+    "symbole" : "EP",
+    "nom" : " Total des Produits d'exploitation (I)"
+  }, {
+    "symbole" : "EQ",
+    "nom" : " d'approvisionnement"
+  }, {
+    "symbole" : "ER",
+    "nom" : " d'animaux"
+  }, {
+    "symbole" : "ES",
+    "nom" : " autres achats et charges externes"
+  }, {
+    "symbole" : "ET",
+    "nom" : " Variation de stock"
+  }, {
+    "symbole" : "EU",
+    "nom" : " Loyer, fermage et charges locatives"
+  }, {
+    "symbole" : "EV",
+    "nom" : " Impôts, taxes et versements assimilés"
+  }, {
+    "symbole" : "EW",
+    "nom" : " dont rémunération du travail de l'exploitant"
+  }, {
+    "symbole" : "EX",
+    "nom" : " Rémunérations"
+  }, {
+    "symbole" : "EY",
+    "nom" : " Cotisations personnelles de l'exploitant"
+  }, {
+    "symbole" : "EZ",
+    "nom" : " Dotations aux amortissements et provisions"
+  }, {
+    "symbole" : "FA",
+    "nom" : "dont quotes-parts de résultat sur opérations faites en commun)"
+  }, {
+    "symbole" : "FB",
+    "nom" : " Autres charges"
+  }, {
+    "symbole" : "FC",
+    "nom" : " Total des Charges d'exploitation (II)"
+  }, {
+    "symbole" : "FD",
+    "nom" : "RÉSULTAT D'EXPLOITATION"
+  }, {
+    "symbole" : "FE",
+    "nom" : " Produits financiers"
+  }, {
+    "symbole" : "FF",
+    "nom" : " Produits exceptionnels"
+  }, {
+    "symbole" : "FG",
+    "nom" : " Charges financières"
+  }, {
+    "symbole" : "FH",
+    "nom" : " Charges exceptionnelles"
+  }, {
+    "symbole" : "FJ",
+    "nom" : "BÉNÉFICE OU PERTE"
+  }, {
+    "symbole" : "FK",
+    "nom" : "Bénéfice comptable"
+  }, {
+    "symbole" : "FL",
+    "nom" : "Déficit comptable"
+  }, {
+    "symbole" : "FM",
+    "nom" : " Rémunérations et avantages personnels non déductibles"
+  }, {
+    "symbole" : "FN",
+    "nom" : " Amortissements excédentaires (art. 39-4 C.G.I.) et autres amortissements non déductibles"
+  }, {
+    "symbole" : "FO",
+    "nom" : " Impôts et taxes non déductibles"
+  }, {
+    "symbole" : "FP",
+    "nom" : " Divers"
+  }, {
+    "symbole" : "FQ",
+    "nom" : " Régimes particuliers applicables dans les départements d'Outre-mer"
+  }, {
+    "symbole" : "FR",
+    "nom" : " Divers"
+  }, {
+    "symbole" : "FS",
+    "nom" : " Bénéfice"
+  }, {
+    "symbole" : "FT",
+    "nom" : " Déficit"
+  }, {
+    "symbole" : "FZ",
+    "nom" : " Déduction \"Entreprise Nouvelle Art.44 sexies\""
+  }, {
+    "symbole" : "GA",
+    "nom" : "Montant de la TVA collectée"
+  }, {
+    "symbole" : "GB",
+    "nom" : "Montant de la TVA, déductible sur biens et service (sauf immobilisations)"
+  }, {
+    "symbole" : "GC",
+    "nom" : "Montant de la TVA déductible afférente aux stocks"
+  }, {
+    "symbole" : "HA",
+    "nom" : "Effectif moyen du personnel"
+  }, {
+    "symbole" : "HB",
+    "nom" : "Superficie mise à disposition pas l'associé"
+  }, {
+    "symbole" : "HC",
+    "nom" : " Totale"
+  }, {
+    "symbole" : "HD",
+    "nom" : " En faire-valoir direct"
+  }, {
+    "symbole" : "HE",
+    "nom" : " En fermage"
+  }, {
+    "symbole" : "HF",
+    "nom" : " En métayage"
+  }, {
+    "symbole" : "HJ",
+    "nom" : " dont provisions"
+  }, {
+    "symbole" : "HK",
+    "nom" : " dont provisions non déductibles"
+  }, {
+    "symbole" : "HL",
+    "nom" : " dont déduction exceptionnelle (art. 39 decies du CGI)"
+  }, {
+    "symbole" : "JS",
+    "nom" : " Déduction \"Zone Franche D.O.M.\""
+  } ]
+}

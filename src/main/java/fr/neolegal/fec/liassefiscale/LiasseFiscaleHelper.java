@@ -8,19 +8,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
+
 import static java.util.Objects.isNull;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static org.apache.commons.collections4.CollectionUtils.emptyIfNull;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -47,8 +50,10 @@ public class LiasseFiscaleHelper {
 
     public static LiasseFiscale buildLiasseFiscale(RegimeImposition regime) {
         LiasseFiscale liasse = LiasseFiscale.builder().regime(regime).build();
-        for (NatureFormulaire formulaire : regime.formulaires()) {
-            liasse.getFormulaires().add(buildFormulaire(formulaire));
+        for (ModeleFormulaire modele : FormulaireHelper.getModelesFormulaires()) {
+            if (Objects.equals(regime, modele.getRegimeImposition())) {
+                liasse.getFormulaires().add(Formulaire.builder().modele(modele).build());
+            }            
         }
 
         return liasse;
@@ -62,23 +67,13 @@ public class LiasseFiscaleHelper {
 
         VariableProvider provider = new FecVariableProvider(fec, regime);
         for (Formulaire formulaire : liasse.getFormulaires()) {
-            for (Repere repere : formulaire.getChamps().keySet()) {
-                Double montant = RepereHelper.computeMontantRepereCellule(repere, fec, provider).orElse(null);
-                formulaire.getChamps().put(repere, montant);
+            for (Repere repere : formulaire.getAllReperes()) {
+                RepereHelper.computeMontantRepereCellule(repere, fec, provider)
+                        .ifPresent(montant -> formulaire.setMontant(repere, montant));
             }
         }
 
         return liasse;
-    }
-
-    public static Formulaire buildFormulaire(NatureFormulaire nature) {
-        Formulaire formulaire = new Formulaire(nature);
-
-        Collection<Repere> reperes = Repere.DEFINITIONS.getOrDefault(nature, Map.of()).values();
-        for (Repere repere : reperes) {
-            formulaire.getChamps().put(repere, null);
-        }
-        return formulaire;
     }
 
     public static LiasseFiscale readLiasseFiscalePDF(String filename) throws IOException {
@@ -103,12 +98,12 @@ public class LiasseFiscaleHelper {
             while (pi.hasNext()) {
                 Page page = pi.next();
                 String header = extractPageHeader(page);
-                Optional<NatureFormulaire> formulaireHeaderMatch = NatureFormulaire.resolve(header);
-                Optional<NatureAnnexe> annexeHeaderMatch = resolveNatureAnnexe(page);
-                if (formulaireHeaderMatch.isPresent() && annexeHeaderMatch.isEmpty()) {
-                    NatureFormulaire natureFormulaire = formulaireHeaderMatch.get();
+                Optional<ModeleFormulaire> modeleMatch = FormulaireHelper.resolveModeleFormulaire(header);
+                Optional<NatureAnnexe> annexeMatch = resolveNatureAnnexe(page);
+                if (modeleMatch.isPresent() && annexeMatch.isEmpty()) {
+                    ModeleFormulaire modele = modeleMatch.get();
                     if (liasse.getRegime() == null) {
-                        liasse.setRegime(natureFormulaire.getRegimeImposition());
+                        liasse.setRegime(modele.getRegimeImposition());
                     }
                     List<Table> pageTables = sea.extract(page);
                     Optional<Table> tableMatch = pageTables.stream()
@@ -116,13 +111,13 @@ public class LiasseFiscaleHelper {
                     if (tableMatch.isPresent()) {
                         Table table = tableMatch.get();
                         docTables.add(table);
-                        Formulaire formulaire = parseFormulaire(table, natureFormulaire);
+                        Formulaire formulaire = parseFormulaire(table, modele);
 
                         // On peut à tort croire qu'une page correspond à un formulaire (ex : annexe),
                         // et le trouver deux fois dans la liasse. Dans cette situation,
                         // le formulaire avec le plus de valeurs renseignées est sélectionné
                         Formulaire existingFormulaire = liasse.getFormulaires().stream()
-                                .filter(f -> f.getNature().equals(natureFormulaire)).findFirst().orElse(null);
+                                .filter(f -> Objects.equals(f.getModele(), modele)).findFirst().orElse(null);
                         if (existingFormulaire != null) {
                             if (existingFormulaire.nbMontantsNonNull() < formulaire.nbMontantsNonNull()) {
                                 liasse.getFormulaires().remove(existingFormulaire);
@@ -132,23 +127,23 @@ public class LiasseFiscaleHelper {
                             liasse.getFormulaires().add(formulaire);
                         }
 
-                        if (StringUtils.isEmpty(liasse.getSiren()) && natureFormulaire.containsSiren()) {
+                        if (StringUtils.isEmpty(liasse.getSiren()) && modele.isContainsSiren()) {
                             liasse.setSiren(parseSiren(page).orElse(null));
                         }
-                        if (isNull(liasse.getClotureExercice()) && natureFormulaire.containsClotureExercice()) {
+                        if (isNull(liasse.getClotureExercice()) && modele.isContainsClotureExercice()) {
                             liasse.setClotureExercice(parseClotureExercice(table, page).orElse(null));
                         }
                     }
-                } else if (formulaireHeaderMatch.isPresent() && annexeHeaderMatch.isPresent()) {
+                } else if (modeleMatch.isPresent() && annexeMatch.isPresent()) {
                     List<Table> pageTables = sea.extract(page);
                     Optional<Table> tableMatch = pageTables.stream()
                             .max(Comparator.comparing(Table::getRowCount));
                     if (tableMatch.isPresent()) {
                         Table table = tableMatch.get();
                         docTables.add(table);
-                        NatureAnnexe natureAnnexe = annexeHeaderMatch.get();
+                        NatureAnnexe natureAnnexe = annexeMatch.get();
                         List<? extends List<String>> lignes = parseAnnexe(table, natureAnnexe, false);
-                        liasse.getFormulaire(formulaireHeaderMatch.get()).getOrAddAnnexe(annexeHeaderMatch.get())
+                        liasse.getFormulaire(modeleMatch.get()).getOrAddAnnexe(annexeMatch.get())
                                 .getLignes().addAll(lignes);
                     }
                 }
@@ -158,7 +153,7 @@ public class LiasseFiscaleHelper {
         if (outputDebugFiles) {
             String htmlDebugFilename = FilenameUtils.removeExtension(filename) + ".html";
             writeTablesAsSvg(docTables, htmlDebugFilename);
-            
+
             String csvFileName = FilenameUtils.removeExtension(filename) + ".csv";
             writeLiasseAsCsv(liasse, csvFileName);
         }
@@ -260,9 +255,12 @@ public class LiasseFiscaleHelper {
             return Pair.of(true, match.get());
         }
 
-        // Parfois, la date se retrouve avant le libellé, ou beaucoup plus loin à cause de l'algo d'extraction du texte
-        // On sait que la date de clôture doit être présente, on élargit la recherche à tout le texte de la page, 
-        // en se restreignant à un format de date avec séparateur pour limiter les faux positifs
+        // Parfois, la date se retrouve avant le libellé, ou beaucoup plus loin à cause
+        // de l'algo d'extraction du texte
+        // On sait que la date de clôture doit être présente, on élargit la recherche à
+        // tout le texte de la page,
+        // en se restreignant à un format de date avec séparateur pour limiter les faux
+        // positifs
         return Pair.of(true, parseDate(text, true).orElse(null));
     }
 
@@ -289,7 +287,8 @@ public class LiasseFiscaleHelper {
         String candidate = null;
         int distanceToCandidate = Integer.MAX_VALUE;
         for (Map.Entry<String, String> entry : formats.entrySet()) {
-            Pattern p = Pattern.compile("(.*?)(" + entry.getKey() + ").*", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
+            Pattern p = Pattern.compile("(.*?)(" + entry.getKey() + ").*",
+                    Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
             Matcher m = p.matcher(str);
             if (m.matches() && m.group(1).length() < distanceToCandidate) {
                 distanceToCandidate = m.group(1).length();
@@ -329,9 +328,9 @@ public class LiasseFiscaleHelper {
     }
 
     @SuppressWarnings("rawtypes")
-    private static Formulaire parseFormulaire(Table table, NatureFormulaire natureFormulaire) {
-        Formulaire formulaire = buildFormulaire(natureFormulaire);
-        for (Repere repere : formulaire.reperes()) {
+    private static Formulaire parseFormulaire(Table table, ModeleFormulaire modele) {
+        Formulaire formulaire = Formulaire.builder().modele(modele).build();
+        for (Repere repere : formulaire.getAllReperes()) {
             boolean found = false;
             for (List<RectangularTextContainer> row : table.getRows()) {
                 if (found) {
@@ -353,7 +352,7 @@ public class LiasseFiscaleHelper {
             }
         }
 
-        for (NatureAnnexe natureAnnexe : natureFormulaire.getAnnexes()) {
+        for (NatureAnnexe natureAnnexe : emptyIfNull(modele.getAnnexes())) {
             formulaire.getOrAddAnnexe(natureAnnexe).getLignes()
                     .addAll(parseAnnexe(table, natureAnnexe, true));
         }
@@ -506,7 +505,7 @@ public class LiasseFiscaleHelper {
         StringBuilder builder = new StringBuilder();
 
         for (Formulaire formulaire : liasse.getFormulaires()) {
-            Set<Repere> sortedReperes = new TreeSet<>(formulaire.reperes());
+            Set<Repere> sortedReperes = new TreeSet<>(formulaire.getAllReperes());
             for (Repere repere : sortedReperes) {
                 builder.append(repere.getSymbole());
                 builder.append(",");
@@ -517,6 +516,4 @@ public class LiasseFiscaleHelper {
 
         FileUtils.writeStringToFile(new File(filePath), builder.toString(), "UTF-8");
     }
-
-
 }

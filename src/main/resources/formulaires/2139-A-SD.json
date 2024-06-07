@@ -1,0 +1,896 @@
+{
+  "identifiant" : "2139-A-SD",
+  "numero" : 2139,
+  "page" : "A",
+  "cerfa" : "11145",
+  "nom" : "BILAN SIMPLIFIÉ",
+  "regimeImposition" : "REEL_SIMPLIFIE_AGRICOLE",
+  "containsSiren" : true,
+  "containsClotureExercice" : true,
+  "sections" : [ {
+    "nom" : "Actif",
+    "sections" : [ {
+      "nom" : "Total",
+      "reperes" : [ {
+        "symbole" : "BR",
+        "nom" : " Brut",
+        "formuleFEC" : "-SLD_35"
+      }, {
+        "symbole" : "BS",
+        "nom" : " Amortissements",
+        "formuleFEC" : "SLD_395"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "BR",
+        "nom" : " Brut",
+        "formuleFEC" : "-SLD_35"
+      }, {
+        "symbole" : "BS",
+        "nom" : " Amortissements",
+        "formuleFEC" : "SLD_395"
+      } ]
+    } ],
+    "reperes" : [ ],
+    "allReperes" : [ {
+      "symbole" : "BR",
+      "nom" : " Brut",
+      "formuleFEC" : "-SLD_35"
+    }, {
+      "symbole" : "BS",
+      "nom" : " Amortissements",
+      "formuleFEC" : "SLD_395"
+    } ]
+  }, {
+    "nom" : "Actif Circulant",
+    "sections" : [ {
+      "nom" : "Total",
+      "reperes" : [ {
+        "symbole" : "BP",
+        "nom" : " Brut",
+        "formuleFEC" : "AY + BJ + BN"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "BP",
+        "nom" : " Brut",
+        "formuleFEC" : "AY + BJ + BN"
+      } ]
+    } ],
+    "reperes" : [ {
+      "symbole" : "BQ",
+      "nom" : "Amortissements",
+      "formuleFEC" : "AZ + BK + BO"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "BP",
+      "nom" : " Brut",
+      "formuleFEC" : "AY + BJ + BN"
+    }, {
+      "symbole" : "BQ",
+      "nom" : "Amortissements",
+      "formuleFEC" : "AZ + BK + BO"
+    } ]
+  }, {
+    "nom" : "Actif immobilisé",
+    "sections" : [ {
+      "nom" : "Total",
+      "reperes" : [ {
+        "symbole" : "AW",
+        "nom" : " Brut",
+        "formuleFEC" : "SLD_2931"
+      }, {
+        "symbole" : "AX",
+        "nom" : " Amortissements",
+        "formuleFEC" : "-SLD_238"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "AW",
+        "nom" : " Brut",
+        "formuleFEC" : "SLD_2931"
+      }, {
+        "symbole" : "AX",
+        "nom" : " Amortissements",
+        "formuleFEC" : "-SLD_238"
+      } ]
+    } ],
+    "reperes" : [ ],
+    "allReperes" : [ {
+      "symbole" : "AW",
+      "nom" : " Brut",
+      "formuleFEC" : "SLD_2931"
+    }, {
+      "symbole" : "AX",
+      "nom" : " Amortissements",
+      "formuleFEC" : "-SLD_238"
+    } ]
+  }, {
+    "nom" : "Autres immobilisations corporelles",
+    "reperes" : [ {
+      "symbole" : "AQ",
+      "nom" : " Brut",
+      "formuleFEC" : "SLD_2813 + SLD_2814"
+    }, {
+      "symbole" : "AR",
+      "nom" : " Amortissements",
+      "formuleFEC" : "-SLD_215"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "AQ",
+      "nom" : " Brut",
+      "formuleFEC" : "SLD_2813 + SLD_2814"
+    }, {
+      "symbole" : "AR",
+      "nom" : " Amortissements",
+      "formuleFEC" : "-SLD_215"
+    } ]
+  }, {
+    "nom" : "Avances et acomptes versés sur commandes",
+    "reperes" : [ {
+      "symbole" : "BA",
+      "nom" : "Brut",
+      "formuleFEC" : "-(SLD_267 + SLD_268)"
+    }, {
+      "symbole" : "BB",
+      "nom" : " Amortissements",
+      "formuleFEC" : "-(SLD_267 + SLD_268)"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "BA",
+      "nom" : "Brut",
+      "formuleFEC" : "-(SLD_267 + SLD_268)"
+    }, {
+      "symbole" : "BB",
+      "nom" : " Amortissements",
+      "formuleFEC" : "-(SLD_267 + SLD_268)"
+    } ]
+  }, {
+    "nom" : "Caisses, Banques, C.C.P. et autres disponibilités",
+    "reperes" : [ {
+      "symbole" : "BJ",
+      "nom" : " Brut",
+      "formuleFEC" : ""
+    }, {
+      "symbole" : "BK",
+      "nom" : " Amortissements",
+      "formuleFEC" : ""
+    } ],
+    "allReperes" : [ {
+      "symbole" : "BJ",
+      "nom" : " Brut",
+      "formuleFEC" : ""
+    }, {
+      "symbole" : "BK",
+      "nom" : " Amortissements",
+      "formuleFEC" : ""
+    } ]
+  }, {
+    "nom" : "Capitaux propres",
+    "reperes" : [ {
+      "symbole" : "CG",
+      "nom" : " Total",
+      "formuleFEC" : ""
+    }, {
+      "symbole" : "CH",
+      "nom" : "Total Provisions pour risques et charges",
+      "formuleFEC" : "DEB_486"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "CG",
+      "nom" : " Total",
+      "formuleFEC" : ""
+    }, {
+      "symbole" : "CH",
+      "nom" : "Total Provisions pour risques et charges",
+      "formuleFEC" : "DEB_486"
+    } ]
+  }, {
+    "nom" : "Charges constatées d'avance",
+    "reperes" : [ {
+      "symbole" : "BN",
+      "nom" : " Brut",
+      "formuleFEC" : ""
+    }, {
+      "symbole" : "BO",
+      "nom" : " Amortissements",
+      "formuleFEC" : "SLD_393"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "BN",
+      "nom" : " Brut",
+      "formuleFEC" : ""
+    }, {
+      "symbole" : "BO",
+      "nom" : " Amortissements",
+      "formuleFEC" : "SLD_393"
+    } ]
+  }, {
+    "nom" : "Créances",
+    "sections" : [ {
+      "nom" : "Autres",
+      "reperes" : [ {
+        "symbole" : "BE",
+        "nom" : " Brut",
+        "formuleFEC" : "SLD_2973 + SLD_2971 + SLD_2972"
+      }, {
+        "symbole" : "BF",
+        "nom" : " Amortissements",
+        "formuleFEC" : "-(SLD_274 + SLD_27684)"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "BE",
+        "nom" : " Brut",
+        "formuleFEC" : "SLD_2973 + SLD_2971 + SLD_2972"
+      }, {
+        "symbole" : "BF",
+        "nom" : " Amortissements",
+        "formuleFEC" : "-(SLD_274 + SLD_27684)"
+      } ]
+    }, {
+      "nom" : "Clients et comptes rattachés",
+      "reperes" : [ {
+        "symbole" : "BC",
+        "nom" : " Brut",
+        "formuleFEC" : "SLD_2967 + SLD_2968"
+      }, {
+        "symbole" : "BD",
+        "nom" : " Amortissements",
+        "formuleFEC" : "-(SLD_273 + SLD_271 + SLD_272 + SLD_27682)"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "BC",
+        "nom" : " Brut",
+        "formuleFEC" : "SLD_2967 + SLD_2968"
+      }, {
+        "symbole" : "BD",
+        "nom" : " Amortissements",
+        "formuleFEC" : "-(SLD_273 + SLD_271 + SLD_272 + SLD_27682)"
+      } ]
+    } ],
+    "reperes" : [ ],
+    "allReperes" : [ {
+      "symbole" : "BC",
+      "nom" : " Brut",
+      "formuleFEC" : "SLD_2967 + SLD_2968"
+    }, {
+      "symbole" : "BD",
+      "nom" : " Amortissements",
+      "formuleFEC" : "-(SLD_273 + SLD_271 + SLD_272 + SLD_27682)"
+    }, {
+      "symbole" : "BE",
+      "nom" : " Brut",
+      "formuleFEC" : "SLD_2973 + SLD_2971 + SLD_2972"
+    }, {
+      "symbole" : "BF",
+      "nom" : " Amortissements",
+      "formuleFEC" : "-(SLD_274 + SLD_27684)"
+    } ]
+  }, {
+    "nom" : "Dettes",
+    "reperes" : [ {
+      "symbole" : "CJ",
+      "nom" : " Avances et acomptes reçus sur commandes en cours"
+    }, {
+      "symbole" : "CK",
+      "nom" : " Fournisseurs et comptes rattachés"
+    }, {
+      "symbole" : "CL",
+      "nom" : " Autres dettes"
+    }, {
+      "symbole" : "CM",
+      "nom" : " Produits constatés d'avance"
+    }, {
+      "symbole" : "CN",
+      "nom" : " Total"
+    }, {
+      "symbole" : "CO",
+      "nom" : " Emprunts fonciers"
+    }, {
+      "symbole" : "CR",
+      "nom" : " Concours bancaires courants et découverts bancaires"
+    }, {
+      "symbole" : "CS",
+      "nom" : " Autres emprunts et dettes assimilées (dont emprunts fonciers)"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "CJ",
+      "nom" : " Avances et acomptes reçus sur commandes en cours"
+    }, {
+      "symbole" : "CK",
+      "nom" : " Fournisseurs et comptes rattachés"
+    }, {
+      "symbole" : "CL",
+      "nom" : " Autres dettes"
+    }, {
+      "symbole" : "CM",
+      "nom" : " Produits constatés d'avance"
+    }, {
+      "symbole" : "CN",
+      "nom" : " Total"
+    }, {
+      "symbole" : "CO",
+      "nom" : " Emprunts fonciers"
+    }, {
+      "symbole" : "CR",
+      "nom" : " Concours bancaires courants et découverts bancaires"
+    }, {
+      "symbole" : "CS",
+      "nom" : " Autres emprunts et dettes assimilées (dont emprunts fonciers)"
+    } ]
+  }, {
+    "nom" : "Immobilisations corporelles",
+    "sections" : [ {
+      "nom" : "Améliorations du fonds",
+      "reperes" : [ {
+        "symbole" : "AG",
+        "nom" : " Brut",
+        "formuleFEC" : "SLD_217"
+      }, {
+        "symbole" : "AH",
+        "nom" : " Amortissements",
+        "formuleFEC" : "SLD_2817"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "AG",
+        "nom" : " Brut",
+        "formuleFEC" : "SLD_217"
+      }, {
+        "symbole" : "AH",
+        "nom" : " Amortissements",
+        "formuleFEC" : "SLD_2817"
+      } ]
+    }, {
+      "nom" : "Constructions",
+      "reperes" : [ {
+        "symbole" : "AJ",
+        "nom" : " Brut",
+        "formuleFEC" : "-(SLD_213 + SLD_214)"
+      }, {
+        "symbole" : "AK",
+        "nom" : " Amortissements",
+        "formuleFEC" : "SLD_2813 + SLD_2814"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "AJ",
+        "nom" : " Brut",
+        "formuleFEC" : "-(SLD_213 + SLD_214)"
+      }, {
+        "symbole" : "AK",
+        "nom" : " Amortissements",
+        "formuleFEC" : "SLD_2813 + SLD_2814"
+      } ]
+    }, {
+      "nom" : "Installations, techniques, matériel et outillage",
+      "reperes" : [ {
+        "symbole" : "AL",
+        "nom" : " Brut",
+        "formuleFEC" : "-SLD_237"
+      }, {
+        "symbole" : "AM",
+        "nom" : " Amortissements",
+        "formuleFEC" : ""
+      } ],
+      "allReperes" : [ {
+        "symbole" : "AL",
+        "nom" : " Brut",
+        "formuleFEC" : "-SLD_237"
+      }, {
+        "symbole" : "AM",
+        "nom" : " Amortissements",
+        "formuleFEC" : ""
+      } ]
+    }, {
+      "nom" : "Plantations pérennes",
+      "reperes" : [ {
+        "symbole" : "AN",
+        "nom" : " Brut",
+        "formuleFEC" : "-(SLD_211 + SLD_212)"
+      }, {
+        "symbole" : "AP",
+        "nom" : " Amortissements",
+        "formuleFEC" : "-(SLD_213 + SLD_214)"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "AN",
+        "nom" : " Brut",
+        "formuleFEC" : "-(SLD_211 + SLD_212)"
+      }, {
+        "symbole" : "AP",
+        "nom" : " Amortissements",
+        "formuleFEC" : "-(SLD_213 + SLD_214)"
+      } ]
+    }, {
+      "nom" : "Terrains",
+      "reperes" : [ {
+        "symbole" : "AE",
+        "nom" : " Brut   -(SLD_211 + SLD_212)"
+      }, {
+        "symbole" : "AF",
+        "nom" : " Amortissements SLD_2811 + SLD_2812 + SLD_2911"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "AE",
+        "nom" : " Brut   -(SLD_211 + SLD_212)"
+      }, {
+        "symbole" : "AF",
+        "nom" : " Amortissements SLD_2811 + SLD_2812 + SLD_2911"
+      } ]
+    } ],
+    "reperes" : [ ],
+    "allReperes" : [ {
+      "symbole" : "AE",
+      "nom" : " Brut   -(SLD_211 + SLD_212)"
+    }, {
+      "symbole" : "AF",
+      "nom" : " Amortissements SLD_2811 + SLD_2812 + SLD_2911"
+    }, {
+      "symbole" : "AG",
+      "nom" : " Brut",
+      "formuleFEC" : "SLD_217"
+    }, {
+      "symbole" : "AH",
+      "nom" : " Amortissements",
+      "formuleFEC" : "SLD_2817"
+    }, {
+      "symbole" : "AJ",
+      "nom" : " Brut",
+      "formuleFEC" : "-(SLD_213 + SLD_214)"
+    }, {
+      "symbole" : "AK",
+      "nom" : " Amortissements",
+      "formuleFEC" : "SLD_2813 + SLD_2814"
+    }, {
+      "symbole" : "AL",
+      "nom" : " Brut",
+      "formuleFEC" : "-SLD_237"
+    }, {
+      "symbole" : "AM",
+      "nom" : " Amortissements",
+      "formuleFEC" : ""
+    }, {
+      "symbole" : "AN",
+      "nom" : " Brut",
+      "formuleFEC" : "-(SLD_211 + SLD_212)"
+    }, {
+      "symbole" : "AP",
+      "nom" : " Amortissements",
+      "formuleFEC" : "-(SLD_213 + SLD_214)"
+    } ]
+  }, {
+    "nom" : "Immobilisations corporelles en cours",
+    "reperes" : [ {
+      "symbole" : "AS",
+      "nom" : " Brut",
+      "formuleFEC" : "SLD_2815"
+    }, {
+      "symbole" : "AT",
+      "nom" : " Amortissements",
+      "formuleFEC" : "-SLD_218"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "AS",
+      "nom" : " Brut",
+      "formuleFEC" : "SLD_2815"
+    }, {
+      "symbole" : "AT",
+      "nom" : " Amortissements",
+      "formuleFEC" : "-SLD_218"
+    } ]
+  }, {
+    "nom" : "Immobilisations financières",
+    "reperes" : [ {
+      "symbole" : "AU",
+      "nom" : " Brut",
+      "formuleFEC" : "SLD_2818"
+    }, {
+      "symbole" : "AV",
+      "nom" : " Amortissements",
+      "formuleFEC" : "-SLD_231"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "AU",
+      "nom" : " Brut",
+      "formuleFEC" : "SLD_2818"
+    }, {
+      "symbole" : "AV",
+      "nom" : " Amortissements",
+      "formuleFEC" : "-SLD_231"
+    } ]
+  }, {
+    "nom" : "Immobilisations incorporelles",
+    "sections" : [ {
+      "nom" : "Autres",
+      "reperes" : [ {
+        "symbole" : "AC",
+        "nom" : " Brut",
+        "formuleFEC" : "-(SLD_208 + SLD_232)"
+      }, {
+        "symbole" : "AD",
+        "nom" : " Amortissements",
+        "formuleFEC" : "SLD_2808 + SLD_2908 + SLD_2932"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "AC",
+        "nom" : " Brut",
+        "formuleFEC" : "-(SLD_208 + SLD_232)"
+      }, {
+        "symbole" : "AD",
+        "nom" : " Amortissements",
+        "formuleFEC" : "SLD_2808 + SLD_2908 + SLD_2932"
+      } ]
+    }, {
+      "nom" : "Frais d'établissement",
+      "reperes" : [ {
+        "symbole" : "AA",
+        "nom" : " Brut",
+        "formuleFEC" : "-SLD_201"
+      }, {
+        "symbole" : "AB",
+        "nom" : " Amortissements",
+        "formuleFEC" : "SLD_2801"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "AA",
+        "nom" : " Brut",
+        "formuleFEC" : "-SLD_201"
+      }, {
+        "symbole" : "AB",
+        "nom" : " Amortissements",
+        "formuleFEC" : "SLD_2801"
+      } ]
+    } ],
+    "reperes" : [ ],
+    "allReperes" : [ {
+      "symbole" : "AA",
+      "nom" : " Brut",
+      "formuleFEC" : "-SLD_201"
+    }, {
+      "symbole" : "AB",
+      "nom" : " Amortissements",
+      "formuleFEC" : "SLD_2801"
+    }, {
+      "symbole" : "AC",
+      "nom" : " Brut",
+      "formuleFEC" : "-(SLD_208 + SLD_232)"
+    }, {
+      "symbole" : "AD",
+      "nom" : " Amortissements",
+      "formuleFEC" : "SLD_2808 + SLD_2908 + SLD_2932"
+    } ]
+  }, {
+    "nom" : "Passif",
+    "reperes" : [ {
+      "symbole" : "CP",
+      "nom" : " Total"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "CP",
+      "nom" : " Total"
+    } ]
+  }, {
+    "nom" : "Stocks",
+    "reperes" : [ {
+      "symbole" : "AY",
+      "nom" : " Brut",
+      "formuleFEC" : ""
+    }, {
+      "symbole" : "AZ",
+      "nom" : " Amortissements",
+      "formuleFEC" : ""
+    } ],
+    "allReperes" : [ {
+      "symbole" : "AY",
+      "nom" : " Brut",
+      "formuleFEC" : ""
+    }, {
+      "symbole" : "AZ",
+      "nom" : " Amortissements",
+      "formuleFEC" : ""
+    } ]
+  }, {
+    "nom" : "Valeurs mobilières de placement",
+    "reperes" : [ {
+      "symbole" : "BG",
+      "nom" : " Brut",
+      "formuleFEC" : ""
+    }, {
+      "symbole" : "BH",
+      "nom" : " Amortissements",
+      "formuleFEC" : ""
+    } ],
+    "allReperes" : [ {
+      "symbole" : "BG",
+      "nom" : " Brut",
+      "formuleFEC" : ""
+    }, {
+      "symbole" : "BH",
+      "nom" : " Amortissements",
+      "formuleFEC" : ""
+    } ]
+  } ],
+  "reperes" : [ {
+    "symbole" : "CA",
+    "nom" : "Capital social",
+    "formuleFEC" : "DEB_495 + DEB_496"
+  }, {
+    "symbole" : "CB",
+    "nom" : "Écarts de réévaluation",
+    "formuleFEC" : "DEB_4562"
+  }, {
+    "symbole" : "CC",
+    "nom" : "Réserves et report à nouveau",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "CD",
+    "nom" : "Report à nouveau",
+    "formuleFEC" : "-SLD_50"
+  }, {
+    "symbole" : "CE",
+    "nom" : "Résultat de l'exercice",
+    "formuleFEC" : "SLD_59"
+  }, {
+    "symbole" : "CF",
+    "nom" : "Subventions d'investissement et provisions réglementées",
+    "formuleFEC" : "-(SLD_51 + SLD_53 + SLD_54)"
+  }, {
+    "symbole" : "CT",
+    "nom" : "Subventions d'investissement",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "DA",
+    "nom" : "Dont immobilisations financières à moins d'un an"
+  }, {
+    "symbole" : "DB",
+    "nom" : "Dont créances à plus d'un an"
+  }, {
+    "symbole" : "DC",
+    "nom" : "Dont dettes à plus d'un an"
+  }, {
+    "symbole" : "DD",
+    "nom" : "En cas de société : Nombre d'associés"
+  }, {
+    "symbole" : "DE",
+    "nom" : "Coût de revient des immobilisations acquises ou créées au cours de l'exercice"
+  }, {
+    "symbole" : "DF",
+    "nom" : "Prix de vente hors T.V.A. des immobilisations cédées au cours de l'exercice"
+  } ],
+  "allReperes" : [ {
+    "symbole" : "AA",
+    "nom" : " Brut",
+    "formuleFEC" : "-SLD_201"
+  }, {
+    "symbole" : "AB",
+    "nom" : " Amortissements",
+    "formuleFEC" : "SLD_2801"
+  }, {
+    "symbole" : "AC",
+    "nom" : " Brut",
+    "formuleFEC" : "-(SLD_208 + SLD_232)"
+  }, {
+    "symbole" : "AD",
+    "nom" : " Amortissements",
+    "formuleFEC" : "SLD_2808 + SLD_2908 + SLD_2932"
+  }, {
+    "symbole" : "AE",
+    "nom" : " Brut   -(SLD_211 + SLD_212)"
+  }, {
+    "symbole" : "AF",
+    "nom" : " Amortissements SLD_2811 + SLD_2812 + SLD_2911"
+  }, {
+    "symbole" : "AG",
+    "nom" : " Brut",
+    "formuleFEC" : "SLD_217"
+  }, {
+    "symbole" : "AH",
+    "nom" : " Amortissements",
+    "formuleFEC" : "SLD_2817"
+  }, {
+    "symbole" : "AJ",
+    "nom" : " Brut",
+    "formuleFEC" : "-(SLD_213 + SLD_214)"
+  }, {
+    "symbole" : "AK",
+    "nom" : " Amortissements",
+    "formuleFEC" : "SLD_2813 + SLD_2814"
+  }, {
+    "symbole" : "AL",
+    "nom" : " Brut",
+    "formuleFEC" : "-SLD_237"
+  }, {
+    "symbole" : "AM",
+    "nom" : " Amortissements",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "AN",
+    "nom" : " Brut",
+    "formuleFEC" : "-(SLD_211 + SLD_212)"
+  }, {
+    "symbole" : "AP",
+    "nom" : " Amortissements",
+    "formuleFEC" : "-(SLD_213 + SLD_214)"
+  }, {
+    "symbole" : "AQ",
+    "nom" : " Brut",
+    "formuleFEC" : "SLD_2813 + SLD_2814"
+  }, {
+    "symbole" : "AR",
+    "nom" : " Amortissements",
+    "formuleFEC" : "-SLD_215"
+  }, {
+    "symbole" : "AS",
+    "nom" : " Brut",
+    "formuleFEC" : "SLD_2815"
+  }, {
+    "symbole" : "AT",
+    "nom" : " Amortissements",
+    "formuleFEC" : "-SLD_218"
+  }, {
+    "symbole" : "AU",
+    "nom" : " Brut",
+    "formuleFEC" : "SLD_2818"
+  }, {
+    "symbole" : "AV",
+    "nom" : " Amortissements",
+    "formuleFEC" : "-SLD_231"
+  }, {
+    "symbole" : "AW",
+    "nom" : " Brut",
+    "formuleFEC" : "SLD_2931"
+  }, {
+    "symbole" : "AX",
+    "nom" : " Amortissements",
+    "formuleFEC" : "-SLD_238"
+  }, {
+    "symbole" : "AY",
+    "nom" : " Brut",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "AZ",
+    "nom" : " Amortissements",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "BA",
+    "nom" : "Brut",
+    "formuleFEC" : "-(SLD_267 + SLD_268)"
+  }, {
+    "symbole" : "BB",
+    "nom" : " Amortissements",
+    "formuleFEC" : "-(SLD_267 + SLD_268)"
+  }, {
+    "symbole" : "BC",
+    "nom" : " Brut",
+    "formuleFEC" : "SLD_2967 + SLD_2968"
+  }, {
+    "symbole" : "BD",
+    "nom" : " Amortissements",
+    "formuleFEC" : "-(SLD_273 + SLD_271 + SLD_272 + SLD_27682)"
+  }, {
+    "symbole" : "BE",
+    "nom" : " Brut",
+    "formuleFEC" : "SLD_2973 + SLD_2971 + SLD_2972"
+  }, {
+    "symbole" : "BF",
+    "nom" : " Amortissements",
+    "formuleFEC" : "-(SLD_274 + SLD_27684)"
+  }, {
+    "symbole" : "BG",
+    "nom" : " Brut",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "BH",
+    "nom" : " Amortissements",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "BJ",
+    "nom" : " Brut",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "BK",
+    "nom" : " Amortissements",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "BN",
+    "nom" : " Brut",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "BO",
+    "nom" : " Amortissements",
+    "formuleFEC" : "SLD_393"
+  }, {
+    "symbole" : "BP",
+    "nom" : " Brut",
+    "formuleFEC" : "AY + BJ + BN"
+  }, {
+    "symbole" : "BQ",
+    "nom" : "Amortissements",
+    "formuleFEC" : "AZ + BK + BO"
+  }, {
+    "symbole" : "BR",
+    "nom" : " Brut",
+    "formuleFEC" : "-SLD_35"
+  }, {
+    "symbole" : "BS",
+    "nom" : " Amortissements",
+    "formuleFEC" : "SLD_395"
+  }, {
+    "symbole" : "CA",
+    "nom" : "Capital social",
+    "formuleFEC" : "DEB_495 + DEB_496"
+  }, {
+    "symbole" : "CB",
+    "nom" : "Écarts de réévaluation",
+    "formuleFEC" : "DEB_4562"
+  }, {
+    "symbole" : "CC",
+    "nom" : "Réserves et report à nouveau",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "CD",
+    "nom" : "Report à nouveau",
+    "formuleFEC" : "-SLD_50"
+  }, {
+    "symbole" : "CE",
+    "nom" : "Résultat de l'exercice",
+    "formuleFEC" : "SLD_59"
+  }, {
+    "symbole" : "CF",
+    "nom" : "Subventions d'investissement et provisions réglementées",
+    "formuleFEC" : "-(SLD_51 + SLD_53 + SLD_54)"
+  }, {
+    "symbole" : "CG",
+    "nom" : " Total",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "CH",
+    "nom" : "Total Provisions pour risques et charges",
+    "formuleFEC" : "DEB_486"
+  }, {
+    "symbole" : "CJ",
+    "nom" : " Avances et acomptes reçus sur commandes en cours"
+  }, {
+    "symbole" : "CK",
+    "nom" : " Fournisseurs et comptes rattachés"
+  }, {
+    "symbole" : "CL",
+    "nom" : " Autres dettes"
+  }, {
+    "symbole" : "CM",
+    "nom" : " Produits constatés d'avance"
+  }, {
+    "symbole" : "CN",
+    "nom" : " Total"
+  }, {
+    "symbole" : "CO",
+    "nom" : " Emprunts fonciers"
+  }, {
+    "symbole" : "CP",
+    "nom" : " Total"
+  }, {
+    "symbole" : "CR",
+    "nom" : " Concours bancaires courants et découverts bancaires"
+  }, {
+    "symbole" : "CS",
+    "nom" : " Autres emprunts et dettes assimilées (dont emprunts fonciers)"
+  }, {
+    "symbole" : "CT",
+    "nom" : "Subventions d'investissement",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "DA",
+    "nom" : "Dont immobilisations financières à moins d'un an"
+  }, {
+    "symbole" : "DB",
+    "nom" : "Dont créances à plus d'un an"
+  }, {
+    "symbole" : "DC",
+    "nom" : "Dont dettes à plus d'un an"
+  }, {
+    "symbole" : "DD",
+    "nom" : "En cas de société : Nombre d'associés"
+  }, {
+    "symbole" : "DE",
+    "nom" : "Coût de revient des immobilisations acquises ou créées au cours de l'exercice"
+  }, {
+    "symbole" : "DF",
+    "nom" : "Prix de vente hors T.V.A. des immobilisations cédées au cours de l'exercice"
+  } ]
+}

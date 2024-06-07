@@ -21,12 +21,12 @@ public enum NatureAnnexe {
     }
 
     public static Optional<NatureAnnexe> resolve(String header) {
-        boolean formulaireReferenceFound = NatureFormulaire.resolve(header, false).isPresent();
+        boolean referenceFormulaireFound = FormulaireHelper.resolveModeleFormulaire(header, false).isPresent();
 
         // Si l'en-tête contient une formulation comme "Formulaire obligatoire (article
         // 38 sexdecies RB de l'annexe III au Code Général des Impôts)"),
         // ce n'est pas une annexe mais un formulaire
-        if (formulaireReferenceFound && StrUtils.containsIgnoreCase(header, "de l'annexe")) {
+        if (referenceFormulaireFound && StrUtils.containsIgnoreCase(header, "de l'annexe")) {
             return Optional.empty();
         }
 
@@ -40,7 +40,7 @@ public enum NatureAnnexe {
         // formulaire
         for (NatureAnnexe candidat : values()) {
             if (StrUtils.containsIgnoreCase(header, candidat.getIntitule())) {
-                if (!formulaireReferenceFound || annexeKeywordFound) {
+                if (!referenceFormulaireFound || annexeKeywordFound) {
                     return Optional.of(candidat);
                 }
             }

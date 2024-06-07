@@ -1,0 +1,627 @@
+{
+  "identifiant" : "2033-A-SD",
+  "numero" : 2033,
+  "page" : "A",
+  "cerfa" : "15948",
+  "nom" : "BILAN SIMPLIFIÉ",
+  "regimeImposition" : "REEL_SIMPLIFIE",
+  "containsSiren" : true,
+  "containsClotureExercice" : true,
+  "sections" : [ {
+    "nom" : "Actif circulant",
+    "reperes" : [ {
+      "symbole" : "098",
+      "nom" : "amortissement",
+      "formuleFEC" : "REP_052 + REP_062 + REP_066 + REP_070 + REP_074 + REP_082 + REP_086 + REP_094"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "098",
+      "nom" : "amortissement",
+      "formuleFEC" : "REP_052 + REP_062 + REP_066 + REP_070 + REP_074 + REP_082 + REP_086 + REP_094"
+    } ]
+  }, {
+    "nom" : "Actif immobilisé",
+    "reperes" : [ {
+      "symbole" : "048",
+      "nom" : "amortissements",
+      "formuleFEC" : "REP_012 + REP_016 + REP_030 + REP_042"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "048",
+      "nom" : "amortissements",
+      "formuleFEC" : "REP_012 + REP_016 + REP_030 + REP_042"
+    } ]
+  }, {
+    "nom" : "Avances et acomptes versés sur commandes",
+    "reperes" : [ {
+      "symbole" : "066",
+      "nom" : "amortissements",
+      "formuleFEC" : ""
+    } ],
+    "allReperes" : [ {
+      "symbole" : "066",
+      "nom" : "amortissements",
+      "formuleFEC" : ""
+    } ]
+  }, {
+    "nom" : "Capitaux Propres",
+    "reperes" : [ {
+      "symbole" : "142",
+      "nom" : " Total"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "142",
+      "nom" : " Total"
+    } ]
+  }, {
+    "nom" : "Charges constatées d'avance",
+    "reperes" : [ {
+      "symbole" : "094",
+      "nom" : "amortissements",
+      "formuleFEC" : ""
+    } ],
+    "allReperes" : [ {
+      "symbole" : "094",
+      "nom" : "amortissements",
+      "formuleFEC" : ""
+    } ]
+  }, {
+    "nom" : "Créances",
+    "sections" : [ {
+      "nom" : "Autres",
+      "reperes" : [ {
+        "symbole" : "074",
+        "nom" : "amortissements",
+        "formuleFEC" : "DEB_495 + DEB_496"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "074",
+        "nom" : "amortissements",
+        "formuleFEC" : "DEB_495 + DEB_496"
+      } ]
+    }, {
+      "nom" : "Clients et comptes rattachés",
+      "reperes" : [ {
+        "symbole" : "070",
+        "nom" : "amortissements",
+        "formuleFEC" : "DEB_491"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "070",
+        "nom" : "amortissements",
+        "formuleFEC" : "DEB_491"
+      } ]
+    } ],
+    "reperes" : [ {
+      "symbole" : "068",
+      "nom" : "Clients et comptes rattachés",
+      "formuleFEC" : "DEB_411 + DEB_413 + DEB_416 + DEB_418"
+    }, {
+      "symbole" : "072",
+      "nom" : "Autres",
+      "formuleFEC" : "DEB_1097 + DEB_4096 + DEB_4098 + DEB_425 + DEB_4287 + DEB_43 + DEB_44 + DEB_45 + DEB_462 + DEB_465 + DEB_467 + DEB_4687 + DEB_478"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "068",
+      "nom" : "Clients et comptes rattachés",
+      "formuleFEC" : "DEB_411 + DEB_413 + DEB_416 + DEB_418"
+    }, {
+      "symbole" : "070",
+      "nom" : "amortissements",
+      "formuleFEC" : "DEB_491"
+    }, {
+      "symbole" : "072",
+      "nom" : "Autres",
+      "formuleFEC" : "DEB_1097 + DEB_4096 + DEB_4098 + DEB_425 + DEB_4287 + DEB_43 + DEB_44 + DEB_45 + DEB_462 + DEB_465 + DEB_467 + DEB_4687 + DEB_478"
+    }, {
+      "symbole" : "074",
+      "nom" : "amortissements",
+      "formuleFEC" : "DEB_495 + DEB_496"
+    } ]
+  }, {
+    "nom" : "Dettes",
+    "reperes" : [ {
+      "symbole" : "176",
+      "nom" : " Total"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "176",
+      "nom" : " Total"
+    } ]
+  }, {
+    "nom" : "Dettes fiscales et Sociales",
+    "reperes" : [ {
+      "symbole" : "169",
+      "nom" : " TVA"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "169",
+      "nom" : " TVA"
+    } ]
+  }, {
+    "nom" : "Disponibilités",
+    "reperes" : [ {
+      "symbole" : "086",
+      "nom" : "amortissements",
+      "formuleFEC" : ""
+    } ],
+    "allReperes" : [ {
+      "symbole" : "086",
+      "nom" : "amortissements",
+      "formuleFEC" : ""
+    } ]
+  }, {
+    "nom" : "Fonds commercial",
+    "reperes" : [ {
+      "symbole" : "012",
+      "nom" : "Amortissement",
+      "formuleFEC" : "SLD_2807 + SLD_2906 + SLD_2907"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "012",
+      "nom" : "Amortissement",
+      "formuleFEC" : "SLD_2807 + SLD_2906 + SLD_2907"
+    } ]
+  }, {
+    "nom" : "Immobilisations corporelles",
+    "reperes" : [ {
+      "symbole" : "030",
+      "nom" : "amortissements",
+      "formuleFEC" : "(-SLD_2811 + SLD_2812 + SLD_2911 + SLD_2813 + SLD_2814 + SLD_2815 + SLD_2818 + SLD_2931)"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "030",
+      "nom" : "amortissements",
+      "formuleFEC" : "(-SLD_2811 + SLD_2812 + SLD_2911 + SLD_2813 + SLD_2814 + SLD_2815 + SLD_2818 + SLD_2931)"
+    } ]
+  }, {
+    "nom" : "Immobilisations financières",
+    "reperes" : [ {
+      "symbole" : "042",
+      "nom" : "amortissement",
+      "formuleFEC" : "-(SLD_2961 + SLD_2966 + SLD_2967 + SLD_2968 + SLD_2973 + SLD_2971 + SLD_2972 + SLD_2974 + SLD_2975 + SLD_2976)"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "042",
+      "nom" : "amortissement",
+      "formuleFEC" : "-(SLD_2961 + SLD_2966 + SLD_2967 + SLD_2968 + SLD_2973 + SLD_2971 + SLD_2972 + SLD_2974 + SLD_2975 + SLD_2976)"
+    } ]
+  }, {
+    "nom" : "Immobilisations incorporelles",
+    "sections" : [ {
+      "nom" : "Autres",
+      "reperes" : [ {
+        "symbole" : "016",
+        "nom" : "Amortissements",
+        "formuleFEC" : "SLD_2801 + SLD_2803 + SLD_2805 + SLD_2905 + SLD_2808 + SLD_2908 + SLD_2932"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "016",
+        "nom" : "Amortissements",
+        "formuleFEC" : "SLD_2801 + SLD_2803 + SLD_2805 + SLD_2905 + SLD_2808 + SLD_2908 + SLD_2932"
+      } ]
+    } ],
+    "reperes" : [ {
+      "symbole" : "014",
+      "nom" : "Autres",
+      "formuleFEC" : "-(CRD_109 + SLD_201 + SLD_203 + SLD_205 + SLD_208)"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "014",
+      "nom" : "Autres",
+      "formuleFEC" : "-(CRD_109 + SLD_201 + SLD_203 + SLD_205 + SLD_208)"
+    }, {
+      "symbole" : "016",
+      "nom" : "Amortissements",
+      "formuleFEC" : "SLD_2801 + SLD_2803 + SLD_2805 + SLD_2905 + SLD_2808 + SLD_2908 + SLD_2932"
+    } ]
+  }, {
+    "nom" : "Stocks",
+    "sections" : [ {
+      "nom" : "Marchandises",
+      "reperes" : [ {
+        "symbole" : "062",
+        "nom" : "amortissements",
+        "formuleFEC" : "DEB_397"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "062",
+        "nom" : "amortissements",
+        "formuleFEC" : "DEB_397"
+      } ]
+    }, {
+      "nom" : "Matières premières, approvisionnements, en cours de production",
+      "reperes" : [ {
+        "symbole" : "052",
+        "nom" : "amortissement",
+        "formuleFEC" : "DEB_391 + DEB_392 + DEB_393 + DEB_394 + DEB_395"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "052",
+        "nom" : "amortissement",
+        "formuleFEC" : "DEB_391 + DEB_392 + DEB_393 + DEB_394 + DEB_395"
+      } ]
+    } ],
+    "reperes" : [ {
+      "symbole" : "050",
+      "nom" : "Matières premières, approvisionnements, en cours de production",
+      "formuleFEC" : "DEB_31 + DEB_32 + DEB_33 + DEB_34 + DEB_35"
+    }, {
+      "symbole" : "060",
+      "nom" : "Marchandises",
+      "formuleFEC" : "DEB_37"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "050",
+      "nom" : "Matières premières, approvisionnements, en cours de production",
+      "formuleFEC" : "DEB_31 + DEB_32 + DEB_33 + DEB_34 + DEB_35"
+    }, {
+      "symbole" : "052",
+      "nom" : "amortissement",
+      "formuleFEC" : "DEB_391 + DEB_392 + DEB_393 + DEB_394 + DEB_395"
+    }, {
+      "symbole" : "060",
+      "nom" : "Marchandises",
+      "formuleFEC" : "DEB_37"
+    }, {
+      "symbole" : "062",
+      "nom" : "amortissements",
+      "formuleFEC" : "DEB_397"
+    } ]
+  }, {
+    "nom" : "Total général",
+    "reperes" : [ {
+      "symbole" : "112",
+      "nom" : "Amortissements",
+      "formuleFEC" : "REP_048 + REP_098"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "112",
+      "nom" : "Amortissements",
+      "formuleFEC" : "REP_048 + REP_098"
+    } ]
+  }, {
+    "nom" : "Valeurs mobilières de placement",
+    "reperes" : [ {
+      "symbole" : "082",
+      "nom" : "amortissements",
+      "formuleFEC" : "DEB_59"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "082",
+      "nom" : "amortissements",
+      "formuleFEC" : "DEB_59"
+    } ]
+  } ],
+  "reperes" : [ {
+    "symbole" : "010",
+    "nom" : "Fonds commercial",
+    "formuleFEC" : "-(SLD_206 + SLD_207)"
+  }, {
+    "symbole" : "028",
+    "nom" : "Immobilisations corporelles",
+    "formuleFEC" : "-(SLD_211 SLD_212 + SLD_213 + SLD_214 + SLD_215 + SLD_218 + SLD_231 + SLD_238)"
+  }, {
+    "symbole" : "040",
+    "nom" : "Immobilisations financières",
+    "formuleFEC" : "-(SLD_261 + SLD_266 + SLD_267 + SLD_268 + SLD_273 + SLD_271 + SLD_272 + SLD_27682 + SLD_274 + SLD_27684 + SLD_275 + SLD_2761 + SLD_27685 + SLD_27688)"
+  }, {
+    "symbole" : "044",
+    "nom" : "Actif immobilisé",
+    "formuleFEC" : "REP_010 + REP_014 + REP_028 + REP_040"
+  }, {
+    "symbole" : "064",
+    "nom" : "Avances et acomptes versés sur commandes",
+    "formuleFEC" : "DEB_4091"
+  }, {
+    "symbole" : "080",
+    "nom" : "Valeurs mobilières de placement",
+    "formuleFEC" : "DEB_50 + DEB_52"
+  }, {
+    "symbole" : "084",
+    "nom" : "Disponibilités",
+    "formuleFEC" : "DEB_51 + DEB_53 + DEB_54"
+  }, {
+    "symbole" : "092",
+    "nom" : "Charges constatées d'avance",
+    "formuleFEC" : "DEB_486"
+  }, {
+    "symbole" : "096",
+    "nom" : "Actif circulant",
+    "formuleFEC" : "REP_050 + REP_060 + REP_064 + REP_068 + REP_072 + REP_080 + REP_084 + REP_092"
+  }, {
+    "symbole" : "110",
+    "nom" : "Total général",
+    "formuleFEC" : "REP_044 + REP_096"
+  }, {
+    "symbole" : "120",
+    "nom" : "Capital social ou individuel",
+    "formuleFEC" : "SLD_101 + SLD_108"
+  }, {
+    "symbole" : "124",
+    "nom" : "Ecarts de réévaluation",
+    "formuleFEC" : "SLD_105 + SLD_107 "
+  }, {
+    "symbole" : "126",
+    "nom" : "Réserve légale",
+    "formuleFEC" : "SLD_1061"
+  }, {
+    "symbole" : "130",
+    "nom" : "Réserves règlementées",
+    "formuleFEC" : "SLD_1062 + SLD_1064"
+  }, {
+    "symbole" : "132",
+    "nom" : "Réserves statutaires ou contractuelles",
+    "formuleFEC" : "SLD_1063+SLD_1068"
+  }, {
+    "symbole" : "134",
+    "nom" : "Report à nouveau",
+    "formuleFEC" : "SLD_11"
+  }, {
+    "symbole" : "136",
+    "nom" : "Résultat de l'exercice",
+    "formuleFEC" : "SLD_12"
+  }, {
+    "symbole" : "140",
+    "nom" : "Provisions règlementées",
+    "formuleFEC" : "SLD_14"
+  }, {
+    "symbole" : "154",
+    "nom" : "Provisions pour risques et charges",
+    "formuleFEC" : "SLD_15"
+  }, {
+    "symbole" : "156",
+    "nom" : "Emprunts et dettes assimilées",
+    "formuleFEC" : "CRD_164 + CRD_168 + CRD_512 + CRD_514 + CRD_517 + CRD_5186 + CRD_519 + CRD_162 + CRD_165 + CRD_166 + CRD_1675 + CRD_17 + CRD_426 + CRD_451 + CRD_455 + CRD_456 + CRD_458"
+  }, {
+    "symbole" : "164",
+    "nom" : "Avances et acomptes reçus sur commandes en cours",
+    "formuleFEC" : "CRD_4191"
+  }, {
+    "symbole" : "166",
+    "nom" : "Dettes fournisseurs et comptes rattachés",
+    "formuleFEC" : "CRD_401 + CRD_403 + CRD_4081 + CRD_4088"
+  }, {
+    "symbole" : "172",
+    "nom" : "Dettes fiscales et Sociales",
+    "formuleFEC" : "CRD_421 + CRD_422 + CRD_424 + CRD_427 + CRD_4282 + CRD_4286 + CRD_43 + CRD_442 + CRD_443 + CRD_444 + CRD_4455 + CRD_4457 + CRD_44584 + CRD_44587 + CRD_446 + CRD_447 + CRD_4482 + CRD_4486 + CRD_449 + CRD_457 + CRD_1685 + CRD_269 + CRD_279 + CRD_404 + CRD_405 + CRD_4084 + CRD_4196 + CRD_4197 + CRD_4198 + CRD_464 + CRD_467 + CRD_4686 + CRD_478 + CRD_509"
+  }, {
+    "symbole" : "174",
+    "nom" : "Produits constatés d'avance",
+    "formuleFEC" : "CRD_487"
+  }, {
+    "symbole" : "175",
+    "nom" : "Autres dettes"
+  }, {
+    "symbole" : "180",
+    "nom" : "Total général"
+  }, {
+    "symbole" : "182",
+    "nom" : "Coût de revient des immobilisations acquises ou créées au cours de l'exercice"
+  }, {
+    "symbole" : "184",
+    "nom" : "Prix de vente hors TVA des immobilisations cédées au cours de l'exercice"
+  }, {
+    "symbole" : "193",
+    "nom" : "Immobilisations financières à moins d'un an"
+  }, {
+    "symbole" : "195",
+    "nom" : "Dettes à plus d'un an"
+  }, {
+    "symbole" : "197",
+    "nom" : "Créances à plus d'un an"
+  }, {
+    "symbole" : "199",
+    "nom" : "Compte courant d'associés débiteurs "
+  } ],
+  "allReperes" : [ {
+    "symbole" : "010",
+    "nom" : "Fonds commercial",
+    "formuleFEC" : "-(SLD_206 + SLD_207)"
+  }, {
+    "symbole" : "012",
+    "nom" : "Amortissement",
+    "formuleFEC" : "SLD_2807 + SLD_2906 + SLD_2907"
+  }, {
+    "symbole" : "014",
+    "nom" : "Autres",
+    "formuleFEC" : "-(CRD_109 + SLD_201 + SLD_203 + SLD_205 + SLD_208)"
+  }, {
+    "symbole" : "016",
+    "nom" : "Amortissements",
+    "formuleFEC" : "SLD_2801 + SLD_2803 + SLD_2805 + SLD_2905 + SLD_2808 + SLD_2908 + SLD_2932"
+  }, {
+    "symbole" : "028",
+    "nom" : "Immobilisations corporelles",
+    "formuleFEC" : "-(SLD_211 SLD_212 + SLD_213 + SLD_214 + SLD_215 + SLD_218 + SLD_231 + SLD_238)"
+  }, {
+    "symbole" : "030",
+    "nom" : "amortissements",
+    "formuleFEC" : "(-SLD_2811 + SLD_2812 + SLD_2911 + SLD_2813 + SLD_2814 + SLD_2815 + SLD_2818 + SLD_2931)"
+  }, {
+    "symbole" : "040",
+    "nom" : "Immobilisations financières",
+    "formuleFEC" : "-(SLD_261 + SLD_266 + SLD_267 + SLD_268 + SLD_273 + SLD_271 + SLD_272 + SLD_27682 + SLD_274 + SLD_27684 + SLD_275 + SLD_2761 + SLD_27685 + SLD_27688)"
+  }, {
+    "symbole" : "042",
+    "nom" : "amortissement",
+    "formuleFEC" : "-(SLD_2961 + SLD_2966 + SLD_2967 + SLD_2968 + SLD_2973 + SLD_2971 + SLD_2972 + SLD_2974 + SLD_2975 + SLD_2976)"
+  }, {
+    "symbole" : "044",
+    "nom" : "Actif immobilisé",
+    "formuleFEC" : "REP_010 + REP_014 + REP_028 + REP_040"
+  }, {
+    "symbole" : "048",
+    "nom" : "amortissements",
+    "formuleFEC" : "REP_012 + REP_016 + REP_030 + REP_042"
+  }, {
+    "symbole" : "050",
+    "nom" : "Matières premières, approvisionnements, en cours de production",
+    "formuleFEC" : "DEB_31 + DEB_32 + DEB_33 + DEB_34 + DEB_35"
+  }, {
+    "symbole" : "052",
+    "nom" : "amortissement",
+    "formuleFEC" : "DEB_391 + DEB_392 + DEB_393 + DEB_394 + DEB_395"
+  }, {
+    "symbole" : "060",
+    "nom" : "Marchandises",
+    "formuleFEC" : "DEB_37"
+  }, {
+    "symbole" : "062",
+    "nom" : "amortissements",
+    "formuleFEC" : "DEB_397"
+  }, {
+    "symbole" : "064",
+    "nom" : "Avances et acomptes versés sur commandes",
+    "formuleFEC" : "DEB_4091"
+  }, {
+    "symbole" : "066",
+    "nom" : "amortissements",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "068",
+    "nom" : "Clients et comptes rattachés",
+    "formuleFEC" : "DEB_411 + DEB_413 + DEB_416 + DEB_418"
+  }, {
+    "symbole" : "070",
+    "nom" : "amortissements",
+    "formuleFEC" : "DEB_491"
+  }, {
+    "symbole" : "072",
+    "nom" : "Autres",
+    "formuleFEC" : "DEB_1097 + DEB_4096 + DEB_4098 + DEB_425 + DEB_4287 + DEB_43 + DEB_44 + DEB_45 + DEB_462 + DEB_465 + DEB_467 + DEB_4687 + DEB_478"
+  }, {
+    "symbole" : "074",
+    "nom" : "amortissements",
+    "formuleFEC" : "DEB_495 + DEB_496"
+  }, {
+    "symbole" : "080",
+    "nom" : "Valeurs mobilières de placement",
+    "formuleFEC" : "DEB_50 + DEB_52"
+  }, {
+    "symbole" : "082",
+    "nom" : "amortissements",
+    "formuleFEC" : "DEB_59"
+  }, {
+    "symbole" : "084",
+    "nom" : "Disponibilités",
+    "formuleFEC" : "DEB_51 + DEB_53 + DEB_54"
+  }, {
+    "symbole" : "086",
+    "nom" : "amortissements",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "092",
+    "nom" : "Charges constatées d'avance",
+    "formuleFEC" : "DEB_486"
+  }, {
+    "symbole" : "094",
+    "nom" : "amortissements",
+    "formuleFEC" : ""
+  }, {
+    "symbole" : "096",
+    "nom" : "Actif circulant",
+    "formuleFEC" : "REP_050 + REP_060 + REP_064 + REP_068 + REP_072 + REP_080 + REP_084 + REP_092"
+  }, {
+    "symbole" : "098",
+    "nom" : "amortissement",
+    "formuleFEC" : "REP_052 + REP_062 + REP_066 + REP_070 + REP_074 + REP_082 + REP_086 + REP_094"
+  }, {
+    "symbole" : "110",
+    "nom" : "Total général",
+    "formuleFEC" : "REP_044 + REP_096"
+  }, {
+    "symbole" : "112",
+    "nom" : "Amortissements",
+    "formuleFEC" : "REP_048 + REP_098"
+  }, {
+    "symbole" : "120",
+    "nom" : "Capital social ou individuel",
+    "formuleFEC" : "SLD_101 + SLD_108"
+  }, {
+    "symbole" : "124",
+    "nom" : "Ecarts de réévaluation",
+    "formuleFEC" : "SLD_105 + SLD_107 "
+  }, {
+    "symbole" : "126",
+    "nom" : "Réserve légale",
+    "formuleFEC" : "SLD_1061"
+  }, {
+    "symbole" : "130",
+    "nom" : "Réserves règlementées",
+    "formuleFEC" : "SLD_1062 + SLD_1064"
+  }, {
+    "symbole" : "132",
+    "nom" : "Réserves statutaires ou contractuelles",
+    "formuleFEC" : "SLD_1063+SLD_1068"
+  }, {
+    "symbole" : "134",
+    "nom" : "Report à nouveau",
+    "formuleFEC" : "SLD_11"
+  }, {
+    "symbole" : "136",
+    "nom" : "Résultat de l'exercice",
+    "formuleFEC" : "SLD_12"
+  }, {
+    "symbole" : "140",
+    "nom" : "Provisions règlementées",
+    "formuleFEC" : "SLD_14"
+  }, {
+    "symbole" : "142",
+    "nom" : " Total"
+  }, {
+    "symbole" : "154",
+    "nom" : "Provisions pour risques et charges",
+    "formuleFEC" : "SLD_15"
+  }, {
+    "symbole" : "156",
+    "nom" : "Emprunts et dettes assimilées",
+    "formuleFEC" : "CRD_164 + CRD_168 + CRD_512 + CRD_514 + CRD_517 + CRD_5186 + CRD_519 + CRD_162 + CRD_165 + CRD_166 + CRD_1675 + CRD_17 + CRD_426 + CRD_451 + CRD_455 + CRD_456 + CRD_458"
+  }, {
+    "symbole" : "164",
+    "nom" : "Avances et acomptes reçus sur commandes en cours",
+    "formuleFEC" : "CRD_4191"
+  }, {
+    "symbole" : "166",
+    "nom" : "Dettes fournisseurs et comptes rattachés",
+    "formuleFEC" : "CRD_401 + CRD_403 + CRD_4081 + CRD_4088"
+  }, {
+    "symbole" : "169",
+    "nom" : " TVA"
+  }, {
+    "symbole" : "172",
+    "nom" : "Dettes fiscales et Sociales",
+    "formuleFEC" : "CRD_421 + CRD_422 + CRD_424 + CRD_427 + CRD_4282 + CRD_4286 + CRD_43 + CRD_442 + CRD_443 + CRD_444 + CRD_4455 + CRD_4457 + CRD_44584 + CRD_44587 + CRD_446 + CRD_447 + CRD_4482 + CRD_4486 + CRD_449 + CRD_457 + CRD_1685 + CRD_269 + CRD_279 + CRD_404 + CRD_405 + CRD_4084 + CRD_4196 + CRD_4197 + CRD_4198 + CRD_464 + CRD_467 + CRD_4686 + CRD_478 + CRD_509"
+  }, {
+    "symbole" : "174",
+    "nom" : "Produits constatés d'avance",
+    "formuleFEC" : "CRD_487"
+  }, {
+    "symbole" : "175",
+    "nom" : "Autres dettes"
+  }, {
+    "symbole" : "176",
+    "nom" : " Total"
+  }, {
+    "symbole" : "180",
+    "nom" : "Total général"
+  }, {
+    "symbole" : "182",
+    "nom" : "Coût de revient des immobilisations acquises ou créées au cours de l'exercice"
+  }, {
+    "symbole" : "184",
+    "nom" : "Prix de vente hors TVA des immobilisations cédées au cours de l'exercice"
+  }, {
+    "symbole" : "193",
+    "nom" : "Immobilisations financières à moins d'un an"
+  }, {
+    "symbole" : "195",
+    "nom" : "Dettes à plus d'un an"
+  }, {
+    "symbole" : "197",
+    "nom" : "Créances à plus d'un an"
+  }, {
+    "symbole" : "199",
+    "nom" : "Compte courant d'associés débiteurs "
+  } ]
+}

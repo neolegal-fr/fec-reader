@@ -364,9 +364,6 @@ public class LiasseFiscaleHelperTest {
         LiasseFiscale liasse = LiasseFiscaleHelper
                 .readLiasseFiscalePDF("target/test-classes/liasse-publique-M-2145-réel-agricole.pdf", true);
 
-        // writeExpectedValuesCsv(liasse,
-        // "target/test-classes/liasse-publique-M-2145-réel-agricole-expected.csv");
-
         checkParsedLiasse(liasse, "target/test-classes/liasse-publique-M-2145-réel-agricole-expected.csv", 14);
         assertEquals(RegimeImposition.REEL_NORMAL_AGRICOLE, liasse.getRegime());
         assertEquals("348614793", liasse.getSiren());

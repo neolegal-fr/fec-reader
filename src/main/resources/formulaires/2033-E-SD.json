@@ -1,0 +1,84 @@
+{
+  "identifiant" : "2033-E-SD",
+  "numero" : 2033,
+  "page" : "E",
+  "nom" : "DÉTERMINATION DES EFFECTIFS ET DE LA VALEUR AJOUTÉE",
+  "regimeImposition" : "REEL_SIMPLIFIE",
+  "containsSiren" : false,
+  "containsClotureExercice" : true,
+  "sections" : [ {
+    "nom" : "Calcul de la valeur ajoutée",
+    "sections" : [ {
+      "nom" : "Chiffre d'affaires de référence CVAE",
+      "reperes" : [ {
+        "symbole" : "106",
+        "nom" : " Total"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "106",
+        "nom" : " Total"
+      } ]
+    } ],
+    "reperes" : [ ],
+    "allReperes" : [ {
+      "symbole" : "106",
+      "nom" : " Total"
+    } ]
+  }, {
+    "nom" : "Déclarations des effectifs",
+    "sections" : [ {
+      "nom" : "Effectif moyen du personnel",
+      "reperes" : [ {
+        "symbole" : "651",
+        "nom" : " Dont handicapés"
+      }, {
+        "symbole" : "657",
+        "nom" : " Dont apprentis"
+      } ],
+      "allReperes" : [ {
+        "symbole" : "651",
+        "nom" : " Dont handicapés"
+      }, {
+        "symbole" : "657",
+        "nom" : " Dont apprentis"
+      } ]
+    } ],
+    "reperes" : [ {
+      "symbole" : "376",
+      "nom" : " Effectif moyen du personnel"
+    }, {
+      "symbole" : "861",
+      "nom" : " Effectifs affectés à l'activité artisanale"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "376",
+      "nom" : " Effectif moyen du personnel"
+    }, {
+      "symbole" : "651",
+      "nom" : " Dont handicapés"
+    }, {
+      "symbole" : "657",
+      "nom" : " Dont apprentis"
+    }, {
+      "symbole" : "861",
+      "nom" : " Effectifs affectés à l'activité artisanale"
+    } ]
+  } ],
+  "reperes" : [ ],
+  "allReperes" : [ {
+    "symbole" : "106",
+    "nom" : " Total"
+  }, {
+    "symbole" : "376",
+    "nom" : " Effectif moyen du personnel"
+  }, {
+    "symbole" : "651",
+    "nom" : " Dont handicapés"
+  }, {
+    "symbole" : "657",
+    "nom" : " Dont apprentis"
+  }, {
+    "symbole" : "861",
+    "nom" : " Effectifs affectés à l'activité artisanale"
+  } ]
+}

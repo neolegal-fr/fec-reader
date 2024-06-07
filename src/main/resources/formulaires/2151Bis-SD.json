@@ -1,0 +1,11 @@
+{
+  "identifiant" : "2151Bis-SD",
+  "numero" : 2151,
+  "cerfa" : "15947",
+  "nom" : "DEFICIT ET PROVISIONS NON DEDUCTIBLES",
+  "regimeImposition" : "REEL_NORMAL_AGRICOLE",
+  "containsSiren" : false,
+  "containsClotureExercice" : false,
+  "reperes" : [ ],
+  "allReperes" : [ ]
+}

@@ -1,0 +1,12 @@
+{
+  "identifiant" : "2054 bis-SD",
+  "numero" : 2054,
+  "page" : "bis",
+  "cerfa" : "15949",
+  "nom" : "TABLEAU DES ECARTS DE REEVALUATION SUR IMMOBILISATIONS AMORTISSABLES",
+  "regimeImposition" : "REEL_NORMAL",
+  "containsSiren" : false,
+  "containsClotureExercice" : false,
+  "reperes" : [ ],
+  "allReperes" : [ ]
+}

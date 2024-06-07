@@ -1,0 +1,370 @@
+{
+  "identifiant" : "2057-SD",
+  "numero" : 2057,
+  "cerfa" : "15949",
+  "nom" : "ETAT DES ECHEANCES DES CREANCES ET DES DETTES A LA CLOTURE DE L'EXERCICE",
+  "regimeImposition" : "REEL_NORMAL",
+  "containsSiren" : false,
+  "containsClotureExercice" : false,
+  "sections" : [ {
+    "nom" : "Autres immobilisations financières",
+    "reperes" : [ {
+      "symbole" : "UT",
+      "nom" : " Montant brut"
+    }, {
+      "symbole" : "UV",
+      "nom" : " A 1 an au plus"
+    }, {
+      "symbole" : "UW",
+      "nom" : " A plus d'un an"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "UT",
+      "nom" : " Montant brut"
+    }, {
+      "symbole" : "UV",
+      "nom" : " A 1 an au plus"
+    }, {
+      "symbole" : "UW",
+      "nom" : " A plus d'un an"
+    } ]
+  }, {
+    "nom" : "Créances rattachées à des participations",
+    "reperes" : [ {
+      "symbole" : "UL",
+      "nom" : " Montant brut"
+    }, {
+      "symbole" : "UM",
+      "nom" : " A 1 an au plus"
+    }, {
+      "symbole" : "UN",
+      "nom" : " A plus d'un an"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "UL",
+      "nom" : " Montant brut"
+    }, {
+      "symbole" : "UM",
+      "nom" : " A 1 an au plus"
+    }, {
+      "symbole" : "UN",
+      "nom" : " A plus d'un an"
+    } ]
+  }, {
+    "nom" : "Prêts",
+    "reperes" : [ {
+      "symbole" : "UP",
+      "nom" : " Montant brut"
+    }, {
+      "symbole" : "UR",
+      "nom" : " A 1 an au plus"
+    }, {
+      "symbole" : "US",
+      "nom" : " A plus d'un an"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "UP",
+      "nom" : " Montant brut"
+    }, {
+      "symbole" : "UR",
+      "nom" : " A 1 an au plus"
+    }, {
+      "symbole" : "US",
+      "nom" : " A plus d'un an"
+    } ]
+  }, {
+    "nom" : "TOTAUX",
+    "reperes" : [ {
+      "symbole" : "VT",
+      "nom" : " Montant brut"
+    }, {
+      "symbole" : "VU",
+      "nom" : " A 1 an au plus"
+    }, {
+      "symbole" : "VV",
+      "nom" : " A plus d'un an"
+    }, {
+      "symbole" : "VY",
+      "nom" : " Montant brut"
+    }, {
+      "symbole" : "VZ",
+      "nom" : " A 1 an au plus"
+    } ],
+    "allReperes" : [ {
+      "symbole" : "VT",
+      "nom" : " Montant brut"
+    }, {
+      "symbole" : "VU",
+      "nom" : " A 1 an au plus"
+    }, {
+      "symbole" : "VV",
+      "nom" : " A plus d'un an"
+    }, {
+      "symbole" : "VY",
+      "nom" : " Montant brut"
+    }, {
+      "symbole" : "VZ",
+      "nom" : " A 1 an au plus"
+    } ]
+  } ],
+  "reperes" : [ {
+    "symbole" : "7Y",
+    "nom" : "Emprunts obligataires convertibles"
+  }, {
+    "symbole" : "7Z",
+    "nom" : "Autres emprunts obligataires"
+  }, {
+    "symbole" : "8A",
+    "nom" : "Emprunts et dettes financières divers"
+  }, {
+    "symbole" : "8B",
+    "nom" : "Fournisseurs et comptes rattachés"
+  }, {
+    "symbole" : "8C",
+    "nom" : "Personnel et comptes rattachés"
+  }, {
+    "symbole" : "8D",
+    "nom" : "Sécurité sociale et autres organismes sociaux"
+  }, {
+    "symbole" : "8E",
+    "nom" : "Impôts sur les bénéfices"
+  }, {
+    "symbole" : "8J",
+    "nom" : "Dettes sur immobilisations et comptes rattachés"
+  }, {
+    "symbole" : "8K",
+    "nom" : "Autres dettes (dont dettes relatives à des opérations de pension de titres)"
+  }, {
+    "symbole" : "8L",
+    "nom" : "Produits constatés d'avance"
+  }, {
+    "symbole" : "UO",
+    "nom" : "Provision pour dépréciation antérieurement constituée"
+  }, {
+    "symbole" : "UX",
+    "nom" : "Autres créances clients"
+  }, {
+    "symbole" : "UY",
+    "nom" : "Personnel et comptes rattachés"
+  }, {
+    "symbole" : "UZ",
+    "nom" : "Sécurité sociale et autres organismes sociaux"
+  }, {
+    "symbole" : "VA",
+    "nom" : "Clients douteux ou litigieux"
+  }, {
+    "symbole" : "VB",
+    "nom" : "Taxe sur la valeur ajoutée"
+  }, {
+    "symbole" : "VC",
+    "nom" : "Groupe et associés"
+  }, {
+    "symbole" : "VD",
+    "nom" : "Prêts accordés en cours d'exercice"
+  }, {
+    "symbole" : "VE",
+    "nom" : "Remboursements obtenus en cours d'exercice"
+  }, {
+    "symbole" : "VF",
+    "nom" : "Prêts et avances consentis aux associés"
+  }, {
+    "symbole" : "VG",
+    "nom" : "Emprunts et dettes auprès des établissements de crédit à 1 an maximum à l'origine"
+  }, {
+    "symbole" : "VH",
+    "nom" : "Emprunts et dettes auprès des établissements de crédit à plus d'1 an à l'origine"
+  }, {
+    "symbole" : "VI",
+    "nom" : "Groupe et associés"
+  }, {
+    "symbole" : "VJ",
+    "nom" : "Emprunts souscrits en cours d'exercice"
+  }, {
+    "symbole" : "VK",
+    "nom" : "Emprunts remboursés en cours d'exercice"
+  }, {
+    "symbole" : "VL",
+    "nom" : "Montant des divers emprunts et dettes contractés auprès des associés personnes physiques"
+  }, {
+    "symbole" : "VM",
+    "nom" : "Impôts sur les bénéfices"
+  }, {
+    "symbole" : "VN",
+    "nom" : "Autres impôts, taxes et versements assimilés"
+  }, {
+    "symbole" : "VP",
+    "nom" : "Divers"
+  }, {
+    "symbole" : "VQ",
+    "nom" : "Autres impôts, taxes et assimilés"
+  }, {
+    "symbole" : "VR",
+    "nom" : "Débiteurs divers (dont créances relatives à des opérations de pension de titres)"
+  }, {
+    "symbole" : "VS",
+    "nom" : "Charges constatées d'avance"
+  }, {
+    "symbole" : "VW",
+    "nom" : "Taxe sur la valeur ajoutée"
+  }, {
+    "symbole" : "VX",
+    "nom" : "Obligations cautionnées"
+  }, {
+    "symbole" : "Z1",
+    "nom" : "Créance représentative de titres prêtés ou remis en garantie"
+  }, {
+    "symbole" : "Z2",
+    "nom" : "Dette représentative de titres empruntés ou remis en garantie"
+  } ],
+  "allReperes" : [ {
+    "symbole" : "7Y",
+    "nom" : "Emprunts obligataires convertibles"
+  }, {
+    "symbole" : "7Z",
+    "nom" : "Autres emprunts obligataires"
+  }, {
+    "symbole" : "8A",
+    "nom" : "Emprunts et dettes financières divers"
+  }, {
+    "symbole" : "8B",
+    "nom" : "Fournisseurs et comptes rattachés"
+  }, {
+    "symbole" : "8C",
+    "nom" : "Personnel et comptes rattachés"
+  }, {
+    "symbole" : "8D",
+    "nom" : "Sécurité sociale et autres organismes sociaux"
+  }, {
+    "symbole" : "8E",
+    "nom" : "Impôts sur les bénéfices"
+  }, {
+    "symbole" : "8J",
+    "nom" : "Dettes sur immobilisations et comptes rattachés"
+  }, {
+    "symbole" : "8K",
+    "nom" : "Autres dettes (dont dettes relatives à des opérations de pension de titres)"
+  }, {
+    "symbole" : "8L",
+    "nom" : "Produits constatés d'avance"
+  }, {
+    "symbole" : "UL",
+    "nom" : " Montant brut"
+  }, {
+    "symbole" : "UM",
+    "nom" : " A 1 an au plus"
+  }, {
+    "symbole" : "UN",
+    "nom" : " A plus d'un an"
+  }, {
+    "symbole" : "UO",
+    "nom" : "Provision pour dépréciation antérieurement constituée"
+  }, {
+    "symbole" : "UP",
+    "nom" : " Montant brut"
+  }, {
+    "symbole" : "UR",
+    "nom" : " A 1 an au plus"
+  }, {
+    "symbole" : "US",
+    "nom" : " A plus d'un an"
+  }, {
+    "symbole" : "UT",
+    "nom" : " Montant brut"
+  }, {
+    "symbole" : "UV",
+    "nom" : " A 1 an au plus"
+  }, {
+    "symbole" : "UW",
+    "nom" : " A plus d'un an"
+  }, {
+    "symbole" : "UX",
+    "nom" : "Autres créances clients"
+  }, {
+    "symbole" : "UY",
+    "nom" : "Personnel et comptes rattachés"
+  }, {
+    "symbole" : "UZ",
+    "nom" : "Sécurité sociale et autres organismes sociaux"
+  }, {
+    "symbole" : "VA",
+    "nom" : "Clients douteux ou litigieux"
+  }, {
+    "symbole" : "VB",
+    "nom" : "Taxe sur la valeur ajoutée"
+  }, {
+    "symbole" : "VC",
+    "nom" : "Groupe et associés"
+  }, {
+    "symbole" : "VD",
+    "nom" : "Prêts accordés en cours d'exercice"
+  }, {
+    "symbole" : "VE",
+    "nom" : "Remboursements obtenus en cours d'exercice"
+  }, {
+    "symbole" : "VF",
+    "nom" : "Prêts et avances consentis aux associés"
+  }, {
+    "symbole" : "VG",
+    "nom" : "Emprunts et dettes auprès des établissements de crédit à 1 an maximum à l'origine"
+  }, {
+    "symbole" : "VH",
+    "nom" : "Emprunts et dettes auprès des établissements de crédit à plus d'1 an à l'origine"
+  }, {
+    "symbole" : "VI",
+    "nom" : "Groupe et associés"
+  }, {
+    "symbole" : "VJ",
+    "nom" : "Emprunts souscrits en cours d'exercice"
+  }, {
+    "symbole" : "VK",
+    "nom" : "Emprunts remboursés en cours d'exercice"
+  }, {
+    "symbole" : "VL",
+    "nom" : "Montant des divers emprunts et dettes contractés auprès des associés personnes physiques"
+  }, {
+    "symbole" : "VM",
+    "nom" : "Impôts sur les bénéfices"
+  }, {
+    "symbole" : "VN",
+    "nom" : "Autres impôts, taxes et versements assimilés"
+  }, {
+    "symbole" : "VP",
+    "nom" : "Divers"
+  }, {
+    "symbole" : "VQ",
+    "nom" : "Autres impôts, taxes et assimilés"
+  }, {
+    "symbole" : "VR",
+    "nom" : "Débiteurs divers (dont créances relatives à des opérations de pension de titres)"
+  }, {
+    "symbole" : "VS",
+    "nom" : "Charges constatées d'avance"
+  }, {
+    "symbole" : "VT",
+    "nom" : " Montant brut"
+  }, {
+    "symbole" : "VU",
+    "nom" : " A 1 an au plus"
+  }, {
+    "symbole" : "VV",
+    "nom" : " A plus d'un an"
+  }, {
+    "symbole" : "VW",
+    "nom" : "Taxe sur la valeur ajoutée"
+  }, {
+    "symbole" : "VX",
+    "nom" : "Obligations cautionnées"
+  }, {
+    "symbole" : "VY",
+    "nom" : " Montant brut"
+  }, {
+    "symbole" : "VZ",
+    "nom" : " A 1 an au plus"
+  }, {
+    "symbole" : "Z1",
+    "nom" : "Créance représentative de titres prêtés ou remis en garantie"
+  }, {
+    "symbole" : "Z2",
+    "nom" : "Dette représentative de titres empruntés ou remis en garantie"
+  } ]
+}
