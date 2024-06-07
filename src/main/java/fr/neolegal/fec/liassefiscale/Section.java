@@ -1,6 +1,7 @@
 package fr.neolegal.fec.liassefiscale;
 
 import static java.util.Objects.isNull;
+
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;

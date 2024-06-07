@@ -9,14 +9,14 @@ import lombok.Data;
 @Data
 public class Annexe {
     NatureAnnexe natureAnnexe;
-    NatureFormulaire natureFormulaire;
+    ModeleFormulaire modeleFormulaire;
 
     List<List<String>> lignes = new ArrayList<>();
     
     @Builder
-    public Annexe(NatureAnnexe natureAnnexe, NatureFormulaire natureFormulaire) {
+    public Annexe(NatureAnnexe natureAnnexe, ModeleFormulaire modeleFormulaire) {
         this.natureAnnexe = natureAnnexe;
-        this.natureFormulaire = natureFormulaire;
+        this.modeleFormulaire = modeleFormulaire;
     }
 
     public String getCellule(int indexLigne, int indexColonne) {

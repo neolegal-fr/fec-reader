@@ -10,12 +10,12 @@ import net.objecthunter.exp4j.VariableProvider;
 public class FecVariableProvider implements VariableProvider {
 
     final Fec fec;
-    final RegimeImposition regime;
+    final LiasseFiscale liasse;
     Map<String, Double> cache = new HashMap<>();
 
-    public FecVariableProvider(Fec fec, RegimeImposition regime) {
+    public FecVariableProvider(Fec fec, LiasseFiscale liasse) {
         this.fec = fec;
-        this.regime = regime;
+        this.liasse = liasse;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class FecVariableProvider implements VariableProvider {
 
         Double montant = null;
         Optional<AgregationComptes> compteMatch = RepereHelper.parseNumeroCompte(variable);        
-        Optional<Repere> repereMatch = RepereHelper.parseRepereCellule(regime, variable);
+        Optional<Repere> repereMatch = RepereHelper.parseRepereCellule(liasse, variable);
         if (compteMatch.isPresent()) {
             montant = FecHelper.computeAgregationComptes(fec.getLignes(), compteMatch.get());
         } else if (repereMatch.isPresent()) {
@@ -44,7 +44,7 @@ public class FecVariableProvider implements VariableProvider {
 
     @Override
     public boolean contains(String name) {
-        return cache.containsKey(name) || RepereHelper.isRepereCellule(regime, name) || RepereHelper.isNumeroCompte(name);
+        return cache.containsKey(name) || RepereHelper.isRepereCellule(liasse, name) || RepereHelper.isNumeroCompte(name);
     }
 
 }

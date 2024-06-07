@@ -2,8 +2,6 @@ package fr.neolegal.fec.liassefiscale;
 
 import java.util.Set;
 
-import static org.apache.commons.collections4.CollectionUtils.isNotEmpty;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -42,19 +40,5 @@ public class ModeleFormulaire extends Section {
     }
 
     public ModeleFormulaire() {
-    }
-
-    public ModeleFormulaire(NatureFormulaire nature) {
-        numero = nature.getNumero();
-        page = nature.getPage();
-        identifiant = nature.getIdentifiant();
-        cerfa = nature.getCerfa();
-        nom = nature.getTitre();
-        regimeImposition = nature.getRegimeImposition();
-        containsSiren = nature.containsSiren();
-        containsClotureExercice = nature.containsClotureExercice();
-        if (isNotEmpty(nature.getAnnexes())) {
-            annexes = nature.getAnnexes();
-        }
     }
 }

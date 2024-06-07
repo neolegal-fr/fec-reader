@@ -22,11 +22,11 @@ public class RepereHelper {
         return parseNumeroCompte(candidate).isPresent();
     }
 
-    static boolean isRepereCellule(RegimeImposition regime, String candidate) {
-        return parseRepereCellule(regime, candidate).isPresent();
+    static boolean isRepereCellule(LiasseFiscale liasse, String candidate) {
+        return parseRepereCellule(liasse, candidate).isPresent();
     }
 
-    static Optional<Repere> parseRepereCellule(RegimeImposition regime, String candidate) {
+    static Optional<Repere> parseRepereCellule(LiasseFiscale liasse, String candidate) {
         if (StringUtils.isBlank(candidate)) {
             return Optional.empty();
         }
@@ -34,12 +34,12 @@ public class RepereHelper {
         candidate = candidate.trim();
         if (candidate.length() == 2 && candidate.matches(REPERE_REGEX)) {
             String symbole = candidate.toUpperCase();
-            return Repere.get(regime, symbole);
+            return liasse.getRepere(symbole);
         }
 
         if (StringUtils.startsWithIgnoreCase(candidate, REPERE_PREFIX)) {
             String symbole = StringUtils.substring(candidate, REPERE_PREFIX.length()).toUpperCase();
-            return Repere.get(regime, symbole);
+            return liasse.getRepere(symbole);
         }
 
         return Optional.empty();
@@ -65,22 +65,22 @@ public class RepereHelper {
         return Optional.empty();
     }
 
-    public static List<AgregationComptes> resolveComptes(RegimeImposition regime, String symboleRepere) {
-        return Repere.get(regime, symboleRepere).map(repere -> resolveComptes(repere)).orElse(List.of());
+    public static List<AgregationComptes> resolveComptes(LiasseFiscale liasse, String symboleRepere) {
+        return liasse.getRepere(symboleRepere).map(repere -> resolveComptes(liasse, repere)).orElse(List.of());
     }
 
-    public static List<AgregationComptes> resolveComptes(Repere repere) {
-        CompteCollector comptes = new CompteCollector(repere.getRegimeImposition());
+    public static List<AgregationComptes> resolveComptes(LiasseFiscale liasse, Repere repere) {
+        CompteCollector comptes = new CompteCollector(liasse);
         computeMontantRepereCellule(repere, Fec.builder().build(), comptes);
         return comptes.getComptes();
     }
 
-    public static Optional<Double> computeMontantRepereCellule(RegimeImposition regime, String repere, Fec fec) {
-        return Repere.get(regime, repere).flatMap(repereCellule -> computeMontantRepereCellule(repereCellule, fec));
+    public static Optional<Double> computeMontantRepereCellule(LiasseFiscale liasse, String repere, Fec fec) {
+        return liasse.getRepere(repere).flatMap(repereCellule -> computeMontantRepereCellule(liasse, repereCellule, fec));
     }
 
-    public static Optional<Double> computeMontantRepereCellule(Repere repere, Fec fec) {
-        FecVariableProvider variables = new FecVariableProvider(fec, repere.getRegimeImposition());
+    public static Optional<Double> computeMontantRepereCellule(LiasseFiscale liasse, Repere repere, Fec fec) {
+        FecVariableProvider variables = new FecVariableProvider(fec, liasse);
         return computeMontantRepereCellule(repere, fec, variables);
     }
 

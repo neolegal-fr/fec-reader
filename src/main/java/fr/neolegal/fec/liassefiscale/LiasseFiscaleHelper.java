@@ -65,7 +65,7 @@ public class LiasseFiscaleHelper {
         liasse.setSiren(fec.getSiren());
         liasse.setClotureExercice(fec.getClotureExercice());
 
-        VariableProvider provider = new FecVariableProvider(fec, regime);
+        VariableProvider provider = new FecVariableProvider(fec, liasse);
         for (Formulaire formulaire : liasse.getFormulaires()) {
             for (Repere repere : formulaire.getAllReperes()) {
                 RepereHelper.computeMontantRepereCellule(repere, fec, provider)

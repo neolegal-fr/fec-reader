@@ -1,5 +1,8 @@
 package fr.neolegal.fec.liassefiscale;
 
+import static org.apache.commons.lang3.StringUtils.equalsIgnoreCase;
+import static org.apache.commons.lang3.StringUtils.trim;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,7 +11,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.apache.commons.lang3.ObjectUtils;
-
 import lombok.Builder;
 import lombok.Data;
 
@@ -43,6 +45,11 @@ public class Formulaire {
 
     Set<Repere> getAllReperes() {
         return modele.getAllReperes();
+    }
+
+    public Optional<Repere> getRepere(String symbole) {
+        return getAllReperes().stream().filter(repere -> equalsIgnoreCase(trim(symbole), repere.getSymbole()))
+                .findFirst();
     }
 
     long nbMontantsNonNull() {

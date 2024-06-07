@@ -79,7 +79,7 @@ public class LiasseFiscaleHelperTest {
             if (csvRecord.size() > 1) {
                 ++total;
                 String symbole = csvRecord.get(0);
-                Optional<Repere> match = Repere.get(liasse.getRegime(), symbole);
+                Optional<Repere> match = liasse.getRepere(symbole);
                 if (match.isPresent()) {
                     Repere repere = match.get();
                     Double expected = Double.valueOf(csvRecord.get(1));

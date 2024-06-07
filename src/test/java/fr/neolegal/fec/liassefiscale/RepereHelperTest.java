@@ -18,23 +18,28 @@ public class RepereHelperTest {
 
     @Test
     void isLigneRepere_returnFalse_whenEmptyOrNull() {
-        assertFalse(RepereHelper.isRepereCellule(RegimeImposition.REEL_NORMAL, null));
-        assertFalse(RepereHelper.isRepereCellule(RegimeImposition.REEL_NORMAL, ""));
+        LiasseFiscale liasse = LiasseFiscaleHelper.buildLiasseFiscale(RegimeImposition.REEL_NORMAL);
+        assertFalse(RepereHelper.isRepereCellule(liasse, null));
+        assertFalse(RepereHelper.isRepereCellule(liasse, ""));
     }
 
     @Test
     void isLigneRepere_returnsTrue() {
-        assertTrue(RepereHelper.isRepereCellule(RegimeImposition.REEL_NORMAL, "AA"));
-        assertTrue(RepereHelper.isRepereCellule(RegimeImposition.REEL_NORMAL, "REP_FL"));
-        assertTrue(RepereHelper.isRepereCellule(RegimeImposition.REEL_SIMPLIFIE, "REP_310"));
+        LiasseFiscale liasse = LiasseFiscaleHelper.buildLiasseFiscale(RegimeImposition.REEL_NORMAL);
+        assertTrue(RepereHelper.isRepereCellule(liasse, "AA"));        
+        assertTrue(RepereHelper.isRepereCellule(liasse, "REP_FL"));
+
+        liasse = LiasseFiscaleHelper.buildLiasseFiscale(RegimeImposition.REEL_SIMPLIFIE);
+        assertTrue(RepereHelper.isRepereCellule(liasse, "REP_310"));
     }
 
     @Test
     void isLigneRepere_returnsFalse() {
-        assertFalse(RepereHelper.isRepereCellule(RegimeImposition.REEL_NORMAL, "ZZ"));
-        assertFalse(RepereHelper.isRepereCellule(RegimeImposition.REEL_NORMAL, "6354"));
-        assertFalse(RepereHelper.isRepereCellule(RegimeImposition.REEL_NORMAL, "S_7"));
-        assertFalse(RepereHelper.isRepereCellule(RegimeImposition.REEL_NORMAL, "D_7"));
+        LiasseFiscale liasse = LiasseFiscaleHelper.buildLiasseFiscale(RegimeImposition.REEL_NORMAL);
+        assertFalse(RepereHelper.isRepereCellule(liasse, "ZZ"));
+        assertFalse(RepereHelper.isRepereCellule(liasse, "6354"));
+        assertFalse(RepereHelper.isRepereCellule(liasse, "S_7"));
+        assertFalse(RepereHelper.isRepereCellule(liasse, "D_7"));
     }
 
     @Test
@@ -59,19 +64,22 @@ public class RepereHelperTest {
 
     @Test
     void resolveComptes() {
-        assertFalse(RepereHelper.resolveComptes(RegimeImposition.REEL_NORMAL, "FR").isEmpty());
-        assertTrue(RepereHelper.resolveComptes(RegimeImposition.REEL_NORMAL, "ZZ").isEmpty());
+        LiasseFiscale liasse = LiasseFiscaleHelper.buildLiasseFiscale(RegimeImposition.REEL_NORMAL);
+        assertFalse(RepereHelper.resolveComptes(liasse, "FR").isEmpty());
+        assertTrue(RepereHelper.resolveComptes(liasse, "ZZ").isEmpty());
     }
 
     @Test
     void computeMontantLigneRepere() {
+        LiasseFiscale liasse = LiasseFiscaleHelper.buildLiasseFiscale(RegimeImposition.REEL_NORMAL);
         assertEquals(Optional.of(41056.0),
-                RepereHelper.computeMontantRepereCellule(RegimeImposition.REEL_NORMAL, "DV", fec));
+                RepereHelper.computeMontantRepereCellule(liasse, "DV", fec));
     }
 
     @Test
     void computeMontantLigneRepere_whenRepereInconnu() {
+        LiasseFiscale liasse = LiasseFiscaleHelper.buildLiasseFiscale(RegimeImposition.REEL_NORMAL);
         assertEquals(Optional.empty(),
-                RepereHelper.computeMontantRepereCellule(RegimeImposition.REEL_NORMAL, "YY", fec));
+                RepereHelper.computeMontantRepereCellule(liasse, "YY", fec));
     }
 }

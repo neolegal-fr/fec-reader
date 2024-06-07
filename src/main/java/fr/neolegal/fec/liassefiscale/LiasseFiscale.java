@@ -58,4 +58,8 @@ public class LiasseFiscale {
         return getMontant(repere.getSymbole());
     }
 
+    public Optional<Repere> getRepere(String symbole) {
+        return formulaires.stream().flatMap(f -> f.getRepere(symbole).stream()).findFirst();
+    }
+
 }
