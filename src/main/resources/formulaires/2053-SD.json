@@ -8,46 +8,6 @@
   "containsClotureExercice" : false,
   "annexes" : [ "PRODUITS_ET_CHARGES_EXCEPTIONNELS", "PRODUITS_ET_CHARGES_ANTERIEURS" ],
   "reperes" : [ {
-    "symbole" : "HA",
-    "nom" : "Produits exceptionnels sur opérations de gestion",
-    "formuleFEC" : "SLD_771"
-  }, {
-    "symbole" : "HB",
-    "nom" : "Produits exceptionnels sur opérations en capital",
-    "formuleFEC" : "SLD_775 + SLD_777 + SLD_778"
-  }, {
-    "symbole" : "HC",
-    "nom" : "Reprises sur provisions et transferts de charges",
-    "formuleFEC" : "SLD_787 + SLD_797"
-  }, {
-    "symbole" : "HD",
-    "nom" : "Total des produits exceptionnels",
-    "formuleFEC" : "HA + HB + HC"
-  }, {
-    "symbole" : "HE",
-    "nom" : "Charges exceptionnelles sur opérations de gestion",
-    "formuleFEC" : "-SLD_671"
-  }, {
-    "symbole" : "HF",
-    "nom" : "Charges exceptionnelles su opérations en capital",
-    "formuleFEC" : "-(SLD_675 + SLD_678)"
-  }, {
-    "symbole" : "HG",
-    "nom" : "Dotations exceptionnelles aux amortissements et provisions",
-    "formuleFEC" : "-SLD_687"
-  }, {
-    "symbole" : "HH",
-    "nom" : "Total des charges exceptionnelles (VIII)",
-    "formuleFEC" : "HE + HF + HG"
-  }, {
-    "symbole" : "HI",
-    "nom" : "Résultat net exceptionnel",
-    "formuleFEC" : "HD - HH"
-  }, {
-    "symbole" : "HJ",
-    "nom" : "Participation des salariés aux résultats de l'entreprise",
-    "formuleFEC" : "-SLD_691"
-  }, {
     "symbole" : "HK",
     "nom" : "Impôts sur les bénéfices",
     "formuleFEC" : "-(SLD_695 + SLD_698 + SLD_699)"
@@ -56,15 +16,14 @@
     "nom" : "Total des produits",
     "formuleFEC" : "FR + GH + GP + HD"
   }, {
+    "symbole" : "HI",
+    "nom" : "Résultat net exceptionnel",
+    "formuleFEC" : "HD - HH"
+  }, {
     "symbole" : "HM",
     "nom" : "Total des charges",
     "formuleFEC" : "GF + GI + GU + HH + HJ + HK"
   }, {
-    "symbole" : "HN",
-    "nom" : "Résultat de l'exercice",
-    "formuleFEC" : "HL - HM"
-  } ],
-  "allReperes" : [ {
     "symbole" : "HA",
     "nom" : "Produits exceptionnels sur opérations de gestion",
     "formuleFEC" : "SLD_771"
@@ -73,52 +32,36 @@
     "nom" : "Produits exceptionnels sur opérations en capital",
     "formuleFEC" : "SLD_775 + SLD_777 + SLD_778"
   }, {
-    "symbole" : "HC",
-    "nom" : "Reprises sur provisions et transferts de charges",
-    "formuleFEC" : "SLD_787 + SLD_797"
-  }, {
-    "symbole" : "HD",
-    "nom" : "Total des produits exceptionnels",
-    "formuleFEC" : "HA + HB + HC"
-  }, {
-    "symbole" : "HE",
-    "nom" : "Charges exceptionnelles sur opérations de gestion",
-    "formuleFEC" : "-SLD_671"
-  }, {
-    "symbole" : "HF",
-    "nom" : "Charges exceptionnelles su opérations en capital",
-    "formuleFEC" : "-(SLD_675 + SLD_678)"
-  }, {
     "symbole" : "HG",
     "nom" : "Dotations exceptionnelles aux amortissements et provisions",
     "formuleFEC" : "-SLD_687"
+  }, {
+    "symbole" : "HC",
+    "nom" : "Reprises sur provisions et transferts de charges",
+    "formuleFEC" : "SLD_787 + SLD_797"
   }, {
     "symbole" : "HH",
     "nom" : "Total des charges exceptionnelles (VIII)",
     "formuleFEC" : "HE + HF + HG"
   }, {
-    "symbole" : "HI",
-    "nom" : "Résultat net exceptionnel",
-    "formuleFEC" : "HD - HH"
+    "symbole" : "HF",
+    "nom" : "Charges exceptionnelles su opérations en capital",
+    "formuleFEC" : "-(SLD_675 + SLD_678)"
   }, {
     "symbole" : "HJ",
     "nom" : "Participation des salariés aux résultats de l'entreprise",
     "formuleFEC" : "-SLD_691"
   }, {
-    "symbole" : "HK",
-    "nom" : "Impôts sur les bénéfices",
-    "formuleFEC" : "-(SLD_695 + SLD_698 + SLD_699)"
-  }, {
-    "symbole" : "HL",
-    "nom" : "Total des produits",
-    "formuleFEC" : "FR + GH + GP + HD"
-  }, {
-    "symbole" : "HM",
-    "nom" : "Total des charges",
-    "formuleFEC" : "GF + GI + GU + HH + HJ + HK"
+    "symbole" : "HD",
+    "nom" : "Total des produits exceptionnels",
+    "formuleFEC" : "HA + HB + HC"
   }, {
     "symbole" : "HN",
     "nom" : "Résultat de l'exercice",
     "formuleFEC" : "HL - HM"
+  }, {
+    "symbole" : "HE",
+    "nom" : "Charges exceptionnelles sur opérations de gestion",
+    "formuleFEC" : "-SLD_671"
   } ]
 }

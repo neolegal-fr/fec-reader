@@ -8,6 +8,9 @@
   "containsSiren" : false,
   "containsClotureExercice" : true,
   "annexes" : [ "DETERMINATION_REVENUS_SOCIETE_IMMOBILIERE", "ASSOCIES_USUFRUITIERS_REPARTITION_RESULTAT" ],
-  "reperes" : [ ],
-  "allReperes" : [ ]
+  "sections" : [ {
+    "nom" : "Produits d'exploitation",
+    "reperes" : [ ]
+  } ],
+  "reperes" : [ ]
 }

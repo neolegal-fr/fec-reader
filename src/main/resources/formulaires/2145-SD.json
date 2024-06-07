@@ -7,65 +7,29 @@
   "containsSiren" : false,
   "containsClotureExercice" : false,
   "sections" : [ {
+    "nom" : "Capitaux propres",
+    "reperes" : [ {
+      "symbole" : "DH",
+      "nom" : " Report à nouveau"
+    }, {
+      "symbole" : "DF",
+      "nom" : " Réserves règlementées"
+    }, {
+      "symbole" : "DG",
+      "nom" : " Autres réserves"
+    }, {
+      "symbole" : "DL",
+      "nom" : " Total"
+    } ]
+  }, {
     "nom" : "Bilan Passif",
     "reperes" : [ {
       "symbole" : "EB",
       "nom" : " Total Général"
-    } ],
-    "allReperes" : [ {
-      "symbole" : "EB",
-      "nom" : " Total Général"
-    } ]
-  }, {
-    "nom" : "Capitaux propres",
-    "reperes" : [ {
-      "symbole" : "DF",
-      "nom" : " Réserves règlementées"
-    }, {
-      "symbole" : "DG",
-      "nom" : " Autres réserves"
-    }, {
-      "symbole" : "DH",
-      "nom" : " Report à nouveau"
-    }, {
-      "symbole" : "DL",
-      "nom" : " Total"
-    } ],
-    "allReperes" : [ {
-      "symbole" : "DF",
-      "nom" : " Réserves règlementées"
-    }, {
-      "symbole" : "DG",
-      "nom" : " Autres réserves"
-    }, {
-      "symbole" : "DH",
-      "nom" : " Report à nouveau"
-    }, {
-      "symbole" : "DL",
-      "nom" : " Total"
     } ]
   } ],
   "reperes" : [ {
     "symbole" : "DI",
     "nom" : "Résultat de l'exercice"
-  } ],
-  "allReperes" : [ {
-    "symbole" : "DF",
-    "nom" : " Réserves règlementées"
-  }, {
-    "symbole" : "DG",
-    "nom" : " Autres réserves"
-  }, {
-    "symbole" : "DH",
-    "nom" : " Report à nouveau"
-  }, {
-    "symbole" : "DI",
-    "nom" : "Résultat de l'exercice"
-  }, {
-    "symbole" : "DL",
-    "nom" : " Total"
-  }, {
-    "symbole" : "EB",
-    "nom" : " Total Général"
   } ]
 }

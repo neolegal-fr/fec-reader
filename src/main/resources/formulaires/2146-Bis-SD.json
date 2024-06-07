@@ -7,11 +7,14 @@
   "containsSiren" : false,
   "containsClotureExercice" : false,
   "reperes" : [ {
-    "symbole" : "HE",
-    "nom" : "Total des Produits Exceptionnels"
-  }, {
     "symbole" : "HJ",
     "nom" : "Total des Charges Exceptionnelles"
+  }, {
+    "symbole" : "HO",
+    "nom" : "Résultat courant"
+  }, {
+    "symbole" : "HN",
+    "nom" : "Total des charges"
   }, {
     "symbole" : "HK",
     "nom" : "Résultat exceptionnel"
@@ -19,29 +22,7 @@
     "symbole" : "HM",
     "nom" : "Total des produits"
   }, {
-    "symbole" : "HN",
-    "nom" : "Total des charges"
-  }, {
-    "symbole" : "HO",
-    "nom" : "Résultat courant"
-  } ],
-  "allReperes" : [ {
     "symbole" : "HE",
     "nom" : "Total des Produits Exceptionnels"
-  }, {
-    "symbole" : "HJ",
-    "nom" : "Total des Charges Exceptionnelles"
-  }, {
-    "symbole" : "HK",
-    "nom" : "Résultat exceptionnel"
-  }, {
-    "symbole" : "HM",
-    "nom" : "Total des produits"
-  }, {
-    "symbole" : "HN",
-    "nom" : "Total des charges"
-  }, {
-    "symbole" : "HO",
-    "nom" : "Résultat courant"
   } ]
 }

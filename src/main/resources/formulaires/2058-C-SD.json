@@ -8,113 +8,57 @@
   "containsSiren" : false,
   "containsClotureExercice" : false,
   "reperes" : [ {
-    "symbole" : "9Z",
-    "nom" : "Autres impôts, taxes et versements assimilés"
-  }, {
-    "symbole" : "ES",
-    "nom" : "ont cotisations versées aux organisations syndicales et professionnelles"
-  }, {
-    "symbole" : "J7",
-    "nom" : "prix de revient des biens pris en crédit–bail"
-  }, {
-    "symbole" : "J8",
-    "nom" : "montant des loyers des biens pris en location pour une durée > 6 mois"
-  }, {
-    "symbole" : "JA",
-    "nom" : "Société : résultat comme si elle n’avait jamais été membre du groupe."
-  }, {
-    "symbole" : "JC",
-    "nom" : "Imputations"
-  }, {
-    "symbole" : "JD",
-    "nom" : "Groupe : résultat d’ensemble"
-  }, {
-    "symbole" : "JF",
-    "nom" : "Imputations"
-  }, {
-    "symbole" : "JH",
-    "nom" : "1 si société mère, 2 si société filiale"
-  }, {
     "symbole" : "JJ",
     "nom" : "N° SIRET de la société mère du groupe"
-  }, {
-    "symbole" : "JK",
-    "nom" : "Plus-values à 15%"
-  }, {
-    "symbole" : "JL",
-    "nom" : "Plus-values à 0%"
-  }, {
-    "symbole" : "JM",
-    "nom" : "Plus-values à 19%"
-  }, {
-    "symbole" : "JN",
-    "nom" : "Plus-values à 15%"
-  }, {
-    "symbole" : "JO",
-    "nom" : "Plus-values à 0%"
-  }, {
-    "symbole" : "JP",
-    "nom" : "Plus-values à 19%"
-  }, {
-    "symbole" : "RG",
-    "nom" : "Aides perçues ayant donné droit à la réduction d’impôt prévue au 4 de l’article 238 bis du CGI"
-  }, {
-    "symbole" : "RH",
-    "nom" : "Montant de l’investissement reçu qui a donné lieu à amortissement exceptionnel"
-  }, {
-    "symbole" : "SS",
-    "nom" : "Rémunérations d’intermédiaires et honoraires (hors rétrocessions)"
-  }, {
-    "symbole" : "ST",
-    "nom" : "Autres comptes"
-  }, {
-    "symbole" : "XP",
-    "nom" : "Numéro du centre de gestion agréé"
-  }, {
-    "symbole" : "XQ",
-    "nom" : "Locations, charges locatives et de copropriété"
-  }, {
-    "symbole" : "YQ",
-    "nom" : "Engagements de crédit–bail mobilier"
-  }, {
-    "symbole" : "YR",
-    "nom" : "Engagements de crédit–bail immobilier"
-  }, {
-    "symbole" : "YS",
-    "nom" : "Effets portés à l’escompte et non échus"
-  }, {
-    "symbole" : "YT",
-    "nom" : "Sous–traitance"
-  }, {
-    "symbole" : "YU",
-    "nom" : "Personnel extérieur à l’entreprise"
-  }, {
-    "symbole" : "YV",
-    "nom" : "Rétrocessions d’honoraires, commissions et courtages"
-  }, {
-    "symbole" : "YW",
-    "nom" : "Taxe professionnelle"
   }, {
     "symbole" : "YX",
     "nom" : "Total du compte correspondant à la ligne FX du tableau n° 2052"
   }, {
-    "symbole" : "YY",
-    "nom" : "Montant de la T.V.A. collectée"
-  }, {
-    "symbole" : "YZ",
-    "nom" : "Montant de la T.V.A. déductible comptabilisée au cours de l’exercice au titre des biens et services ne constituant pas des immobilisations"
-  }, {
-    "symbole" : "ZB",
-    "nom" : "Réserve légale",
-    "formuleFEC" : "DIF_1061"
+    "symbole" : "YU",
+    "nom" : "Personnel extérieur à l’entreprise"
   }, {
     "symbole" : "ZD",
     "nom" : "Autres réserves",
     "formuleFEC" : "DIF_1068"
   }, {
-    "symbole" : "ZE",
-    "nom" : "Dividendes",
-    "formuleFEC" : "DIF_457"
+    "symbole" : "ØB",
+    "nom" : "Montant brut des salaires"
+  }, {
+    "symbole" : "J7",
+    "nom" : "prix de revient des biens pris en crédit–bail"
+  }, {
+    "symbole" : "YZ",
+    "nom" : "Montant de la T.V.A. déductible comptabilisée au cours de l’exercice au titre des biens et services ne constituant pas des immobilisations"
+  }, {
+    "symbole" : "ZR",
+    "nom" : "Filiales et participations"
+  }, {
+    "symbole" : "JM",
+    "nom" : "Plus-values à 19%"
+  }, {
+    "symbole" : "ST",
+    "nom" : "Autres comptes"
+  }, {
+    "symbole" : "JL",
+    "nom" : "Plus-values à 0%"
+  }, {
+    "symbole" : "XQ",
+    "nom" : "Locations, charges locatives et de copropriété"
+  }, {
+    "symbole" : "JF",
+    "nom" : "Imputations"
+  }, {
+    "symbole" : "JC",
+    "nom" : "Imputations"
+  }, {
+    "symbole" : "JA",
+    "nom" : "Société : résultat comme si elle n’avait jamais été membre du groupe."
+  }, {
+    "symbole" : "RG",
+    "nom" : "Aides perçues ayant donné droit à la réduction d’impôt prévue au 4 de l’article 238 bis du CGI"
+  }, {
+    "symbole" : "ZS",
+    "nom" : "taxe intérieure sur les produits pétroliers"
   }, {
     "symbole" : "ZF",
     "nom" : "Autres répartitions",
@@ -124,187 +68,93 @@
     "nom" : "Report à nouveau",
     "formuleFEC" : "DIF_110"
   }, {
-    "symbole" : "ZH",
-    "nom" : "TOTAL II"
-  }, {
-    "symbole" : "ZJ",
-    "nom" : "Total du poste correspondant à la ligne FW du tableau n° 2052"
-  }, {
-    "symbole" : "ZK",
-    "nom" : "Taux d’intérêt le plus élevé servi aux associés à raison des sommes mises à la disposition de la société"
-  }, {
-    "symbole" : "ZR",
-    "nom" : "Filiales et participations"
-  }, {
-    "symbole" : "ZS",
-    "nom" : "taxe intérieure sur les produits pétroliers"
-  }, {
-    "symbole" : "ØB",
-    "nom" : "Montant brut des salaires"
-  }, {
-    "symbole" : "ØC",
-    "nom" : "Report à nouveau figurant au bilan de l’exercice antérieur à celui pour lequel la déclaration est établie"
-  }, {
-    "symbole" : "ØD",
-    "nom" : "Résultat de l’exercice précédant celui pour lequel la déclaration est établie"
-  }, {
-    "symbole" : "ØE",
-    "nom" : "Prélèvements sur les réserves"
-  }, {
-    "symbole" : "ØF",
-    "nom" : "TOTAL I"
-  }, {
-    "symbole" : "ØS",
-    "nom" : "Montant de la plus–value constatée en franchise d’impôt"
-  } ],
-  "allReperes" : [ {
     "symbole" : "9Z",
     "nom" : "Autres impôts, taxes et versements assimilés"
-  }, {
-    "symbole" : "ES",
-    "nom" : "ont cotisations versées aux organisations syndicales et professionnelles"
-  }, {
-    "symbole" : "J7",
-    "nom" : "prix de revient des biens pris en crédit–bail"
-  }, {
-    "symbole" : "J8",
-    "nom" : "montant des loyers des biens pris en location pour une durée > 6 mois"
-  }, {
-    "symbole" : "JA",
-    "nom" : "Société : résultat comme si elle n’avait jamais été membre du groupe."
-  }, {
-    "symbole" : "JC",
-    "nom" : "Imputations"
-  }, {
-    "symbole" : "JD",
-    "nom" : "Groupe : résultat d’ensemble"
-  }, {
-    "symbole" : "JF",
-    "nom" : "Imputations"
-  }, {
-    "symbole" : "JH",
-    "nom" : "1 si société mère, 2 si société filiale"
-  }, {
-    "symbole" : "JJ",
-    "nom" : "N° SIRET de la société mère du groupe"
-  }, {
-    "symbole" : "JK",
-    "nom" : "Plus-values à 15%"
-  }, {
-    "symbole" : "JL",
-    "nom" : "Plus-values à 0%"
-  }, {
-    "symbole" : "JM",
-    "nom" : "Plus-values à 19%"
-  }, {
-    "symbole" : "JN",
-    "nom" : "Plus-values à 15%"
-  }, {
-    "symbole" : "JO",
-    "nom" : "Plus-values à 0%"
-  }, {
-    "symbole" : "JP",
-    "nom" : "Plus-values à 19%"
-  }, {
-    "symbole" : "RG",
-    "nom" : "Aides perçues ayant donné droit à la réduction d’impôt prévue au 4 de l’article 238 bis du CGI"
-  }, {
-    "symbole" : "RH",
-    "nom" : "Montant de l’investissement reçu qui a donné lieu à amortissement exceptionnel"
-  }, {
-    "symbole" : "SS",
-    "nom" : "Rémunérations d’intermédiaires et honoraires (hors rétrocessions)"
-  }, {
-    "symbole" : "ST",
-    "nom" : "Autres comptes"
-  }, {
-    "symbole" : "XP",
-    "nom" : "Numéro du centre de gestion agréé"
-  }, {
-    "symbole" : "XQ",
-    "nom" : "Locations, charges locatives et de copropriété"
-  }, {
-    "symbole" : "YQ",
-    "nom" : "Engagements de crédit–bail mobilier"
   }, {
     "symbole" : "YR",
     "nom" : "Engagements de crédit–bail immobilier"
   }, {
-    "symbole" : "YS",
-    "nom" : "Effets portés à l’escompte et non échus"
-  }, {
-    "symbole" : "YT",
-    "nom" : "Sous–traitance"
-  }, {
-    "symbole" : "YU",
-    "nom" : "Personnel extérieur à l’entreprise"
-  }, {
-    "symbole" : "YV",
-    "nom" : "Rétrocessions d’honoraires, commissions et courtages"
-  }, {
-    "symbole" : "YW",
-    "nom" : "Taxe professionnelle"
-  }, {
-    "symbole" : "YX",
-    "nom" : "Total du compte correspondant à la ligne FX du tableau n° 2052"
-  }, {
-    "symbole" : "YY",
-    "nom" : "Montant de la T.V.A. collectée"
-  }, {
-    "symbole" : "YZ",
-    "nom" : "Montant de la T.V.A. déductible comptabilisée au cours de l’exercice au titre des biens et services ne constituant pas des immobilisations"
-  }, {
-    "symbole" : "ZB",
-    "nom" : "Réserve légale",
-    "formuleFEC" : "DIF_1061"
-  }, {
-    "symbole" : "ZD",
-    "nom" : "Autres réserves",
-    "formuleFEC" : "DIF_1068"
+    "symbole" : "ØD",
+    "nom" : "Résultat de l’exercice précédant celui pour lequel la déclaration est établie"
   }, {
     "symbole" : "ZE",
     "nom" : "Dividendes",
     "formuleFEC" : "DIF_457"
   }, {
-    "symbole" : "ZF",
-    "nom" : "Autres répartitions",
-    "formuleFEC" : ""
+    "symbole" : "J8",
+    "nom" : "montant des loyers des biens pris en location pour une durée > 6 mois"
   }, {
-    "symbole" : "ZG",
-    "nom" : "Report à nouveau",
-    "formuleFEC" : "DIF_110"
+    "symbole" : "XP",
+    "nom" : "Numéro du centre de gestion agréé"
+  }, {
+    "symbole" : "JK",
+    "nom" : "Plus-values à 15%"
+  }, {
+    "symbole" : "YQ",
+    "nom" : "Engagements de crédit–bail mobilier"
+  }, {
+    "symbole" : "YV",
+    "nom" : "Rétrocessions d’honoraires, commissions et courtages"
+  }, {
+    "symbole" : "YY",
+    "nom" : "Montant de la T.V.A. collectée"
+  }, {
+    "symbole" : "JD",
+    "nom" : "Groupe : résultat d’ensemble"
   }, {
     "symbole" : "ZH",
     "nom" : "TOTAL II"
   }, {
-    "symbole" : "ZJ",
-    "nom" : "Total du poste correspondant à la ligne FW du tableau n° 2052"
+    "symbole" : "SS",
+    "nom" : "Rémunérations d’intermédiaires et honoraires (hors rétrocessions)"
+  }, {
+    "symbole" : "JH",
+    "nom" : "1 si société mère, 2 si société filiale"
+  }, {
+    "symbole" : "ØS",
+    "nom" : "Montant de la plus–value constatée en franchise d’impôt"
   }, {
     "symbole" : "ZK",
     "nom" : "Taux d’intérêt le plus élevé servi aux associés à raison des sommes mises à la disposition de la société"
   }, {
-    "symbole" : "ZR",
-    "nom" : "Filiales et participations"
-  }, {
-    "symbole" : "ZS",
-    "nom" : "taxe intérieure sur les produits pétroliers"
-  }, {
-    "symbole" : "ØB",
-    "nom" : "Montant brut des salaires"
-  }, {
-    "symbole" : "ØC",
-    "nom" : "Report à nouveau figurant au bilan de l’exercice antérieur à celui pour lequel la déclaration est établie"
-  }, {
-    "symbole" : "ØD",
-    "nom" : "Résultat de l’exercice précédant celui pour lequel la déclaration est établie"
-  }, {
     "symbole" : "ØE",
     "nom" : "Prélèvements sur les réserves"
+  }, {
+    "symbole" : "JN",
+    "nom" : "Plus-values à 15%"
+  }, {
+    "symbole" : "ZB",
+    "nom" : "Réserve légale",
+    "formuleFEC" : "DIF_1061"
+  }, {
+    "symbole" : "JO",
+    "nom" : "Plus-values à 0%"
+  }, {
+    "symbole" : "ZJ",
+    "nom" : "Total du poste correspondant à la ligne FW du tableau n° 2052"
+  }, {
+    "symbole" : "YW",
+    "nom" : "Taxe professionnelle"
   }, {
     "symbole" : "ØF",
     "nom" : "TOTAL I"
   }, {
-    "symbole" : "ØS",
-    "nom" : "Montant de la plus–value constatée en franchise d’impôt"
+    "symbole" : "RH",
+    "nom" : "Montant de l’investissement reçu qui a donné lieu à amortissement exceptionnel"
+  }, {
+    "symbole" : "ØC",
+    "nom" : "Report à nouveau figurant au bilan de l’exercice antérieur à celui pour lequel la déclaration est établie"
+  }, {
+    "symbole" : "ES",
+    "nom" : "ont cotisations versées aux organisations syndicales et professionnelles"
+  }, {
+    "symbole" : "YT",
+    "nom" : "Sous–traitance"
+  }, {
+    "symbole" : "JP",
+    "nom" : "Plus-values à 19%"
+  }, {
+    "symbole" : "YS",
+    "nom" : "Effets portés à l’escompte et non échus"
   } ]
 }

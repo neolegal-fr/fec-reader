@@ -9,20 +9,10 @@
   "sections" : [ {
     "nom" : "TOTAL GÉNÉRAL (I + II + III)",
     "reperes" : [ {
-      "symbole" : "UB",
-      "nom" : " Augmentations : Dotations de l'exercice"
-    }, {
       "symbole" : "UC",
       "nom" : " Augmentations : Dotations de l'exercice"
     }, {
-      "symbole" : "UD",
-      "nom" : " Augmentations : Dotations de l'exercice"
-    } ],
-    "allReperes" : [ {
       "symbole" : "UB",
-      "nom" : " Augmentations : Dotations de l'exercice"
-    }, {
-      "symbole" : "UC",
       "nom" : " Augmentations : Dotations de l'exercice"
     }, {
       "symbole" : "UD",
@@ -30,758 +20,376 @@
     } ]
   } ],
   "reperes" : [ {
-    "symbole" : "10",
-    "nom" : "Titres mis en équivalence : montant de la dépréciation à la clôture de l'exercice"
-  }, {
-    "symbole" : "3T",
-    "nom" : "Provisions pour reconstitution des gisements miniers et pétroliers"
+    "symbole" : "4A",
+    "nom" : "Provisions pour litiges"
   }, {
     "symbole" : "3U",
     "nom" : "Provisions pour investissement (art. 237 bis A–II)"
   }, {
-    "symbole" : "3V",
-    "nom" : "Provisions pour hausse des prix (1)"
-  }, {
-    "symbole" : "3X",
-    "nom" : "Amortissements dérogatoires"
-  }, {
-    "symbole" : "3Y",
-    "nom" : "Autres provisions réglementées (1)"
-  }, {
-    "symbole" : "3Z",
-    "nom" : "TOTAL I"
-  }, {
-    "symbole" : "4A",
-    "nom" : "Provisions pour litiges"
-  }, {
-    "symbole" : "4B",
-    "nom" : "Provisions pour litiges"
-  }, {
-    "symbole" : "4C",
-    "nom" : "Provisions pour litiges"
-  }, {
-    "symbole" : "4D",
-    "nom" : "Provisions pour litiges"
-  }, {
-    "symbole" : "4E",
-    "nom" : "Provisions pour garanties données aux clients"
-  }, {
-    "symbole" : "4F",
-    "nom" : "Provisions pour garanties données aux clients"
-  }, {
-    "symbole" : "4G",
-    "nom" : "Provisions pour garanties données aux clients"
-  }, {
-    "symbole" : "4H",
-    "nom" : "Provisions pour garanties données aux clients"
+    "symbole" : "Ø5",
+    "nom" : "Provisions pour dépréciation sur immobilisations titres mis en équivalence"
   }, {
     "symbole" : "4J",
     "nom" : "Provisions pour pertes sur marchés à terme"
   }, {
-    "symbole" : "4K",
-    "nom" : "Provisions pour pertes sur marchés à terme"
+    "symbole" : "TO",
+    "nom" : "Amortissements dérogatoires"
   }, {
-    "symbole" : "4L",
-    "nom" : "Provisions pour pertes sur marchés à terme"
+    "symbole" : "5H",
+    "nom" : "Provisions pour renouvellement des immobilisations"
   }, {
-    "symbole" : "4M",
-    "nom" : "Provisions pour pertes sur marchés à terme"
+    "symbole" : "6N",
+    "nom" : "Provisions pour dépréciation Sur stocks et en cours"
   }, {
-    "symbole" : "4N",
-    "nom" : "Provisions pour amendes et pénalités"
+    "symbole" : "TA",
+    "nom" : "Provisions pour reconstitution des gisements miniers et pétroliers"
   }, {
-    "symbole" : "4P",
-    "nom" : "Provisions pour amendes et pénalités"
+    "symbole" : "TX",
+    "nom" : "TOTAL II"
   }, {
-    "symbole" : "4R",
-    "nom" : "Provisions pour amendes et pénalités"
+    "symbole" : "3Z",
+    "nom" : "TOTAL I"
   }, {
-    "symbole" : "4S",
-    "nom" : "Provisions pour amendes et pénalités"
+    "symbole" : "10",
+    "nom" : "Titres mis en équivalence : montant de la dépréciation à la clôture de l'exercice"
+  }, {
+    "symbole" : "6E",
+    "nom" : "Provisions pour dépréciation sur immobilisations corporelles"
+  }, {
+    "symbole" : "TH",
+    "nom" : "Provisions pour hausse des prix (1)"
+  }, {
+    "symbole" : "TQ",
+    "nom" : "Autres provisions réglementées (1)"
+  }, {
+    "symbole" : "9X",
+    "nom" : "Provisions pour dépréciation sur immobilisations titres de participation"
+  }, {
+    "symbole" : "TD",
+    "nom" : "Provisions pour investissement (art. 237 bis A–II)"
+  }, {
+    "symbole" : "Ø9",
+    "nom" : "Provisions pour dépréciation sur immobilisations autres immobilisations financières (1"
+  }, {
+    "symbole" : "ER",
+    "nom" : "Provisions pour gros entretien et grandes révisions"
+  }, {
+    "symbole" : "TP",
+    "nom" : "Autres provisions réglementées (1)"
+  }, {
+    "symbole" : "6H",
+    "nom" : "Provisions pour dépréciation sur immobilisations corporelles"
+  }, {
+    "symbole" : "5W",
+    "nom" : "Autres provisions pour risques et charges"
+  }, {
+    "symbole" : "4H",
+    "nom" : "Provisions pour garanties données aux clients"
+  }, {
+    "symbole" : "5E",
+    "nom" : "Provisions pour impôts (1)"
+  }, {
+    "symbole" : "TT",
+    "nom" : "TOTAL I"
   }, {
     "symbole" : "4T",
     "nom" : "Provisions pour pertes de change"
   }, {
-    "symbole" : "4U",
-    "nom" : "Provisions pour pertes de change"
+    "symbole" : "D3",
+    "nom" : "Dont majorations exceptionnelles de 30 %"
   }, {
-    "symbole" : "4V",
-    "nom" : "Provisions pour pertes de change"
+    "symbole" : "Ø4",
+    "nom" : "Provisions pour dépréciation sur immobilisations titres mis en équivalence"
   }, {
-    "symbole" : "4W",
-    "nom" : "Provisions pour pertes de change"
+    "symbole" : "5U",
+    "nom" : "Provisions pour charges sociales et fiscales sur congés à payer"
+  }, {
+    "symbole" : "6A",
+    "nom" : "Provisions pour dépréciation sur immobilisations incorporelles"
+  }, {
+    "symbole" : "4M",
+    "nom" : "Provisions pour pertes sur marchés à terme"
+  }, {
+    "symbole" : "6Z",
+    "nom" : "Autres provisions pour dépréciation"
+  }, {
+    "symbole" : "4N",
+    "nom" : "Provisions pour amendes et pénalités"
+  }, {
+    "symbole" : "IK",
+    "nom" : "Provisions pour prêts d'installation (art. 39 quinquies H du CGI)"
+  }, {
+    "symbole" : "4B",
+    "nom" : "Provisions pour litiges"
+  }, {
+    "symbole" : "9W",
+    "nom" : "Provisions pour dépréciation sur immobilisations titres de participation"
+  }, {
+    "symbole" : "UJ",
+    "nom" : "Dont dotations et reprises exceptionnelles"
+  }, {
+    "symbole" : "4K",
+    "nom" : "Provisions pour pertes sur marchés à terme"
+  }, {
+    "symbole" : "4R",
+    "nom" : "Provisions pour amendes et pénalités"
+  }, {
+    "symbole" : "TG",
+    "nom" : "Provisions pour hausse des prix (1)"
+  }, {
+    "symbole" : "TW",
+    "nom" : "TOTAL II"
+  }, {
+    "symbole" : "4E",
+    "nom" : "Provisions pour garanties données aux clients"
+  }, {
+    "symbole" : "TR",
+    "nom" : "Autres provisions réglementées (1)"
+  }, {
+    "symbole" : "Ø8",
+    "nom" : "Provisions pour dépréciation sur immobilisations autres immobilisations financières (1"
   }, {
     "symbole" : "4X",
-    "nom" : "Provisions pour pensions et obligations similaires"
-  }, {
-    "symbole" : "4Y",
-    "nom" : "Provisions pour pensions et obligations similaires"
-  }, {
-    "symbole" : "4Z",
-    "nom" : "Provisions pour pensions et obligations similaires"
-  }, {
-    "symbole" : "5A",
     "nom" : "Provisions pour pensions et obligations similaires"
   }, {
     "symbole" : "5B",
     "nom" : "Provisions pour impôts (1)"
   }, {
-    "symbole" : "5C",
-    "nom" : "Provisions pour impôts (1)"
-  }, {
-    "symbole" : "5D",
-    "nom" : "Provisions pour impôts (1)"
-  }, {
-    "symbole" : "5E",
-    "nom" : "Provisions pour impôts (1)"
-  }, {
-    "symbole" : "5F",
-    "nom" : "Provisions pour renouvellement des immobilisations"
-  }, {
-    "symbole" : "5H",
-    "nom" : "Provisions pour renouvellement des immobilisations"
-  }, {
-    "symbole" : "5J",
-    "nom" : "Provisions pour renouvellement des immobilisations"
-  }, {
-    "symbole" : "5K",
-    "nom" : "Provisions pour renouvellement des immobilisations"
-  }, {
-    "symbole" : "5R",
-    "nom" : "Provisions pour charges sociales et fiscales sur congés à payer"
-  }, {
-    "symbole" : "5S",
-    "nom" : "Provisions pour charges sociales et fiscales sur congés à payer"
-  }, {
-    "symbole" : "5T",
-    "nom" : "Provisions pour charges sociales et fiscales sur congés à payer"
-  }, {
-    "symbole" : "5U",
-    "nom" : "Provisions pour charges sociales et fiscales sur congés à payer"
-  }, {
-    "symbole" : "5V",
-    "nom" : "Autres provisions pour risques et charges"
-  }, {
-    "symbole" : "5W",
-    "nom" : "Autres provisions pour risques et charges"
-  }, {
-    "symbole" : "5X",
-    "nom" : "Autres provisions pour risques et charges"
-  }, {
-    "symbole" : "5Y",
-    "nom" : "Autres provisions pour risques et charges"
-  }, {
-    "symbole" : "5Z",
-    "nom" : "TOTAL II"
-  }, {
-    "symbole" : "6A",
-    "nom" : "Provisions pour dépréciation sur immobilisations incorporelles"
-  }, {
-    "symbole" : "6B",
-    "nom" : "Provisions pour dépréciation sur immobilisations incorporelles"
-  }, {
-    "symbole" : "6C",
-    "nom" : "Provisions pour dépréciation sur immobilisations incorporelles"
+    "symbole" : "UH",
+    "nom" : "Dont dotations et reprises financières"
   }, {
     "symbole" : "6D",
     "nom" : "Provisions pour dépréciation sur immobilisations incorporelles"
   }, {
-    "symbole" : "6E",
-    "nom" : "Provisions pour dépréciation sur immobilisations corporelles"
-  }, {
-    "symbole" : "6F",
-    "nom" : "Provisions pour dépréciation sur immobilisations corporelles"
-  }, {
-    "symbole" : "6G",
-    "nom" : "Provisions pour dépréciation sur immobilisations corporelles"
-  }, {
-    "symbole" : "6H",
-    "nom" : "Provisions pour dépréciation sur immobilisations corporelles"
-  }, {
-    "symbole" : "6N",
-    "nom" : "Provisions pour dépréciation Sur stocks et en cours"
-  }, {
-    "symbole" : "6P",
-    "nom" : "Provisions pour dépréciation Sur stocks et en cours"
-  }, {
-    "symbole" : "6R",
-    "nom" : "Provisions pour dépréciation Sur stocks et en cours"
-  }, {
-    "symbole" : "6S",
-    "nom" : "Provisions pour dépréciation Sur stocks et en cours"
-  }, {
-    "symbole" : "6T",
-    "nom" : "Provisions pour dépréciation Sur comptes clients"
-  }, {
-    "symbole" : "6U",
-    "nom" : "Provisions pour dépréciation Sur comptes clients"
-  }, {
-    "symbole" : "6V",
-    "nom" : "Provisions pour dépréciation Sur comptes clients"
-  }, {
-    "symbole" : "6W",
-    "nom" : "Provisions pour dépréciation Sur comptes clients"
-  }, {
-    "symbole" : "6X",
-    "nom" : "Autres provisions pour dépréciation"
-  }, {
-    "symbole" : "6Y",
-    "nom" : "Autres provisions pour dépréciation"
-  }, {
-    "symbole" : "6Z",
-    "nom" : "Autres provisions pour dépréciation"
-  }, {
-    "symbole" : "7A",
-    "nom" : "Autres provisions pour dépréciation"
-  }, {
-    "symbole" : "7B",
-    "nom" : "TOTAL III"
-  }, {
-    "symbole" : "7C",
-    "nom" : "TOTAL GÉNÉRAL (I + II + III)"
-  }, {
-    "symbole" : "9U",
-    "nom" : "Provisions pour dépréciation sur immobilisations titres de participation"
-  }, {
-    "symbole" : "9V",
-    "nom" : "Provisions pour dépréciation sur immobilisations titres de participation"
-  }, {
-    "symbole" : "9W",
-    "nom" : "Provisions pour dépréciation sur immobilisations titres de participation"
-  }, {
-    "symbole" : "9X",
-    "nom" : "Provisions pour dépréciation sur immobilisations titres de participation"
-  }, {
-    "symbole" : "D3",
-    "nom" : "Dont majorations exceptionnelles de 30 %"
-  }, {
-    "symbole" : "D4",
-    "nom" : "Dont majorations exceptionnelles de 30 %"
-  }, {
-    "symbole" : "D5",
-    "nom" : "Dont majorations exceptionnelles de 30 %"
-  }, {
-    "symbole" : "D6",
-    "nom" : "Dont majorations exceptionnelles de 30 %"
-  }, {
-    "symbole" : "EO",
-    "nom" : "Provisions pour gros entretien et grandes révisions"
-  }, {
-    "symbole" : "EP",
-    "nom" : "Provisions pour gros entretien et grandes révisions"
-  }, {
     "symbole" : "EQ",
     "nom" : "Provisions pour gros entretien et grandes révisions"
   }, {
-    "symbole" : "ER",
-    "nom" : "Provisions pour gros entretien et grandes révisions"
-  }, {
-    "symbole" : "IJ",
-    "nom" : "Provisions pour prêts d'installation (art. 39 quinquies H du CGI)"
-  }, {
-    "symbole" : "IK",
-    "nom" : "Provisions pour prêts d'installation (art. 39 quinquies H du CGI)"
-  }, {
-    "symbole" : "IL",
-    "nom" : "Provisions pour prêts d'installation (art. 39 quinquies H du CGI)"
-  }, {
-    "symbole" : "IM",
-    "nom" : "Provisions pour prêts d'installation (art. 39 quinquies H du CGI)"
-  }, {
-    "symbole" : "TA",
-    "nom" : "Provisions pour reconstitution des gisements miniers et pétroliers"
-  }, {
-    "symbole" : "TB",
-    "nom" : "Provisions pour reconstitution des gisements miniers et pétroliers"
-  }, {
-    "symbole" : "TC",
-    "nom" : "Provisions pour reconstitution des gisements miniers et pétroliers"
-  }, {
-    "symbole" : "TD",
-    "nom" : "Provisions pour investissement (art. 237 bis A–II)"
-  }, {
-    "symbole" : "TE",
-    "nom" : "Provisions pour investissement (art. 237 bis A–II)"
-  }, {
-    "symbole" : "TF",
-    "nom" : "Provisions pour investissement (art. 237 bis A–II)"
-  }, {
-    "symbole" : "TG",
-    "nom" : "Provisions pour hausse des prix (1)"
-  }, {
-    "symbole" : "TH",
-    "nom" : "Provisions pour hausse des prix (1)"
-  }, {
-    "symbole" : "TI",
-    "nom" : "Provisions pour hausse des prix (1)"
-  }, {
-    "symbole" : "TM",
-    "nom" : "Amortissements dérogatoires"
-  }, {
-    "symbole" : "TN",
-    "nom" : "Amortissements dérogatoires"
-  }, {
-    "symbole" : "TO",
-    "nom" : "Amortissements dérogatoires"
-  }, {
-    "symbole" : "TP",
-    "nom" : "Autres provisions réglementées (1)"
-  }, {
-    "symbole" : "TQ",
-    "nom" : "Autres provisions réglementées (1)"
-  }, {
-    "symbole" : "TR",
-    "nom" : "Autres provisions réglementées (1)"
-  }, {
-    "symbole" : "TS",
-    "nom" : "TOTAL I"
-  }, {
-    "symbole" : "TT",
-    "nom" : "TOTAL I"
-  }, {
     "symbole" : "TU",
     "nom" : "TOTAL I"
-  }, {
-    "symbole" : "TV",
-    "nom" : "TOTAL II"
-  }, {
-    "symbole" : "TW",
-    "nom" : "TOTAL II"
-  }, {
-    "symbole" : "TX",
-    "nom" : "TOTAL II"
-  }, {
-    "symbole" : "TY",
-    "nom" : "TOTAL III"
-  }, {
-    "symbole" : "TZ",
-    "nom" : "TOTAL III"
-  }, {
-    "symbole" : "UA",
-    "nom" : "TOTAL III"
-  }, {
-    "symbole" : "UE",
-    "nom" : "Dont dotations et reprises d'exploitation"
-  }, {
-    "symbole" : "UF",
-    "nom" : "Dont dotations et reprises d'exploitation"
-  }, {
-    "symbole" : "UG",
-    "nom" : "Dont dotations et reprises financières"
-  }, {
-    "symbole" : "UH",
-    "nom" : "Dont dotations et reprises financières"
-  }, {
-    "symbole" : "UJ",
-    "nom" : "Dont dotations et reprises exceptionnelles"
-  }, {
-    "symbole" : "UK",
-    "nom" : "Dont dotations et reprises exceptionnelles"
-  }, {
-    "symbole" : "Ø2",
-    "nom" : "Provisions pour dépréciation sur immobilisations titres mis en équivalence"
-  }, {
-    "symbole" : "Ø3",
-    "nom" : "Provisions pour dépréciation sur immobilisations titres mis en équivalence"
-  }, {
-    "symbole" : "Ø4",
-    "nom" : "Provisions pour dépréciation sur immobilisations titres mis en équivalence"
-  }, {
-    "symbole" : "Ø5",
-    "nom" : "Provisions pour dépréciation sur immobilisations titres mis en équivalence"
-  }, {
-    "symbole" : "Ø6",
-    "nom" : "Provisions pour dépréciation sur immobilisations autres immobilisations financières (1"
-  }, {
-    "symbole" : "Ø7",
-    "nom" : "Provisions pour dépréciation sur immobilisations autres immobilisations financières (1"
-  }, {
-    "symbole" : "Ø8",
-    "nom" : "Provisions pour dépréciation sur immobilisations autres immobilisations financières (1"
-  }, {
-    "symbole" : "Ø9",
-    "nom" : "Provisions pour dépréciation sur immobilisations autres immobilisations financières (1"
-  } ],
-  "allReperes" : [ {
-    "symbole" : "10",
-    "nom" : "Titres mis en équivalence : montant de la dépréciation à la clôture de l'exercice"
-  }, {
-    "symbole" : "3T",
-    "nom" : "Provisions pour reconstitution des gisements miniers et pétroliers"
-  }, {
-    "symbole" : "3U",
-    "nom" : "Provisions pour investissement (art. 237 bis A–II)"
   }, {
     "symbole" : "3V",
     "nom" : "Provisions pour hausse des prix (1)"
   }, {
-    "symbole" : "3X",
-    "nom" : "Amortissements dérogatoires"
-  }, {
-    "symbole" : "3Y",
-    "nom" : "Autres provisions réglementées (1)"
-  }, {
-    "symbole" : "3Z",
-    "nom" : "TOTAL I"
-  }, {
-    "symbole" : "4A",
-    "nom" : "Provisions pour litiges"
-  }, {
-    "symbole" : "4B",
-    "nom" : "Provisions pour litiges"
-  }, {
-    "symbole" : "4C",
-    "nom" : "Provisions pour litiges"
-  }, {
-    "symbole" : "4D",
-    "nom" : "Provisions pour litiges"
-  }, {
-    "symbole" : "4E",
-    "nom" : "Provisions pour garanties données aux clients"
-  }, {
-    "symbole" : "4F",
-    "nom" : "Provisions pour garanties données aux clients"
-  }, {
-    "symbole" : "4G",
-    "nom" : "Provisions pour garanties données aux clients"
-  }, {
-    "symbole" : "4H",
-    "nom" : "Provisions pour garanties données aux clients"
-  }, {
-    "symbole" : "4J",
-    "nom" : "Provisions pour pertes sur marchés à terme"
-  }, {
-    "symbole" : "4K",
-    "nom" : "Provisions pour pertes sur marchés à terme"
-  }, {
-    "symbole" : "4L",
-    "nom" : "Provisions pour pertes sur marchés à terme"
-  }, {
-    "symbole" : "4M",
-    "nom" : "Provisions pour pertes sur marchés à terme"
-  }, {
-    "symbole" : "4N",
-    "nom" : "Provisions pour amendes et pénalités"
-  }, {
-    "symbole" : "4P",
-    "nom" : "Provisions pour amendes et pénalités"
-  }, {
-    "symbole" : "4R",
-    "nom" : "Provisions pour amendes et pénalités"
-  }, {
-    "symbole" : "4S",
-    "nom" : "Provisions pour amendes et pénalités"
-  }, {
-    "symbole" : "4T",
-    "nom" : "Provisions pour pertes de change"
-  }, {
     "symbole" : "4U",
     "nom" : "Provisions pour pertes de change"
   }, {
-    "symbole" : "4V",
-    "nom" : "Provisions pour pertes de change"
+    "symbole" : "3T",
+    "nom" : "Provisions pour reconstitution des gisements miniers et pétroliers"
   }, {
-    "symbole" : "4W",
-    "nom" : "Provisions pour pertes de change"
+    "symbole" : "6P",
+    "nom" : "Provisions pour dépréciation Sur stocks et en cours"
   }, {
-    "symbole" : "4X",
-    "nom" : "Provisions pour pensions et obligations similaires"
+    "symbole" : "TN",
+    "nom" : "Amortissements dérogatoires"
   }, {
-    "symbole" : "4Y",
-    "nom" : "Provisions pour pensions et obligations similaires"
-  }, {
-    "symbole" : "4Z",
-    "nom" : "Provisions pour pensions et obligations similaires"
-  }, {
-    "symbole" : "5A",
-    "nom" : "Provisions pour pensions et obligations similaires"
-  }, {
-    "symbole" : "5B",
-    "nom" : "Provisions pour impôts (1)"
-  }, {
-    "symbole" : "5C",
-    "nom" : "Provisions pour impôts (1)"
-  }, {
-    "symbole" : "5D",
-    "nom" : "Provisions pour impôts (1)"
-  }, {
-    "symbole" : "5E",
-    "nom" : "Provisions pour impôts (1)"
-  }, {
-    "symbole" : "5F",
-    "nom" : "Provisions pour renouvellement des immobilisations"
-  }, {
-    "symbole" : "5H",
-    "nom" : "Provisions pour renouvellement des immobilisations"
-  }, {
-    "symbole" : "5J",
-    "nom" : "Provisions pour renouvellement des immobilisations"
+    "symbole" : "UF",
+    "nom" : "Dont dotations et reprises d'exploitation"
   }, {
     "symbole" : "5K",
     "nom" : "Provisions pour renouvellement des immobilisations"
   }, {
-    "symbole" : "5R",
+    "symbole" : "5T",
     "nom" : "Provisions pour charges sociales et fiscales sur congés à payer"
+  }, {
+    "symbole" : "IJ",
+    "nom" : "Provisions pour prêts d'installation (art. 39 quinquies H du CGI)"
+  }, {
+    "symbole" : "D4",
+    "nom" : "Dont majorations exceptionnelles de 30 %"
+  }, {
+    "symbole" : "4C",
+    "nom" : "Provisions pour litiges"
+  }, {
+    "symbole" : "9V",
+    "nom" : "Provisions pour dépréciation sur immobilisations titres de participation"
+  }, {
+    "symbole" : "UE",
+    "nom" : "Dont dotations et reprises d'exploitation"
+  }, {
+    "symbole" : "TF",
+    "nom" : "Provisions pour investissement (art. 237 bis A–II)"
+  }, {
+    "symbole" : "6U",
+    "nom" : "Provisions pour dépréciation Sur comptes clients"
+  }, {
+    "symbole" : "7A",
+    "nom" : "Autres provisions pour dépréciation"
+  }, {
+    "symbole" : "TV",
+    "nom" : "TOTAL II"
+  }, {
+    "symbole" : "4F",
+    "nom" : "Provisions pour garanties données aux clients"
+  }, {
+    "symbole" : "4S",
+    "nom" : "Provisions pour amendes et pénalités"
+  }, {
+    "symbole" : "5X",
+    "nom" : "Autres provisions pour risques et charges"
+  }, {
+    "symbole" : "5F",
+    "nom" : "Provisions pour renouvellement des immobilisations"
+  }, {
+    "symbole" : "TC",
+    "nom" : "Provisions pour reconstitution des gisements miniers et pétroliers"
+  }, {
+    "symbole" : "Ø6",
+    "nom" : "Provisions pour dépréciation sur immobilisations autres immobilisations financières (1"
+  }, {
+    "symbole" : "5A",
+    "nom" : "Provisions pour pensions et obligations similaires"
+  }, {
+    "symbole" : "7B",
+    "nom" : "TOTAL III"
+  }, {
+    "symbole" : "4Y",
+    "nom" : "Provisions pour pensions et obligations similaires"
+  }, {
+    "symbole" : "5C",
+    "nom" : "Provisions pour impôts (1)"
+  }, {
+    "symbole" : "UG",
+    "nom" : "Dont dotations et reprises financières"
+  }, {
+    "symbole" : "EP",
+    "nom" : "Provisions pour gros entretien et grandes révisions"
+  }, {
+    "symbole" : "UA",
+    "nom" : "TOTAL III"
+  }, {
+    "symbole" : "Ø7",
+    "nom" : "Provisions pour dépréciation sur immobilisations autres immobilisations financières (1"
+  }, {
+    "symbole" : "7C",
+    "nom" : "TOTAL GÉNÉRAL (I + II + III)"
+  }, {
+    "symbole" : "6F",
+    "nom" : "Provisions pour dépréciation sur immobilisations corporelles"
+  }, {
+    "symbole" : "4P",
+    "nom" : "Provisions pour amendes et pénalités"
+  }, {
+    "symbole" : "IM",
+    "nom" : "Provisions pour prêts d'installation (art. 39 quinquies H du CGI)"
+  }, {
+    "symbole" : "TY",
+    "nom" : "TOTAL III"
+  }, {
+    "symbole" : "6V",
+    "nom" : "Provisions pour dépréciation Sur comptes clients"
+  }, {
+    "symbole" : "6C",
+    "nom" : "Provisions pour dépréciation sur immobilisations incorporelles"
+  }, {
+    "symbole" : "4V",
+    "nom" : "Provisions pour pertes de change"
+  }, {
+    "symbole" : "6S",
+    "nom" : "Provisions pour dépréciation Sur stocks et en cours"
+  }, {
+    "symbole" : "6X",
+    "nom" : "Autres provisions pour dépréciation"
+  }, {
+    "symbole" : "TM",
+    "nom" : "Amortissements dérogatoires"
+  }, {
+    "symbole" : "Ø2",
+    "nom" : "Provisions pour dépréciation sur immobilisations titres mis en équivalence"
+  }, {
+    "symbole" : "D5",
+    "nom" : "Dont majorations exceptionnelles de 30 %"
+  }, {
+    "symbole" : "5J",
+    "nom" : "Provisions pour renouvellement des immobilisations"
   }, {
     "symbole" : "5S",
     "nom" : "Provisions pour charges sociales et fiscales sur congés à payer"
   }, {
-    "symbole" : "5T",
-    "nom" : "Provisions pour charges sociales et fiscales sur congés à payer"
+    "symbole" : "4D",
+    "nom" : "Provisions pour litiges"
   }, {
-    "symbole" : "5U",
+    "symbole" : "5Z",
+    "nom" : "TOTAL II"
+  }, {
+    "symbole" : "9U",
+    "nom" : "Provisions pour dépréciation sur immobilisations titres de participation"
+  }, {
+    "symbole" : "6T",
+    "nom" : "Provisions pour dépréciation Sur comptes clients"
+  }, {
+    "symbole" : "4G",
+    "nom" : "Provisions pour garanties données aux clients"
+  }, {
+    "symbole" : "4W",
+    "nom" : "Provisions pour pertes de change"
+  }, {
+    "symbole" : "TE",
+    "nom" : "Provisions pour investissement (art. 237 bis A–II)"
+  }, {
+    "symbole" : "TI",
+    "nom" : "Provisions pour hausse des prix (1)"
+  }, {
+    "symbole" : "TB",
+    "nom" : "Provisions pour reconstitution des gisements miniers et pétroliers"
+  }, {
+    "symbole" : "5Y",
+    "nom" : "Autres provisions pour risques et charges"
+  }, {
+    "symbole" : "EO",
+    "nom" : "Provisions pour gros entretien et grandes révisions"
+  }, {
+    "symbole" : "TZ",
+    "nom" : "TOTAL III"
+  }, {
+    "symbole" : "5D",
+    "nom" : "Provisions pour impôts (1)"
+  }, {
+    "symbole" : "5R",
     "nom" : "Provisions pour charges sociales et fiscales sur congés à payer"
   }, {
     "symbole" : "5V",
     "nom" : "Autres provisions pour risques et charges"
   }, {
-    "symbole" : "5W",
-    "nom" : "Autres provisions pour risques et charges"
-  }, {
-    "symbole" : "5X",
-    "nom" : "Autres provisions pour risques et charges"
-  }, {
-    "symbole" : "5Y",
-    "nom" : "Autres provisions pour risques et charges"
-  }, {
-    "symbole" : "5Z",
-    "nom" : "TOTAL II"
-  }, {
-    "symbole" : "6A",
-    "nom" : "Provisions pour dépréciation sur immobilisations incorporelles"
+    "symbole" : "3Y",
+    "nom" : "Autres provisions réglementées (1)"
   }, {
     "symbole" : "6B",
     "nom" : "Provisions pour dépréciation sur immobilisations incorporelles"
   }, {
-    "symbole" : "6C",
-    "nom" : "Provisions pour dépréciation sur immobilisations incorporelles"
-  }, {
-    "symbole" : "6D",
-    "nom" : "Provisions pour dépréciation sur immobilisations incorporelles"
-  }, {
-    "symbole" : "6E",
-    "nom" : "Provisions pour dépréciation sur immobilisations corporelles"
-  }, {
-    "symbole" : "6F",
-    "nom" : "Provisions pour dépréciation sur immobilisations corporelles"
+    "symbole" : "D6",
+    "nom" : "Dont majorations exceptionnelles de 30 %"
   }, {
     "symbole" : "6G",
     "nom" : "Provisions pour dépréciation sur immobilisations corporelles"
   }, {
-    "symbole" : "6H",
-    "nom" : "Provisions pour dépréciation sur immobilisations corporelles"
-  }, {
-    "symbole" : "6N",
-    "nom" : "Provisions pour dépréciation Sur stocks et en cours"
-  }, {
-    "symbole" : "6P",
-    "nom" : "Provisions pour dépréciation Sur stocks et en cours"
+    "symbole" : "TS",
+    "nom" : "TOTAL I"
   }, {
     "symbole" : "6R",
     "nom" : "Provisions pour dépréciation Sur stocks et en cours"
   }, {
-    "symbole" : "6S",
-    "nom" : "Provisions pour dépréciation Sur stocks et en cours"
-  }, {
-    "symbole" : "6T",
-    "nom" : "Provisions pour dépréciation Sur comptes clients"
-  }, {
-    "symbole" : "6U",
-    "nom" : "Provisions pour dépréciation Sur comptes clients"
-  }, {
-    "symbole" : "6V",
-    "nom" : "Provisions pour dépréciation Sur comptes clients"
-  }, {
-    "symbole" : "6W",
-    "nom" : "Provisions pour dépréciation Sur comptes clients"
-  }, {
-    "symbole" : "6X",
-    "nom" : "Autres provisions pour dépréciation"
+    "symbole" : "4L",
+    "nom" : "Provisions pour pertes sur marchés à terme"
   }, {
     "symbole" : "6Y",
     "nom" : "Autres provisions pour dépréciation"
   }, {
-    "symbole" : "6Z",
-    "nom" : "Autres provisions pour dépréciation"
-  }, {
-    "symbole" : "7A",
-    "nom" : "Autres provisions pour dépréciation"
-  }, {
-    "symbole" : "7B",
-    "nom" : "TOTAL III"
-  }, {
-    "symbole" : "7C",
-    "nom" : "TOTAL GÉNÉRAL (I + II + III)"
-  }, {
-    "symbole" : "9U",
-    "nom" : "Provisions pour dépréciation sur immobilisations titres de participation"
-  }, {
-    "symbole" : "9V",
-    "nom" : "Provisions pour dépréciation sur immobilisations titres de participation"
-  }, {
-    "symbole" : "9W",
-    "nom" : "Provisions pour dépréciation sur immobilisations titres de participation"
-  }, {
-    "symbole" : "9X",
-    "nom" : "Provisions pour dépréciation sur immobilisations titres de participation"
-  }, {
-    "symbole" : "D3",
-    "nom" : "Dont majorations exceptionnelles de 30 %"
-  }, {
-    "symbole" : "D4",
-    "nom" : "Dont majorations exceptionnelles de 30 %"
-  }, {
-    "symbole" : "D5",
-    "nom" : "Dont majorations exceptionnelles de 30 %"
-  }, {
-    "symbole" : "D6",
-    "nom" : "Dont majorations exceptionnelles de 30 %"
-  }, {
-    "symbole" : "EO",
-    "nom" : "Provisions pour gros entretien et grandes révisions"
-  }, {
-    "symbole" : "EP",
-    "nom" : "Provisions pour gros entretien et grandes révisions"
-  }, {
-    "symbole" : "EQ",
-    "nom" : "Provisions pour gros entretien et grandes révisions"
-  }, {
-    "symbole" : "ER",
-    "nom" : "Provisions pour gros entretien et grandes révisions"
-  }, {
-    "symbole" : "IJ",
-    "nom" : "Provisions pour prêts d'installation (art. 39 quinquies H du CGI)"
-  }, {
-    "symbole" : "IK",
-    "nom" : "Provisions pour prêts d'installation (art. 39 quinquies H du CGI)"
+    "symbole" : "6W",
+    "nom" : "Provisions pour dépréciation Sur comptes clients"
   }, {
     "symbole" : "IL",
     "nom" : "Provisions pour prêts d'installation (art. 39 quinquies H du CGI)"
   }, {
-    "symbole" : "IM",
-    "nom" : "Provisions pour prêts d'installation (art. 39 quinquies H du CGI)"
-  }, {
-    "symbole" : "TA",
-    "nom" : "Provisions pour reconstitution des gisements miniers et pétroliers"
-  }, {
-    "symbole" : "TB",
-    "nom" : "Provisions pour reconstitution des gisements miniers et pétroliers"
-  }, {
-    "symbole" : "TC",
-    "nom" : "Provisions pour reconstitution des gisements miniers et pétroliers"
-  }, {
-    "symbole" : "TD",
-    "nom" : "Provisions pour investissement (art. 237 bis A–II)"
-  }, {
-    "symbole" : "TE",
-    "nom" : "Provisions pour investissement (art. 237 bis A–II)"
-  }, {
-    "symbole" : "TF",
-    "nom" : "Provisions pour investissement (art. 237 bis A–II)"
-  }, {
-    "symbole" : "TG",
-    "nom" : "Provisions pour hausse des prix (1)"
-  }, {
-    "symbole" : "TH",
-    "nom" : "Provisions pour hausse des prix (1)"
-  }, {
-    "symbole" : "TI",
-    "nom" : "Provisions pour hausse des prix (1)"
-  }, {
-    "symbole" : "TM",
+    "symbole" : "3X",
     "nom" : "Amortissements dérogatoires"
   }, {
-    "symbole" : "TN",
-    "nom" : "Amortissements dérogatoires"
-  }, {
-    "symbole" : "TO",
-    "nom" : "Amortissements dérogatoires"
-  }, {
-    "symbole" : "TP",
-    "nom" : "Autres provisions réglementées (1)"
-  }, {
-    "symbole" : "TQ",
-    "nom" : "Autres provisions réglementées (1)"
-  }, {
-    "symbole" : "TR",
-    "nom" : "Autres provisions réglementées (1)"
-  }, {
-    "symbole" : "TS",
-    "nom" : "TOTAL I"
-  }, {
-    "symbole" : "TT",
-    "nom" : "TOTAL I"
-  }, {
-    "symbole" : "TU",
-    "nom" : "TOTAL I"
-  }, {
-    "symbole" : "TV",
-    "nom" : "TOTAL II"
-  }, {
-    "symbole" : "TW",
-    "nom" : "TOTAL II"
-  }, {
-    "symbole" : "TX",
-    "nom" : "TOTAL II"
-  }, {
-    "symbole" : "TY",
-    "nom" : "TOTAL III"
-  }, {
-    "symbole" : "TZ",
-    "nom" : "TOTAL III"
-  }, {
-    "symbole" : "UA",
-    "nom" : "TOTAL III"
-  }, {
-    "symbole" : "UB",
-    "nom" : " Augmentations : Dotations de l'exercice"
-  }, {
-    "symbole" : "UC",
-    "nom" : " Augmentations : Dotations de l'exercice"
-  }, {
-    "symbole" : "UD",
-    "nom" : " Augmentations : Dotations de l'exercice"
-  }, {
-    "symbole" : "UE",
-    "nom" : "Dont dotations et reprises d'exploitation"
-  }, {
-    "symbole" : "UF",
-    "nom" : "Dont dotations et reprises d'exploitation"
-  }, {
-    "symbole" : "UG",
-    "nom" : "Dont dotations et reprises financières"
-  }, {
-    "symbole" : "UH",
-    "nom" : "Dont dotations et reprises financières"
-  }, {
-    "symbole" : "UJ",
-    "nom" : "Dont dotations et reprises exceptionnelles"
+    "symbole" : "4Z",
+    "nom" : "Provisions pour pensions et obligations similaires"
   }, {
     "symbole" : "UK",
     "nom" : "Dont dotations et reprises exceptionnelles"
   }, {
-    "symbole" : "Ø2",
-    "nom" : "Provisions pour dépréciation sur immobilisations titres mis en équivalence"
-  }, {
     "symbole" : "Ø3",
     "nom" : "Provisions pour dépréciation sur immobilisations titres mis en équivalence"
-  }, {
-    "symbole" : "Ø4",
-    "nom" : "Provisions pour dépréciation sur immobilisations titres mis en équivalence"
-  }, {
-    "symbole" : "Ø5",
-    "nom" : "Provisions pour dépréciation sur immobilisations titres mis en équivalence"
-  }, {
-    "symbole" : "Ø6",
-    "nom" : "Provisions pour dépréciation sur immobilisations autres immobilisations financières (1"
-  }, {
-    "symbole" : "Ø7",
-    "nom" : "Provisions pour dépréciation sur immobilisations autres immobilisations financières (1"
-  }, {
-    "symbole" : "Ø8",
-    "nom" : "Provisions pour dépréciation sur immobilisations autres immobilisations financières (1"
-  }, {
-    "symbole" : "Ø9",
-    "nom" : "Provisions pour dépréciation sur immobilisations autres immobilisations financières (1"
   } ]
 }

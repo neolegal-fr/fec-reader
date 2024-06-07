@@ -13,23 +13,10 @@
     "symbole" : "WD",
     "nom" : "Avantages personnels non déductibles"
   }, {
-    "symbole" : "WF",
-    "nom" : "Amortissements excédentaires et autres amortissements non déductibles"
-  }, {
     "symbole" : "WG",
     "nom" : "Autres charges et dépenses somptuaires"
-  } ],
-  "allReperes" : [ {
-    "symbole" : "WB",
-    "nom" : "Rémunération du travail de l'exploitant ou des associés de sociétés soumises à l'impôt sur le revenu"
-  }, {
-    "symbole" : "WD",
-    "nom" : "Avantages personnels non déductibles"
   }, {
     "symbole" : "WF",
     "nom" : "Amortissements excédentaires et autres amortissements non déductibles"
-  }, {
-    "symbole" : "WG",
-    "nom" : "Autres charges et dépenses somptuaires"
   } ]
 }

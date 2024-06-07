@@ -6,6 +6,5 @@
   "regimeImposition" : "REEL_NORMAL_AGRICOLE",
   "containsSiren" : false,
   "containsClotureExercice" : false,
-  "reperes" : [ ],
-  "allReperes" : [ ]
+  "reperes" : [ ]
 }

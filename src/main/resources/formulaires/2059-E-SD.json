@@ -11,213 +11,103 @@
     "reperes" : [ {
       "symbole" : "OM",
       "nom" : " Total"
-    } ],
-    "allReperes" : [ {
-      "symbole" : "OM",
-      "nom" : " Total"
-    } ]
-  }, {
-    "nom" : "Charges à retenir pour le calcul de la valeur ajoutée",
-    "reperes" : [ {
-      "symbole" : "OJ",
-      "nom" : " TOTAL 3"
-    } ],
-    "allReperes" : [ {
-      "symbole" : "OJ",
-      "nom" : " TOTAL 3"
     } ]
   }, {
     "nom" : "Chiffre d'affaires de référence CVAE",
     "reperes" : [ {
       "symbole" : "OX",
       "nom" : " TOTAL"
-    } ],
-    "allReperes" : [ {
-      "symbole" : "OX",
-      "nom" : " TOTAL"
+    } ]
+  }, {
+    "nom" : "Charges à retenir pour le calcul de la valeur ajoutée",
+    "reperes" : [ {
+      "symbole" : "OJ",
+      "nom" : " TOTAL 3"
     } ]
   }, {
     "nom" : "Effectif moyen du personnel",
     "reperes" : [ {
-      "symbole" : "YF",
-      "nom" : " Dont apprentis"
-    }, {
       "symbole" : "YG",
       "nom" : " Dont handicapés"
-    } ],
-    "allReperes" : [ {
+    }, {
       "symbole" : "YF",
       "nom" : " Dont apprentis"
-    }, {
-      "symbole" : "YG",
-      "nom" : " Dont handicapés"
     } ]
   } ],
   "reperes" : [ {
-    "symbole" : "GX",
-    "nom" : "Chiffre d'affaires de référence CVAE"
-  }, {
-    "symbole" : "HX",
-    "nom" : "Chiffre d'affaires du groupe économique"
-  }, {
-    "symbole" : "O9",
-    "nom" : "Charges déductibles de la valeur ajoutée"
-  }, {
-    "symbole" : "OA",
-    "nom" : "Ventes de produits fabriqués, prestations de services et marchandises "
-  }, {
     "symbole" : "OD",
     "nom" : "Variation positive des stocks"
-  }, {
-    "symbole" : "OE",
-    "nom" : "Production immobilisée à hauteur des seules charges déductibles ayant concouru à sa formation"
-  }, {
-    "symbole" : "OF",
-    "nom" : "Subventions d'exploitation reçues"
-  }, {
-    "symbole" : "OG",
-    "nom" : "Calcul de la valeur ajoutée "
-  }, {
-    "symbole" : "OH",
-    "nom" : "Autres produits de gestion courante (hors quotes-parts de résultat sur opérations faites en commun)"
-  }, {
-    "symbole" : "OI",
-    "nom" : "Transferts de charges déductibles de la valeur ajoutée"
-  }, {
-    "symbole" : "OK",
-    "nom" : "Redevances pour concessions, brevets, licences et assimilées"
-  }, {
-    "symbole" : "OL",
-    "nom" : "Plus-values de cession d'immobilisations corporelles ou incorporelles si rattachées à une activité normale et courante"
-  }, {
-    "symbole" : "ON",
-    "nom" : "Achats"
-  }, {
-    "symbole" : "OQ",
-    "nom" : "Variation négative des stocks"
-  }, {
-    "symbole" : "OR",
-    "nom" : "Services extérieurs, à l'exception des loyers et redevances"
-  }, {
-    "symbole" : "OS",
-    "nom" : "Loyers et redevances"
-  }, {
-    "symbole" : "OT",
-    "nom" : "Refacturations de frais inscrites au compte de transfert de charges "
-  }, {
-    "symbole" : "OU",
-    "nom" : "Fraction déductible de la valeur ajoutée des dotations aux amortissements"
-  }, {
-    "symbole" : "OW",
-    "nom" : "Autres charges de gestion courante (hors quotes-parts de résultat sur opérations faites en commun)"
   }, {
     "symbole" : "OY",
     "nom" : "Moins-values de cession d'immobilisations corporelles ou incorporelles si rattachées à une activité normale et courante"
   }, {
+    "symbole" : "ON",
+    "nom" : "Achats"
+  }, {
     "symbole" : "OZ",
     "nom" : "Taxes déductibles de la valeur ajoutée"
   }, {
-    "symbole" : "RG",
-    "nom" : "Effectif affectés à l'activité artisanale"
-  }, {
-    "symbole" : "SA",
-    "nom" : "Valeur ajoutée assujettie à la CVAE"
-  }, {
     "symbole" : "XT",
     "nom" : "Rentrées sur créances amorties lorsqu'elles se rapportent au résultat d'exploitation"
-  }, {
-    "symbole" : "YP",
-    "nom" : "Effectif moyen du personnel"
-  } ],
-  "allReperes" : [ {
-    "symbole" : "GX",
-    "nom" : "Chiffre d'affaires de référence CVAE"
-  }, {
-    "symbole" : "HX",
-    "nom" : "Chiffre d'affaires du groupe économique"
-  }, {
-    "symbole" : "O9",
-    "nom" : "Charges déductibles de la valeur ajoutée"
-  }, {
-    "symbole" : "OA",
-    "nom" : "Ventes de produits fabriqués, prestations de services et marchandises "
-  }, {
-    "symbole" : "OD",
-    "nom" : "Variation positive des stocks"
-  }, {
-    "symbole" : "OE",
-    "nom" : "Production immobilisée à hauteur des seules charges déductibles ayant concouru à sa formation"
-  }, {
-    "symbole" : "OF",
-    "nom" : "Subventions d'exploitation reçues"
   }, {
     "symbole" : "OG",
     "nom" : "Calcul de la valeur ajoutée "
   }, {
-    "symbole" : "OH",
-    "nom" : "Autres produits de gestion courante (hors quotes-parts de résultat sur opérations faites en commun)"
-  }, {
-    "symbole" : "OI",
-    "nom" : "Transferts de charges déductibles de la valeur ajoutée"
-  }, {
-    "symbole" : "OJ",
-    "nom" : " TOTAL 3"
-  }, {
     "symbole" : "OK",
     "nom" : "Redevances pour concessions, brevets, licences et assimilées"
   }, {
-    "symbole" : "OL",
-    "nom" : "Plus-values de cession d'immobilisations corporelles ou incorporelles si rattachées à une activité normale et courante"
-  }, {
-    "symbole" : "OM",
-    "nom" : " Total"
-  }, {
-    "symbole" : "ON",
-    "nom" : "Achats"
-  }, {
-    "symbole" : "OQ",
-    "nom" : "Variation négative des stocks"
-  }, {
-    "symbole" : "OR",
-    "nom" : "Services extérieurs, à l'exception des loyers et redevances"
-  }, {
-    "symbole" : "OS",
-    "nom" : "Loyers et redevances"
-  }, {
-    "symbole" : "OT",
-    "nom" : "Refacturations de frais inscrites au compte de transfert de charges "
-  }, {
-    "symbole" : "OU",
-    "nom" : "Fraction déductible de la valeur ajoutée des dotations aux amortissements"
-  }, {
-    "symbole" : "OW",
-    "nom" : "Autres charges de gestion courante (hors quotes-parts de résultat sur opérations faites en commun)"
-  }, {
-    "symbole" : "OX",
-    "nom" : " TOTAL"
-  }, {
-    "symbole" : "OY",
-    "nom" : "Moins-values de cession d'immobilisations corporelles ou incorporelles si rattachées à une activité normale et courante"
-  }, {
-    "symbole" : "OZ",
-    "nom" : "Taxes déductibles de la valeur ajoutée"
+    "symbole" : "HX",
+    "nom" : "Chiffre d'affaires du groupe économique"
   }, {
     "symbole" : "RG",
     "nom" : "Effectif affectés à l'activité artisanale"
   }, {
+    "symbole" : "O9",
+    "nom" : "Charges déductibles de la valeur ajoutée"
+  }, {
+    "symbole" : "OF",
+    "nom" : "Subventions d'exploitation reçues"
+  }, {
+    "symbole" : "OI",
+    "nom" : "Transferts de charges déductibles de la valeur ajoutée"
+  }, {
+    "symbole" : "OE",
+    "nom" : "Production immobilisée à hauteur des seules charges déductibles ayant concouru à sa formation"
+  }, {
+    "symbole" : "OQ",
+    "nom" : "Variation négative des stocks"
+  }, {
     "symbole" : "SA",
     "nom" : "Valeur ajoutée assujettie à la CVAE"
   }, {
-    "symbole" : "XT",
-    "nom" : "Rentrées sur créances amorties lorsqu'elles se rapportent au résultat d'exploitation"
+    "symbole" : "OS",
+    "nom" : "Loyers et redevances"
   }, {
-    "symbole" : "YF",
-    "nom" : " Dont apprentis"
+    "symbole" : "OA",
+    "nom" : "Ventes de produits fabriqués, prestations de services et marchandises "
   }, {
-    "symbole" : "YG",
-    "nom" : " Dont handicapés"
+    "symbole" : "OT",
+    "nom" : "Refacturations de frais inscrites au compte de transfert de charges "
+  }, {
+    "symbole" : "OW",
+    "nom" : "Autres charges de gestion courante (hors quotes-parts de résultat sur opérations faites en commun)"
+  }, {
+    "symbole" : "OH",
+    "nom" : "Autres produits de gestion courante (hors quotes-parts de résultat sur opérations faites en commun)"
+  }, {
+    "symbole" : "OU",
+    "nom" : "Fraction déductible de la valeur ajoutée des dotations aux amortissements"
+  }, {
+    "symbole" : "GX",
+    "nom" : "Chiffre d'affaires de référence CVAE"
   }, {
     "symbole" : "YP",
     "nom" : "Effectif moyen du personnel"
+  }, {
+    "symbole" : "OR",
+    "nom" : "Services extérieurs, à l'exception des loyers et redevances"
+  }, {
+    "symbole" : "OL",
+    "nom" : "Plus-values de cession d'immobilisations corporelles ou incorporelles si rattachées à une activité normale et courante"
   } ]
 }

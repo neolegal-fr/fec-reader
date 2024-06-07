@@ -10,6 +10,7 @@ import static org.apache.commons.collections4.CollectionUtils.emptyIfNull;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.Getter;
@@ -75,6 +76,7 @@ public class Section implements Comparable<Section> {
         reperes.add(repere);
     }
 
+    @JsonIgnore
     public Set<Repere> getAllReperes() {
         Set<Repere> result = new TreeSet<>();
         result.addAll(reperes);

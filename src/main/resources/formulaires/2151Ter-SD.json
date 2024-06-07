@@ -9,9 +9,5 @@
   "reperes" : [ {
     "symbole" : "UR",
     "nom" : "Effectif moyen du personnel"
-  } ],
-  "allReperes" : [ {
-    "symbole" : "UR",
-    "nom" : "Effectif moyen du personnel"
   } ]
 }
