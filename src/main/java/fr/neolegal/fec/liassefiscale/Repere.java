@@ -23,14 +23,18 @@ public class Repere implements Comparable<Repere> {
     String expression;
 
     /** Chemin d'accès à la valeur, relativement à la position du repère */
-    Point acces;
+    Point fromSymbole;
+
+    /** Chemin d'accès à la valeur, relativement à la position du nom */
+    Point fromNom;
 
     @Builder
-    public Repere(String symbole, String nom, String expression, Point access) {
+    public Repere(String symbole, String nom, String expression, Point fromSymbole, Point fromNom) {
         this.symbole = symbole;
         this.expression = expression;
         this.nom = nom;
-        this.acces = access;
+        this.fromSymbole = fromSymbole;
+        this.fromNom = fromNom;
     }
 
     public Repere() {

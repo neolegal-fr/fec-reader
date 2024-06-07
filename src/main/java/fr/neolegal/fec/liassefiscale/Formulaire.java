@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import static java.util.Objects.nonNull;
 import java.util.Optional;
 import java.util.Set;
 
@@ -19,7 +20,7 @@ public class Formulaire {
     final ModeleFormulaire modele;
     final Set<Repere> cachedReperes;
     Map<String, Double> valeurs = new HashMap<>();
-    List<Annexe> annexes = new LinkedList<>();    
+    List<Annexe> annexes = new LinkedList<>();
 
     @Builder
     public Formulaire(ModeleFormulaire modele, Map<String, Double> valeurs, List<Annexe> annexes) {
@@ -51,6 +52,12 @@ public class Formulaire {
 
     public Optional<Repere> getRepere(String symbole) {
         return getAllReperes().stream().filter(repere -> equalsIgnoreCase(trim(symbole), repere.getSymbole()))
+                .findFirst();
+    }
+
+    public Optional<Repere> getRepereByNomIfNavigationDefined(String nom) {
+        return getAllReperes().stream().filter(repere -> nonNull(repere.getFromNom()))
+                .filter(repere -> StrUtils.containsIgnoreCase(nom.replaceAll("[^a-zA-Z]", ""), repere.getNom().replaceAll("[^a-zA-Z]", "")))
                 .findFirst();
     }
 

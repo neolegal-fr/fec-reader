@@ -371,6 +371,16 @@ public class LiasseFiscaleHelperTest {
     }    
 
     @Test
+    void readLiasseFiscalePDF_2072SSD() throws IOException {
+        LiasseFiscale liasse = LiasseFiscaleHelper
+                .readLiasseFiscalePDF("target/test-classes/2072-S-SD.pdf", true);
+
+        checkParsedLiasse(liasse, "target/test-classes/2072-S-SD.csv", 5);
+        assertEquals(RegimeImposition.REEL_SIMPLIFIE, liasse.getRegime());
+        assertEquals("12345678", liasse.getSiren());
+    }    
+
+    @Test
     void parseSiren() {
         // Bloc de texte multiligne
         assertEquals(Optional.of("303195192"), LiasseFiscaleHelper.parseSiren(

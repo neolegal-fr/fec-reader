@@ -1,5 +1,6 @@
 package fr.neolegal.fec.liassefiscale;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -17,7 +18,9 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.contains;
 
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 public class FormulaireHelper {
 
@@ -57,7 +60,23 @@ public class FormulaireHelper {
                     "Impossible de lister les modèles de formulaires: " + e.getMessage());
         }
 
+        // saveAsJson(modeles);
         return modeles;
+    }
+
+    private static void saveAsJson(Set<ModeleFormulaire> modeles) {
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
+        int count = 0;
+        for (ModeleFormulaire modele : modeles) {
+            try {
+                count++;
+                writer.writeValue(new File(modele.getIdentifiant() + ".json"), modele);
+            } catch (Exception e) {
+                Logger.getLogger(Repere.class.getName()).log(Level.INFO, String.format("Impossible d'enregistrer le modèle %s", modele.getIdentifiant()));
+            }
+        }
+        Logger.getLogger(Repere.class.getName()).log(Level.INFO, String.format("Sauvegarde de %d formulaires", count));
     }
 
     public static Set<ModeleFormulaire> getModelesFormulaires() {

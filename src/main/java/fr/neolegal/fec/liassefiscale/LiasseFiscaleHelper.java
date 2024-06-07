@@ -27,10 +27,11 @@ import java.util.regex.Pattern;
 import static org.apache.commons.collections4.CollectionUtils.emptyIfNull;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
-import static org.apache.commons.lang3.StringUtils.equalsIgnoreCase;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.left;
+
+import static org.apache.commons.lang3.ObjectUtils.firstNonNull;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -342,8 +343,14 @@ public class LiasseFiscaleHelper {
                 RectangularTextContainer<?> cell = row.get(colIndex);
                 String text = getTrimmedText(cell);
                 Point origine = new Point(colIndex, rowIndex);
-                formulaire.getRepere(text).ifPresent(repere -> {
-                    Point posValeur = computePositionValeur(repere, table, origine);
+                Optional<Repere> match = formulaire.getRepere(text);
+                final boolean fromSymbole = match.isPresent();
+                if (match.isEmpty()) {
+                    match = formulaire.getRepereByNomIfNavigationDefined(text);
+                }
+                match.ifPresent(repere -> {
+                    Point posValeur = computePositionValeur(origine,
+                            fromSymbole ? repere.getFromSymbole() : repere.getFromNom());
                     RectangularTextContainer<?> cellValeur = getCell(table, posValeur.y, posValeur.x);
                     String valeur = getTrimmedText(cellValeur);
                     double montant = parseNumber(valeur);
@@ -360,8 +367,8 @@ public class LiasseFiscaleHelper {
         return formulaire;
     }
 
-    private static Point computePositionValeur(Repere repere, Table table, Point origine) {
-        Point navigation = isNull(repere.getAcces()) ? new Point(1, 0) : repere.getAcces();
+    private static Point computePositionValeur(Point origine, Point navigation) {
+        navigation = firstNonNull(navigation, new Point(1, 0));
         Point posValeur = new Point(origine);
         posValeur.translate(navigation.x, navigation.y);
         return posValeur;

@@ -1,16 +1,83 @@
 {
-  "identifiant" : "2072-S-SD",
-  "numero" : 2072,
-  "page" : "B",
-  "cerfa" : "10338",
-  "nom" : "DÉCLARATION DES SOCIÉTÉS IMMOBILIÈRES NON SOUMISES A L’IMPÔT SUR LES SOCIÉTÉS",
-  "regimeImposition" : "REEL_SIMPLIFIE",
-  "containsSiren" : false,
-  "containsClotureExercice" : true,
-  "annexes" : [ "DETERMINATION_REVENUS_SOCIETE_IMMOBILIERE", "ASSOCIES_USUFRUITIERS_REPARTITION_RESULTAT" ],
-  "sections" : [ {
-    "nom" : "Produits d'exploitation",
-    "reperes" : [ ]
-  } ],
-  "reperes" : [ ]
+    "identifiant": "2072-S-SD",
+    "numero": 2072,
+    "page": "B",
+    "cerfa": "10338",
+    "nom": "DÉCLARATION DES SOCIÉTÉS IMMOBILIÈRES NON SOUMISES A L’IMPÔT SUR LES SOCIÉTÉS",
+    "regimeImposition": "REEL_SIMPLIFIE",
+    "containsSiren": true,
+    "containsClotureExercice": false,
+    "annexes": [
+        "DETERMINATION_REVENUS_SOCIETE_IMMOBILIERE",
+        "ASSOCIES_USUFRUITIERS_REPARTITION_RESULTAT"
+    ],
+    "sections": [
+        {
+            "nom": "Produits d'exploitation",
+            "reperes": [
+                {
+                    "symbole": "R1",
+                    "nom": "Revenus bruts",
+                    "fromSymbole": {
+                        "x": 2,
+                        "y": 0
+                    },
+                    "fromNom": {
+                        "x": 1,
+                        "y": 0
+                    }
+                },
+                {
+                    "symbole": "R2",
+                    "nom": "Paiement sur travaux",
+                    "fromSymbole": {
+                        "x": 2,
+                        "y": 0
+                    },
+                    "fromNom": {
+                        "x": 1,
+                        "y": 0
+                    }
+                },
+                {
+                    "symbole": "R3",
+                    "nom": "Frais et charges autres qu'intérêts d'emprunts",
+                    "fromSymbole": {
+                        "x": 2,
+                        "y": 0
+                    },
+                    "fromNom": {
+                        "x": 1,
+                        "y": 0
+                    }
+                },
+                {
+                    "symbole": "R4",
+                    "nom": "Intérêts d'emprunts",
+                    "fromSymbole": {
+                        "x": 2,
+                        "y": 0
+                    },
+                    "fromNom": {
+                        "x": 1,
+                        "y": 0
+                    }
+                },
+                {
+                    "symbole": "R5",
+                    "nom": "Revenu net (+) ou déficit net (-)",
+                    "fromSymbole": {
+                        "x": 2,
+                        "y": 0
+                    },
+                    "fromNom": {
+                        "x": 2,
+                        "y": 0
+                    }
+                }
+            ]
+        }
+    ],
+    "reperes": [
+    ]
 }
