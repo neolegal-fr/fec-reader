@@ -16,13 +16,15 @@ import lombok.Data;
 
 @Data
 public class Formulaire {
-    ModeleFormulaire modele;
+    final ModeleFormulaire modele;
+    final Set<Repere> cachedReperes;
     Map<String, Double> valeurs = new HashMap<>();
-    List<Annexe> annexes = new LinkedList<>();
+    List<Annexe> annexes = new LinkedList<>();    
 
     @Builder
     public Formulaire(ModeleFormulaire modele, Map<String, Double> valeurs, List<Annexe> annexes) {
         this.modele = modele;
+        this.cachedReperes = modele.getAllReperes();
         this.valeurs = ObjectUtils.firstNonNull(valeurs, new HashMap<>());
         this.annexes = ObjectUtils.firstNonNull(annexes, new LinkedList<>());
     }
@@ -44,7 +46,7 @@ public class Formulaire {
     }
 
     Set<Repere> getAllReperes() {
-        return modele.getAllReperes();
+        return cachedReperes;
     }
 
     public Optional<Repere> getRepere(String symbole) {
