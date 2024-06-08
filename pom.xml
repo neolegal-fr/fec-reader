@@ -6,7 +6,7 @@
 
     <groupId>fr.neolegal</groupId>
     <artifactId>fec-reader</artifactId>
-    <version>0.2.0-SNAPSHOT</version>
+    <version>0.2.1-SNAPSHOT</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <url>https://github.com/nicolasriousset/fec-reader</url>
@@ -45,6 +45,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <junit.version>5.9.3</junit.version>
+        <sonatype.release>false</sonatype.release>
     </properties>
 
     <dependencies>
@@ -177,7 +178,7 @@
                     <serverId>ossrh</serverId>
                     <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
                     <!-- Pas d'auto release, il faut aller sur  https://s01.oss.sonatype.org/ pour publier les artefacts-->
-                    <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                    <autoReleaseAfterClose>${sonatype.release}false</autoReleaseAfterClose>
                 </configuration>
             </plugin>
         </plugins>
