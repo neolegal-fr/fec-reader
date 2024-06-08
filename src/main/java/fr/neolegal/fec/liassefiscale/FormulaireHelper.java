@@ -1,10 +1,18 @@
 package fr.neolegal.fec.liassefiscale;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -13,14 +21,13 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import org.apache.commons.io.IOUtils;
+import java.util.stream.Stream;
+
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.contains;
 
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 
 public class FormulaireHelper {
 
@@ -29,15 +36,41 @@ public class FormulaireHelper {
 
     private static Set<ModeleFormulaire> modelesFormulaires = loadModelesFormulaires();
 
+    private static List<String> listModeleFormulaireResources() throws URISyntaxException, IOException {
+        final String modelesFolders = "/formulaires/";
+        List<String> resources = new LinkedList<>();
+        URI uri = FormulaireHelper.class.getResource(modelesFolders).toURI();
+        Path myPath;
+        if (uri.getScheme().equals("jar")) {
+            FileSystem fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
+            myPath = fileSystem.getPath(modelesFolders);
+        } else {
+            myPath = Paths.get(uri);
+        }
+        try (Stream<Path> walk = Files.walk(myPath, 1);) {
+            for (Iterator<Path> it = walk.iterator(); it.hasNext();) {
+                Path resource = it.next();
+                String filename = resource.getFileName().toString();
+                if (filename.toLowerCase().endsWith(".json")) {
+                    resources.add(resource.getFileName().toString());
+                }
+            }
+        }
+
+        resources.sort(String::compareTo);
+
+        return resources;
+    }
+
     public static Set<ModeleFormulaire> loadModelesFormulaires() {
         Set<ModeleFormulaire> modeles = new LinkedHashSet<>();
 
         ObjectMapper mapper = new ObjectMapper();
         try {
-            List<String> files = IOUtils.readLines(
-                    ModeleFormulaire.class.getClassLoader().getResourceAsStream("formulaires/"),
-                    StandardCharsets.UTF_8);
-            files.sort(String::compareTo);
+            // List<String> files = IOUtils.readLines(
+            // ModeleFormulaire.class.getClassLoader().getResourceAsStream("formulaires/"),
+            // StandardCharsets.UTF_8);
+            List<String> files = listModeleFormulaireResources();
 
             for (String filename : files) {
                 try (InputStream is = ModeleFormulaire.class.getClassLoader()
@@ -55,28 +88,12 @@ public class FormulaireHelper {
                 }
             }
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             Logger.getLogger(FormulaireHelper.class.getName()).log(Level.SEVERE,
                     "Impossible de lister les modèles de formulaires: " + e.getMessage());
         }
 
-        // saveAsJson(modeles);
         return modeles;
-    }
-
-    private static void saveAsJson(Set<ModeleFormulaire> modeles) {
-        ObjectMapper mapper = new ObjectMapper();
-        ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
-        int count = 0;
-        for (ModeleFormulaire modele : modeles) {
-            try {
-                count++;
-                writer.writeValue(new File(modele.getIdentifiant() + ".json"), modele);
-            } catch (Exception e) {
-                Logger.getLogger(Repere.class.getName()).log(Level.INFO, String.format("Impossible d'enregistrer le modèle %s", modele.getIdentifiant()));
-            }
-        }
-        Logger.getLogger(Repere.class.getName()).log(Level.INFO, String.format("Sauvegarde de %d formulaires", count));
     }
 
     public static Set<ModeleFormulaire> getModelesFormulaires() {

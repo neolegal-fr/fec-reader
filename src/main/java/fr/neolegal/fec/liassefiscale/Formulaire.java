@@ -46,7 +46,7 @@ public class Formulaire {
         return Optional.ofNullable(valeurs.get(symboleRepere));
     }
 
-    Set<Repere> getAllReperes() {
+    public Set<Repere> getAllReperes() {
         return cachedReperes;
     }
 
@@ -78,5 +78,9 @@ public class Formulaire {
     public Annexe getOrAddAnnexe(NatureAnnexe natureAnnexe) {
         return annexes.stream().filter(annexe -> annexe.getNatureAnnexe() == natureAnnexe).findFirst()
                 .orElseGet(() -> addAnnexe(natureAnnexe));
+    }
+
+    public String getIdentifiant()  {
+        return nonNull(modele) ? modele.getIdentifiant() : null;
     }
 }
