@@ -1,1 +1,1 @@
-mvn clean deploy versions:set -DremoveSnapshot -D"sonatype.release"=true
+mvn clean versions:set -DremoveSnapshot -D"sonatype.release"=true deploy 
