@@ -110,7 +110,11 @@
       "nom" : " Production autoconsommée"
     }, {
       "symbole" : "EP",
-      "nom" : " Total des Produits d'exploitation (I)"
+      "nom" : " Total des Produits d'exploitation",
+      "fromNom": {
+        "x": 2,
+        "y": 0
+      }
     }, {
       "symbole" : "EG",
       "nom" : " Variation de production stockée"
