@@ -1,56 +1,78 @@
 {
-  "identifiant" : "2146-SD",
-  "numero" : 2146,
-  "cerfa" : "15947",
-  "nom" : "COMPTE DE RESULTAT DE L'EXERCICE (en liste)",
-  "regimeImposition" : "REEL_NORMAL_AGRICOLE",
-  "containsSiren" : false,
-  "containsClotureExercice" : false,
-  "sections" : [ {
-    "nom" : "Charges d'exploitation",
-    "reperes" : [ {
-      "symbole" : "FZ",
-      "nom" : " Achats de marchandises et d'approvisionnements"
-    }, {
-      "symbole" : "GB",
-      "nom" : " Achats d'animaux"
-    }, {
-      "symbole" : "GA",
-      "nom" : " Variation de stocks"
-    }, {
-      "symbole" : "GE",
-      "nom" : " Rémunérations"
-    }, {
-      "symbole" : "GD",
-      "nom" : " Impôts, taxes, et versements assimilés"
-    }, {
-      "symbole" : "GF",
-      "nom" : " Cotisations sociales personnelles de l'exploitant"
-    }, {
-      "symbole" : "GM",
-      "nom" : " Total"
-    }, {
-      "symbole" : "GC",
-      "nom" : " Autres achats et charges externes"
-    } ]
-  } ],
-  "reperes" : [ {
-    "symbole" : "GY",
-    "nom" : "Résultat financier"
-  }, {
-    "symbole" : "FY",
-    "nom" : "Total des produits d'exploitation"
-  }, {
-    "symbole" : "GN",
-    "nom" : "Résultat d'exploitation"
-  }, {
-    "symbole" : "GT",
-    "nom" : "Total des produits financiers"
-  }, {
-    "symbole" : "FR",
-    "nom" : "Chiffre d'affaires"
-  }, {
-    "symbole" : "GG",
-    "nom" : "Autres charges sociales"
-  } ]
+  "identifiant": "2146-SD",
+  "numero": 2146,
+  "cerfa": "15947",
+  "nom": "COMPTE DE RESULTAT DE L'EXERCICE (en liste)",
+  "regimeImposition": "REEL_NORMAL_AGRICOLE",
+  "containsSiren": false,
+  "containsClotureExercice": false,
+  "sections": [
+    {
+      "nom": "Charges d'exploitation",
+      "reperes": [
+        {
+          "symbole": "FZ",
+          "nom": " Achats de marchandises et d'approvisionnements"
+        },
+        {
+          "symbole": "GB",
+          "nom": " Achats d'animaux"
+        },
+        {
+          "symbole": "GA",
+          "nom": " Variation de stocks"
+        },
+        {
+          "symbole": "GE",
+          "nom": " Rémunérations"
+        },
+        {
+          "symbole": "GD",
+          "nom": " Impôts, taxes, et versements assimilés"
+        },
+        {
+          "symbole": "GF",
+          "nom": " Cotisations sociales personnelles de l'exploitant"
+        },
+        {
+          "symbole": "CG",
+          "nom": "Autres charges sociales",
+          "fromNom": {
+            "x": 2,
+            "y": 0
+          }
+        },
+        {
+          "symbole": "GM",
+          "nom": " Total"
+        },
+        {
+          "symbole": "GC",
+          "nom": " Autres achats et charges externes"
+        }
+      ]
+    }
+  ],
+  "reperes": [
+    {
+      "symbole": "GY",
+      "nom": "Résultat financier"
+    },
+    {
+      "symbole": "FY",
+      "nom": "Total des produits d'exploitation"
+    },
+    {
+      "symbole": "GN",
+      "nom": "Résultat d'exploitation"
+    },
+    {
+      "symbole": "GT",
+      "nom": "Total des produits financiers"
+    },
+    {
+      "symbole": "FR",
+      "nom": "Chiffre d'affaires"
+    }
+  ]
 }

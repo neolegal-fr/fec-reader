@@ -360,11 +360,11 @@ public class LiasseFiscaleHelperTest {
     }
 
     @Test
-    void readLiasseFiscalePDF_M() throws IOException {
+    void readLiasseFiscalePDF_2145() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
                 .readLiasseFiscalePDF("target/test-classes/liasse-publique-M-2145-réel-agricole.pdf", true);
 
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-M-2145-réel-agricole-expected.csv", 14);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-M-2145-réel-agricole-expected.csv", 30);
         assertEquals(RegimeImposition.REEL_NORMAL_AGRICOLE, liasse.getRegime());
         assertEquals("348614793", liasse.getSiren());
         assertEquals(LocalDate.of(2014, 06, 30), liasse.getClotureExercice());
