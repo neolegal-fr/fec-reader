@@ -108,11 +108,11 @@ public class LiasseFiscaleHelperTest {
     }
 
     @Test
-    void readLiasseFiscalePDF_A() throws IOException {
+    void readLiasseFiscalePDF_2050_1() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-A.pdf", true);
+                .readLiasseFiscalePDF("target/test-classes/liasse-2050_1.pdf", true);
 
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-A-expected.csv", 88);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-2050_1-expected.csv", 88);
         assertEquals("303195192", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2019, 12, 31), liasse.getClotureExercice());
@@ -135,13 +135,13 @@ public class LiasseFiscaleHelperTest {
     }
 
     @Test
-    void readLiasseFiscalePDF_B() throws IOException {
+    void readLiasseFiscalePDF_2050_2() throws IOException {
         // Dans cette liasse, les repères de cellules sont des images, donc impossible
         // de les lire.
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-B.pdf", true);
+                .readLiasseFiscalePDF("target/test-classes/liasse-2050_2.pdf", true);
 
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-B-expected.csv", 0);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-2050_2-expected.csv", 0);
 
         Annexe provisions = liasse.getAnnexe(NatureAnnexe.PROVISIONS);
         assertEquals(2, provisions.getLignes().size());
@@ -175,11 +175,11 @@ public class LiasseFiscaleHelperTest {
     }
 
     @Test
-    void readLiasseFiscalePDF_C() throws IOException {
+    void readLiasseFiscalePDF_2050_3() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-C.pdf", true);
+                .readLiasseFiscalePDF("target/test-classes/liasse-2050_3.pdf", true);
 
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-C-expected.csv", 62);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-2050_3-expected.csv", 62);
         assertEquals("529770646", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2017, 12, 31), liasse.getClotureExercice());
@@ -192,11 +192,11 @@ public class LiasseFiscaleHelperTest {
     }
 
     @Test
-    void readLiasseFiscalePDF_D() throws IOException {
+    void readLiasseFiscalePDF_2050_4() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-D.pdf", true);
+                .readLiasseFiscalePDF("target/test-classes/liasse-2050_4.pdf", true);
 
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-D-expected.csv", 13);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-2050_4-expected.csv", 13);
         assertEquals("523128205", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2019, 03, 31), liasse.getClotureExercice());
@@ -209,11 +209,11 @@ public class LiasseFiscaleHelperTest {
     }
 
     @Test
-    void readLiasseFiscalePDF_E() throws IOException {
+    void readLiasseFiscalePDF_2050_5() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-E.pdf", true);
+                .readLiasseFiscalePDF("target/test-classes/liasse-2050_5.pdf", true);
 
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-E-expected.csv", 7);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-2050_5-expected.csv", 7);
         assertEquals("402207153", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2015, 12, 31), liasse.getClotureExercice());
@@ -226,11 +226,11 @@ public class LiasseFiscaleHelperTest {
     }
 
     @Test
-    void readLiasseFiscalePDF_F() throws IOException {
+    void readLiasseFiscalePDF_2050_6() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-F.pdf", true);
+                .readLiasseFiscalePDF("target/test-classes/liasse-2050_6.pdf", true);
 
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-F-expected.csv", 20);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-2050_6-expected.csv", 20);
         assertEquals("449207133", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2015, 12, 31), liasse.getClotureExercice());
@@ -261,23 +261,23 @@ public class LiasseFiscaleHelperTest {
     }
 
     @Test
-    void readLiasseFiscalePDF_G() throws IOException {
+    void readLiasseFiscalePDF_2050_7() throws IOException {
         // Impossible de lire cette liasse, les copier/coller manuels de sont contenu ne
         // fonctionnent même pas, peut être un un problème d'encodage.
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-G.pdf", true);
+                .readLiasseFiscalePDF("target/test-classes/liasse-2050_7.pdf", true);
 
         // checkParsedLiasse(liasse,
-        // "target/test-classes/liasse-publique-G-expected.csv", 0);
+        // "target/test-classes/liasse-2050_7-expected.csv", 0);
         assertNotNull(liasse);
     }
 
     @Test
-    void readLiasseFiscalePDF_H() throws IOException {
+    void readLiasseFiscalePDF_2050_8() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-H.pdf", true);
+                .readLiasseFiscalePDF("target/test-classes/liasse-2050_8.pdf", true);
 
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-H-expected.csv", 421);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-2050_8-expected.csv", 421);
         assertEquals("451209852", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2018, 12, 31), liasse.getClotureExercice());
@@ -293,11 +293,11 @@ public class LiasseFiscaleHelperTest {
     }
 
     @Test
-    void readLiasseFiscalePDF_I() throws IOException {
+    void readLiasseFiscalePDF_2050_9() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-anonyme-I.pdf", true);
+                .readLiasseFiscalePDF("target/test-classes/liasse-2050_9.pdf", true);
 
-        checkParsedLiasse(liasse, "target/test-classes/liasse-anonyme-I-expected.csv", 531);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-2050_9-expected.csv", 531);
         assertEquals("", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(LocalDate.of(2022, 12, 31), liasse.getClotureExercice());
@@ -325,22 +325,22 @@ public class LiasseFiscaleHelperTest {
     }
 
     @Test
-    void readLiasseFiscalePDF_J() throws IOException {
+    void readLiasseFiscalePDF_2033() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-J.pdf", true);
+                .readLiasseFiscalePDF("target/test-classes/liasse-2033.pdf", true);
 
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-J-expected.csv", 88);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-2033-expected.csv", 88);
         assertEquals("437641699", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_SIMPLIFIE, liasse.getRegime());
         assertEquals(LocalDate.of(2022, 12, 31), liasse.getClotureExercice());
     }
 
     @Test
-    void readLiasseFiscalePDF_K() throws IOException {
+    void readLiasseFiscalePDF_2139_1() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-K.pdf", true);
+                .readLiasseFiscalePDF("target/test-classes/liasse-2139_1.pdf", true);
 
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-K-expected.csv", 56);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-2139_1-expected.csv", 56);
         assertEquals("891369951", liasse.getSiren());
         assertEquals(RegimeImposition.REEL_SIMPLIFIE_AGRICOLE, liasse.getRegime());
         assertEquals(LocalDate.of(2021, 12, 31), liasse.getClotureExercice());
@@ -349,11 +349,11 @@ public class LiasseFiscaleHelperTest {
     }
 
     @Test
-    void readLiasseFiscalePDF_L() throws IOException {
+    void readLiasseFiscalePDF_2139_2() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-L.pdf", true);
+                .readLiasseFiscalePDF("target/test-classes/liasse-2139_2.pdf", true);
 
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-L-expected.csv", 126);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-2139_2-expected.csv", 126);
         assertEquals(RegimeImposition.REEL_SIMPLIFIE_AGRICOLE, liasse.getRegime());
         assertEquals("524166816", liasse.getSiren());
         assertEquals(LocalDate.of(2016, 8, 31), liasse.getClotureExercice());
@@ -362,9 +362,9 @@ public class LiasseFiscaleHelperTest {
     @Test
     void readLiasseFiscalePDF_2145() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/liasse-publique-M-2145-réel-agricole.pdf", true);
+                .readLiasseFiscalePDF("target/test-classes/liasse-2145-réel-agricole.pdf", true);
 
-        checkParsedLiasse(liasse, "target/test-classes/liasse-publique-M-2145-réel-agricole-expected.csv", 30);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-2145-réel-agricole-expected.csv", 30);
         assertEquals(RegimeImposition.REEL_NORMAL_AGRICOLE, liasse.getRegime());
         assertEquals("348614793", liasse.getSiren());
         assertEquals(LocalDate.of(2014, 06, 30), liasse.getClotureExercice());
@@ -373,9 +373,9 @@ public class LiasseFiscaleHelperTest {
     @Test
     void readLiasseFiscalePDF_2072SSD() throws IOException {
         LiasseFiscale liasse = LiasseFiscaleHelper
-                .readLiasseFiscalePDF("target/test-classes/2072-S-SD.pdf", true);
+                .readLiasseFiscalePDF("target/test-classes/liasse-2072-S-SD.pdf", true);
 
-        checkParsedLiasse(liasse, "target/test-classes/2072-S-SD.csv", 5);
+        checkParsedLiasse(liasse, "target/test-classes/liasse-2072-S-SD.csv", 5);
         assertEquals(RegimeImposition.REEL_SIMPLIFIE, liasse.getRegime());
         assertEquals("12345678", liasse.getSiren());
     }    
