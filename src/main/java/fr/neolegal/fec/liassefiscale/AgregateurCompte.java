@@ -1,6 +1,6 @@
 package fr.neolegal.fec.liassefiscale;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 
 import lombok.Getter;
 
