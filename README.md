@@ -12,7 +12,9 @@ La librairie ne supporte que les fichiers FEC en format plat (CSV), pas le forma
 1. Installer VS Code avec les extensions Java
 2. Installer gnupg pour pouvoir publier une nouvelle version de la librairie sur les repos Maven : https://gpg4win.org/download.html
 3. Importer dans Kleopatra le certificat de signature des binaires (clé publique et clé privée / secret)
-4. mvn clean deploy
+4. Créer un user token depuis https://central.sonatype.com/account et le paramétrer dans "C:\Users\[username]]\.m2\settings.xml", pour le server avec l'id "central"
+5. Exécuter "./deploy.ps1", ou "mvn clean deploy"
+
 
 ## Utilisation
 ### Maven
