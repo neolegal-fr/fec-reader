@@ -104,8 +104,9 @@ publication se fait par le workflow GitHub `release-to-maven-central`
 identifiants Sonatype (secrets de l'organisation `neolegal-fr`). La publication
 locale (`./deploys.ps1`) suppose la clé GPG sur la machine.
 
-**État au 12/09/2026** : la dernière version publiée sur Maven Central est la
-0.2.3 (juillet 2024). La clé de signature `ed25519/C1B557958CAC9E85` a expiré le
-22/06/2025 : tant qu'elle n'est pas prolongée et le secret
-`MAVEN_GPG_PRIVATE_KEY` mis à jour, toute publication échoue sur
-`gpg: no default secret key`. La marche à suivre est décrite dans le README.
+**État au 12/09/2026** : version 0.3.0 publiée sur Maven Central. La clé de
+signature `ed25519/C1B557958CAC9E85` a été prolongée jusqu'au 11/09/2028 et
+republiée sur `keys.openpgp.org` (`keyserver.ubuntu.com` refuse les mises à jour
+des clés EdDSA et sert encore l'ancienne version, sans conséquence). Le secret
+`MAVEN_GPG_PRIVATE_KEY` a été mis à jour au niveau du dépôt ; celui de
+l'organisation porte encore la clé expirée.

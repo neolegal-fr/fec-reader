@@ -226,25 +226,35 @@ L'artefact apparaît sur <https://central.sonatype.com/artifact/fr.neolegal/fec-
 
 ### Renouveler la clé de signature
 
-Maven Central refuse les binaires signés avec une clé expirée, et `gpg` refuse purement et simplement de signer : la publication échoue alors sur `gpg: no default secret key`. La clé de publication du projet (`ed25519/C1B557958CAC9E85`, `Nicolas Riousset <nicolas@neolegal.fr>`) a expiré le **22 juin 2025**. Pour la prolonger, depuis le poste qui détient la clé privée :
+Maven Central refuse les binaires signés avec une clé expirée, et `gpg` refuse purement et simplement de signer : la publication échoue alors sur `gpg: no default secret key`. La clé de publication du projet est `ed25519/C1B557958CAC9E85` (`Nicolas Riousset <nicolas@neolegal.fr>`), **valable jusqu'au 11 septembre 2028**. Pour la prolonger le moment venu, depuis le poste qui détient la clé privée :
 
 ```powershell
-gpg --list-secret-keys --keyid-format=long      # vérifier l'échéance
-gpg --edit-key C1B557958CAC9E85
-  gpg> expire        # choisir une nouvelle échéance, par exemple 2y
-  gpg> key 1         # répéter pour chaque sous-clé, s'il y en a
-  gpg> expire
-  gpg> save
-gpg --keyserver keys.openpgp.org --send-keys C1B557958CAC9E85   # republier la clé publique
+gpg --list-secret-keys --keyid-format=long                      # vérifier l'échéance
+gpg --quick-set-expire 810AFE65D46C95280CE70B57C1B557958CAC9E85 2y
+gpg --quick-set-expire 810AFE65D46C95280CE70B57C1B557958CAC9E85 2y '*'   # les sous-clés
 ```
 
-Puis mettre à jour le secret utilisé par le workflow — il doit contenir la clé **privée** au format armuré :
+Prolonger l'échéance ne remplace pas la clé : même empreinte, même identité, seule la date de l'auto-signature change.
+
+Il faut ensuite **republier la clé publique**, faute de quoi la validation Sonatype échoue :
 
 ```powershell
-gpg --armor --export-secret-keys C1B557958CAC9E85 | gh secret set MAVEN_GPG_PRIVATE_KEY --org neolegal-fr --repos fec-reader
+gpg --armor --export 810AFE65D46C95280CE70B57C1B557958CAC9E85 > cle-publique.asc
+curl -X POST -H "Content-Type: application/json" `
+     --data-binary "@corps.json" https://keys.openpgp.org/vks/v1/upload   # corps.json : {"keytext": "<contenu de cle-publique.asc>"}
 ```
 
-Le workflow vérifie désormais l'état de la clé avant de construire, et s'arrête immédiatement avec un message explicite si elle est absente, expirée ou révoquée.
+`keyserver.ubuntu.com` ignore les mises à jour des clés EdDSA : il continue de servir l'ancienne version, sans conséquence tant que la clé est à jour sur `keys.openpgp.org`.
+
+Enfin, mettre à jour le secret qui porte la clé **privée** pour le workflow :
+
+```powershell
+gpg --armor --export-secret-keys 810AFE65D46C95280CE70B57C1B557958CAC9E85 | gh secret set MAVEN_GPG_PRIVATE_KEY --repo neolegal-fr/fec-reader
+```
+
+Le secret existe aux deux niveaux : celui du dépôt, mis à jour le 12/09/2026, l'emporte sur celui de l'organisation `neolegal-fr`, qui porte encore la clé expirée et reste à corriger pour les autres dépôts qui l'utiliseraient (il faut pour cela le droit `admin:org`).
+
+Le workflow vérifie l'état de la clé avant de construire, et s'arrête immédiatement avec un message explicite si elle est absente, expirée ou révoquée.
 
 ## Journal des versions
 
