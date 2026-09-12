@@ -124,47 +124,24 @@ public abstract class FecHelper {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Agrège les soldes des comptes désignés par l'agrégation.
+     *
+     * @see SoldesComptes
+     */
     public static double computeAgregationComptes(List<LEC> lignes, AgregationComptes agregation) {
         if (lignes.isEmpty()) {
             return 0.0;
         }
+        return new SoldesComptes(lignes).agreger(agregation);
+    }
 
-        /**
-         * Livre des procédures fiscales : Section III : Modalités d'exercice du droit
-         * de contrôle:
-         * Pour chaque exercice, les premiers numéros d'écritures comptables du fichier
-         * correspondent aux écritures de reprise des soldes de l'exercice antérieur
-         */
-        String numEcritureRepriseSolde = lignes.stream().findFirst().map(lec -> lec.getEcritureNum()).orElse("");
-
-        /**
-         * Lors du calcul de la variation d'un compte, on doit ignorer la première ligne
-         * du fichier, qui reprend le solde de l'exercice précédent
-         */
-        Map<String, Double> comptes = new HashMap<>();
-        for (LEC ligne : lignes) {
-            boolean includeLigne = agregation.appliesTo(ligne.getCompteNum())
-                    && (agregation.getAgregateur().isRepriseSoldeIncluded()
-                            || !StringUtils.equalsIgnoreCase(numEcritureRepriseSolde, ligne.getEcritureNum()));
-            if (includeLigne) {
-                comptes.put(ligne.getCompteNum(), comptes.getOrDefault(ligne.getCompteNum(), 0.0)
-                        + (ligne.getCreditOuZero() - ligne.getDebitOuZero()));
-            }
-        }
-
-        switch (agregation.getAgregateur()) {
-            case CREDIT:
-                return comptes.entrySet().stream().filter(entry -> entry.getValue() > 0)
-                        .mapToDouble(Map.Entry::getValue).sum();
-            case DEBIT:
-                return comptes.entrySet().stream().filter(entry -> entry.getValue() < 0)
-                        .mapToDouble(entry -> -entry.getValue()).sum();
-            case DIFFERENCE:
-            case SOLDE:
-            default:
-                return comptes.values().stream().mapToDouble(Double::doubleValue).sum();
-
-        }
+    /**
+     * Agrège les soldes des comptes désignés par l'agrégation, en s'appuyant sur
+     * les soldes déjà calculés du fichier.
+     */
+    public static double computeAgregationComptes(Fec fec, AgregationComptes agregation) {
+        return fec == null ? 0.0 : fec.getSoldes().agreger(agregation);
     }
 
     /** DAns le cas où le nom du fichier physique ne correspond pas au nom original du fichier,

@@ -9,7 +9,7 @@
   "reperes" : [ {
     "symbole" : "DY",
     "nom" : "Dettes fiscales et sociales",
-    "formuleFEC" : "CRD_421 + CRD_422 + CRD_424 + CRD_427 + CRD_4282 + CRD_4286 + CRD_43 + CRD_442 + CRD_443 + CRD_444 + CRD_4455 + CRD_4457 + CRD_44584 + CRD_44587 + CRD_446 + CRD_447 + CRD_4482 + CRD_4486 + CRD_449 + CRD_457"
+    "formuleFEC" : "CRD_421 + CRD_422 + CRD_424 + CRD_427 + CRD_4282 + CRD_4286 + CRD_43 + CRD_442 + CRD_443 + CRD_444 + CRD_4455 + CRD_4457 + CRD_4458 + CRD_446 + CRD_447 + CRD_4482 + CRD_4486 + CRD_449 + CRD_457"
   }, {
     "symbole" : "DM",
     "nom" : "Produit des émissions de titres participatifs",
@@ -29,7 +29,7 @@
   }, {
     "symbole" : "DH",
     "nom" : "Report à nouveau",
-    "formuleFEC" : "SLD_11"
+    "formuleFEC" : "SLD_11 + SLD_12"
   }, {
     "symbole" : "DI",
     "nom" : "Résultat de l'exercice",
@@ -45,7 +45,7 @@
   }, {
     "symbole" : "EA",
     "nom" : "Autres dettes",
-    "formuleFEC" : "CRD_4196 + CRD_4197 + CRD_4198 + CRD_464 + CRD_467 + CRD_4686 + CRD_478 + CRD_509"
+    "formuleFEC" : "CRD_4196 + CRD_4197 + CRD_4198 + CRD_464 + CRD_467 + CRD_4686 + CRD_478 + CRD_509 + CRD_4096 + CRD_4098 + CRD_411 + CRD_413 + CRD_416 + CRD_418 + CRD_425 + CRD_4287 + CRD_441 + CRD_4452 + CRD_4456 + CRD_4487"
   }, {
     "symbole" : "DZ",
     "nom" : "Dettes sur immobilisations et comptes rattachés",

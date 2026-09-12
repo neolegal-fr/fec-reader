@@ -29,7 +29,7 @@ class LiasseFiscaleHelperTest {
 
         assertEquals(RegimeImposition.REEL_NORMAL, liasse.getRegime());
         assertEquals(13, liasse.getFormulaires().size());
-        assertEquals(102, montantsJustes(liasse, "123456789FEC20500930-expected.csv"));
+        assertEquals(157, montantsJustes(liasse, "123456789FEC20500930-expected.csv"));
     }
 
     @Test
@@ -39,7 +39,7 @@ class LiasseFiscaleHelperTest {
 
         assertEquals(RegimeImposition.REEL_SIMPLIFIE, liasse.getRegime());
         assertEquals(6, liasse.getFormulaires().size());
-        assertEquals(59, montantsJustes(liasse, "000000000FEC20231231-expected.csv"));
+        assertEquals(75, montantsJustes(liasse, "000000000FEC20231231-expected.csv"));
     }
 
     /** Nombre de repères dont le montant calculé correspond à la valeur attendue. */

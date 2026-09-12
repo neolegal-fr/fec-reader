@@ -91,6 +91,10 @@ public class RepereHelper {
 
         Expression expression = new ExpressionBuilder(repere.getExpression()).variables(variables).build();
 
-        return Optional.of((double) Math.round(expression.evaluate()));
+        // Le montant n'est pas arrondi ici : les totaux de la liasse s'appuient sur
+        // les montants des repères qui les composent, et arrondir chaque terme ferait
+        // dériver les totaux de plusieurs euros. L'arrondi n'intervient qu'au moment
+        // d'inscrire le montant dans le formulaire.
+        return Optional.of(expression.evaluate());
     }
 }

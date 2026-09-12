@@ -41,6 +41,28 @@ compteResultat.getMontantsExtraits()
         .forEach(montant -> System.out.printf("%s : %.02f €%n", montant.getSymbole(), montant.getMontant()));
 ```
 
+### Fiabilité de la liasse calculée depuis un FEC
+
+Le calcul de la liasse à partir d'un FEC repose sur des formules qui désignent les comptes par leur numéro. Un plan comptable qui s'écarte de la nomenclature attendue — un fournisseur en 4082 là où la formule attend 4081, un stock en 302 là où elle attend 31 — verrait son solde disparaître de la liasse. Deux mécanismes le rendent visible :
+
+```java
+LiasseFiscale liasse = LiasseFiscaleHelper.buildLiasseFiscale(fec, RegimeImposition.REEL_NORMAL);
+
+// Les contrôles de cohérence s'appliquent aussi aux montants calculés
+liasse.getControlesEnEchec().forEach(System.out::println);
+
+// Comptes dont le solde n'alimente aucun repère
+VentilationComptes ventilation = VentilationComptes.analyser(fec, liasse);
+System.out.println(ventilation);
+// 6 comptes non affectés, 61237.51 € (0,9 % des soldes)
+ventilation.getComptesNonAffectes().forEach((compte, solde) ->
+        System.out.printf("%s : %.2f €%n", compte, solde));
+```
+
+Les comptes non affectés sont également signalés dans `liasse.getAnomalies()`, avec la nature `COMPTE_NON_AFFECTE`.
+
+Sur les quatre fichiers FEC du jeu d'essai, l'équilibre du bilan est désormais vérifié exactement pour deux d'entre eux, à 5 € près pour le troisième ; le quatrième présente un écart de 25 244 € entièrement expliqué par six comptes hors nomenclature, que la ventilation désigne nommément.
+
 ### Lecture d'une liasse fiscale au format PDF
 
 ```java
@@ -257,6 +279,19 @@ Le secret existe aux deux niveaux : celui du dépôt, mis à jour le 12/09/2026,
 Le workflow vérifie l'état de la clé avant de construire, et s'arrête immédiatement avec un message explicite si elle est absente, expirée ou révoquée.
 
 ## Journal des versions
+
+### 0.3.1
+
+Fiabilité du calcul de la liasse à partir d'un fichier des écritures comptables :
+
+* les écritures de reprise des soldes sont reconnues par leur journal, quel que soit son code et sa position dans le fichier — l'heuristique précédente (le numéro de la première écriture du fichier) excluait jusqu'à l'intégralité des écritures sur certains fichiers ;
+* les soldes des comptes sont calculés une seule fois à la lecture du fichier, au lieu d'être recalculés par chaque formule ;
+* les montants ne sont plus arrondis à chaque étape intermédiaire mais au moment d'être inscrits dans le formulaire : les totaux ne dérivent plus de quelques euros ;
+* correction des formules de calcul : total de l'actif circulant amputé des charges constatées d'avance, total des amortissements et totaux du bilan simplifié absents, résultat fiscal déduit de soldes de comptes inexistants, terme d'agrégation sans numéro de compte ;
+* ventilation des soldes atypiques (fournisseur débiteur, salarié débiteur, client créditeur), qui disparaissaient de la liasse, et des familles de comptes de gestion non couvertes ;
+* nouveau contrôle `VentilationComptes` : les comptes dont le solde n'alimente aucun repère sont recensés et signalés comme anomalies.
+
+Sur le jeu d'essai, l'équilibre du bilan passe d'un écart de 571 666 € à un écart nul sur le fichier de référence, et les écarts résiduels des autres fichiers sont intégralement expliqués par des comptes hors nomenclature, désormais désignés nommément.
 
 ### 0.3.0
 

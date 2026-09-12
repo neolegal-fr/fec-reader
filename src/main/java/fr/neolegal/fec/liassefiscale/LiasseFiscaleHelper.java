@@ -82,16 +82,30 @@ public class LiasseFiscaleHelper {
                 RepereHelper.computeMontantRepereCellule(repere, fec, provider)
                         .ifPresent(montant -> formulaire.setMontant(MontantExtrait.builder()
                                 .symbole(repere.getSymbole())
-                                .montant(montant)
+                                // Les montants de la liasse sont exprimés en euros entiers
+                                .montant(Math.round(montant))
                                 .methode(MethodeExtraction.CALCUL_FEC)
                                 .confiance(MethodeExtraction.CALCUL_FEC.getConfianceBase())
                                 .build()));
             }
         }
 
+        signalerComptesNonAffectes(fec, liasse);
         appliquerControles(liasse);
 
         return liasse;
+    }
+
+    /**
+     * Signale les comptes dont le solde n'alimente aucun repère : ils expliquent
+     * l'essentiel des écarts constatés par les contrôles de cohérence sur une
+     * liasse calculée depuis un fichier des écritures comptables.
+     */
+    private static void signalerComptesNonAffectes(Fec fec, LiasseFiscale liasse) {
+        VentilationComptes ventilation = VentilationComptes.analyser(fec, liasse);
+        ventilation.getComptesNonAffectes().forEach((compte, solde) -> liasse.getAnomalies()
+                .add(new Anomalie(NatureAnomalie.COMPTE_NON_AFFECTE, solde, String.format(
+                        "Le solde du compte %s (%.2f €) n'alimente aucun repère de la liasse", compte, solde))));
     }
 
     public static LiasseFiscale readLiasseFiscalePDF(String filename) throws IOException {

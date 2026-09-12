@@ -22,13 +22,17 @@ public class Fec {
     final List<Anomalie> anomalies;
     final Set<String> journaux;
 
+    /** Soldes des comptes, calculés une seule fois pour l'ensemble des écritures */
+    final SoldesComptes soldes;
+
     @Builder
     public Fec(List<LEC> lignes, String siren, LocalDate clotureExercice, List<Anomalie> anomalies) {
         this.lignes = ObjectUtils.firstNonNull(lignes, new LinkedList<>());
         this.siren = siren;
         this.clotureExercice = clotureExercice;
         this.anomalies = ObjectUtils.firstNonNull(anomalies, new LinkedList<>());
-        this.nombreEcritures = FecHelper.countEcritures(lignes);
-        this.journaux = FecHelper.resolveJournaux(lignes);
+        this.nombreEcritures = FecHelper.countEcritures(this.lignes);
+        this.journaux = FecHelper.resolveJournaux(this.lignes);
+        this.soldes = new SoldesComptes(this.lignes);
     }
 }

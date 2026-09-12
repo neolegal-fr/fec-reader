@@ -10,6 +10,8 @@ public enum NatureAnomalie {
     INCOHERENCE_COMPTABLE,
     /** Numéro SIREN invalide (clé de contrôle) */
     SIREN_INVALIDE,
+    /** Compte de bilan dont le solde n'est repris par aucun repère de la liasse */
+    COMPTE_NON_AFFECTE,
     CLOTURE_EXERCICE, LIGNES_VIDES, LIGNES_INVALIDES
 
 }

@@ -60,7 +60,8 @@
     "nom" : "Dettes",
     "reperes" : [ {
       "symbole" : "176",
-      "nom" : " Total"
+      "nom" : " Total",
+    "formuleFEC" : "REP_156 + REP_164 + REP_166 + REP_172 + REP_174 + REP_175"
     } ]
   }, {
     "nom" : "Avances et acomptes versés sur commandes",
@@ -99,7 +100,8 @@
     "nom" : "Capitaux Propres",
     "reperes" : [ {
       "symbole" : "142",
-      "nom" : " Total"
+      "nom" : " Total",
+    "formuleFEC" : "REP_120 + REP_124 + REP_126 + REP_130 + REP_132 + REP_134 + REP_136 + REP_137 + REP_140"
     } ]
   }, {
     "nom" : "Actif circulant",
@@ -146,7 +148,7 @@
     }, {
       "symbole" : "072",
       "nom" : "Autres",
-      "formuleFEC" : "DEB_1097 + DEB_4096 + DEB_4098 + DEB_425 + DEB_4287 + DEB_43 + DEB_44 + DEB_45 + DEB_462 + DEB_465 + DEB_467 + DEB_4687 + DEB_478"
+      "formuleFEC" : "DEB_1097 + DEB_4096 + DEB_4098 + DEB_401 + DEB_403 + DEB_408 + DEB_16 + DEB_42 + DEB_43 + DEB_44 + DEB_45 + DEB_462 + DEB_465 + DEB_467 + DEB_4687 + DEB_478"
     } ]
   }, {
     "nom" : "Valeurs mobilières de placement",
@@ -166,7 +168,7 @@
   "reperes" : [ {
     "symbole" : "134",
     "nom" : "Report à nouveau",
-    "formuleFEC" : "SLD_11"
+    "formuleFEC" : "SLD_11 + SLD_12"
   }, {
     "symbole" : "130",
     "nom" : "Réserves règlementées",
@@ -178,7 +180,7 @@
   }, {
     "symbole" : "136",
     "nom" : "Résultat de l'exercice",
-    "formuleFEC" : "SLD_12"
+    "formuleFEC" : "REP_310"
   }, {
     "symbole" : "199",
     "nom" : "Compte courant d'associés débiteurs "
@@ -191,7 +193,8 @@
     "formuleFEC" : "CRD_164 + CRD_168 + CRD_512 + CRD_514 + CRD_517 + CRD_5186 + CRD_519 + CRD_162 + CRD_165 + CRD_166 + CRD_1675 + CRD_17 + CRD_426 + CRD_451 + CRD_455 + CRD_456 + CRD_458"
   }, {
     "symbole" : "175",
-    "nom" : "Autres dettes"
+    "nom" : "Autres dettes",
+    "formuleFEC" : "CRD_411 + CRD_413 + CRD_416 + CRD_418 + CRD_425 + CRD_4287 + CRD_4387 + CRD_441 + CRD_4452 + CRD_4456 + CRD_4487 + CRD_462 + CRD_465 + CRD_4687 + CRD_1097"
   }, {
     "symbole" : "193",
     "nom" : "Immobilisations financières à moins d'un an"
@@ -270,7 +273,8 @@
     "formuleFEC" : "REP_050 + REP_060 + REP_064 + REP_068 + REP_072 + REP_080 + REP_084 + REP_092"
   }, {
     "symbole" : "180",
-    "nom" : "Total général"
+    "nom" : "Total général",
+    "formuleFEC" : "REP_142 + REP_154 + REP_176"
   }, {
     "symbole" : "080",
     "nom" : "Valeurs mobilières de placement",

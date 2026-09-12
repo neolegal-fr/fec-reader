@@ -11,7 +11,7 @@
     "reperes" : [ {
       "symbole" : "1A",
       "nom" : "amortissements",
-      "formuleFEC" : ""
+      "formuleFEC" : "BK + CK"
     } ]
   }, {
     "nom" : "Divers",
@@ -153,7 +153,7 @@
     "reperes" : [ {
       "symbole" : "BZ",
       "nom" : "Autres",
-      "formuleFEC" : "DEB_4096 - SLD_1097 + DEB_4098 + DEB_425 + DEB_4287 + DEB_4387 + DEB_441 + DEB_443 + DEB_444 + DEB_4452 + DEB_4456 + DEB_44581 + DEB_44582 + DEB_44586 + DEB_4487 + SLD_ + DEB_451 + DEB_455 + DEB_4561 + DEB_4563 + DEB_4564 + DEB_4565 + DEB_4566 + DEB_4567 + DEB_4568 + DEB_4569 + DEB_458 + DEB_462 + DEB_465 + DEB_467 + DEB_4687 + DEB_478"
+      "formuleFEC" : "DEB_4096 - SLD_1097 + DEB_4098 + DEB_425 + DEB_4287 + DEB_4387 + DEB_441 + DEB_443 + DEB_444 + DEB_4452 + DEB_4456 + DEB_4458 + DEB_4487 + DEB_451 + DEB_455 + DEB_4561 + DEB_4563 + DEB_4564 + DEB_4565 + DEB_4566 + DEB_4567 + DEB_4568 + DEB_4569 + DEB_458 + DEB_462 + DEB_465 + DEB_467 + DEB_4687 + DEB_478 + DEB_401 + DEB_403 + DEB_404 + DEB_405 + DEB_4081 + DEB_4084 + DEB_4088 + DEB_421 + DEB_422 + DEB_424 + DEB_426 + DEB_427 + DEB_4282 + DEB_4286 + DEB_431 + DEB_437 + DEB_442 + DEB_4455 + DEB_4457 + DEB_446 + DEB_447 + DEB_4482 + DEB_4486 + DEB_4196 + DEB_4197 + DEB_4198"
     }, {
       "symbole" : "BX",
       "nom" : "Clients et comptes rattachés",
@@ -293,7 +293,7 @@
   "reperes" : [ {
     "symbole" : "CJ",
     "nom" : "Total (III)",
-    "formuleFEC" : "BL + BN + BP + BR + BT + BV + BX + BZ + CB + CD + CF"
+    "formuleFEC" : "BL + BN + BP + BR + BT + BV + BX + BZ + CB + CD + CF + CH"
   }, {
     "symbole" : "AN",
     "nom" : "Terrains",

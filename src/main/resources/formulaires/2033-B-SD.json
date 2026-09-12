@@ -121,7 +121,7 @@
   }, {
     "symbole" : "312",
     "nom" : "Résultat fiscal (bénéfice)",
-    "formuleFEC" : "CRD_310"
+    "formuleFEC" : "(REP_310 + abs(REP_310)) / 2"
   }, {
     "symbole" : "218",
     "nom" : "Production vendue de services",
@@ -133,7 +133,7 @@
   }, {
     "symbole" : "314",
     "nom" : "Résultat fiscal (perte)",
-    "formuleFEC" : "DEB_310"
+    "formuleFEC" : "(abs(REP_310) - REP_310) / 2"
   }, {
     "symbole" : "294",
     "nom" : "Charges financières",
@@ -144,7 +144,8 @@
     "formuleFEC" : "-(SLD_6811 + SLD_6812 + SLD_6816 + SLD_6817)"
   }, {
     "symbole" : "270",
-    "nom" : "Résultat d'exploitation"
+    "nom" : "Résultat d'exploitation",
+    "formuleFEC" : "REP_232 - REP_264"
   }, {
     "symbole" : "215",
     "nom" : "Production vendue de biens à l'international",

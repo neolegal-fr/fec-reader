@@ -43,7 +43,7 @@
   "reperes" : [ {
     "symbole" : "GE",
     "nom" : "Autres Charges d'exploitation",
-    "formuleFEC" : "-(SLD_651 + SLD_653 + SLD_654 + SLD_658)"
+    "formuleFEC" : "-(SLD_651 + SLD_653 + SLD_654 + SLD_658 + SLD_650 + SLD_652 + SLD_656 + SLD_657 + SLD_659)"
   }, {
     "symbole" : "FG",
     "nom" : "Production vendue de services en France",
@@ -59,7 +59,7 @@
   }, {
     "symbole" : "FY",
     "nom" : "Salaires et traitements",
-    "formuleFEC" : "-(SLD_641 + SLD_644 + SLD_648)"
+    "formuleFEC" : "-(SLD_641 + SLD_644 + SLD_648 + SLD_640 + SLD_642 + SLD_643 + SLD_649)"
   }, {
     "symbole" : "GD",
     "nom" : "Dotations d'exploitation aux provisions pour risques et charges",
@@ -71,7 +71,7 @@
   }, {
     "symbole" : "FQ",
     "nom" : "Autres produits",
-    "formuleFEC" : "SLD_750 + SLD_751 + SLD_752 + SLD_753 + SLD_754 + SLD_758"
+    "formuleFEC" : "SLD_750 + SLD_751 + SLD_752 + SLD_753 + SLD_754 + SLD_758 + SLD_756 + SLD_757 + SLD_759"
   }, {
     "symbole" : "FH",
     "nom" : "Production vendue de services à l'international",
@@ -87,7 +87,7 @@
   }, {
     "symbole" : "GL",
     "nom" : "Autres intérêts et produits assimilés",
-    "formuleFEC" : "SLD_763 + SLD_764 + SLD_765 + SLD_768"
+    "formuleFEC" : "SLD_763 + SLD_764 + SLD_765 + SLD_768 + SLD_760 + SLD_769"
   }, {
     "symbole" : "FE",
     "nom" : "Production vendue de biens à l'international",
@@ -179,7 +179,7 @@
   }, {
     "symbole" : "FW",
     "nom" : "Autres achats et charges externes",
-    "formuleFEC" : "-(SLD_604 + SLD_605 + SLD_606 + SLD_6094 + SLD_6095 + SLD_61 + SLD_62)"
+    "formuleFEC" : "-(SLD_604 + SLD_605 + SLD_606 + SLD_6094 + SLD_6095 + SLD_61 + SLD_62 + SLD_600 + SLD_6090)"
   }, {
     "symbole" : "GK",
     "nom" : "Produits des autres valeurs mobilières et créances de l'actif immobilisé",
@@ -199,7 +199,7 @@
   }, {
     "symbole" : "GR",
     "nom" : "Intérêts et charges assimilées",
-    "formuleFEC" : "-(SLD_661 + SLD_664 + SLD_665 + SLD_668)"
+    "formuleFEC" : "-(SLD_661 + SLD_664 + SLD_665 + SLD_668 + SLD_660 + SLD_662 + SLD_663 + SLD_669)"
   }, {
     "symbole" : "FL",
     "nom" : "Chiffre d'affaires net",

@@ -72,7 +72,9 @@ public class RepereHelperTest {
     @Test
     void computeMontantLigneRepere() {
         LiasseFiscale liasse = LiasseFiscaleHelper.buildLiasseFiscale(RegimeImposition.REEL_NORMAL);
-        assertEquals(Optional.of(41056.0),
+        // Le montant n'est arrondi qu'au moment d'être inscrit dans le formulaire :
+        // les totaux se calculent sur les montants exacts
+        assertEquals(Optional.of(41056.07),
                 RepereHelper.computeMontantRepereCellule(liasse, "DV", fec));
     }
 

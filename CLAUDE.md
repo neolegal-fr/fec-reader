@@ -55,6 +55,26 @@ Les deux lectures sont complémentaires : la géométrie fonctionne sans quadril
 **Ne pas supprimer l'une des deux** : chacune rattrape les échecs de l'autre, et
 leur désaccord est le principal signal d'alerte.
 
+## Calcul depuis un FEC
+
+`FecHelper.read` produit un `Fec` qui porte ses `SoldesComptes` : les soldes de
+chaque compte, calculés une fois, avec et sans les écritures de reprise des
+soldes (identifiées par leur journal, pas par la position dans le fichier).
+`LiasseFiscaleHelper.buildLiasseFiscale` évalue ensuite les formules
+`formuleFEC` des modèles.
+
+Deux pièges à connaître :
+
+* les symboles des formulaires 2033 sont numériques : une référence à un repère
+  s'y écrit `REP_310`, sinon `310` est lu comme le nombre 310 ;
+* deux préfixes qui se recouvrent dans la même formule (`DEB_43` et `DEB_4387`)
+  comptent deux fois le même compte. `RepereTest.checkValiditeRegles` le vérifie
+  pour tous les modèles : ne jamais neutraliser ce test.
+
+`VentilationComptes.analyser` recense les comptes dont le solde n'alimente aucun
+repère — c'est le premier endroit où regarder quand l'équilibre du bilan n'est
+pas vérifié.
+
 ## Données
 
 * `src/main/resources/formulaires/*.json` : un modèle par formulaire (repères,
