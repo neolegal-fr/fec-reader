@@ -28,20 +28,13 @@ public class ExtracteurAnnexes {
     /**
      * Algorithme de détection des tableaux, calibré sur les liasses fiscales.
      * <p>
-     * {@link SpreadsheetExtractionAlgorithm#neolegalDefaults()} apporte
-     * l'autocomplétion des cellules et la tolérance de débordement du texte, mais
-     * conserve les tolérances d'alignement des bordures de la bibliothèque : les
-     * liasses fiscales dessinent des filets interrompus, qu'il faut rapprocher plus
-     * largement pour reconstituer leurs tableaux. Les seuils ci-dessous ont été
-     * déterminés sur le jeu d'essai ; s'en écarter dégrade la lecture (99,6 % de
-     * montants exacts avec, 96,6 % sans).
+     * Les réglages sont portés par le fork {@code fr.neolegal:tabula} : tolérances
+     * d'alignement des bordures, qui reconstituent les tableaux dont les filets
+     * sont interrompus, autocomplétion des cellules et tolérance de débordement du
+     * texte.
      */
     public static SpreadsheetExtractionAlgorithm algorithme() {
-        return SpreadsheetExtractionAlgorithm.neolegalDefaults()
-                .withMaxGapBetweenAlignedHorizontalRulings(30)
-                .withMaxGapBetweenAlignedVerticalRulings(15)
-                .withMinColumnWidth(9f)
-                .withMinRowHeight(9f);
+        return SpreadsheetExtractionAlgorithm.neolegalDefaults();
     }
 
     /** Plus grand tableau de la page, au sens du nombre de lignes. */
