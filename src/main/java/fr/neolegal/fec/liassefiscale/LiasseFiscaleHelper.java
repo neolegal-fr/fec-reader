@@ -1,54 +1,61 @@
 package fr.neolegal.fec.liassefiscale;
 
-import java.awt.Point;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-
-import static java.util.Objects.isNull;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.util.Objects.isNull;
 import static org.apache.commons.collections4.CollectionUtils.emptyIfNull;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
-import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.apache.commons.lang3.StringUtils.left;
 
-import static org.apache.commons.lang3.ObjectUtils.firstNonNull;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.text.PDFTextStripper;
-import org.apache.pdfbox.text.PDFTextStripperByArea;
 
+import fr.neolegal.fec.Anomalie;
 import fr.neolegal.fec.Fec;
+import fr.neolegal.fec.NatureAnomalie;
+import fr.neolegal.fec.liassefiscale.controle.ControlesHelper;
+import fr.neolegal.fec.liassefiscale.controle.ResultatControle;
+import fr.neolegal.fec.liassefiscale.controle.StatutControle;
+import fr.neolegal.fec.liassefiscale.pdf.DocumentPdf;
+import fr.neolegal.fec.liassefiscale.pdf.ExtracteurAnnexes;
+import fr.neolegal.fec.liassefiscale.pdf.ExtracteurMontants;
+import fr.neolegal.fec.liassefiscale.pdf.ExtracteurQuadrillage;
+import fr.neolegal.fec.liassefiscale.pdf.IdentificateurFormulaire;
+import fr.neolegal.fec.liassefiscale.pdf.IdentificationPage;
+import fr.neolegal.fec.liassefiscale.pdf.PagePdf;
 import net.objecthunter.exp4j.VariableProvider;
 import technology.tabula.ObjectExtractor;
-import technology.tabula.Page;
-import technology.tabula.PageIterator;
-import technology.tabula.Rectangle;
-import technology.tabula.RectangularTextContainer;
 import technology.tabula.Table;
-import technology.tabula.extractors.SpreadsheetExtractionAlgorithm;
 
+/**
+ * Construction d'une liasse fiscale, à partir d'un fichier des écritures
+ * comptables (FEC) ou d'une liasse au format PDF.
+ */
 public class LiasseFiscaleHelper {
+
+    private static final Logger LOGGER = Logger.getLogger(LiasseFiscaleHelper.class.getName());
 
     private LiasseFiscaleHelper() {
     }
@@ -65,7 +72,6 @@ public class LiasseFiscaleHelper {
     }
 
     public static LiasseFiscale buildLiasseFiscale(Fec fec, RegimeImposition regime) {
-
         LiasseFiscale liasse = buildLiasseFiscale(regime);
         liasse.setSiren(fec.getSiren());
         liasse.setClotureExercice(fec.getClotureExercice());
@@ -74,9 +80,16 @@ public class LiasseFiscaleHelper {
         for (Formulaire formulaire : liasse.getFormulaires()) {
             for (Repere repere : formulaire.getAllReperes()) {
                 RepereHelper.computeMontantRepereCellule(repere, fec, provider)
-                        .ifPresent(montant -> formulaire.setMontant(repere, montant));
+                        .ifPresent(montant -> formulaire.setMontant(MontantExtrait.builder()
+                                .symbole(repere.getSymbole())
+                                .montant(montant)
+                                .methode(MethodeExtraction.CALCUL_FEC)
+                                .confiance(MethodeExtraction.CALCUL_FEC.getConfianceBase())
+                                .build()));
             }
         }
+
+        appliquerControles(liasse);
 
         return liasse;
     }
@@ -85,196 +98,363 @@ public class LiasseFiscaleHelper {
         return readLiasseFiscalePDF(filename, false);
     }
 
+    /**
+     * @param outputDebugFiles écrit à côté du document les fichiers de diagnostic
+     *                         de l'extraction
+     */
     public static LiasseFiscale readLiasseFiscalePDF(String filename, boolean outputDebugFiles) throws IOException {
+        Path fichier = Path.of(filename);
+        OptionsLecture options = outputDebugFiles
+                ? OptionsLecture.builder().repertoireDiagnostic(repertoire(fichier)).build()
+                : OptionsLecture.defaut();
+        return lire(fichier, options);
+    }
+
+    private static Path repertoire(Path fichier) {
+        Path parent = fichier.toAbsolutePath().getParent();
+        return parent == null ? Path.of(".") : parent;
+    }
+
+    /** Lit une liasse fiscale au format PDF. */
+    public static LiasseFiscale lire(Path fichier) throws IOException {
+        return lire(fichier, OptionsLecture.defaut());
+    }
+
+    public static LiasseFiscale lire(Path fichier, OptionsLecture options) throws IOException {
+        try (PDDocument document = PDDocument.load(fichier.toFile())) {
+            LiasseFiscale liasse = lire(document, options);
+            ecrireDiagnostic(liasse, options, FilenameUtils.removeExtension(fichier.toString()));
+            return liasse;
+        }
+    }
+
+    /**
+     * Lit une liasse fiscale au format PDF depuis un flux, sans passer par un
+     * fichier temporaire.
+     */
+    public static LiasseFiscale lire(InputStream flux, OptionsLecture options) throws IOException {
+        try (PDDocument document = PDDocument.load(flux)) {
+            return lire(document, options);
+        }
+    }
+
+    static LiasseFiscale lire(PDDocument document, OptionsLecture options) throws IOException {
         LiasseFiscale liasse = LiasseFiscale.builder().build();
-        // Détermination empirique des distances entre les lignes et les colonnes des
-        // tableaux des liasses fiscales
-        SpreadsheetExtractionAlgorithm sea = new SpreadsheetExtractionAlgorithm()
-                .withMaxGapBetweenAlignedHorizontalRulings(30)
-                .withMaxGapBetweenAlignedVerticalRulings(15)
-                .withMinColumnWidth(9f)
-                .withMinRowHeight(9f);
+        DocumentPdf documentPdf = DocumentPdf.charger(document, options);
+        Set<ModeleFormulaire> modeles = FormulaireHelper.getModelesFormulaires();
 
-        List<Table> docTables = new LinkedList<>();
-        try (InputStream in = new FileInputStream(filename);
-                PDDocument document = PDDocument.load(in);
-                ObjectExtractor extractor = new ObjectExtractor(document)) {
-            PageIterator pi = extractor.extract();
-            while (pi.hasNext()) {
-                Page page = pi.next();
-                String header = extractPageHeader(page);
-                Optional<ModeleFormulaire> modeleMatch = FormulaireHelper.resolveModeleFormulaire(header);
-                Optional<NatureAnnexe> annexeMatch = resolveNatureAnnexe(page);
-                if (modeleMatch.isPresent() && annexeMatch.isEmpty()) {
-                    ModeleFormulaire modele = modeleMatch.get();
-                    if (liasse.getRegime() == null) {
-                        liasse.setRegime(modele.getRegimeImposition());
-                    }
-                    List<Table> pageTables = sea.extract(page);
-                    Optional<Table> tableMatch = pageTables.stream()
-                            .max(Comparator.comparing(Table::getRowCount));
-                    if (tableMatch.isPresent()) {
-                        Table table = tableMatch.get();
-                        docTables.add(table);
-                        Formulaire formulaire = parseFormulaire(table, modele);
+        List<IdentificationPage> identifications = new ArrayList<>();
+        for (PagePdf page : documentPdf.getPages()) {
+            if (page.estVide()) {
+                liasse.getAnomalies().add(new Anomalie(NatureAnomalie.PAGE_ILLISIBLE, page.getNumero(),
+                        String.format("La page %d ne contient aucun texte exploitable", page.getNumero())));
+                continue;
+            }
+            IdentificateurFormulaire.identifier(page, modeles).ifPresent(identifications::add);
+        }
 
-                        // On peut à tort croire qu'une page correspond à un formulaire (ex : annexe),
-                        // et le trouver deux fois dans la liasse. Dans cette situation,
-                        // le formulaire avec le plus de valeurs renseignées est sélectionné
-                        Formulaire existingFormulaire = liasse.getFormulaires().stream()
-                                .filter(f -> Objects.equals(f.getModele(), modele)).findFirst().orElse(null);
-                        if (existingFormulaire != null) {
-                            if (existingFormulaire.nbMontantsNonNull() < formulaire.nbMontantsNonNull()) {
-                                liasse.getFormulaires().remove(existingFormulaire);
-                                liasse.getFormulaires().add(formulaire);
-                            }
-                        } else {
-                            liasse.getFormulaires().add(formulaire);
-                        }
-
-                        if (isBlank(liasse.getSiren()) && modele.isContainsSiren()) {
-                            liasse.setSiren(parseSiren(page).orElse(null));
-                        }
-                        if (isNull(liasse.getClotureExercice()) && modele.isContainsClotureExercice()) {
-                            liasse.setClotureExercice(parseClotureExercice(table, page).orElse(null));
-                        }
-                    }
-                } else if (modeleMatch.isPresent() && annexeMatch.isPresent()) {
-                    List<Table> pageTables = sea.extract(page);
-                    Optional<Table> tableMatch = pageTables.stream()
-                            .max(Comparator.comparing(Table::getRowCount));
-                    if (tableMatch.isPresent()) {
-                        Table table = tableMatch.get();
-                        docTables.add(table);
-                        NatureAnnexe natureAnnexe = annexeMatch.get();
-                        List<? extends List<String>> lignes = parseAnnexe(table, natureAnnexe, false);
-                        liasse.getFormulaire(modeleMatch.get()).getOrAddAnnexe(annexeMatch.get())
-                                .getLignes().addAll(lignes);
-                    }
+        try (ObjectExtractor tableaux = new ObjectExtractor(document)) {
+            for (IdentificationPage identification : identifications) {
+                // Une page identifiée comme annexe ne comporte pas de repères : si la
+                // plupart des codes du modèle y figurent, c'est le formulaire lui-même
+                if (identification.estAnnexe() && identification.getTauxReperes() < 0.5) {
+                    continue;
                 }
+                lireFormulaire(liasse, documentPdf, tableaux, identification);
+            }
+
+            liasse.setRegime(resoudreRegime(identifications));
+            liasse.setSiren(resoudreSiren(documentPdf, identifications).orElse(null));
+            liasse.setClotureExercice(resoudreClotureExercice(documentPdf, identifications).orElse(null));
+
+            if (options.isExtractionAnnexes()) {
+                lireAnnexes(tableaux, liasse, identifications);
             }
         }
 
-        if (outputDebugFiles) {
-            String htmlDebugFilename = FilenameUtils.removeExtension(filename) + ".html";
-            writeTablesAsSvg(docTables, htmlDebugFilename);
+        for (Formulaire formulaire : liasse.getFormulaires()) {
+            if (formulaire.getMontantsExtraits().isEmpty() && !formulaire.getAllReperes().isEmpty()) {
+                liasse.getAnomalies().add(new Anomalie(NatureAnomalie.FORMULAIRE_VIDE, formulaire.getIdentifiant(),
+                        String.format("Aucun montant n'a pu être lu dans le formulaire %s",
+                                formulaire.getIdentifiant())));
+            }
+        }
 
-            String csvFileName = FilenameUtils.removeExtension(filename) + ".csv";
-            writeLiasseAsCsv(liasse, csvFileName);
+        if (options.isControlesCoherence()) {
+            appliquerControles(liasse);
         }
 
         return liasse;
     }
 
-    private static Optional<NatureAnnexe> resolveNatureAnnexe(Page page) throws IOException {
-        // On cherche d'abord dans l'en-tête de la page
-        Optional<NatureAnnexe> result = NatureAnnexe.resolve(extractPageHeader(page));
-        if (result.isPresent() && result.get() == NatureAnnexe.INCONNUE) {
-            // C'est une annexe, mais on ne sait pas de quelle nature
-            // On va plus loin et analyse le corps du document
-            String pageText = extractPageText(page);
-            Optional<NatureAnnexe> deeperResolution = NatureAnnexe.resolve(pageText);
-            return deeperResolution.or(() -> result);
-        }
-        return result;
-    }
+    /**
+     * Lit les montants d'une page de formulaire par deux méthodes indépendantes :
+     * la lecture géométrique, qui fonctionne sur toutes les éditions, et la lecture
+     * du quadrillage, plus sûre mais réservée aux documents qui dessinent les
+     * bordures de leurs cellules. Leur accord vaut confirmation ; leur désaccord
+     * désigne un montant à vérifier.
+     */
+    private static void lireFormulaire(LiasseFiscale liasse, DocumentPdf documentPdf, ObjectExtractor tableaux,
+            IdentificationPage identification) {
+        PagePdf page = documentPdf.getPage(identification.getPage());
+        ModeleFormulaire modele = identification.getModele();
+        Formulaire formulaire = liasse.getOrAddFormulaire(modele);
 
-    static Optional<LocalDate> parseClotureExercice(Table table, Page page) throws IOException {
-        return parseClotureExercice(table).or(() -> {
-            try {
-                return parseClotureExercice(page);
-            } catch (IOException e) {
-                return Optional.empty();
+        Map<String, MontantExtrait> montants = new LinkedHashMap<>();
+        for (MontantExtrait montant : ExtracteurMontants.extraire(page, modele)) {
+            montants.put(montant.getSymbole(), montant);
+        }
+
+        plusGrandTableau(tableaux, identification.getPage()).ifPresent(tableau -> {
+            for (MontantExtrait grille : ExtracteurQuadrillage.extraire(tableau, modele, page.getNumero())) {
+                montants.merge(grille.getSymbole(), grille, LiasseFiscaleHelper::fusionner);
             }
         });
-    }
 
-    static Optional<LocalDate> parseClotureExercice(Page page) throws IOException {
-        String pageText = extractPageText(page);
-
-        Pair<Boolean, LocalDate> result = parseClotureExercice(pageText);
-        if (result.getKey()) {
-            return Optional.ofNullable(result.getValue());
+        for (MontantExtrait montant : montants.values()) {
+            Optional<MontantExtrait> existant = formulaire.getMontantExtrait(montant.getSymbole());
+            if (existant.isEmpty() || existant.get().getConfiance() < montant.getConfiance()) {
+                formulaire.setMontant(montant);
+            }
         }
-        return Optional.empty();
     }
 
-    @SuppressWarnings("rawtypes")
-    static Optional<LocalDate> parseClotureExercice(Table table) {
-        for (List<RectangularTextContainer> row : table.getRows()) {
-            for (int i = 0; i < row.size(); i++) {
-                RectangularTextContainer<?> cell = row.get(i);
-                String text = cell.getText();
-                Pair<Boolean, LocalDate> match = parseClotureExercice(text);
-                if (match.getKey()) {
-                    if (match.getValue() != null) {
-                        return Optional.of(match.getValue());
+    /** Rapproche les montants lus par les deux méthodes d'extraction. */
+    static MontantExtrait fusionner(MontantExtrait geometrique, MontantExtrait grille) {
+        if (geometrique.getMontant() == grille.getMontant()
+                && geometrique.isCelluleVide() == grille.isCelluleVide()) {
+            // Deux lectures indépendantes concordent
+            return geometrique.toBuilder().confiance(Math.min(0.98, geometrique.getConfiance() + 0.05)).build();
+        }
+
+        // Les deux lectures ne diffèrent que par le signe : la lecture géométrique
+        // conserve l'espacement d'origine, qui distingue la parenthèse d'un montant
+        // négatif de celle qui referme une incise du libellé
+        if (geometrique.getMontant() == -grille.getMontant() && geometrique.getMontant() != 0) {
+            return geometrique.toBuilder().confiance(0.70).build();
+        }
+
+        // Les deux lectures divergent : le quadrillage, lorsqu'il existe, désigne la
+        // cellule sans ambiguïté. La valeur reste douteuse jusqu'aux contrôles de
+        // cohérence comptable.
+        MontantExtrait retenu = grille.getMethode() == MethodeExtraction.QUADRILLAGE ? grille : geometrique;
+        return retenu.toBuilder().confiance(0.55).build();
+    }
+
+    /** Plus grand tableau reconnu dans une page, s'il en existe un. */
+    private static Optional<Table> plusGrandTableau(ObjectExtractor extracteur, int page) {
+        try {
+            return ExtracteurAnnexes.plusGrandTableau(extracteur.extract(page));
+        } catch (RuntimeException e) {
+            LOGGER.log(Level.FINE, "Aucun tableau détecté page {0}", page);
+            return Optional.empty();
+        }
+    }
+
+    /**
+     * Exécute les contrôles de cohérence comptable et ajuste la confiance accordée
+     * à chaque montant en fonction de leur résultat.
+     */
+    static void appliquerControles(LiasseFiscale liasse) {
+        List<ResultatControle> resultats = ControlesHelper.executer(liasse);
+        liasse.getControles().clear();
+        liasse.getControles().addAll(resultats);
+
+        for (ResultatControle resultat : resultats) {
+            if (resultat.getStatut() == StatutControle.NON_APPLICABLE) {
+                continue;
+            }
+            for (String symbole : resultat.getReperes()) {
+                liasse.getMontantExtrait(symbole).ifPresent(montant -> {
+                    if (resultat.getStatut() == StatutControle.SATISFAIT) {
+                        montant.setControlesSatisfaits(montant.getControlesSatisfaits() + 1);
+                    } else {
+                        montant.setControlesEnEchec(montant.getControlesEnEchec() + 1);
                     }
-                    // la date est peut être dans les cellules suivantes
-                    String date = "";
-                    boolean moreNumbers = true;
-                    for (int j = i + 1; j < row.size() && date.length() < 8 && moreNumbers; j++) {
-                        RectangularTextContainer<?> nextCell = row.get(j);
-                        String digit = nextCell.getText();
-                        if (isNotBlank(digit)) {
-                            digit = digit.replaceAll("[^\\d]", "");
-                            date = date + digit;
-                        }
-                        moreNumbers = isNotBlank(digit);
-                    }
-                    Optional<LocalDate> result = parseDate(date, false);
-                    if (result.isPresent()) {
-                        return result;
-                    }
-                }
+                });
+            }
+            if (resultat.getStatut() == StatutControle.ECHEC) {
+                liasse.getAnomalies().add(new Anomalie(NatureAnomalie.INCOHERENCE_COMPTABLE, resultat.getEcart(),
+                        String.format("%s : écart de %.0f €", resultat.getLibelle(), resultat.getEcart())));
             }
         }
 
-        return Optional.empty();
+        List<MontantExtrait> montants = liasse.getMontantsExtraits();
+        montants.forEach(montant -> montant.setConfiance(
+                ajusterConfiance(montant.getConfiance(), montant.getControlesSatisfaits(),
+                        montant.getControlesEnEchec())));
+
+        int reperesAttendus = liasse.getFormulaires().stream()
+                .mapToInt(formulaire -> formulaire.getAllReperes().size()).sum();
+        liasse.setFiabilite(Fiabilite.calculer(montants, resultats, reperesAttendus));
     }
 
-    static Pair<Boolean, LocalDate> parseClotureExercice(String text) {
+    /**
+     * Révise la probabilité qu'un montant soit exact au vu des contrôles de
+     * cohérence auxquels il participe : un montant impliqué dans un total juste
+     * est très probablement exact, un montant impliqué dans un total faux ne l'est
+     * pas.
+     */
+    static double ajusterConfiance(double confiance, int satisfaits, int echecs) {
+        double resultat = confiance;
+        for (int i = 0; i < echecs; i++) {
+            resultat *= 0.55;
+        }
+        for (int i = 0; i < satisfaits; i++) {
+            resultat = 1 - (1 - resultat) * 0.45;
+        }
+        return Math.max(0.02, Math.min(0.995, resultat));
+    }
+
+    private static RegimeImposition resoudreRegime(List<IdentificationPage> identifications) {
+        Map<RegimeImposition, Double> scores = new LinkedHashMap<>();
+        for (IdentificationPage identification : identifications) {
+            RegimeImposition regime = identification.getModele().getRegimeImposition();
+            if (regime != null) {
+                scores.merge(regime, identification.getScore(), Double::sum);
+            }
+        }
+        return scores.entrySet().stream().max(Map.Entry.comparingByValue()).map(Map.Entry::getKey).orElse(null);
+    }
+
+    /**
+     * Le numéro SIREN est répété sur chaque formulaire : la valeur retenue est
+     * celle qui apparaît sur le plus grand nombre de pages.
+     */
+    static Optional<String> resoudreSiren(DocumentPdf document, List<IdentificationPage> identifications) {
+        Map<String, Integer> candidats = new LinkedHashMap<>();
+        for (IdentificationPage identification : identifications) {
+            PagePdf page = document.getPage(identification.getPage());
+            parseSiren(page.getTexte()).filter(siren -> siren.length() == 9)
+                    .ifPresent(siren -> candidats.merge(siren, 1, Integer::sum));
+        }
+        Optional<String> valide = candidats.entrySet().stream()
+                .filter(entree -> estSirenValide(entree.getKey()))
+                .max(Map.Entry.comparingByValue()).map(Map.Entry::getKey);
+        return valide.or(() -> candidats.entrySet().stream().max(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey));
+    }
+
+    /** Date de clôture la plus fréquemment mentionnée sur les formulaires. */
+    static Optional<LocalDate> resoudreClotureExercice(DocumentPdf document,
+            List<IdentificationPage> identifications) {
+        Map<LocalDate, Integer> candidats = new LinkedHashMap<>();
+        for (IdentificationPage identification : identifications) {
+            // La date de clôture est rappelée sur la plupart des formulaires : la
+            // retenir à la majorité évite de dépendre de la mise en page de l'un d'eux
+            PagePdf page = document.getPage(identification.getPage());
+            Pair<Boolean, LocalDate> resultat = parseClotureExerciceInterne(page.getTexte());
+            if (Boolean.TRUE.equals(resultat.getKey()) && estDatePlausible(resultat.getValue())) {
+                int poids = identification.getModele().isContainsClotureExercice() ? 2 : 1;
+                candidats.merge(resultat.getValue(), poids, Integer::sum);
+            }
+        }
+        return candidats.entrySet().stream().max(Map.Entry.comparingByValue()).map(Map.Entry::getKey);
+    }
+
+    static boolean estDatePlausible(LocalDate date) {
+        return date != null && date.getYear() >= 1980 && date.getYear() <= LocalDate.now().getYear() + 1;
+    }
+
+    /**
+     * Vérifie la clé de contrôle (algorithme de Luhn) du numéro SIREN.
+     */
+    public static boolean estSirenValide(String siren) {
+        if (siren == null || siren.length() != 9 || !siren.chars().allMatch(Character::isDigit)) {
+            return false;
+        }
+        // La Poste fait exception à l'algorithme de Luhn
+        if ("356000000".equals(siren)) {
+            return true;
+        }
+        int total = 0;
+        for (int i = 0; i < 9; i++) {
+            int chiffre = siren.charAt(8 - i) - '0';
+            if (i % 2 == 1) {
+                chiffre *= 2;
+                if (chiffre > 9) {
+                    chiffre -= 9;
+                }
+            }
+            total += chiffre;
+        }
+        return total % 10 == 0;
+    }
+
+    private static void lireAnnexes(ObjectExtractor extracteur, LiasseFiscale liasse,
+            List<IdentificationPage> identifications) {
+        for (IdentificationPage identification : identifications) {
+            ModeleFormulaire modele = identification.getModele();
+            Set<NatureAnnexe> annexesModele = identification.estAnnexe()
+                    ? Set.of(identification.getNatureAnnexe())
+                    : new LinkedHashSet<>(emptyIfNull(modele.getAnnexes()));
+            if (annexesModele.isEmpty()) {
+                continue;
+            }
+
+            Optional<Table> tableau = plusGrandTableau(extracteur, identification.getPage());
+            if (tableau.isEmpty()) {
+                continue;
+            }
+
+            Formulaire formulaire = liasse.getOrAddFormulaire(modele);
+            for (NatureAnnexe nature : annexesModele) {
+                formulaire.getOrAddAnnexe(nature).getLignes()
+                        .addAll(ExtracteurAnnexes.extraire(tableau.get(), nature, !identification.estAnnexe()));
+            }
+        }
+    }
+
+    static Optional<LocalDate> parseClotureExercice(String texte) {
+        Pair<Boolean, LocalDate> resultat = parseClotureExerciceInterne(texte);
+        return Boolean.TRUE.equals(resultat.getKey()) ? Optional.ofNullable(resultat.getValue()) : Optional.empty();
+    }
+
+    /**
+     * @return une paire indiquant si la date de clôture a été cherchée avec succès,
+     *         et la date trouvée le cas échéant
+     */
+    static Pair<Boolean, LocalDate> parseClotureExerciceInterne(String texte) {
         final String regex = "(clos le|c l o s   l e)([\\s,:]*?)(.+)";
-        // Il peut y avoir les dates de cloture des exercices N, et N-1, on s'assure de
-        // matcher le N
+        // Il peut y avoir les dates de clôture des exercices N et N-1 : on s'assure de
+        // retenir celle de l'exercice N
         Pattern pattern = Pattern.compile(".*N[,\\s]+" + regex,
                 Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
-        Matcher matcher = pattern.matcher(text);
-        String candidate = "";
+        Matcher matcher = pattern.matcher(texte);
+        String candidat = "";
         if (matcher.matches()) {
-            candidate = matcher.group(3);
+            candidat = matcher.group(3);
         } else {
-
-            // PAs de correspondance, il n'y a peut être pas de N
+            // Pas de correspondance : l'exercice n'est peut-être pas désigné par "N"
             pattern = Pattern.compile(".*?" + regex,
                     Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
-            matcher = pattern.matcher(text);
+            matcher = pattern.matcher(texte);
             if (!matcher.matches()) {
                 return Pair.of(false, null);
             }
-            candidate = matcher.group(3);
+            candidat = matcher.group(3);
         }
 
-        Optional<LocalDate> match = parseDate(candidate, false);
+        Optional<LocalDate> match = parseDate(candidat, false);
         if (match.isPresent()) {
             return Pair.of(true, match.get());
         }
 
-        // Parfois, la date se retrouve avant le libellé, ou beaucoup plus loin à cause
-        // de l'algo d'extraction du texte
-        // On sait que la date de clôture doit être présente, on élargit la recherche à
-        // tout le texte de la page,
-        // en se restreignant à un format de date avec séparateur pour limiter les faux
-        // positifs
-        return Pair.of(true, parseDate(text, true).orElse(null));
+        // Parfois la date se retrouve avant le libellé, ou beaucoup plus loin, à cause
+        // de l'ordre de restitution du texte : on élargit la recherche à tout le texte,
+        // en exigeant un séparateur de date pour limiter les faux positifs
+        return Pair.of(true, parseDate(texte, true).orElse(null));
     }
 
-    static Optional<LocalDate> parseDate(String str) {
+    public static Optional<LocalDate> parseDate(String str) {
         return parseDate(str, false);
     }
 
-    static Optional<LocalDate> parseDate(String str, boolean dateSeparatorsRequired) {
-        str = str.replaceAll("[\\s\\r\\n]", "");
+    static Optional<LocalDate> parseDate(String str, boolean separateursObligatoires) {
+        // Les dates saisies dans des cases pré-imprimées sont restituées chiffre par
+        // chiffre : les espaces qui les séparent sont supprimés. Les retours à la
+        // ligne sont conservés, pour ne pas souder la date au texte qui la précède
+        str = str.replaceAll("(?<=\\d)[ \\t\\u00a0\\u202f]+(?=\\d)", "");
         String pattern = null;
 
         Map<String, String> formats = new LinkedHashMap<>();
@@ -284,258 +464,147 @@ public class LiasseFiscaleHelper {
         formats.put("\\d{2}-\\d{2}-\\d{4}", "dd-MM-yyyy");
         formats.put("\\d{2}/\\d{2}/\\d{2}", "dd/MM/yy");
         formats.put("\\d{2}-\\d{2}-\\d{2}", "dd-MM-yy");
-        if (!dateSeparatorsRequired) {
+        if (!separateursObligatoires) {
             formats.put("\\d{8}", "ddMMyyyy");
             formats.put("\\d{6}", "ddMMyy");
         }
 
-        String candidate = null;
-        int distanceToCandidate = Integer.MAX_VALUE;
-        for (Map.Entry<String, String> entry : formats.entrySet()) {
-            Pattern p = Pattern.compile("(.*?)(" + entry.getKey() + ").*",
+        String candidat = null;
+        int distance = Integer.MAX_VALUE;
+        for (Map.Entry<String, String> entree : formats.entrySet()) {
+            Pattern p = Pattern.compile("(.*?)(" + entree.getKey() + ").*",
                     Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
             Matcher m = p.matcher(str);
-            if (m.matches() && m.group(1).length() < distanceToCandidate) {
-                distanceToCandidate = m.group(1).length();
-                candidate = m.group(2);
-                pattern = entry.getValue();
+            if (m.matches() && m.group(1).length() < distance) {
+                distance = m.group(1).length();
+                candidat = m.group(2);
+                pattern = entree.getValue();
             }
         }
-        if (isNull(pattern) || isNull(candidate)) {
+        if (isNull(pattern) || isNull(candidat)) {
             return Optional.empty();
         }
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-
         try {
-            return Optional.of(LocalDate.parse(candidate, formatter));
+            return Optional.of(LocalDate.parse(candidat, DateTimeFormatter.ofPattern(pattern)));
         } catch (Exception e) {
             return Optional.empty();
         }
     }
 
-    static Optional<String> parseSiren(Page page) throws IOException {
-        String pageText = extractPageText(page);
-        return parseSiren(pageText);
-    }
+    /** Suite de chiffres, éventuellement saisis dans des cases pré-imprimées */
+    private static final Pattern SUITE_DE_CHIFFRES = Pattern.compile("\\d(?:[\\s.\\-/]?\\d)*");
 
-    static Optional<String> parseSiren(String text) {
-        Pattern sirenPattern = Pattern.compile(".*(SIREN|SIRET|S I R E N|S I R E T)[^\\d]{0,5}(.+)",
-                Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
-        Matcher matcher = sirenPattern.matcher(text);
-        if (matcher.matches()) {
-            String siren = left(matcher.group(2), 18);
-            siren = left(siren.replaceAll("[^\\d]", ""), 9);
-            return Optional.of(siren);
+    /** Distance maximale, en caractères, entre le libellé et le numéro */
+    private static final int PORTEE_SIREN = 120;
+
+    /**
+     * Recherche le numéro SIREN dans le texte d'une page, à partir du libellé qui
+     * le désigne.
+     * <p>
+     * Le numéro est cherché de part et d'autre du libellé : selon les éditions, il
+     * est imprimé à sa droite, au-dessous, ou dans des cases pré-imprimées qui le
+     * placent avant lui dans l'ordre de lecture. Seules les suites de 9 chiffres
+     * (SIREN) ou de 14 chiffres (SIRET) sont retenues.
+     *
+     * @return le numéro SIREN, une chaîne vide si le libellé est présent sans
+     *         numéro, ou {@link Optional#empty()} si le libellé est absent
+     */
+    static Optional<String> parseSiren(String texte) {
+        if (isBlank(texte)) {
+            return Optional.empty();
+        }
+        Matcher libelle = Pattern.compile("(SIREN|SIRET|S\\s?I\\s?R\\s?E\\s?[NT])", Pattern.CASE_INSENSITIVE)
+                .matcher(texte);
+        if (!libelle.find()) {
+            return Optional.empty();
         }
 
-        return Optional.empty();
-    }
-
-    @SuppressWarnings("rawtypes")
-    private static Formulaire parseFormulaire(Table table, ModeleFormulaire modele) {
-        Formulaire formulaire = Formulaire.builder().modele(modele).build();
-
-        List<List<RectangularTextContainer>> rows = table.getRows();
-        for (int rowIndex = 0; rowIndex < rows.size(); ++rowIndex) {
-            List<RectangularTextContainer> row = rows.get(rowIndex);
-            for (int colIndex = 0; colIndex < row.size(); ++colIndex) {
-                RectangularTextContainer<?> cell = row.get(colIndex);
-                String text = getTrimmedText(cell);
-                Point origine = new Point(colIndex, rowIndex);
-                Optional<Repere> match = formulaire.getRepere(text);
-                final boolean fromSymbole = match.isPresent();
-                if (match.isEmpty()) {
-                    match = formulaire.getRepereByNomIfNavigationDefined(text);
+        String meilleur = "";
+        int meilleureDistance = Integer.MAX_VALUE;
+        do {
+            int debut = libelle.start();
+            int fin = libelle.end();
+            Matcher nombres = SUITE_DE_CHIFFRES.matcher(texte);
+            while (nombres.find()) {
+                String chiffres = nombres.group().replaceAll("\\D", "");
+                if (chiffres.length() != 9 && chiffres.length() != 14) {
+                    continue;
                 }
-                match.ifPresent(repere -> {
-                    Point posValeur = computePositionValeur(origine,
-                            fromSymbole ? repere.getFromSymbole() : repere.getFromNom());
-                    RectangularTextContainer<?> cellValeur = getCell(table, posValeur.y, posValeur.x);
-                    String valeur = getTrimmedText(cellValeur);
-                    double montant = parseNumber(valeur);
-                    formulaire.setMontant(repere, montant);
-                });
-            }
-        }
-
-        for (NatureAnnexe natureAnnexe : emptyIfNull(modele.getAnnexes())) {
-            formulaire.getOrAddAnnexe(natureAnnexe).getLignes()
-                    .addAll(parseAnnexe(table, natureAnnexe, true));
-        }
-
-        return formulaire;
-    }
-
-    private static Point computePositionValeur(Point origine, Point navigation) {
-        navigation = firstNonNull(navigation, new Point(1, 0));
-        Point posValeur = new Point(origine);
-        posValeur.translate(navigation.x, navigation.y);
-        return posValeur;
-    }
-
-    private static RectangularTextContainer<?> getCell(Table table, int rowIndex, int colIndex) {
-        return table.getRows().get(rowIndex).get(colIndex);
-    }
-
-    private static String getTrimmedText(RectangularTextContainer<?> cell) {
-        return cell.getText().replaceAll("\\s", "");
-    }
-
-    public static double parseNumber(String text) {
-        text = text.trim();
-        boolean isNegative = text.startsWith("(") || text.endsWith(")");
-        text = text.replaceAll("[\\s\\(\\)]", "");
-
-        double number = NumberUtils.toDouble(text, 0.0);
-        if (isNegative && number != 0.0) {
-            number = -number;
-        }
-
-        return number;
-    }
-
-    @SuppressWarnings("rawtypes")
-    private static List<? extends List<String>> parseAnnexe(Table table, NatureAnnexe natureAnnexe,
-            boolean searchTitle) {
-        List<List<String>> resultat = new LinkedList<>();
-
-        List<List<RectangularTextContainer>> rows = table.getRows();
-        if (rows.isEmpty()) {
-            return resultat;
-        }
-
-        int headerRowIndex = 0;
-        if (searchTitle) {
-            for (int i = 0; i < rows.size() && headerRowIndex == 0; ++i) {
-                // On cherche la première ligne contenant le nom de l'annexe
-                // Les données seront présentes sur les lignes suivantes
-                for (RectangularTextContainer<?> cell : rows.get(i)) {
-                    String text = cell.getText().trim();
-                    if (StrUtils.containsIgnoreCase(text, natureAnnexe.getIntitule())) {
-                        headerRowIndex = i;
-                    }
+                int distance = nombres.start() >= fin ? nombres.start() - fin : debut - nombres.end();
+                if (distance < 0 || distance > PORTEE_SIREN) {
+                    continue;
+                }
+                String siren = chiffres.substring(0, 9);
+                boolean valide = estSirenValide(siren);
+                if (distance < meilleureDistance || (valide && !estSirenValide(meilleur))) {
+                    meilleureDistance = valide ? distance : distance + PORTEE_SIREN;
+                    meilleur = siren;
                 }
             }
+        } while (libelle.find());
 
-            // La ligne d'en-tête peut être composée de cellules fusionnées
-            // On cherche la prochaine ligne commençant au
-            List<RectangularTextContainer> headerRow = rows.get(headerRowIndex);
-            float rowStartPos = headerRow.get(0).getLeft();
-            while ((headerRowIndex + 1) < rows.size() && rows.get(headerRowIndex + 1).get(0).getLeft() != rowStartPos) {
-                ++headerRowIndex;
-            }
-        }
-
-        List<RectangularTextContainer> prevRow = null;
-        boolean moreData = true;
-        for (int i = headerRowIndex + 1; i < rows.size() && moreData; ++i) {
-            List<RectangularTextContainer> row = rows.get(i);
-            List<String> ligne = new LinkedList<>();
-            boolean emptyRow = true;
-            for (RectangularTextContainer<?> cell : row) {
-                String text = cell.getText().trim();
-                emptyRow = emptyRow && text.isEmpty();
-                ligne.add(text);
-            }
-
-            moreData = !emptyRow && (isNull(prevRow) || sameRowStructure(row, prevRow));
-            if (moreData) {
-                prevRow = row;
-                resultat.add(ligne);
-            }
-        }
-
-        return resultat;
+        return Optional.of(meilleur);
     }
 
-    @SuppressWarnings("rawtypes")
-    private static boolean sameRowStructure(List<RectangularTextContainer> row,
-            List<RectangularTextContainer> other) {
-        if (isNull(row) || isNull(other) || row.size() != other.size()) {
-            return false;
+    public static double parseNumber(String texte) {
+        if (texte == null) {
+            return 0.0;
+        }
+        texte = texte.trim();
+        boolean negatif = texte.startsWith("(") || texte.endsWith(")");
+        texte = texte.replaceAll("[\\s\\(\\)]", "");
+
+        double nombre = NumberUtils.toDouble(texte, 0.0);
+        if (negatif && nombre != 0.0) {
+            nombre = -nombre;
         }
 
-        for (int i = 0; i < row.size(); ++i) {
-            RectangularTextContainer<?> cell = row.get(i);
-            RectangularTextContainer<?> otherCell = other.get(i);
-            if (cell.getWidth() != otherCell.getWidth()) {
-                return false;
-            }
+        return nombre;
+    }
+
+    private static void ecrireDiagnostic(LiasseFiscale liasse, OptionsLecture options, String prefixe)
+            throws IOException {
+        if (options.getRepertoireDiagnostic() == null) {
+            return;
         }
-        return true;
-    }
+        String base = FilenameUtils.getName(prefixe);
+        Path repertoire = options.getRepertoireDiagnostic();
+        Files.createDirectories(repertoire);
 
-    private static String extractPageText(Page page) throws IOException {
-        PDFTextStripper reader = new PDFTextStripper();
-        reader.setStartPage(page.getPageNumber());
-        reader.setEndPage(page.getPageNumber());
-        reader.setSortByPosition(true);
-        return reader.getText(page.getPDDoc());
-    }
-
-    private static String extractPageHeader(Page page) throws IOException {
-        PDFTextStripperByArea stripper = new PDFTextStripperByArea();
-        Rectangle rect = new Rectangle(0, 0, page.width, (int) ((double) page.height * 0.08));
-        stripper.addRegion("top", rect);
-
-        stripper.extractRegions(page.getPDPage());
-
-        return stripper.getTextForRegion("top");
-    }
-
-    @SuppressWarnings({ "rawtypes" })
-    private static void writeTablesAsSvg(List<Table> tables, String htmlFileName) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        sb.append("<html><body>");
-        int i = 1;
-        for (Table table : tables) {
-            sb.append("<h1>Table " + i + "</h1>");
-            sb.append(String.format(Locale.US,
-                    "<svg width=\"100%%\" viewbox=\"0 0 %s %s\" xmlns=\"http://www.w3.org/2000/svg\">",
-                    table.getWidth() + 50.0, table.getHeight() + 100.0));
-            for (List<RectangularTextContainer> row : table.getRows()) {
-                for (RectangularTextContainer<?> cell : row) {
-                    if (true /* cell.height > 10 && cell.width > 10 */) {
-                        String text = cell.getText();
-                        sb.append("<g>");
-                        sb.append(String.format(Locale.US,
-                                "<rect width=\"%f\" height=\"%f\" x=\"%f\" y=\"%f\" rx=\"2\" ry=\"2\" fill=\"white\" stroke=\"blue\"/>",
-                                cell.width, cell.height, cell.x, cell.y));
-                        sb.append(String.format(Locale.US,
-                                "<text x=\"%f\" y=\"%f\" font-family=\"Verdana\" font-size=\"8\">%s</text>",
-                                cell.x + 2, cell.y + cell.height - 3,
-                                text));
-                        sb.append("</g>");
-                    }
-                }
-            }
-
-            sb.append("</svg><br>");
-            ++i;
-        }
-        sb.append("</body></html>");
-
-        String html = sb.toString();
-
-        BufferedWriter writer = new BufferedWriter(new FileWriter(htmlFileName));
-        writer.write(html);
-        writer.close();
-    }
-
-    private static void writeLiasseAsCsv(LiasseFiscale liasse, String filePath) throws IOException {
-        StringBuilder builder = new StringBuilder();
-
+        StringBuilder montants = new StringBuilder("repere,montant,methode,confiance,page,source\r\n");
+        StringBuilder valeurs = new StringBuilder();
         for (Formulaire formulaire : liasse.getFormulaires()) {
-            Set<Repere> sortedReperes = new TreeSet<>(formulaire.getAllReperes());
-            for (Repere repere : sortedReperes) {
-                builder.append(repere.getSymbole());
-                builder.append(",");
-                builder.append(String.format(Locale.US, "%.2f", liasse.getMontant(repere).orElse(0.0)));
-                builder.append("\r\n");
+            Set<Repere> reperes = new TreeSet<>(formulaire.getAllReperes());
+            for (Repere repere : reperes) {
+                Optional<MontantExtrait> montant = formulaire.getMontantExtrait(repere.getSymbole());
+                if (montant.isEmpty()) {
+                    continue;
+                }
+                valeurs.append(String.format(Locale.US, "%s,%.2f%n", repere.getSymbole(),
+                        montant.get().getMontant()).replace("\n", "\r\n"));
+                montants.append(String.format(Locale.US, "%s,%.2f,%s,%.2f,%d,\"%s\"%n", repere.getSymbole(),
+                        montant.get().getMontant(), montant.get().getMethode(), montant.get().getConfiance(),
+                        montant.get().getPage(),
+                        Objects.toString(montant.get().getTexteSource(), "")).replace("\n", "\r\n"));
             }
         }
+        Files.writeString(repertoire.resolve(base + ".csv"), valeurs.toString(), StandardCharsets.UTF_8);
+        Files.writeString(repertoire.resolve(base + "-montants.csv"), montants.toString(), StandardCharsets.UTF_8);
 
-        FileUtils.writeStringToFile(new File(filePath), builder.toString(), "UTF-8");
+        StringBuilder controles = new StringBuilder("controle,statut,gauche,droite,ecart,libelle\r\n");
+        for (ResultatControle resultat : liasse.getControles()) {
+            controles.append(String.format(Locale.US, "%s,%s,%.2f,%.2f,%.2f,\"%s\"%n", resultat.getIdentifiant(),
+                    resultat.getStatut(), resultat.getValeurGauche(), resultat.getValeurDroite(),
+                    resultat.getEcart(), resultat.getLibelle()).replace("\n", "\r\n"));
+        }
+        Files.writeString(repertoire.resolve(base + "-controles.csv"), controles.toString(), StandardCharsets.UTF_8);
+    }
+
+    /** Trie les montants du plus fiable au moins fiable. */
+    public static List<MontantExtrait> parFiabilite(LiasseFiscale liasse) {
+        List<MontantExtrait> montants = liasse.getMontantsExtraits();
+        montants.sort(Comparator.comparing(MontantExtrait::getConfiance).reversed());
+        return montants;
     }
 }

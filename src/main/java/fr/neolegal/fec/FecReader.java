@@ -1,9 +1,14 @@
 package fr.neolegal.fec;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
+import java.nio.charset.CodingErrorAction;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.InvalidParameterException;
 import java.text.ParseException;
@@ -16,10 +21,7 @@ import java.util.Scanner;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import static org.apache.commons.lang3.StringUtils.equalsAnyIgnoreCase;
 import static org.apache.commons.lang3.StringUtils.countMatches;
-import org.apache.tika.parser.txt.CharsetDetector;
-import org.apache.tika.parser.txt.CharsetMatch;
 
 /**
  * Lecture d'un fichier de écritures comptables conforme à la norme définie par
@@ -53,17 +55,36 @@ public class FecReader {
         return Optional.empty();
     }
 
+    /** Taille de l'échantillon analysé pour déterminer l'encodage du fichier */
+    static final int TAILLE_ECHANTILLON = 512 * 1024;
+
+    /**
+     * Détermine l'encodage du fichier.
+     * <p>
+     * La norme n'autorise que deux encodages : UTF-8 et ISO 8859-15. Un fichier
+     * dont les premiers octets se décodent sans erreur en UTF-8 est en UTF-8 ; dans
+     * le cas contraire il est en ISO 8859-15, qui accepte toute suite d'octets.
+     */
     Charset guessCharset(Path path) throws IOException {
-        // Les fichiers sont encodés soit en UTF-8, soit en ISO 8859-15
-        CharsetDetector detector = new CharsetDetector();
-        try (FileInputStream inputStream = new FileInputStream(path.toFile())) {
-            detector.setText(inputStream.readAllBytes());
-            CharsetMatch match = detector.detect();
-            String charSetName = match.getName();
-            if (!equalsAnyIgnoreCase(charSetName, "UTF-8", "ISO-8859-15")) {
-                charSetName = "UTF-8";
-            }
-            return Charset.forName(charSetName);
+        byte[] echantillon;
+        try (InputStream flux = Files.newInputStream(path)) {
+            echantillon = flux.readNBytes(TAILLE_ECHANTILLON);
+        }
+
+        // L'échantillon peut se terminer au milieu d'un caractère multi-octets
+        int longueur = echantillon.length;
+        while (longueur > 0 && longueur == TAILLE_ECHANTILLON
+                && (echantillon[longueur - 1] & 0x80) != 0) {
+            --longueur;
+        }
+
+        try {
+            StandardCharsets.UTF_8.newDecoder().onMalformedInput(CodingErrorAction.REPORT)
+                    .onUnmappableCharacter(CodingErrorAction.REPORT)
+                    .decode(ByteBuffer.wrap(echantillon, 0, longueur));
+            return StandardCharsets.UTF_8;
+        } catch (CharacterCodingException e) {
+            return Charset.forName("ISO-8859-15");
         }
     }
 
@@ -117,7 +138,13 @@ public class FecReader {
             }
             ++lineCount;
         }
-        
+
+        // Certains fichiers terminent leurs lignes par "\r\r\n" : chaque ligne est
+        // alors suivie d'un enregistrement vide, qui n'est pas une anomalie du contenu
+        if (emptyLineCount >= lignes.size()) {
+            emptyLineCount = 0;
+        }
+
         if (emptyLineCount > 0) {
             anomalies.add(new Anomalie(NatureAnomalie.LIGNES_VIDES, emptyLineCount, String.format("%d lignes vides dans le fichier", emptyLineCount)));
         }

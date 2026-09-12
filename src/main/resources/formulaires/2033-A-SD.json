@@ -283,5 +283,9 @@
     "symbole" : "124",
     "nom" : "Ecarts de réévaluation",
     "formuleFEC" : "SLD_105 + SLD_107 "
+  }, {
+    "symbole" : "137",
+    "nom" : "Subventions d'investissement",
+    "formuleFEC" : "SLD_13"
   } ]
 }

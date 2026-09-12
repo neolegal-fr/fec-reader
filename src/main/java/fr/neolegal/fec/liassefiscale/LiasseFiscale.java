@@ -1,10 +1,17 @@
 package fr.neolegal.fec.liassefiscale;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
+import fr.neolegal.fec.Anomalie;
+import fr.neolegal.fec.liassefiscale.controle.ResultatControle;
+import fr.neolegal.fec.liassefiscale.controle.StatutControle;
 import lombok.Builder;
 import lombok.Data;
 
@@ -22,6 +29,15 @@ public class LiasseFiscale {
     RegimeImposition regime;
     final List<Formulaire> formulaires = new LinkedList<>();
 
+    /** Résultat des contrôles de cohérence comptable exécutés sur la liasse */
+    final List<ResultatControle> controles = new ArrayList<>();
+
+    /** Anomalies rencontrées pendant la lecture du document */
+    final List<Anomalie> anomalies = new ArrayList<>();
+
+    /** Probabilité que les montants extraits soient exacts */
+    Fiabilite fiabilite;
+
     @Builder
     public LiasseFiscale(RegimeImposition regime, String siren, LocalDate clotureExercice) {
         this.siren = siren;
@@ -30,12 +46,28 @@ public class LiasseFiscale {
     }
 
     /**
-     * Renvoie le formulaire correspondant. Le crée s'il n'existe pas dans la
-     * liasse.
+     * Renvoie le formulaire correspondant au modèle. Si la liasse ne le contient
+     * pas, un formulaire vide est renvoyé, sans être ajouté à la liasse.
+     *
+     * @see #getOrAddFormulaire(ModeleFormulaire)
      */
     public Formulaire getFormulaire(ModeleFormulaire modele) {
         return formulaires.stream().filter(f -> Objects.equals(f.getModele(), modele)).findFirst()
-                .orElse(Formulaire.builder().modele(modele).build());
+                .orElseGet(() -> Formulaire.builder().modele(modele).build());
+    }
+
+    /** Renvoie le formulaire correspondant au modèle, en l'ajoutant si nécessaire. */
+    public Formulaire getOrAddFormulaire(ModeleFormulaire modele) {
+        return formulaires.stream().filter(f -> Objects.equals(f.getModele(), modele)).findFirst()
+                .orElseGet(() -> {
+                    Formulaire formulaire = Formulaire.builder().modele(modele).build();
+                    formulaires.add(formulaire);
+                    return formulaire;
+                });
+    }
+
+    public Optional<Formulaire> getFormulaire(String identifiant) {
+        return formulaires.stream().filter(f -> Objects.equals(f.getIdentifiant(), identifiant)).findFirst();
     }
 
     public Annexe getAnnexe(NatureAnnexe natureAnnexe) {
@@ -62,4 +94,34 @@ public class LiasseFiscale {
         return formulaires.stream().flatMap(f -> f.getRepere(symbole).stream()).findFirst();
     }
 
+    /**
+     * Renvoie le détail de l'extraction du montant : méthode employée, page
+     * d'origine et probabilité que la valeur soit exacte.
+     */
+    public Optional<MontantExtrait> getMontantExtrait(String symbole) {
+        return formulaires.stream().flatMap(f -> f.getMontantExtrait(symbole).stream())
+                .max(Comparator.comparing(MontantExtrait::getConfiance));
+    }
+
+    public Optional<MontantExtrait> getMontantExtrait(Repere repere) {
+        return Objects.isNull(repere) ? Optional.empty() : getMontantExtrait(repere.getSymbole());
+    }
+
+    /** Contrôles de cohérence comptable n'ayant pas été satisfaits. */
+    public List<ResultatControle> getControlesEnEchec() {
+        return Collections.unmodifiableList(
+                controles.stream().filter(c -> c.getStatut() == StatutControle.ECHEC).toList());
+    }
+
+    /** Ensemble des montants extraits de la liasse. */
+    public List<MontantExtrait> getMontantsExtraits() {
+        List<MontantExtrait> montants = new ArrayList<>();
+        formulaires.forEach(formulaire -> montants.addAll(formulaire.getMontantsExtraits()));
+        return montants;
+    }
+
+    /** Probabilité que les montants extraits soient exacts, entre 0 et 1. */
+    public double getScoreFiabilite() {
+        return fiabilite == null ? 0 : fiabilite.getScore();
+    }
 }

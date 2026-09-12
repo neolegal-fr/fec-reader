@@ -24,10 +24,9 @@ public class FecReaderTest {
 
         assertEquals(12, fec.getJournaux().size());
 
-        assertEquals(1, fec.getAnomalies().size());
-        assertEquals(NatureAnomalie.LIGNES_VIDES, fec.getAnomalies().get(0).getNature());
-        assertEquals(10756, fec.getAnomalies().get(0).getValeur());
-
+        // Le fichier termine ses lignes par "\r\r\n" : les enregistrements vides qui en
+        // résultent ne sont pas des anomalies du contenu
+        assertEquals(0, fec.getAnomalies().size());
     }
 
     @Test

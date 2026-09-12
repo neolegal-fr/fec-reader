@@ -3,7 +3,9 @@ package fr.neolegal.fec.liassefiscale;
 import static org.apache.commons.lang3.StringUtils.equalsIgnoreCase;
 import static org.apache.commons.lang3.StringUtils.trim;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +23,9 @@ public class Formulaire {
     final Set<Repere> cachedReperes;
     Map<String, Double> valeurs = new HashMap<>();
     List<Annexe> annexes = new LinkedList<>();
+
+    /** Détail de l'extraction de chaque montant, pour en apprécier la fiabilité */
+    final Map<String, MontantExtrait> montantsExtraits = new LinkedHashMap<>();
 
     @Builder
     public Formulaire(ModeleFormulaire modele, Map<String, Double> valeurs, List<Annexe> annexes) {
@@ -40,6 +45,20 @@ public class Formulaire {
 
     public void setMontant(String repere, Double montant) {
         valeurs.put(repere, montant);
+    }
+
+    /** Enregistre un montant et les informations de fiabilité de son extraction. */
+    public void setMontant(MontantExtrait montant) {
+        montantsExtraits.put(montant.getSymbole(), montant);
+        valeurs.put(montant.getSymbole(), montant.getMontant());
+    }
+
+    public Optional<MontantExtrait> getMontantExtrait(String symbole) {
+        return Optional.ofNullable(montantsExtraits.get(symbole));
+    }
+
+    public Collection<MontantExtrait> getMontantsExtraits() {
+        return montantsExtraits.values();
     }
 
     public Optional<Double> getMontant(String symboleRepere) {

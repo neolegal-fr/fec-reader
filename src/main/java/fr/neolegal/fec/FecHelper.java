@@ -1,16 +1,16 @@
 package fr.neolegal.fec;
 
 import java.nio.file.Path;
-import java.text.NumberFormat;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -23,7 +23,6 @@ public abstract class FecHelper {
 
     static String FEC_FILENAME_SEPARATOR = "FEC";
     static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-    static NumberFormat numberFormat = NumberFormat.getInstance(Locale.FRANCE);
 
     private FecHelper() {
     }
@@ -32,8 +31,31 @@ public abstract class FecHelper {
         return StringUtils.isBlank(value) ? null : LocalDate.parse(value, dateFormatter);
     }
 
+    /**
+     * Lit un montant du fichier des écritures comptables.
+     * <p>
+     * La norme impose deux décimales et n'autorise pas de séparateur de milliers :
+     * la virgule comme le point sont donc des séparateurs décimaux. Les espaces
+     * (y compris insécables) et le signe en fin de nombre sont tolérés.
+     */
     static Double parseDouble(String value) throws ParseException {
-        return StringUtils.isBlank(value) ? null : numberFormat.parse(value).doubleValue();
+        if (StringUtils.isBlank(value)) {
+            return null;
+        }
+        String nombre = value.replaceAll("[\\s\\u00a0\\u202f]", "").replace(',', '.');
+        boolean negatif = nombre.endsWith("-");
+        if (negatif) {
+            nombre = nombre.substring(0, nombre.length() - 1);
+        }
+        if (nombre.isEmpty()) {
+            return null;
+        }
+        try {
+            double montant = Double.parseDouble(nombre);
+            return negatif ? -montant : montant;
+        } catch (NumberFormatException e) {
+            throw new ParseException(String.format("Montant illisible : %s", value), 0);
+        }
     }
 
     /**
@@ -83,12 +105,18 @@ public abstract class FecHelper {
     static double computeTotalJournal(List<LEC> lignes, String journalCode, boolean credit) {
         return CollectionUtils.emptyIfNull(lignes).stream().filter(
                 ecriture -> StringUtils.equalsIgnoreCase(ecriture.getJournalCode(), journalCode))
-                .mapToDouble(ecriture -> credit ? ecriture.getCredit() : ecriture.getDebit()).sum();
+                .mapToDouble(ecriture -> credit ? ecriture.getCreditOuZero() : ecriture.getDebitOuZero()).sum();
     }
 
+    /**
+     * Le numéro d'écriture n'est unique qu'au sein d'un journal : les écritures
+     * sont donc dénombrées par couple (journal, numéro).
+     */
     static long countEcritures(List<LEC> lignes) {
-        return CollectionUtils.emptyIfNull(lignes).stream().map(ecriture -> ecriture.getEcritureNum()).distinct()
-                .count();
+        return CollectionUtils.emptyIfNull(lignes).stream()
+                .map(ecriture -> StringUtils.defaultString(ecriture.getJournalCode()) + '\u0000'
+                        + StringUtils.defaultString(ecriture.getEcritureNum()))
+                .distinct().count();
     }
 
     public static Set<String> resolveJournaux(List<LEC> lignes) {
@@ -120,7 +148,7 @@ public abstract class FecHelper {
                             || !StringUtils.equalsIgnoreCase(numEcritureRepriseSolde, ligne.getEcritureNum()));
             if (includeLigne) {
                 comptes.put(ligne.getCompteNum(), comptes.getOrDefault(ligne.getCompteNum(), 0.0)
-                        + (ligne.getCredit() - ligne.getDebit()));
+                        + (ligne.getCreditOuZero() - ligne.getDebitOuZero()));
             }
         }
 
@@ -147,6 +175,8 @@ public abstract class FecHelper {
         try {
             return reader.read(file, originalFileName);
         } catch (Exception e) {
+            Logger.getLogger(FecHelper.class.getName()).log(Level.SEVERE,
+                    String.format("Lecture du fichier %s impossible : %s", file, e.getMessage()));
             return null;
         }
     }

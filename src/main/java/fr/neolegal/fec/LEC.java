@@ -42,6 +42,16 @@ public class LEC {
 
     final List<Anomalie> anomalies;
 
+    /** Débit de la ligne, 0 si la zone n'est pas renseignée */
+    public double getDebitOuZero() {
+        return debit == null ? 0.0 : debit;
+    }
+
+    /** Crédit de la ligne, 0 si la zone n'est pas renseignée */
+    public double getCreditOuZero() {
+        return credit == null ? 0.0 : credit;
+    }
+
     @Builder
     public LEC(String journalCode,
             String journalLib,

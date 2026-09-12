@@ -1,0 +1,1162 @@
+[
+  {
+    "identifiant": "2050-total-II-brut",
+    "formulaires": [
+      "2050-SD"
+    ],
+    "libelle": "Total II (actif immobilisé) brut = somme des immobilisations brutes",
+    "gauche": [
+      "BJ"
+    ],
+    "droite": [
+      "AB",
+      "CX",
+      "AF",
+      "AH",
+      "AJ",
+      "AL",
+      "AN",
+      "AP",
+      "AR",
+      "AT",
+      "AV",
+      "AX",
+      "CS",
+      "CU",
+      "BB",
+      "BD",
+      "BF",
+      "BH"
+    ],
+    "tolerance": 9
+  },
+  {
+    "identifiant": "2050-total-II-amort",
+    "formulaires": [
+      "2050-SD"
+    ],
+    "libelle": "Total II (actif immobilisé) amortissements = somme des amortissements des immobilisations",
+    "gauche": [
+      "BK"
+    ],
+    "droite": [
+      "AC",
+      "CQ",
+      "AG",
+      "AI",
+      "AK",
+      "AM",
+      "AO",
+      "AQ",
+      "AS",
+      "AU",
+      "AW",
+      "AY",
+      "CT",
+      "CV",
+      "BC",
+      "BE",
+      "BG",
+      "BI"
+    ],
+    "tolerance": 9
+  },
+  {
+    "identifiant": "2050-total-III-brut",
+    "formulaires": [
+      "2050-SD"
+    ],
+    "libelle": "Total III (actif circulant) brut = somme de l'actif circulant brut",
+    "gauche": [
+      "CJ"
+    ],
+    "droite": [
+      "BL",
+      "BN",
+      "BP",
+      "BR",
+      "BT",
+      "BV",
+      "BX",
+      "BZ",
+      "CB",
+      "CD",
+      "CF",
+      "CH"
+    ],
+    "tolerance": 6
+  },
+  {
+    "identifiant": "2050-total-III-amort",
+    "formulaires": [
+      "2050-SD"
+    ],
+    "libelle": "Total III (actif circulant) dépréciations = somme des dépréciations de l'actif circulant",
+    "gauche": [
+      "CK"
+    ],
+    "droite": [
+      "BM",
+      "BO",
+      "BQ",
+      "BS",
+      "BU",
+      "BW",
+      "BY",
+      "CA",
+      "CC",
+      "CE",
+      "CG",
+      "CI"
+    ],
+    "tolerance": 6
+  },
+  {
+    "identifiant": "2050-total-general-brut",
+    "formulaires": [
+      "2050-SD"
+    ],
+    "libelle": "Total général brut = I + II + III + IV + V + VI",
+    "gauche": [
+      "CO"
+    ],
+    "droite": [
+      "AA",
+      "BJ",
+      "CJ",
+      "CW",
+      "CM",
+      "CN"
+    ],
+    "tolerance": 3
+  },
+  {
+    "identifiant": "2050-total-general-amort",
+    "formulaires": [
+      "2050-SD"
+    ],
+    "libelle": "Total général des amortissements = total II + total III",
+    "gauche": [
+      "1A"
+    ],
+    "droite": [
+      "BK",
+      "CK"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2051-total-I",
+    "formulaires": [
+      "2051-SD"
+    ],
+    "libelle": "Total I (capitaux propres) = somme des capitaux propres",
+    "gauche": [
+      "DL"
+    ],
+    "droite": [
+      "DA",
+      "DB",
+      "DC",
+      "DD",
+      "DE",
+      "DF",
+      "DG",
+      "DH",
+      "DI",
+      "DJ",
+      "DK"
+    ],
+    "tolerance": 6
+  },
+  {
+    "identifiant": "2051-total-II",
+    "formulaires": [
+      "2051-SD"
+    ],
+    "libelle": "Total II (autres fonds propres) = titres participatifs + avances conditionnées",
+    "gauche": [
+      "DO"
+    ],
+    "droite": [
+      "DM",
+      "DN"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2051-total-III",
+    "formulaires": [
+      "2051-SD"
+    ],
+    "libelle": "Total III (provisions) = provisions pour risques + provisions pour charges",
+    "gauche": [
+      "DR"
+    ],
+    "droite": [
+      "DP",
+      "DQ"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2051-total-IV",
+    "formulaires": [
+      "2051-SD"
+    ],
+    "libelle": "Total IV (dettes) = somme des dettes",
+    "gauche": [
+      "EC"
+    ],
+    "droite": [
+      "DS",
+      "DT",
+      "DU",
+      "DV",
+      "DW",
+      "DX",
+      "DY",
+      "DZ",
+      "EA",
+      "EB"
+    ],
+    "tolerance": 5
+  },
+  {
+    "identifiant": "2051-total-general",
+    "formulaires": [
+      "2051-SD"
+    ],
+    "libelle": "Total général du passif = I + II + III + IV + V",
+    "gauche": [
+      "EE"
+    ],
+    "droite": [
+      "DL",
+      "DO",
+      "DR",
+      "EC",
+      "ED"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "bilan-equilibre",
+    "formulaires": [
+      "2050-SD",
+      "2051-SD"
+    ],
+    "libelle": "Équilibre du bilan : total de l'actif net = total du passif",
+    "gauche": [
+      "CO",
+      "-1A"
+    ],
+    "droite": [
+      "EE"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2052-ventes-marchandises",
+    "formulaires": [
+      "2052-SD"
+    ],
+    "libelle": "Ventes de marchandises = France + Exportations",
+    "gauche": [
+      "FC"
+    ],
+    "droite": [
+      "FA",
+      "FB"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2052-production-biens",
+    "formulaires": [
+      "2052-SD"
+    ],
+    "libelle": "Production vendue de biens = France + Exportations",
+    "gauche": [
+      "FF"
+    ],
+    "droite": [
+      "FD",
+      "FE"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2052-production-services",
+    "formulaires": [
+      "2052-SD"
+    ],
+    "libelle": "Production vendue de services = France + Exportations",
+    "gauche": [
+      "FI"
+    ],
+    "droite": [
+      "FG",
+      "FH"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2052-ca-france",
+    "formulaires": [
+      "2052-SD"
+    ],
+    "libelle": "Chiffre d'affaires France = ventes + production de biens + production de services",
+    "gauche": [
+      "FJ"
+    ],
+    "droite": [
+      "FA",
+      "FD",
+      "FG"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2052-ca-export",
+    "formulaires": [
+      "2052-SD"
+    ],
+    "libelle": "Chiffre d'affaires à l'exportation = ventes + production de biens + production de services",
+    "gauche": [
+      "FK"
+    ],
+    "droite": [
+      "FB",
+      "FE",
+      "FH"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2052-ca-net",
+    "formulaires": [
+      "2052-SD"
+    ],
+    "libelle": "Chiffre d'affaires net = France + Exportations",
+    "gauche": [
+      "FL"
+    ],
+    "droite": [
+      "FJ",
+      "FK"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2052-produits-exploitation",
+    "formulaires": [
+      "2052-SD"
+    ],
+    "libelle": "Total des produits d'exploitation (I)",
+    "gauche": [
+      "FR"
+    ],
+    "droite": [
+      "FL",
+      "FM",
+      "FN",
+      "FO",
+      "FP",
+      "FQ"
+    ],
+    "tolerance": 3
+  },
+  {
+    "identifiant": "2052-charges-exploitation",
+    "formulaires": [
+      "2052-SD"
+    ],
+    "libelle": "Total des charges d'exploitation (II)",
+    "gauche": [
+      "GF"
+    ],
+    "droite": [
+      "FS",
+      "FT",
+      "FU",
+      "FV",
+      "FW",
+      "FX",
+      "FY",
+      "FZ",
+      "GA",
+      "GB",
+      "GC",
+      "GD",
+      "GE"
+    ],
+    "tolerance": 6
+  },
+  {
+    "identifiant": "2052-resultat-exploitation",
+    "formulaires": [
+      "2052-SD"
+    ],
+    "libelle": "Résultat d'exploitation = produits (I) - charges (II)",
+    "gauche": [
+      "GG"
+    ],
+    "droite": [
+      "FR",
+      "-GF"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2052-produits-financiers",
+    "formulaires": [
+      "2052-SD"
+    ],
+    "libelle": "Total des produits financiers (V)",
+    "gauche": [
+      "GP"
+    ],
+    "droite": [
+      "GJ",
+      "GK",
+      "GL",
+      "GM",
+      "GN",
+      "GO"
+    ],
+    "tolerance": 3
+  },
+  {
+    "identifiant": "2052-charges-financieres",
+    "formulaires": [
+      "2052-SD"
+    ],
+    "libelle": "Total des charges financières (VI)",
+    "gauche": [
+      "GU"
+    ],
+    "droite": [
+      "GQ",
+      "GR",
+      "GS",
+      "GT"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2052-resultat-financier",
+    "formulaires": [
+      "2052-SD"
+    ],
+    "libelle": "Résultat financier = produits (V) - charges (VI)",
+    "gauche": [
+      "GV"
+    ],
+    "droite": [
+      "GP",
+      "-GU"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2052-resultat-courant",
+    "formulaires": [
+      "2052-SD"
+    ],
+    "libelle": "Résultat courant avant impôts = exploitation + opérations en commun + financier",
+    "gauche": [
+      "GW"
+    ],
+    "droite": [
+      "GG",
+      "GH",
+      "-GI",
+      "GV"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2053-produits-exceptionnels",
+    "formulaires": [
+      "2053-SD"
+    ],
+    "libelle": "Total des produits exceptionnels (VII)",
+    "gauche": [
+      "HD"
+    ],
+    "droite": [
+      "HA",
+      "HB",
+      "HC"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2053-charges-exceptionnelles",
+    "formulaires": [
+      "2053-SD"
+    ],
+    "libelle": "Total des charges exceptionnelles (VIII)",
+    "gauche": [
+      "HH"
+    ],
+    "droite": [
+      "HE",
+      "HF",
+      "HG"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2053-resultat-exceptionnel",
+    "formulaires": [
+      "2053-SD"
+    ],
+    "libelle": "Résultat exceptionnel = produits (VII) - charges (VIII)",
+    "gauche": [
+      "HI"
+    ],
+    "droite": [
+      "HD",
+      "-HH"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2053-total-produits",
+    "formulaires": [
+      "2052-SD",
+      "2053-SD"
+    ],
+    "libelle": "Total des produits = I + III + V + VII",
+    "gauche": [
+      "HL"
+    ],
+    "droite": [
+      "FR",
+      "GH",
+      "GP",
+      "HD"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2053-total-charges",
+    "formulaires": [
+      "2052-SD",
+      "2053-SD"
+    ],
+    "libelle": "Total des charges = II + IV + VI + VIII + IX + X",
+    "gauche": [
+      "HM"
+    ],
+    "droite": [
+      "GF",
+      "GI",
+      "GU",
+      "HH",
+      "HJ",
+      "HK"
+    ],
+    "tolerance": 3
+  },
+  {
+    "identifiant": "2053-benefice",
+    "formulaires": [
+      "2053-SD"
+    ],
+    "libelle": "Bénéfice ou perte = total des produits - total des charges",
+    "gauche": [
+      "HN"
+    ],
+    "droite": [
+      "HL",
+      "-HM"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "resultat-bilan-compte-resultat",
+    "formulaires": [
+      "2051-SD",
+      "2053-SD"
+    ],
+    "libelle": "Le résultat du compte de résultat est reporté au bilan",
+    "gauche": [
+      "HN"
+    ],
+    "droite": [
+      "DI"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2033-actif-immobilise-brut",
+    "formulaires": [
+      "2033-A-SD"
+    ],
+    "libelle": "Actif immobilisé brut = somme des immobilisations",
+    "gauche": [
+      "044"
+    ],
+    "droite": [
+      "010",
+      "014",
+      "028",
+      "040"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2033-actif-immobilise-amort",
+    "formulaires": [
+      "2033-A-SD"
+    ],
+    "libelle": "Amortissements de l'actif immobilisé",
+    "gauche": [
+      "048"
+    ],
+    "droite": [
+      "012",
+      "016",
+      "030",
+      "042"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2033-actif-circulant-brut",
+    "formulaires": [
+      "2033-A-SD"
+    ],
+    "libelle": "Actif circulant brut = stocks + créances + disponibilités",
+    "gauche": [
+      "096"
+    ],
+    "droite": [
+      "050",
+      "060",
+      "064",
+      "068",
+      "072",
+      "080",
+      "084",
+      "092"
+    ],
+    "tolerance": 4
+  },
+  {
+    "identifiant": "2033-actif-circulant-amort",
+    "formulaires": [
+      "2033-A-SD"
+    ],
+    "libelle": "Dépréciations de l'actif circulant",
+    "gauche": [
+      "098"
+    ],
+    "droite": [
+      "052",
+      "062",
+      "066",
+      "070",
+      "074",
+      "082",
+      "086",
+      "094"
+    ],
+    "tolerance": 4
+  },
+  {
+    "identifiant": "2033-total-brut",
+    "formulaires": [
+      "2033-A-SD"
+    ],
+    "libelle": "Total général brut = actif immobilisé + actif circulant",
+    "gauche": [
+      "110"
+    ],
+    "droite": [
+      "044",
+      "096"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2033-total-amort",
+    "formulaires": [
+      "2033-A-SD"
+    ],
+    "libelle": "Total général des amortissements",
+    "gauche": [
+      "112"
+    ],
+    "droite": [
+      "048",
+      "098"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2033-capitaux-propres",
+    "formulaires": [
+      "2033-A-SD"
+    ],
+    "libelle": "Total des capitaux propres",
+    "gauche": [
+      "142"
+    ],
+    "droite": [
+      "120",
+      "124",
+      "126",
+      "130",
+      "132",
+      "134",
+      "136",
+      "137",
+      "140"
+    ],
+    "tolerance": 4
+  },
+  {
+    "identifiant": "2033-dettes",
+    "formulaires": [
+      "2033-A-SD"
+    ],
+    "libelle": "Total des dettes",
+    "gauche": [
+      "176"
+    ],
+    "droite": [
+      "156",
+      "164",
+      "166",
+      "172",
+      "174",
+      "175"
+    ],
+    "tolerance": 3
+  },
+  {
+    "identifiant": "2033-total-passif",
+    "formulaires": [
+      "2033-A-SD"
+    ],
+    "libelle": "Total du passif = capitaux propres + provisions + dettes",
+    "gauche": [
+      "180"
+    ],
+    "droite": [
+      "142",
+      "154",
+      "176"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2033-bilan-equilibre",
+    "formulaires": [
+      "2033-A-SD"
+    ],
+    "libelle": "Équilibre du bilan simplifié : actif net = passif",
+    "gauche": [
+      "110",
+      "-112"
+    ],
+    "droite": [
+      "180"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2033-produits-exploitation",
+    "formulaires": [
+      "2033-B-SD"
+    ],
+    "libelle": "Total des produits d'exploitation (I)",
+    "gauche": [
+      "232"
+    ],
+    "droite": [
+      "210",
+      "214",
+      "218",
+      "222",
+      "224",
+      "226",
+      "230"
+    ],
+    "tolerance": 4
+  },
+  {
+    "identifiant": "2033-charges-exploitation",
+    "formulaires": [
+      "2033-B-SD"
+    ],
+    "libelle": "Total des charges d'exploitation (II)",
+    "gauche": [
+      "264"
+    ],
+    "droite": [
+      "234",
+      "236",
+      "238",
+      "240",
+      "242",
+      "244",
+      "250",
+      "252",
+      "254",
+      "256",
+      "262"
+    ],
+    "tolerance": 6
+  },
+  {
+    "identifiant": "2033-resultat-exploitation",
+    "formulaires": [
+      "2033-B-SD"
+    ],
+    "libelle": "Résultat d'exploitation = produits (I) - charges (II)",
+    "gauche": [
+      "270"
+    ],
+    "droite": [
+      "232",
+      "-264"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2033-benefice",
+    "formulaires": [
+      "2033-B-SD"
+    ],
+    "libelle": "Bénéfice ou perte = résultat d'exploitation + financier + exceptionnel - impôts",
+    "gauche": [
+      "310"
+    ],
+    "droite": [
+      "270",
+      "280",
+      "-294",
+      "290",
+      "-300",
+      "-306"
+    ],
+    "tolerance": 3
+  },
+  {
+    "identifiant": "2033-resultat-bilan",
+    "formulaires": [
+      "2033-A-SD",
+      "2033-B-SD"
+    ],
+    "libelle": "Le résultat du compte de résultat est reporté au bilan",
+    "gauche": [
+      "136"
+    ],
+    "droite": [
+      "310"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2139-actif-immobilise-brut",
+    "formulaires": [
+      "2139-A-SD"
+    ],
+    "libelle": "Total de l'actif immobilisé brut",
+    "gauche": [
+      "AW"
+    ],
+    "droite": [
+      "AA",
+      "AC",
+      "AE",
+      "AG",
+      "AJ",
+      "AL",
+      "AN",
+      "AQ",
+      "AS",
+      "AU"
+    ],
+    "tolerance": 5
+  },
+  {
+    "identifiant": "2139-actif-immobilise-amort",
+    "formulaires": [
+      "2139-A-SD"
+    ],
+    "libelle": "Amortissements de l'actif immobilisé",
+    "gauche": [
+      "AX"
+    ],
+    "droite": [
+      "AB",
+      "AD",
+      "AF",
+      "AH",
+      "AK",
+      "AM",
+      "AP",
+      "AR",
+      "AT",
+      "AV"
+    ],
+    "tolerance": 5
+  },
+  {
+    "identifiant": "2139-actif-circulant-brut",
+    "formulaires": [
+      "2139-A-SD"
+    ],
+    "libelle": "Total de l'actif circulant brut",
+    "gauche": [
+      "BP"
+    ],
+    "droite": [
+      "AY",
+      "BA",
+      "BC",
+      "BE",
+      "BG",
+      "BJ",
+      "BN"
+    ],
+    "tolerance": 4
+  },
+  {
+    "identifiant": "2139-actif-circulant-amort",
+    "formulaires": [
+      "2139-A-SD"
+    ],
+    "libelle": "Dépréciations de l'actif circulant",
+    "gauche": [
+      "BQ"
+    ],
+    "droite": [
+      "AZ",
+      "BB",
+      "BD",
+      "BF",
+      "BH",
+      "BK",
+      "BO"
+    ],
+    "tolerance": 4
+  },
+  {
+    "identifiant": "2139-total-actif-brut",
+    "formulaires": [
+      "2139-A-SD"
+    ],
+    "libelle": "Total de l'actif brut = actif immobilisé + actif circulant",
+    "gauche": [
+      "BR"
+    ],
+    "droite": [
+      "AW",
+      "BP"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2139-total-actif-amort",
+    "formulaires": [
+      "2139-A-SD"
+    ],
+    "libelle": "Total des amortissements de l'actif",
+    "gauche": [
+      "BS"
+    ],
+    "droite": [
+      "AX",
+      "BQ"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2139-capitaux-propres",
+    "formulaires": [
+      "2139-A-SD"
+    ],
+    "libelle": "Total des capitaux propres",
+    "gauche": [
+      "CG"
+    ],
+    "droite": [
+      "CA",
+      "CB",
+      "CC",
+      "CD",
+      "CE",
+      "CF"
+    ],
+    "tolerance": 3
+  },
+  {
+    "identifiant": "2139-dettes",
+    "formulaires": [
+      "2139-A-SD"
+    ],
+    "libelle": "Total des dettes",
+    "gauche": [
+      "CN"
+    ],
+    "droite": [
+      "CJ",
+      "CK",
+      "CL",
+      "CM",
+      "CO",
+      "CR",
+      "CS"
+    ],
+    "tolerance": 4
+  },
+  {
+    "identifiant": "2139-total-passif",
+    "formulaires": [
+      "2139-A-SD"
+    ],
+    "libelle": "Total du passif = capitaux propres + provisions + dettes",
+    "gauche": [
+      "CP"
+    ],
+    "droite": [
+      "CG",
+      "CH",
+      "CN"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2139-bilan-equilibre",
+    "formulaires": [
+      "2139-A-SD"
+    ],
+    "libelle": "Équilibre du bilan simplifié agricole : actif net = passif",
+    "gauche": [
+      "BR",
+      "-BS"
+    ],
+    "droite": [
+      "CP"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2139-produits-exploitation",
+    "formulaires": [
+      "2139-B-SD"
+    ],
+    "libelle": "Total des produits d'exploitation",
+    "gauche": [
+      "EP"
+    ],
+    "droite": [
+      "EA",
+      "EB",
+      "EC",
+      "ED",
+      "EE",
+      "EF",
+      "EG",
+      "EH",
+      "EJ",
+      "EL",
+      "EN"
+    ],
+    "tolerance": 6
+  },
+  {
+    "identifiant": "2139-charges-exploitation",
+    "formulaires": [
+      "2139-B-SD"
+    ],
+    "libelle": "Total des charges d'exploitation (II)",
+    "gauche": [
+      "FC"
+    ],
+    "droite": [
+      "EQ",
+      "ER",
+      "ES",
+      "ET",
+      "EU",
+      "EV",
+      "EX",
+      "EY",
+      "DG",
+      "EZ",
+      "FB"
+    ],
+    "tolerance": 6
+  },
+  {
+    "identifiant": "2139-resultat-exploitation",
+    "formulaires": [
+      "2139-B-SD"
+    ],
+    "libelle": "Résultat d'exploitation = produits - charges",
+    "gauche": [
+      "FD"
+    ],
+    "droite": [
+      "EP",
+      "-FC"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2139-benefice",
+    "formulaires": [
+      "2139-B-SD"
+    ],
+    "libelle": "Bénéfice ou perte = exploitation + financier + exceptionnel",
+    "gauche": [
+      "FJ"
+    ],
+    "droite": [
+      "FD",
+      "FE",
+      "-FG",
+      "FF",
+      "-FH"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2139-resultat-comptable",
+    "formulaires": [
+      "2139-B-SD"
+    ],
+    "libelle": "Bénéfice ou perte = bénéfice comptable - déficit comptable",
+    "gauche": [
+      "FJ"
+    ],
+    "droite": [
+      "FK",
+      "-FL"
+    ],
+    "tolerance": 2
+  },
+  {
+    "identifiant": "2139-resultat-bilan",
+    "formulaires": [
+      "2139-A-SD",
+      "2139-B-SD"
+    ],
+    "libelle": "Le résultat du compte de résultat est reporté au bilan",
+    "gauche": [
+      "CE"
+    ],
+    "droite": [
+      "FJ"
+    ],
+    "tolerance": 2
+  }
+]

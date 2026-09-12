@@ -7,6 +7,13 @@
   "containsSiren" : true,
   "containsClotureExercice" : true,
   "sections" : [ {
+    "nom" : "TOTAL GÉNÉRAL (I à VI)",
+    "reperes" : [ {
+      "symbole" : "1A",
+      "nom" : "amortissements",
+      "formuleFEC" : ""
+    } ]
+  }, {
     "nom" : "Divers",
     "sections" : [ {
       "nom" : "Valeurs mobilières de placement",
