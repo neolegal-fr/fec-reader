@@ -44,7 +44,11 @@ plugin javadoc au premier appel.
    premier montant à droite de son code, dans la colonne suivante. Seconde passe
    par les libellés quand les codes sont illisibles ;
 5. `pdf/ExtracteurQuadrillage` → seconde lecture indépendante par la grille du
-   tableau (Tabula), quand le document dessine ses bordures ;
+   tableau (Tabula), quand le document dessine ses bordures. L'algorithme est
+   construit par `ExtracteurAnnexes.algorithme()` :
+   `neolegalDefaults()` du fork `fr.neolegal:tabula`, complété des tolérances
+   d'alignement des bordures calibrées sur le jeu d'essai — `neolegalDefaults()`
+   seul ne les porte pas et fait chuter la lecture de 99,6 % à 96,6 % ;
 6. `LiasseFiscaleHelper.fusionner()` → accord des deux lectures = confirmation,
    désaccord = montant ramené à 55 % de confiance ;
 7. `controle/ControlesHelper` → contrôles de cohérence comptable, qui révisent la

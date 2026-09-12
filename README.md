@@ -282,7 +282,10 @@ Le workflow vérifie l'état de la clé avant de construire, et s'arrête imméd
 
 ### 0.3.1
 
+* Mise à jour de `fr.neolegal:tabula` en 1.1.0 : la détection des tableaux s'initialise par `SpreadsheetExtractionAlgorithm.neolegalDefaults()`, qui apporte l'autocomplétion des cellules et la tolérance de débordement du texte. Les tolérances d'alignement des bordures propres aux liasses fiscales restent appliquées par-dessus : sans elles, le taux de montants exacts tombe de 99,6 % à 96,6 %.
+
 Fiabilité du calcul de la liasse à partir d'un fichier des écritures comptables :
+
 
 * les écritures de reprise des soldes sont reconnues par leur journal, quel que soit son code et sa position dans le fichier — l'heuristique précédente (le numéro de la première écriture du fichier) excluait jusqu'à l'intégralité des écritures sur certains fichiers ;
 * les soldes des comptes sont calculés une seule fois à la lecture du fichier, au lieu d'être recalculés par chaque formule ;
