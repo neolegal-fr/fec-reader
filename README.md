@@ -222,7 +222,29 @@ mvn release:update-versions
 git commit -am "Passage en <nouvelle version>-SNAPSHOT"
 ```
 
-L'artefact apparaît sur <https://central.sonatype.com/artifact/fr.neolegal/fec-reader> en quelques minutes, puis sur `repo1.maven.org` sous une demi-heure. En cas d'échec de la signature, vérifier que `gpg --list-secret-keys` renvoie bien la clé de publication.
+L'artefact apparaît sur <https://central.sonatype.com/artifact/fr.neolegal/fec-reader> en quelques minutes, puis sur `repo1.maven.org` sous une demi-heure.
+
+### Renouveler la clé de signature
+
+Maven Central refuse les binaires signés avec une clé expirée, et `gpg` refuse purement et simplement de signer : la publication échoue alors sur `gpg: no default secret key`. La clé de publication du projet (`ed25519/C1B557958CAC9E85`, `Nicolas Riousset <nicolas@neolegal.fr>`) a expiré le **22 juin 2025**. Pour la prolonger, depuis le poste qui détient la clé privée :
+
+```powershell
+gpg --list-secret-keys --keyid-format=long      # vérifier l'échéance
+gpg --edit-key C1B557958CAC9E85
+  gpg> expire        # choisir une nouvelle échéance, par exemple 2y
+  gpg> key 1         # répéter pour chaque sous-clé, s'il y en a
+  gpg> expire
+  gpg> save
+gpg --keyserver keys.openpgp.org --send-keys C1B557958CAC9E85   # republier la clé publique
+```
+
+Puis mettre à jour le secret utilisé par le workflow — il doit contenir la clé **privée** au format armuré :
+
+```powershell
+gpg --armor --export-secret-keys C1B557958CAC9E85 | gh secret set MAVEN_GPG_PRIVATE_KEY --org neolegal-fr --repos fec-reader
+```
+
+Le workflow vérifie désormais l'état de la clé avant de construire, et s'arrête immédiatement avec un message explicite si elle est absente, expirée ou révoquée.
 
 ## Journal des versions
 

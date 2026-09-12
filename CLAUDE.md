@@ -101,5 +101,11 @@ sur les 14 documents à référence indépendante (603 justes, 1 faux, 5 non lus
 Voir la section « Publier une nouvelle version » du README. En résumé : la
 publication se fait par le workflow GitHub `release-to-maven-central`
 (`gh workflow run release-to-maven-central.yml`), qui détient la clé GPG et les
-identifiants Sonatype. La publication locale (`mvn deploy`) suppose une clé GPG
-sur la machine.
+identifiants Sonatype (secrets de l'organisation `neolegal-fr`). La publication
+locale (`./deploys.ps1`) suppose la clé GPG sur la machine.
+
+**État au 12/09/2026** : la dernière version publiée sur Maven Central est la
+0.2.3 (juillet 2024). La clé de signature `ed25519/C1B557958CAC9E85` a expiré le
+22/06/2025 : tant qu'elle n'est pas prolongée et le secret
+`MAVEN_GPG_PRIVATE_KEY` mis à jour, toute publication échoue sur
+`gpg: no default secret key`. La marche à suivre est décrite dans le README.

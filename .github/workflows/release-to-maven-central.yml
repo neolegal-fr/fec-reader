@@ -21,6 +21,18 @@ jobs:
           gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
+      - name: Vérifier que la clé de signature est utilisable
+        run: |
+          if ! gpg --list-secret-keys --with-colons | grep -q '^sec'; then
+            echo "::error::Aucune clé secrète n'a été importée : vérifier le secret MAVEN_GPG_PRIVATE_KEY (il doit contenir un export 'gpg --armor --export-secret-keys', pas la clé publique)."
+            exit 1
+          fi
+          if gpg --list-secret-keys --with-colons | awk -F: '/^sec/ {print $2}' | grep -q '^[er]$'; then
+            gpg --list-secret-keys --keyid-format=long
+            echo "::error::La clé de signature est expirée ou révoquée. Prolonger son échéance (gpg --edit-key <id> expire), republier la clé publique sur keys.openpgp.org, puis mettre à jour le secret MAVEN_GPG_PRIVATE_KEY."
+            exit 1
+          fi
+
       - name: Set up Git user
         run: |
           git config --global user.name "Neolegal (body) Builder"
@@ -29,7 +41,7 @@ jobs:
       - name: Publish package
         run: |
           mvn --batch-mode clean versions:set -DremoveSnapshot
-          mvn --batch-mode deploy --no-transfer-progress -P central-deploy -DskipTests=true
+          mvn --batch-mode deploy --no-transfer-progress -DskipTests=true
         env:
           MAVEN_USERNAME: ${{ secrets.OSS_SONATYPE_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSS_SONATYPE_PASSWORD }}
