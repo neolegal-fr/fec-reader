@@ -1,0 +1,55 @@
+name: verifier-cle-de-signature
+
+# Vérifie que la clé de signature déclarée dans les secrets est utilisable, sans
+# rien publier : à lancer avant une release, ou pour contrôler que le
+# renouvellement de la clé a bien été répercuté. Le contrôle est également
+# exécuté le 1er de chaque mois pour prévenir avant l'expiration.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 1 * *'
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Importer la clé de signature
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          server-id: central
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
+          gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+          gpg-passphrase: MAVEN_GPG_PASSPHRASE
+
+      - name: Contrôler l'état de la clé
+        env:
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+        run: |
+          if ! gpg --list-secret-keys --with-colons | grep -q '^sec'; then
+            echo "::error::Aucune clé secrète n'a été importée : vérifier le secret MAVEN_GPG_PRIVATE_KEY (il doit contenir un export 'gpg --armor --export-secret-keys', pas la clé publique)."
+            exit 1
+          fi
+          gpg --list-secret-keys --keyid-format=long
+
+          if gpg --list-secret-keys --with-colons | awk -F: '/^sec/ {print $2}' | grep -q '^[er]$'; then
+            echo "::error::La clé de signature est expirée ou révoquée. Voir « Renouveler la clé de signature » dans le README."
+            exit 1
+          fi
+
+          # Une signature d'essai éprouve la clé et la phrase de passe ensemble
+          echo "essai" > essai.txt
+          gpg --batch --yes --pinentry-mode loopback --passphrase "$MAVEN_GPG_PASSPHRASE" \
+              --armor --detach-sign --output essai.asc essai.txt
+          gpg --verify essai.asc essai.txt
+
+          echeance=$(gpg --list-secret-keys --with-colons | awk -F: '/^sec/ {print $7; exit}')
+          restant=$(( ( echeance - $(date +%s) ) / 86400 ))
+          echo "La clé de signature expire dans $restant jours."
+          if [ "$restant" -lt 30 ]; then
+            echo "::warning::La clé de signature expire dans $restant jours : la prolonger et mettre à jour le secret MAVEN_GPG_PRIVATE_KEY."
+          fi
